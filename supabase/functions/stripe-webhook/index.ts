@@ -2,11 +2,19 @@ import { serve } from 'https://deno.land/std@0.168.0/http/server.ts';
 import Stripe from 'npm:stripe@14.18.0';
 import { createClient } from 'https://esm.sh/@supabase/supabase-js@2.39.7';
 
-const stripe = new Stripe(Deno.env.get('STRIPE_SECRET_KEY') || '', {
+const stripeSecretKey = Deno.env.get('STRIPE_SECRET_KEY');
+if (!stripeSecretKey) {
+  throw new Error('Stripe secret key not configured');
+}
+
+const stripe = new Stripe(stripeSecretKey, {
   apiVersion: '2023-10-16',
 });
 
 const endpointSecret = Deno.env.get('STRIPE_WEBHOOK_SECRET');
+if (!endpointSecret) {
+  throw new Error('Stripe webhook secret not configured');
+}
 
 const corsHeaders = {
   'Access-Control-Allow-Origin': '*',
@@ -25,8 +33,8 @@ serve(async (req) => {
 
   try {
     const signature = req.headers.get('stripe-signature');
-    if (!signature || !endpointSecret) {
-      throw new Error('Missing stripe signature or webhook secret');
+    if (!signature) {
+      throw new Error('Missing stripe signature');
     }
 
     const body = await req.text();
