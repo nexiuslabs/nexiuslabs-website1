@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef } from 'react';
-import { Link, Routes, Route } from 'react-router-dom';
+import { Link, Routes, Route, useLocation } from 'react-router-dom';
 import { supabase } from './lib/supabase';
 import {
   Menu,
@@ -516,9 +516,7 @@ function HomePage() {
   );
 }
 
-import { useLocation } from 'react-router-dom';
-
-export default function App() {
+function App() {
   const [isContactFormOpen, setIsContactFormOpen] = useState(false);
   const [authChecked, setAuthChecked] = useState(false);
   const location = useLocation();
@@ -568,3 +566,5 @@ export default function App() {
     </>
   );
 }
+
+export default App;
