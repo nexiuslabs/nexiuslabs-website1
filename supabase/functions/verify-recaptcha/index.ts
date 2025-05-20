@@ -14,15 +14,8 @@ serve(async (req) => {
     const { token } = await req.json();
     const secretKey = Deno.env.get('RECAPTCHA_SECRET_KEY');
 
-    // If using test keys, always return success
-    if (token === '6LeIxAcTAAAAAJcZVRqyHh71UMIEGNQ_MXjiZKhI') {
-      return new Response(
-        JSON.stringify({ success: true }),
-        {
-          headers: { ...corsHeaders, 'Content-Type': 'application/json' },
-          status: 200,
-        }
-      );
+    if (!secretKey) {
+      throw new Error('reCAPTCHA secret key not configured');
     }
 
     // Verify the reCAPTCHA token with Google
