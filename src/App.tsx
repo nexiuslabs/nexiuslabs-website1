@@ -38,6 +38,7 @@ import { Blog } from './pages/Blog';
 import { BlogPost } from './pages/BlogPost';
 import { LinksPage } from './pages/LinksPage';
 import { AIIgnite } from './pages/AIIgnite';
+import { BuildWithAI } from './pages/BuildWithAI';
 import { PrivacyPolicy } from './pages/PrivacyPolicy';
 import { Events } from './pages/Events';
 import { NotFound } from './pages/NotFound';
@@ -201,6 +202,7 @@ function Navigation({ onContactClick }: { onContactClick: () => void }) {
             <Link to="/case-studies" className="font-body font-medium text-nexius-charcoal hover:text-nexius-navy transition-colors">Case Studies</Link>
             <Link to="/events" className="font-body font-medium text-nexius-charcoal hover:text-nexius-navy transition-colors">Events</Link>
             <Link to="/ai-ignite" className="font-body font-medium text-nexius-charcoal hover:text-nexius-navy transition-colors">AI-Ignite</Link>
+            <Link to="/build-with-ai" className="font-body font-medium text-nexius-charcoal hover:text-nexius-navy transition-colors">Build with AI</Link>
             <button 
               onClick={onContactClick}
               data-contact="true"
@@ -254,6 +256,13 @@ function Navigation({ onContactClick }: { onContactClick: () => void }) {
               className="block px-3 py-2 rounded-md text-base font-medium text-nexius-charcoal hover:text-nexius-navy hover:bg-gray-50"
             >
               AI-Ignite
+            </Link>
+            <Link 
+              to="/build-with-ai"
+              onClick={() => setIsMenuOpen(false)}
+              className="block px-3 py-2 rounded-md text-base font-medium text-nexius-charcoal hover:text-nexius-navy hover:bg-gray-50"
+            >
+              Build with AI
             </Link>
             <button 
               onClick={() => {
@@ -506,6 +515,7 @@ function HomePage() {
     </div>
   );
 }
+
 import { useLocation } from 'react-router-dom';
 
 export default function App() {
@@ -546,6 +556,7 @@ export default function App() {
         <Route path="/upload" element={<UploadLogo />} />
         <Route path="/admin" element={<AdminPage />} />
         <Route path="/ai-ignite" element={<AIIgnite />} />
+        <Route path="/build-with-ai" element={<BuildWithAI />} />
         <Route path="/privacy" element={<PrivacyPolicy />} />
         <Route path="/event/:slug" element={<EventDetail />} />
         <Route path="/events" element={<Events />} />
@@ -557,3 +568,5 @@ export default function App() {
     </>
   );
 }
+
+export default App
