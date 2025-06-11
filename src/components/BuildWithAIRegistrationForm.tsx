@@ -25,11 +25,23 @@ export function BuildWithAIRegistrationForm({ isOpen, onClose, cohort }: BuildWi
     }));
   };
 
+  const validateEmail = (email: string): boolean => {
+    // Email validation regex that matches the database constraint
+    const emailRegex = /^[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,}$/;
+    return emailRegex.test(email);
+  };
+
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     
     if (!formData.fullName || !formData.email) {
       alert('Please fill in all required fields');
+      return;
+    }
+
+    // Validate email format
+    if (!validateEmail(formData.email)) {
+      alert('Please enter a valid email address (e.g., user@example.com)');
       return;
     }
 
@@ -236,3 +248,4 @@ export function BuildWithAIRegistrationForm({ isOpen, onClose, cohort }: BuildWi
     </div>
   );
 }
+```
