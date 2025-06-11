@@ -239,7 +239,7 @@ export function BuildWithAI() {
             <div className="bg-white rounded-2xl border border-gray-200 p-6 hover:border-indigo-300 hover:shadow-xl transition-all duration-300">
               <div className="flex flex-col sm:flex-row gap-6 items-center sm:items-start">
                 <img 
-                  src="https://tunidbyclygzipvbfzee.supabase.co/storage/v1/object/public/website-images/darryl-1740396262527.jpeg"
+                  src="https://tunidbyclygzipvbfzee.supabase.co/storage/v1/object/public/website-images//darryl%20portrait.jpeg"
                   alt="Darryl Wong" 
                   className="w-24 h-24 rounded-full object-cover"
                 />
