@@ -40,27 +40,29 @@ export function BuildWithAIRegistrationForm({ isOpen, onClose, cohort }: BuildWi
   };
 
   const validateEmail = (email: string): boolean => {
-    // Email validation regex that exactly matches the database constraint for workshop_registrations
-    // Pattern: ^[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,}$
+    // Email validation regex that matches the database constraint
+    // From the migration: email ~* '^[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,}$'
+    // The \\. in PostgreSQL becomes \. in the actual regex
     const emailRegex = /^[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,}$/;
     
-    // Additional validation to ensure no invalid characters
-    const trimmedEmail = email.trim();
+    // Clean the email first
+    const cleanEmail = email.trim();
     
-    // Check for common issues that might cause database constraint violations
-    if (trimmedEmail !== email) {
-      return false; // Leading/trailing whitespace
+    // Basic format check
+    if (!emailRegex.test(cleanEmail)) {
+      return false;
     }
     
-    if (trimmedEmail.includes('..')) {
-      return false; // Consecutive dots
+    // Additional checks for common issues
+    if (cleanEmail.includes('..') || 
+        cleanEmail.startsWith('.') || 
+        cleanEmail.endsWith('.') ||
+        cleanEmail.includes('@.') || 
+        cleanEmail.includes('.@')) {
+      return false;
     }
     
-    if (trimmedEmail.startsWith('.') || trimmedEmail.includes('@.') || trimmedEmail.includes('.@')) {
-      return false; // Dots in wrong positions
-    }
-    
-    return emailRegex.test(trimmedEmail);
+    return true;
   };
 
   const handleSubmit = async (e: React.FormEvent) => {
@@ -71,7 +73,7 @@ export function BuildWithAIRegistrationForm({ isOpen, onClose, cohort }: BuildWi
       return;
     }
 
-    // Validate email format
+    // Validate email format before submission
     if (!validateEmail(formData.email)) {
       setEmailError('Please enter a valid email address');
       return;
@@ -89,13 +91,15 @@ export function BuildWithAIRegistrationForm({ isOpen, onClose, cohort }: BuildWi
       const registrationData = {
         first_name: firstName,
         last_name: lastName,
-        email: formData.email.trim().toLowerCase(), // Normalize email
+        email: formData.email.trim(), // Don't convert to lowercase, keep original case
         phone: formData.phone.trim() || null,
         company: formData.company.trim() || null,
         project_idea: formData.projectIdea.trim() || null,
         cohort: cohort,
         status: 'pending'
       };
+
+      console.log('Submitting registration data:', registrationData);
 
       // Insert into Supabase
       const { error } = await supabase
@@ -104,8 +108,16 @@ export function BuildWithAIRegistrationForm({ isOpen, onClose, cohort }: BuildWi
 
       if (error) {
         console.error('Database error:', error);
-        if (error.code === '23514' && error.message.includes('valid_email')) {
-          setEmailError('The email address format is not accepted. Please ensure your email contains only standard characters.');
+        
+        // Check for specific constraint violations
+        if (error.code === '23514') {
+          if (error.message.includes('valid_email')) {
+            setEmailError('This email format is not accepted by our system. Please try a different email address.');
+          } else if (error.message.includes('valid_status')) {
+            throw new Error('Invalid status value');
+          } else {
+            throw new Error('Data validation failed: ' + error.message);
+          }
         } else {
           throw error;
         }
