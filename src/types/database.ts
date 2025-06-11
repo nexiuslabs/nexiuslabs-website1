@@ -90,3 +90,16 @@ export interface ChatSession {
   created_at: string;
   updated_at: string;
 }
+
+export interface WorkshopRegistration {
+  id: string;
+  first_name: string;
+  last_name: string | null;
+  email: string;
+  phone: string | null;
+  company: string | null;
+  project_idea: string | null;
+  cohort: string | null;
+  status: 'pending' | 'confirmed' | 'cancelled';
+  created_at: string;
+}

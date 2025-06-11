@@ -18,21 +18,12 @@ import {
   X,
   ExternalLink
 } from 'lucide-react';
+import { BuildWithAIRegistrationForm } from '../components/BuildWithAIRegistrationForm';
 
 export function BuildWithAI() {
-  // Inject Luma checkout widget script once on mount
-  useEffect(() => {
-    const script = document.createElement("script");
-    script.src = "https://embed.lu.ma/loader.js";
-    script.defer = true;
-    document.body.appendChild(script);
-    return () => {
-      if (document.body.contains(script)) {
-        document.body.removeChild(script);
-      }
-    };
-  }, []);
-
+  const [showRegistrationForm, setShowRegistrationForm] = useState(false);
+  const [selectedCohort, setSelectedCohort] = useState('');
+  
   // Scroll to section when hash changes
   useEffect(() => {
     const handleHashChange = () => {
@@ -108,6 +99,11 @@ export function BuildWithAI() {
     },
   ];
 
+  const handleJoinCohort = (cohortLabel: string) => {
+    setSelectedCohort(cohortLabel);
+    setShowRegistrationForm(true);
+  };
+
   return (
     <div className="min-h-screen bg-white font-sans text-gray-800">
       {/* Hero Section */}
@@ -120,17 +116,13 @@ export function BuildWithAI() {
         </p>
         <div className="flex flex-col sm:flex-row gap-4 animate-fade-in-up-delay-2">
           {cohorts.map((c) => (
-            <div
+            <button
               key={c.slug}
-              data-luma-action="checkout"
-              data-luma-slug={c.slug}
-              data-luma-mode="button"
-              className="inline-block"
+              onClick={() => handleJoinCohort(c.label)}
+              className="w-full px-8 py-4 rounded-2xl shadow-xl text-lg bg-indigo-600 text-white hover:bg-indigo-700 transition-colors font-display font-semibold tracking-wide"
             >
-              <button className="w-full px-8 py-4 rounded-2xl shadow-xl text-lg bg-indigo-600 text-white hover:bg-indigo-700 transition-colors font-display font-semibold tracking-wide">
-                Join {c.label} – SGD 180
-              </button>
-            </div>
+              Join {c.label} – SGD 180
+            </button>
           ))}
         </div>
         <p className="mt-4 text-sm text-gray-500 animate-fade-in-up-delay-3">Limited seats · PayNow after registration</p>
@@ -182,16 +174,12 @@ export function BuildWithAI() {
                     </li>
                   ))}
                 </ol>
-                <div
-                  data-luma-action="checkout"
-                  data-luma-slug={cohort.slug}
-                  data-luma-mode="button"
-                  className="inline-block mt-6"
+                <button
+                  onClick={() => handleJoinCohort(cohort.label)}
+                  className="mt-6 rounded-xl shadow px-6 py-2 bg-indigo-600 text-white hover:bg-indigo-700 transition-colors font-medium"
                 >
-                  <button className="rounded-xl shadow px-6 py-2 bg-indigo-600 text-white hover:bg-indigo-700 transition-colors font-medium">
-                    Reserve Seat
-                  </button>
-                </div>
+                  Reserve Seat
+                </button>
               </div>
             ))}
           </div>
@@ -262,7 +250,7 @@ export function BuildWithAI() {
             },
             {
               q: "How do I pay?",
-              a: "After Luma checkout we'll email you a PayNow QR. Your seat is locked once payment is received.",
+              a: "After registration we'll email you PayNow details. Your seat is locked once payment is received.",
             },
             {
               q: "What if I can't attend one session?",
@@ -284,15 +272,24 @@ export function BuildWithAI() {
         <h3 className="text-2xl font-semibold">Ready to build your app?</h3>
         <div className="flex flex-col sm:flex-row gap-4">
           {cohorts.map((c) => (
-            <div key={c.slug + "-footer"} data-luma-action="checkout" data-luma-slug={c.slug} data-luma-mode="button" className="inline-block">
-              <button className="w-full px-8 py-3 rounded-2xl font-medium bg-gray-700 text-white hover:bg-gray-600 transition-colors">
-                Join {c.label}
-              </button>
-            </div>
+            <button
+              key={c.slug + "-footer"}
+              onClick={() => handleJoinCohort(c.label)}
+              className="w-full px-8 py-3 rounded-2xl font-medium bg-gray-700 text-white hover:bg-gray-600 transition-colors"
+            >
+              Join {c.label}
+            </button>
           ))}
         </div>
         <small className="mt-4">© {new Date().getFullYear()} Nexius Labs. All rights reserved.</small>
       </footer>
+
+      {/* Registration Form Modal */}
+      <BuildWithAIRegistrationForm
+        isOpen={showRegistrationForm}
+        onClose={() => setShowRegistrationForm(false)}
+        cohort={selectedCohort}
+      />
     </div>
   );
 }
