@@ -248,4 +248,3 @@ export function BuildWithAIRegistrationForm({ isOpen, onClose, cohort }: BuildWi
     </div>
   );
 }
-```
