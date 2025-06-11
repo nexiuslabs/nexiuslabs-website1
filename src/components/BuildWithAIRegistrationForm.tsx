@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { X, User, Mail, Phone, Building, Lightbulb } from 'lucide-react';
+import { X, User, Mail, Phone, Building, Lightbulb, AlertCircle } from 'lucide-react';
 import { supabase } from '../lib/supabase';
 
 interface BuildWithAIRegistrationFormProps {
@@ -17,12 +17,26 @@ export function BuildWithAIRegistrationForm({ isOpen, onClose, cohort }: BuildWi
     projectIdea: '',
   });
   const [loading, setLoading] = useState(false);
+  const [emailError, setEmailError] = useState('');
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+    const { name, value } = e.target;
+    
     setFormData(prev => ({
       ...prev,
-      [e.target.name]: e.target.value
+      [name]: value
     }));
+
+    // Real-time email validation
+    if (name === 'email') {
+      if (value.trim() === '') {
+        setEmailError('');
+      } else if (!validateEmail(value)) {
+        setEmailError('Please enter a valid email address');
+      } else {
+        setEmailError('');
+      }
+    }
   };
 
   const validateEmail = (email: string): boolean => {
@@ -59,7 +73,7 @@ export function BuildWithAIRegistrationForm({ isOpen, onClose, cohort }: BuildWi
 
     // Validate email format
     if (!validateEmail(formData.email)) {
-      alert('Please enter a valid email address. Email must contain only letters, numbers, and the characters . _ % + - in the local part, and letters, numbers, . - in the domain part.');
+      setEmailError('Please enter a valid email address');
       return;
     }
 
@@ -91,7 +105,7 @@ export function BuildWithAIRegistrationForm({ isOpen, onClose, cohort }: BuildWi
       if (error) {
         console.error('Database error:', error);
         if (error.code === '23514' && error.message.includes('valid_email')) {
-          alert('The email address format is not accepted. Please ensure your email contains only standard characters (letters, numbers, and . _ % + - symbols).');
+          setEmailError('The email address format is not accepted. Please ensure your email contains only standard characters.');
         } else {
           throw error;
         }
@@ -129,6 +143,7 @@ export function BuildWithAIRegistrationForm({ isOpen, onClose, cohort }: BuildWi
         company: '',
         projectIdea: '',
       });
+      setEmailError('');
     } catch (error) {
       console.error('Error submitting registration:', error);
       alert('Error submitting registration. Please try again or contact us directly.');
@@ -138,6 +153,9 @@ export function BuildWithAIRegistrationForm({ isOpen, onClose, cohort }: BuildWi
   };
 
   if (!isOpen) return null;
+
+  // Check if form is valid for submission
+  const isFormValid = formData.fullName && formData.email && !emailError;
 
   return (
     <div className="fixed inset-0 bg-black/50 backdrop-blur-sm z-50 flex items-center justify-center p-4">
@@ -193,10 +211,18 @@ export function BuildWithAIRegistrationForm({ isOpen, onClose, cohort }: BuildWi
                   required
                   value={formData.email}
                   onChange={handleChange}
-                  className="pl-10 pr-3 py-2 w-full border border-gray-300 rounded-lg focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500"
+                  className={`pl-10 pr-3 py-2 w-full border rounded-lg focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 ${
+                    emailError ? 'border-red-300 bg-red-50' : 'border-gray-300'
+                  }`}
                   placeholder="Enter your email"
                 />
               </div>
+              {emailError && (
+                <div className="mt-1 flex items-center text-sm text-red-600">
+                  <AlertCircle className="h-4 w-4 mr-1" />
+                  {emailError}
+                </div>
+              )}
             </div>
 
             <div>
@@ -264,8 +290,12 @@ export function BuildWithAIRegistrationForm({ isOpen, onClose, cohort }: BuildWi
 
             <button
               type="submit"
-              disabled={loading}
-              className="w-full bg-indigo-600 text-white py-3 rounded-lg hover:bg-indigo-700 transition-colors font-semibold disabled:opacity-50 disabled:cursor-not-allowed"
+              disabled={loading || !isFormValid}
+              className={`w-full py-3 rounded-lg transition-colors font-semibold ${
+                loading || !isFormValid
+                  ? 'bg-gray-300 text-gray-500 cursor-not-allowed'
+                  : 'bg-indigo-600 text-white hover:bg-indigo-700'
+              }`}
             >
               {loading ? 'Submitting...' : 'Register for Workshop'}
             </button>
