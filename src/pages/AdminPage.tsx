@@ -3,6 +3,7 @@ import { supabase } from '../lib/supabase';
 import { Auth } from '../components/Auth';
 import { EventForm } from '../components/EventForm';
 import { EventsList } from '../components/EventsList';
+import { InvoiceGenerator } from '../components/InvoiceGenerator';
 import { getImages, deleteImageRecord } from '../lib/images';
 import { deleteImage } from '../lib/storage';
 import { createArticle, getArticles, updateArticle, deleteArticle, publishArticle, unpublishArticle } from '../lib/articles';
@@ -36,6 +37,7 @@ import {
   X,
   ChevronLeft,
   ChevronRight,
+  Receipt,
 } from 'lucide-react';
 import { ImageUpload } from '../components/ImageUpload';
 import { ArticleEditor } from '../components/ArticleEditor';
@@ -49,6 +51,7 @@ const SECTIONS = [
   { id: 'case-studies', name: 'Case Studies', Icon: BookOpen, description: 'Share your success stories and client results.' },
   { id: 'events', name: 'Events', Icon: Calendar, description: 'Organize and manage your upcoming events.' },
   { id: 'leads', name: 'Leads', Icon: UserCheck, description: 'Manage and track your sales leads.' },
+  { id: 'registrations', name: 'Registrations', Icon: Receipt, description: 'Manage workshop and event registrations.' },
   { id: 'chat', name: 'Chat', Icon: MessageSquare, description: 'Manage live chat conversations with visitors.' },
 ];
 
@@ -76,6 +79,8 @@ export default function AdminPage() {
   const [images, setImages] = useState<Image[]>([]);
   const [articles, setArticles] = useState<Article[]>([]);
   const [leads, setLeads] = useState<Lead[]>([]);
+  const [workshopRegistrations, setWorkshopRegistrations] = useState<any[]>([]);
+  const [eventRegistrations, setEventRegistrations] = useState<any[]>([]);
   const [chatSessions, setChatSessions] = useState<ChatSession[]>([]);
   const [activeChatSession, setActiveChatSession] = useState<ChatSession | null>(null);
   const [chatMessages, setChatMessages] = useState<ChatMessage[]>([]);
@@ -131,9 +136,37 @@ export default function AdminPage() {
         loadLeads(),
         loadChatSessions(),
         loadEvents(),
+        loadRegistrations(),
       ]);
     } finally {
       setLoading(false);
+    }
+  };
+
+  const loadRegistrations = async () => {
+    try {
+      // Load workshop registrations
+      const { data: workshopData, error: workshopError } = await supabase
+        .from('workshop_registrations')
+        .select('*')
+        .order('created_at', { ascending: false });
+
+      if (workshopError) throw workshopError;
+      setWorkshopRegistrations(workshopData || []);
+
+      // Load event registrations
+      const { data: eventData, error: eventError } = await supabase
+        .from('event_registrations')
+        .select(`
+          *,
+          events!inner(title, start_date, ticket_price)
+        `)
+        .order('created_at', { ascending: false });
+
+      if (eventError) throw eventError;
+      setEventRegistrations(eventData || []);
+    } catch (error) {
+      console.error('Error loading registrations:', error);
     }
   };
 
@@ -459,6 +492,16 @@ export default function AdminPage() {
         );
         break;
 
+      case 'registrations':
+        actionButton = (
+          <div className="space-y-4">
+            <p className="text-sm text-gray-500">
+              Workshop and event registrations will appear here.
+            </p>
+          </div>
+        );
+        break;
+
       case 'chat':
         actionButton = (
           <div className="space-y-4">
@@ -501,6 +544,168 @@ export default function AdminPage() {
     }
 
     switch (activeSection) {
+      case 'registrations':
+        return (
+          <div className="space-y-8">
+            {/* Workshop Registrations */}
+            <div>
+              <h2 className="text-xl font-semibold text-gray-900 mb-6">Workshop Registrations</h2>
+              {workshopRegistrations.length === 0 ? (
+                <div className="text-center py-8">
+                  <p className="text-gray-500">No workshop registrations yet.</p>
+                </div>
+              ) : (
+                <div className="bg-white rounded-lg shadow overflow-hidden">
+                  <table className="min-w-full divide-y divide-gray-200">
+                    <thead className="bg-gray-50">
+                      <tr>
+                        <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                          Name
+                        </th>
+                        <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                          Email
+                        </th>
+                        <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                          Cohort
+                        </th>
+                        <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                          Status
+                        </th>
+                        <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                          Date
+                        </th>
+                        <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                          Actions
+                        </th>
+                      </tr>
+                    </thead>
+                    <tbody className="bg-white divide-y divide-gray-200">
+                      {workshopRegistrations.map((registration) => (
+                        <tr key={registration.id} className="hover:bg-gray-50">
+                          <td className="px-6 py-4 whitespace-nowrap">
+                            <div className="text-sm font-medium text-gray-900">
+                              {registration.first_name} {registration.last_name}
+                            </div>
+                          </td>
+                          <td className="px-6 py-4 whitespace-nowrap">
+                            <div className="text-sm text-gray-900">{registration.email}</div>
+                          </td>
+                          <td className="px-6 py-4 whitespace-nowrap">
+                            <div className="text-sm text-gray-900">{registration.cohort || '-'}</div>
+                          </td>
+                          <td className="px-6 py-4 whitespace-nowrap">
+                            <span className={`px-2 inline-flex text-xs leading-5 font-semibold rounded-full ${
+                              registration.status === 'confirmed' 
+                                ? 'bg-green-100 text-green-800'
+                                : registration.status === 'pending'
+                                ? 'bg-yellow-100 text-yellow-800'
+                                : 'bg-gray-100 text-gray-800'
+                            }`}>
+                              {registration.status}
+                            </span>
+                          </td>
+                          <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+                            {new Date(registration.created_at).toLocaleDateString()}
+                          </td>
+                          <td className="px-6 py-4 whitespace-nowrap text-sm font-medium">
+                            <InvoiceGenerator
+                              registration={registration}
+                              type="workshop"
+                              cohort={registration.cohort}
+                              amount={180}
+                              onInvoiceGenerated={(invoiceData) => {
+                                console.log('Invoice generated:', invoiceData);
+                              }}
+                            />
+                          </td>
+                        </tr>
+                      ))}
+                    </tbody>
+                  </table>
+                </div>
+              )}
+            </div>
+
+            {/* Event Registrations */}
+            <div>
+              <h2 className="text-xl font-semibold text-gray-900 mb-6">Event Registrations</h2>
+              {eventRegistrations.length === 0 ? (
+                <div className="text-center py-8">
+                  <p className="text-gray-500">No event registrations yet.</p>
+                </div>
+              ) : (
+                <div className="bg-white rounded-lg shadow overflow-hidden">
+                  <table className="min-w-full divide-y divide-gray-200">
+                    <thead className="bg-gray-50">
+                      <tr>
+                        <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                          Name
+                        </th>
+                        <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                          Email
+                        </th>
+                        <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                          Event
+                        </th>
+                        <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                          Status
+                        </th>
+                        <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                          Date
+                        </th>
+                        <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                          Actions
+                        </th>
+                      </tr>
+                    </thead>
+                    <tbody className="bg-white divide-y divide-gray-200">
+                      {eventRegistrations.map((registration) => (
+                        <tr key={registration.id} className="hover:bg-gray-50">
+                          <td className="px-6 py-4 whitespace-nowrap">
+                            <div className="text-sm font-medium text-gray-900">
+                              {registration.full_name}
+                            </div>
+                          </td>
+                          <td className="px-6 py-4 whitespace-nowrap">
+                            <div className="text-sm text-gray-900">{registration.email}</div>
+                          </td>
+                          <td className="px-6 py-4 whitespace-nowrap">
+                            <div className="text-sm text-gray-900">{registration.events?.title || '-'}</div>
+                          </td>
+                          <td className="px-6 py-4 whitespace-nowrap">
+                            <span className={`px-2 inline-flex text-xs leading-5 font-semibold rounded-full ${
+                              registration.status === 'confirmed' 
+                                ? 'bg-green-100 text-green-800'
+                                : registration.status === 'pending'
+                                ? 'bg-yellow-100 text-yellow-800'
+                                : 'bg-gray-100 text-gray-800'
+                            }`}>
+                              {registration.status}
+                            </span>
+                          </td>
+                          <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+                            {new Date(registration.created_at).toLocaleDateString()}
+                          </td>
+                          <td className="px-6 py-4 whitespace-nowrap text-sm font-medium">
+                            <InvoiceGenerator
+                              registration={registration}
+                              type="event"
+                              event={registration.events}
+                              onInvoiceGenerated={(invoiceData) => {
+                                console.log('Invoice generated:', invoiceData);
+                              }}
+                            />
+                          </td>
+                        </tr>
+                      ))}
+                    </tbody>
+                  </table>
+                </div>
+              )}
+            </div>
+          </div>
+        );
+
       case 'images':
         return (
           <div>
