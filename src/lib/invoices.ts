@@ -22,23 +22,7 @@ export interface InvoiceData {
   registrationType: 'workshop' | 'event';
 }
 
-export async function generateInvoiceNumber(): Promise<string> {
-  const now = new Date();
-  const year = now.getFullYear();
-  const month = String(now.getMonth() + 1).padStart(2, '0');
-  
-  // Get the count of invoices this month to generate sequential number
-  const startOfMonth = new Date(year, now.getMonth(), 1).toISOString();
-  const endOfMonth = new Date(year, now.getMonth() + 1, 0, 23, 59, 59).toISOString();
-  
-  // This is a simple approach - in production you'd want a proper invoice numbering system
-  const timestamp = now.getTime();
-  const sequential = String(timestamp).slice(-4);
-  
-  return `INV-${year}${month}-${sequential}`;
-}
-
-export async function generateInvoicePDF(invoiceData: InvoiceData): Promise<Blob> {
+export async function generateInvoicePDF(registrationId: string, registrationType: 'workshop' | 'event'): Promise<Blob> {
   try {
     const response = await fetch(`${import.meta.env.VITE_SUPABASE_URL}/functions/v1/generate-invoice`, {
       method: 'POST',
@@ -46,7 +30,10 @@ export async function generateInvoicePDF(invoiceData: InvoiceData): Promise<Blob
         'Content-Type': 'application/json',
         'Authorization': `Bearer ${import.meta.env.VITE_SUPABASE_ANON_KEY}`,
       },
-      body: JSON.stringify(invoiceData),
+      body: JSON.stringify({
+        registrationId,
+        registrationType
+      }),
     });
 
     if (!response.ok) {
@@ -57,6 +44,36 @@ export async function generateInvoicePDF(invoiceData: InvoiceData): Promise<Blob
     return await response.blob();
   } catch (error) {
     console.error('Error generating invoice PDF:', error);
+    throw error;
+  }
+}
+
+export async function sendInvoiceEmail(registrationId: string, registrationType: 'workshop' | 'event'): Promise<{ invoiceNumber: string; sentTo: string }> {
+  try {
+    const response = await fetch(`${import.meta.env.VITE_SUPABASE_URL}/functions/v1/send-invoice-email`, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        'Authorization': `Bearer ${import.meta.env.VITE_SUPABASE_ANON_KEY}`,
+      },
+      body: JSON.stringify({
+        registrationId,
+        registrationType
+      }),
+    });
+
+    if (!response.ok) {
+      const errorData = await response.json();
+      throw new Error(errorData.error || 'Failed to send invoice email');
+    }
+
+    const result = await response.json();
+    return {
+      invoiceNumber: result.invoiceNumber,
+      sentTo: result.sentTo
+    };
+  } catch (error) {
+    console.error('Error sending invoice email:', error);
     throw error;
   }
 }
@@ -72,8 +89,19 @@ export function downloadInvoice(blob: Blob, filename: string) {
   URL.revokeObjectURL(url);
 }
 
+// Legacy functions for backward compatibility - these are no longer used with dynamic generation
 export function calculateGST(amount: number, gstRate: number = 0.09): number {
   return amount * gstRate;
+}
+
+export async function generateInvoiceNumber(): Promise<string> {
+  const now = new Date();
+  const year = now.getFullYear();
+  const month = String(now.getMonth() + 1).padStart(2, '0');
+  const timestamp = now.getTime();
+  const sequential = String(timestamp).slice(-4);
+  
+  return `INV-${year}${month}-${sequential}`;
 }
 
 export function createWorkshopInvoiceData(
@@ -86,7 +114,7 @@ export function createWorkshopInvoiceData(
   const total = subtotal + gst;
 
   return {
-    invoiceNumber: '', // Will be generated
+    invoiceNumber: '',
     date: new Date().toLocaleDateString('en-SG'),
     customerName: `${registration.first_name} ${registration.last_name || ''}`.trim(),
     customerEmail: registration.email,
@@ -117,7 +145,7 @@ export function createEventInvoiceData(
   const total = subtotal + gst;
 
   return {
-    invoiceNumber: '', // Will be generated
+    invoiceNumber: '',
     date: new Date().toLocaleDateString('en-SG'),
     customerName: registration.full_name,
     customerEmail: registration.email,
