@@ -93,10 +93,12 @@ export function EventDetail() {
           
           <div className="flex flex-col justify-center mt-8">
             <div className="flex items-center gap-2 mb-4">
-              <span className={\`px-3 py-1 rounded-full text-sm font-medium ${
+              <span className={`px-3 py-1 rounded-full text-sm font-medium ${
                 event.status === 'published'
                   ? 'bg-primary/20 text-primary'
-                  : 'bg-surface text-text'`}>
+                  : 'bg-surface text-text'
+              }`}
+              >
                 {event.event_type.charAt(0).toUpperCase() + event.event_type.slice(1)}
               </span>
             </div>
@@ -189,3 +191,4 @@ export function EventDetail() {
     </div>
   );
 }
+```
