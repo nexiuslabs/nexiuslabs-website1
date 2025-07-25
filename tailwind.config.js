@@ -27,7 +27,7 @@ module.exports = {
     },
   },
   plugins: [
-    typography
+    typography()
   ],
 }
 ```
