@@ -574,54 +574,6 @@ function HomePage() {
           <div className="grid md:grid-cols-4 gap-8">
             <div>
               <button
-                onClick={scrollToTop}
-                className="flex items-center text-text mb-4 group focus:outline-none"
-              >
-                <img
-                  src="https://tunidbyclygzipvbfzee.supabase.co/storage/v1/object/public/website-images/m04h4fs8wns-1739784195705.png"
-                  alt="NEXIUS Labs"
-                  className="h-6 w-6 object-contain group-hover:opacity-90 transition-opacity"
-                />
-                <span className="ml-2 text-lg font-bold group-hover:text-primary transition-colors">NEXIUS Labs</span>
-              </button>
-              <p className="text-sm font-body">
-                Build a 10x business without a 10x headcount.
-              </p>
-            </div>
-            <div>
-              <h3 className="text-text font-semibold mb-4 font-heading">Solutions</h3>
-              <ul className="space-y-2 font-body">
-                <li><a href="#services" className="hover:text-text transition-colors">Services</a></li>
-                <li><Link to="/case-studies" className="hover:text-text transition-colors">Case Studies</Link></li>
-                <li><Link to="/blog" className="hover:text-text transition-colors">Blog</Link></li>
-              </ul>
-            </div>
-            <div>
-              <h3 className="text-text font-semibold mb-4 font-heading">Company</h3>
-              <ul className="space-y-2 font-body">
-                <li><Link to="/events" className="hover:text-text transition-colors">Events</Link></li>
-                <li><Link to="/ai-ignite" className="hover:text-text transition-colors">AI-Ignite</Link></li>
-                <li><a href="mailto:hello@nexiuslabs.com" className="hover:text-text transition-colors">Contact</a></li>
-              </ul>
-            </div>
-            <div>
-              <h3 className="text-text font-semibold mb-4 font-heading">Legal</h3>
-              <ul className="space-y-2 font-body">
-                <li><Link to="/privacy" className="hover:text-text transition-colors">Privacy Policy</Link></li>
-                <li><a href="#" className="hover:text-text transition-colors">Terms of Service</a></li>
-                <li><a href="#" className="hover:text-text transition-colors">Cookie Policy</a></li>
-              </ul>
-            </div>
-          </div>
-          <div className="border-t border-surface mt-12 pt-8 text-sm text-center font-body">
-            © {new Date().getFullYear()} NEXIUS Labs. All rights reserved.
-          </div>
-        </div>
-      </footer>
-    </div>
-  );
-}
-
 export default function App() {
   const [authChecked, setAuthChecked] = useState(false);
   const location = useLocation();
