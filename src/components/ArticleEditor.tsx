@@ -188,7 +188,7 @@ export function ArticleEditor({ onSave, article, onCancel }: ArticleEditorProps)
       withHeaderRow: withHeader,
       HTMLAttributes: {
         class: 'border-collapse',
-        style: \`border: ${borderWidths} solid #1F2937;` // Use surface color directly
+        style: `border: ${borderWidths} solid #1F2937;` // Use surface color directly
       }
     }).run();
 
@@ -360,7 +360,7 @@ export function ArticleEditor({ onSave, article, onCancel }: ArticleEditorProps)
             <div className="flex items-center border-r border-surface pr-2 mr-2">
               <button
                 onClick={() => editor.chain().focus().toggleBold().run()}
-                className={\`p-2 rounded hover:bg-surface ${
+                className={`p-2 rounded hover:bg-surface ${
                   editor.isActive('bold') ? 'bg-surface' : ''
                 }`}
               >
@@ -368,7 +368,7 @@ export function ArticleEditor({ onSave, article, onCancel }: ArticleEditorProps)
               </button>
               <button
                 onClick={() => editor.chain().focus().toggleItalic().run()}
-                className={\`p-2 rounded hover:bg-surface ${
+                className={`p-2 rounded hover:bg-surface ${
                   editor.isActive('italic') ? 'bg-surface' : ''
                 }`}
               >
@@ -376,7 +376,7 @@ export function ArticleEditor({ onSave, article, onCancel }: ArticleEditorProps)
               </button>
               <button
                 onClick={() => editor.chain().focus().toggleUnderline().run()}
-                className={\`p-2 rounded hover:bg-surface ${
+                className={`p-2 rounded hover:bg-surface ${
                   editor.isActive('underline') ? 'bg-surface' : ''
                 }`}
               >
@@ -388,7 +388,7 @@ export function ArticleEditor({ onSave, article, onCancel }: ArticleEditorProps)
             <div className="flex items-center border-r border-surface pr-2 mr-2">
               <button
                 onClick={() => editor.chain().focus().setTextAlign('left').run()}
-                className={\`p-2 rounded hover:bg-surface ${
+                className={`p-2 rounded hover:bg-surface ${
                   editor.isActive({ textAlign: 'left' }) ? 'bg-surface' : ''
                 }`}
               >
@@ -396,7 +396,7 @@ export function ArticleEditor({ onSave, article, onCancel }: ArticleEditorProps)
               </button>
               <button
                 onClick={() => editor.chain().focus().setTextAlign('center').run()}
-                className={\`p-2 rounded hover:bg-surface ${
+                className={`p-2 rounded hover:bg-surface ${
                   editor.isActive({ textAlign: 'center' }) ? 'bg-surface' : ''
                 }`}
               >
@@ -404,7 +404,7 @@ export function ArticleEditor({ onSave, article, onCancel }: ArticleEditorProps)
               </button>
               <button
                 onClick={() => editor.chain().focus().setTextAlign('right').run()}
-                className={\`p-2 rounded hover:bg-surface ${
+                className={`p-2 rounded hover:bg-surface ${
                   editor.isActive({ textAlign: 'right' }) ? 'bg-surface' : ''
                 }`}
               >
@@ -412,7 +412,7 @@ export function ArticleEditor({ onSave, article, onCancel }: ArticleEditorProps)
               </button>
               <button
                 onClick={() => editor.chain().focus().setTextAlign('justify').run()}
-                className={\`p-2 rounded hover:bg-surface ${
+                className={`p-2 rounded hover:bg-surface ${
                   editor.isActive({ textAlign: 'justify' }) ? 'bg-surface' : ''
                 }`}
               >
@@ -424,7 +424,7 @@ export function ArticleEditor({ onSave, article, onCancel }: ArticleEditorProps)
             <div className="flex items-center border-r border-surface pr-2 mr-2">
               <button
                 onClick={() => editor.chain().focus().setParagraph().run()}
-                className={\`p-2 rounded hover:bg-surface ${
+                className={`p-2 rounded hover:bg-surface ${
                   editor.isActive('paragraph') ? 'bg-surface' : ''
                 }`}
               >
@@ -432,7 +432,7 @@ export function ArticleEditor({ onSave, article, onCancel }: ArticleEditorProps)
               </button>
               <button
                 onClick={() => editor.chain().focus().toggleHeading({ level: 1 }).run()}
-                className={\`p-2 rounded hover:bg-surface ${
+                className={`p-2 rounded hover:bg-surface ${
                   editor.isActive('heading', { level: 1 }) ? 'bg-surface' : ''
                 }`}
               >
@@ -440,7 +440,7 @@ export function ArticleEditor({ onSave, article, onCancel }: ArticleEditorProps)
               </button>
               <button
                 onClick={() => editor.chain().focus().toggleHeading({ level: 2 }).run()}
-                className={\`p-2 rounded hover:bg-surface ${
+                className={`p-2 rounded hover:bg-surface ${
                   editor.isActive('heading', { level: 2 }) ? 'bg-surface' : ''
                 }`}
               >
@@ -452,7 +452,7 @@ export function ArticleEditor({ onSave, article, onCancel }: ArticleEditorProps)
             <div className="flex items-center border-r border-surface pr-2 mr-2">
               <button
                 onClick={() => editor.chain().focus().toggleBulletList().run()}
-                className={\`p-2 rounded hover:bg-surface ${
+                className={`p-2 rounded hover:bg-surface ${
                   editor.isActive('bulletList') ? 'bg-surface' : ''
                 }`}
               >
@@ -460,7 +460,7 @@ export function ArticleEditor({ onSave, article, onCancel }: ArticleEditorProps)
               </button>
               <button
                 onClick={() => editor.chain().focus().toggleOrderedList().run()}
-                className={\`p-2 rounded hover:bg-surface ${
+                className={`p-2 rounded hover:bg-surface ${
                   editor.isActive('orderedList') ? 'bg-surface' : ''
                 }`}
               >
@@ -468,7 +468,7 @@ export function ArticleEditor({ onSave, article, onCancel }: ArticleEditorProps)
               </button>
               <button
                 onClick={() => editor.chain().focus().toggleBlockquote().run()}
-                className={\`p-2 rounded hover:bg-surface ${
+                className={`p-2 rounded hover:bg-surface ${
                   editor.isActive('blockquote') ? 'bg-surface' : ''
                 }`}
               >
@@ -480,7 +480,7 @@ export function ArticleEditor({ onSave, article, onCancel }: ArticleEditorProps)
             <div className="flex items-center border-r border-surface pr-2 mr-2">
               <button
                 onClick={setLink}
-                className={\`p-2 rounded hover:bg-surface ${
+                className={`p-2 rounded hover:bg-surface ${
                   editor.isActive('link') ? 'bg-surface' : ''
                 }`}
               >
