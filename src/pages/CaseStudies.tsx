@@ -77,7 +77,7 @@ export function CaseStudies() {
             {caseStudies.map((study) => (
               <Link
                 key={study.id}
-                to={`/case-study/${study.id}`}
+                to={"/case-study/" + study.id}
                 className="group block"
               >
                 <div className="bg-surface rounded-xl overflow-hidden border border-surface hover:border-primary/30 hover:shadow-lg transition-all">
