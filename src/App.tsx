@@ -2,6 +2,7 @@ import React, { useState, useEffect, useRef } from 'react';
 import { Link, Routes, Route, useLocation } from 'react-router-dom';
 import { supabase } from './lib/supabase';
 import RotatingText from './components/RotatingText';
+import { AssessmentForm } from './components/AssessmentForm';
 import {
   Menu,
   X as XIcon,
@@ -29,7 +30,6 @@ import {
   MessageCircle,
 } from 'lucide-react';
 import { HeroAnimation } from './components/HeroAnimation';
-import { ContactForm } from './components/ContactForm';
 import { CaseStudy } from './pages/CaseStudy';
 import { CaseStudies } from './pages/CaseStudies';
 import { UploadLogo } from './pages/UploadLogo';
@@ -45,128 +45,85 @@ import { Events } from './pages/Events';
 import { NotFound } from './pages/NotFound';
 import { Chat } from './components/Chat';
 
-const features = [
+const workflowCards = [
   {
-    title: 'Custom AI Solutions',
-    description: 'Building AI-driven automation for business operations and accounting.',
-    icon: Brain,
-  },
-  {
-    title: 'AI Consulting',
-    description: 'Helping businesses integrate AI tools for workflow optimization.',
-    icon: BarChart3,
-  },
-  {
-    title: 'Workflow Automation',
-    description: 'Developing no-code and AI-powered automation strategies for SMEs.',
-    icon: Workflow,
-  },
-  {
-    title: 'AI Training & Workshops',
-    description: 'Educating business owners on the power of AI for growth.',
-    icon: Shield,
-  },
-];
-
-const useCases = [
-  {
-    title: 'Document Processing',
-    description: 'Automate data extraction from invoices, receipts, and forms with AI-powered OCR.',
-    icon: FileText,
-    metrics: '60% faster processing',
-  },
-  {
-    title: 'Financial Analysis',
-    description: 'AI-driven insights for better financial decision-making and forecasting.',
-    icon: TrendingUp,
-    metrics: '85% accuracy rate',
-  },
-  {
-    title: 'Customer Service',
-    description: 'Intelligent chatbots and automation for 24/7 customer support.',
-    icon: Users,
-    metrics: '3x faster response time',
-  },
-  {
-    title: 'Data Management',
-    description: 'Smart data organization and analysis for better business insights.',
-    icon: Database,
-    metrics: '50% less manual work',
-  },
-  {
-    title: 'Process Automation',
-    description: 'Streamline repetitive tasks with intelligent workflow automation.',
-    icon: Settings,
-    metrics: '40% cost reduction',
-  },
-  {
-    title: 'Innovation Strategy',
-    description: 'AI-powered insights to drive product and service innovation.',
-    icon: Lightbulb,
-    metrics: '2x faster development',
-  },
-];
-
-const benefits = [
-  {
-    title: 'Automate Repetitive Tasks',
-    description: 'Let AI handle routine operations while your team focuses on strategic work.',
-    icon: Bot,
-  },
-  {
-    title: 'Cut Operational Costs',
-    description: 'Reduce expenses through intelligent process optimization.',
-    icon: DollarSign,
-  },
-  {
-    title: 'Boost Productivity',
-    description: 'Accelerate workflows and eliminate bottlenecks with AI assistance.',
-    icon: Rocket,
-  },
-  {
-    title: 'Enhance Decision-Making',
-    description: 'Make data-driven decisions with AI-powered insights.',
-    icon: LineChart,
-  },
-  {
-    title: 'Improve Customer Experience',
-    description: 'Deliver personalized service through AI-driven interactions.',
-    icon: Users,
-  },
-  {
-    title: 'Optimize Workforce',
-    description: 'Empower employees with AI tools to maximize their potential.',
+    title: 'AI Sales Assistant',
+    description: 'Captures inbound leads, tracks status and nudges you to follow up.',
     icon: UserCheck,
   },
   {
-    title: 'Gain Competitive Edge',
-    description: 'Stay ahead of the market with cutting-edge AI capabilities.',
-    icon: Trophy,
+    title: 'Smart Billing',
+    description: 'Generates invoices, matches payments and updates your books automatically.',
+    icon: FileText,
   },
   {
-    title: 'Scale Operations',
-    description: 'Grow your business efficiently with automated processes.',
-    icon: Zap,
+    title: 'Ops Organizer',
+    description: 'Logs activities, creates simple reports and keeps everyone aligned.',
+    icon: Settings,
+  },
+];
+
+const benefitsList = [
+  {
+    title: 'More revenue',
+    description: 'Fewer lost leads and faster follow‑ups.',
+  },
+  {
+    title: 'Lower cost',
+    description: 'Replace multiple subscriptions and delay the next hire.',
+  },
+  {
+    title: 'Time back',
+    description: '20+ hours a month saved on repetitive admin.',
+  },
+  {
+    title: 'Clarity',
+    description: 'Real‑time view of sales and cash without spreadsheet gymnastics.',
+  },
+  {
+    title: 'Future‑proof',
+    description: 'Clean data and structured processes for deeper automation later.',
+  },
+];
+
+const caseStudiesSummary = [
+  {
+    title: 'Consulting Firm',
+    description: 'Automating follow‑ups increased monthly closed deals by 30%.',
+    icon: TrendingUp,
+    metric: '30% more deals',
+  },
+  {
+    title: 'E‑Commerce Shop',
+    description: 'Smart Billing removed manual reconciliation—20 hours/month saved.',
+    icon: Clock,
+    metric: '20 hours saved',
+  },
+  {
+    title: 'Seasonal Retailer',
+    description: 'Managed holiday surge with same headcount.',
+    icon: Users,
+    metric: 'Same team size',
   },
 ];
 
 const testimonials = [
   {
-    quote: "NEXIUS Labs' AI automation solution has transformed our operations. What used to take our team hours now happens in minutes, and with better accuracy. This has allowed us to focus on strategic initiatives and growth.",
+    quote: "We were juggling five different apps and still missing follow‑ups. Bringing everything into one place saved us dozens of hours and let us avoid hiring an extra admin.",
     author: "Vincent Sim",
     title: "Operations Director",
     company: "Serial Company",
     image: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&q=80&w=150&h=150",
   },
   {
-    quote: "The AI solution from NEXIUS Labs has revolutionized our accounting processes. Our team now focuses on analysis and strategy instead of manual data entry.",
+    quote: "Our finance team used to spend late nights reconciling invoices. Now it's automatic—about 20 hours a month back and lower software spend.",
     author: "Kate Yap",
     title: "CFO",
     company: "Daisy Accounting",
     image: "https://tunidbyclygzipvbfzee.supabase.co/storage/v1/object/public/website-images//kate_yap.jpeg",
   },
   {
-    quote: "NEXIUS Labs' AI solution has transformed how we understand and serve our customers. The results have exceeded our expectations.",
+    quote: "Sales jumped and the workload didn't. The system handles follow‑ups and reporting so we scaled through peak season with the same headcount.",
     author: "Michael Zhang",
     title: "CEO",
     company: "GreenCart",
@@ -174,7 +131,7 @@ const testimonials = [
   },
 ];
 
-function Navigation({ onContactClick }: { onContactClick: () => void }) {
+function Navigation() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
   return (
@@ -204,13 +161,12 @@ function Navigation({ onContactClick }: { onContactClick: () => void }) {
             <Link to="/events" className="font-body font-medium text-nexius-charcoal hover:text-nexius-navy transition-colors">Events</Link>
             <Link to="/ai-ignite" className="font-body font-medium text-nexius-charcoal hover:text-nexius-navy transition-colors">AI-Ignite</Link>
             <Link to="/build-with-ai" className="font-body font-medium text-nexius-charcoal hover:text-nexius-navy transition-colors">Build with AI</Link>
-            <button 
-              onClick={onContactClick}
-              data-contact="true"
+            <a 
+              href="#assessment"
               className="bg-nexius-teal text-white px-4 py-2 rounded-lg hover:bg-nexius-teal/90 transition-colors font-display font-semibold tracking-wide uppercase text-sm"
             >
               Let's Talk
-            </button>
+            </a>
           </div>
         </div>
         {/* Mobile menu */}
@@ -265,15 +221,13 @@ function Navigation({ onContactClick }: { onContactClick: () => void }) {
             >
               Build with AI
             </Link>
-            <button 
-              onClick={() => {
-                setIsMenuOpen(false);
-                onContactClick();
-              }} 
+            <a 
+              href="#assessment"
+              onClick={() => setIsMenuOpen(false)}
               className="w-full mt-2 px-3 py-2 bg-nexius-teal text-white rounded-lg hover:bg-nexius-teal/90 transition-colors font-display font-semibold tracking-wide uppercase text-sm"
             >
               Let's Talk
-            </button>
+            </a>
           </div>
         </div>
       </div>
@@ -323,9 +277,7 @@ function HomePage() {
             </p>
             <div className="relative flex justify-center gap-4">
               <a
-                href="https://tidycal.com/melverick/discovery-call-via-zoom-30min"
-                target="_blank"
-                rel="noopener noreferrer"
+                href="#assessment"
                 className="bg-nexius-teal text-white px-6 py-3 rounded-lg hover:bg-nexius-teal/90 transition-colors flex items-center group font-display font-semibold tracking-wide text-sm"
               >
                 Get My 15‑Minute Assessment <ArrowRight className="ml-2 h-5 w-5 group-hover:translate-x-1 transition-transform" />
@@ -348,28 +300,111 @@ function HomePage() {
         </div>
       </section>
 
-      {/* Services Section */}
+      {/* Problem Section */}
+      <section className="py-24 bg-white">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center mb-16">
+            <h2 className="text-3xl font-display font-bold text-nexius-navy mb-6 tracking-tight">
+              Growing shouldn't feel like drowning.
+            </h2>
+            <p className="font-body text-nexius-charcoal max-w-4xl mx-auto text-lg leading-relaxed">
+              When new customers arrive, the busywork explodes: forgotten follow‑ups, messy spreadsheets, late‑night invoicing. 
+              Hiring too early is risky; doing it yourself burns you out. You need a way to handle more volume without expanding payroll.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      {/* Solution / Starter Workflows Section */}
       <section id="services" className="py-24">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-16">
             <h2 className="text-3xl font-display font-bold text-nexius-navy mb-4 tracking-tight">
-              BUSINESSES STRUGGLE TO ADOPT AI
+              One place to run the business.
             </h2>
             <p className="font-body text-nexius-charcoal max-w-2xl mx-auto leading-relaxed">
-              Nexius simplifies AI adoption with tailored automation, expert consulting, and no-code solutions - helping businesses unlock efficiency, reduce costs, and scale seamlessly.
+              We centralise your leads, sales and billing in a single organised system. Then we turn on smart automations—so tasks that used to steal hours simply happen in the background.
             </p>
           </div>
           <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
-            {features.map((feature) => (
-              <div key={feature.title} className="group p-6 bg-white rounded-xl border border-nexius-gray hover:border-nexius-teal/30 hover:shadow-lg transition-all">
+            {workflowCards.map((workflow) => (
+              <div key={workflow.title} className="group p-6 bg-white rounded-xl border border-nexius-gray hover:border-nexius-teal/30 hover:shadow-lg transition-all">
                 <div className="relative inline-block">
                   <div className="absolute -inset-2 bg-nexius-teal/20 rounded-lg blur opacity-0 group-hover:opacity-100 transition-opacity"></div>
-                  <feature.icon className="relative h-12 w-12 text-nexius-teal mb-4" />
+                  <workflow.icon className="relative h-12 w-12 text-nexius-teal mb-4" />
                 </div>
-                <h3 className="text-xl font-semibold text-nexius-navy mb-2">{feature.title}</h3>
-                <p className="text-nexius-charcoal">{feature.description}</p>
+                <h3 className="text-xl font-semibold text-nexius-navy mb-2">{workflow.title}</h3>
+                <p className="text-nexius-charcoal">{workflow.description}</p>
               </div>
             ))}
+          </div>
+          <div className="text-center mt-12">
+            <Link
+              to="/case-studies"
+              className="inline-flex items-center px-6 py-3 bg-nexius-teal text-white rounded-lg hover:bg-nexius-teal/90 transition-colors font-display font-semibold tracking-wide uppercase text-sm"
+            >
+              See All Workflows <ArrowRight className="ml-2 h-5 w-5" />
+            </Link>
+          </div>
+        </div>
+      </section>
+
+      {/* How It Works Section */}
+      <section className="py-24 bg-nexius-gray">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center mb-16">
+            <h2 className="text-3xl font-display font-bold text-nexius-navy mb-4 tracking-tight">
+              From messy tools to running smooth—in a week.
+            </h2>
+          </div>
+          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
+            {[
+              {
+                step: '1',
+                title: 'Quick Call',
+                description: 'Map your current tools and time drains.',
+                icon: MessageCircle,
+              },
+              {
+                step: '2',
+                title: 'Migration',
+                description: 'Import contacts, deals and invoices.',
+                icon: Database,
+              },
+              {
+                step: '3',
+                title: 'Automation Setup',
+                description: 'Turn on the first workflow (usually leads + follow‑ups).',
+                icon: Settings,
+              },
+              {
+                step: '4',
+                title: 'Results',
+                description: 'More responses, fewer late nights. Add more modules anytime.',
+                icon: Trophy,
+              },
+            ].map((step) => (
+              <div key={step.step} className="relative group">
+                <div className="bg-white p-6 rounded-xl border border-nexius-gray hover:border-nexius-teal/30 hover:shadow-lg transition-all">
+                  <div className="flex items-center mb-4">
+                    <span className="w-8 h-8 bg-nexius-teal text-white rounded-full flex items-center justify-center text-sm font-bold">
+                      {step.step}
+                    </span>
+                    <step.icon className="h-8 w-8 text-nexius-teal ml-3" />
+                  </div>
+                  <h3 className="text-xl font-semibold text-nexius-navy mb-2">{step.title}</h3>
+                  <p className="text-nexius-charcoal">{step.description}</p>
+                </div>
+              </div>
+            ))}
+          </div>
+          <div className="text-center mt-12">
+            <a
+              href="#assessment"
+              className="inline-flex items-center px-6 py-3 bg-nexius-teal text-white rounded-lg hover:bg-nexius-teal/90 transition-colors font-display font-semibold tracking-wide uppercase text-sm"
+            >
+              Book Onboarding <ArrowRight className="ml-2 h-5 w-5" />
+            </a>
           </div>
         </div>
       </section>
@@ -379,49 +414,14 @@ function HomePage() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-16">
             <h2 className="text-3xl font-display font-bold text-nexius-navy mb-4 tracking-tight">
-              HOW AI CAN HELP YOUR BUSINESS?
+              What you gain immediately.
             </h2>
-            <p className="font-body text-nexius-charcoal max-w-2xl mx-auto leading-relaxed">
-              Discover the transformative power of AI and how it can revolutionize your business operations,
-              boost efficiency, and drive sustainable growth.
-            </p>
           </div>
-          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
-            {benefits.map((benefit) => (
-              <div key={benefit.title} className="benefit-card">
-                <benefit.icon className="benefit-icon" />
+          <div className="grid md:grid-cols-2 lg:grid-cols-5 gap-8">
+            {benefitsList.map((benefit) => (
+              <div key={benefit.title} className="bg-white p-6 rounded-xl border border-nexius-gray hover:border-nexius-teal/30 hover:shadow-lg transition-all">
                 <h3 className="text-lg font-semibold text-nexius-navy mb-2">{benefit.title}</h3>
-                <p className="text-sm text-nexius-charcoal">{benefit.description}</p>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* Use Cases Section */}
-      <section className="py-24">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-16">
-            <h2 className="text-3xl font-display font-bold text-nexius-navy mb-4 tracking-tight">
-              AI SOLUTIONS IN ACTION
-            </h2>
-            <p className="font-body text-nexius-charcoal max-w-2xl mx-auto leading-relaxed">
-              Explore how our AI solutions are transforming different aspects of business operations
-              and delivering measurable results.
-            </p>
-          </div>
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {useCases.map((useCase) => (
-              <div key={useCase.title} className="group p-6 bg-white rounded-xl border border-nexius-gray hover:border-nexius-teal/30 hover:shadow-lg transition-all">
-                <div className="relative inline-block">
-                  <div className="absolute -inset-2 bg-nexius-teal/20 rounded-lg blur opacity-0 group-hover:opacity-100 transition-opacity"></div>
-                  <useCase.icon className="relative h-12 w-12 text-nexius-teal mb-4" />
-                </div>
-                <h3 className="text-xl font-semibold text-nexius-navy mb-2">{useCase.title}</h3>
-                <p className="text-nexius-charcoal mb-4">{useCase.description}</p>
-                <div className="inline-flex items-center px-3 py-1 rounded-full text-sm font-medium bg-nexius-teal/10 text-nexius-teal">
-                  {useCase.metrics}
-                </div>
+                <p className="text-nexius-charcoal">{benefit.description}</p>
               </div>
             ))}
           </div>
@@ -429,16 +429,12 @@ function HomePage() {
       </section>
 
       {/* Testimonials Section */}
-      <section id="testimonials" className="py-24 bg-nexius-gray">
+      <section id="testimonials" className="py-24">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-16">
             <h2 className="text-3xl font-display font-bold text-nexius-navy mb-4 tracking-tight">
-              Visionary Leaders Trust Nexius
+              Small teams working like big ones.
             </h2>
-            <p className="font-body text-nexius-charcoal max-w-2xl mx-auto leading-relaxed">
-              Join forward-thinking executives who've transformed their decision-making
-              process with NEXIUS Labs' intelligent insights.
-            </p>
           </div>
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
             {testimonials.map((testimonial) => (
@@ -461,27 +457,148 @@ function HomePage() {
               </div>
             ))}
           </div>
+          <div className="text-center mt-12">
+            <Link
+              to="/case-studies"
+              className="inline-flex items-center px-6 py-3 bg-nexius-teal text-white rounded-lg hover:bg-nexius-teal/90 transition-colors font-display font-semibold tracking-wide uppercase text-sm"
+            >
+              Read More Case Studies <ArrowRight className="ml-2 h-5 w-5" />
+            </Link>
+          </div>
         </div>
       </section>
 
-      {/* CTA Section */}
+      {/* Case Studies Summary Section */}
+      <section className="py-24 bg-nexius-gray">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center mb-16">
+            <h2 className="text-3xl font-display font-bold text-nexius-navy mb-4 tracking-tight">
+              Proven Results Across Industries
+            </h2>
+          </div>
+          <div className="grid md:grid-cols-3 gap-8">
+            {caseStudiesSummary.map((study) => (
+              <div key={study.title} className="bg-white p-6 rounded-xl border border-nexius-gray hover:border-nexius-teal/30 hover:shadow-lg transition-all">
+                <div className="flex items-center mb-4">
+                  <study.icon className="h-8 w-8 text-nexius-teal mr-3" />
+                  <span className="inline-flex items-center px-3 py-1 rounded-full text-sm font-medium bg-nexius-teal/10 text-nexius-teal">
+                    {study.metric}
+                  </span>
+                </div>
+                <h3 className="text-xl font-semibold text-nexius-navy mb-2">{study.title}</h3>
+                <p className="text-nexius-charcoal">{study.description}</p>
+              </div>
+            ))}
+          </div>
+          <div className="text-center mt-12">
+            <Link
+              to="/case-studies"
+              className="inline-flex items-center px-6 py-3 bg-nexius-teal text-white rounded-lg hover:bg-nexius-teal/90 transition-colors font-display font-semibold tracking-wide uppercase text-sm"
+            >
+              Get Similar Results <ArrowRight className="ml-2 h-5 w-5" />
+            </Link>
+          </div>
+        </div>
+      </section>
+
+      {/* Assessment Form */}
+      <AssessmentForm />
+
+      {/* Roadmap / Expansion Section */}
+      <section className="py-24 bg-white">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center mb-16">
+            <h2 className="text-3xl font-display font-bold text-nexius-navy mb-4 tracking-tight">
+              Start with one workflow—expand when ready.
+            </h2>
+            <p className="font-body text-nexius-charcoal max-w-3xl mx-auto text-lg leading-relaxed">
+              Activate leads + follow‑ups today. Add billing, inventory or analytics later with no rebuild. 
+              Your data stays put; you just switch features on.
+            </p>
+          </div>
+          <div className="text-center">
+            <Link
+              to="/case-studies"
+              className="inline-flex items-center px-6 py-3 bg-nexius-teal text-white rounded-lg hover:bg-nexius-teal/90 transition-colors font-display font-semibold tracking-wide uppercase text-sm"
+            >
+              See Roadmap <ArrowRight className="ml-2 h-5 w-5" />
+            </Link>
+          </div>
+        </div>
+      </section>
+
+      {/* Community / Resources Section */}
+      <section className="py-24 bg-nexius-gray">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="grid md:grid-cols-2 gap-16">
+            <div>
+              <h2 className="text-3xl font-display font-bold text-nexius-navy mb-4 tracking-tight">
+                Learn and stay ahead.
+              </h2>
+              <p className="font-body text-nexius-charcoal text-lg leading-relaxed mb-8">
+                Join our events and newsletter for plain‑English updates on practical AI. No hype—just what helps you operate smarter.
+              </p>
+              <div className="bg-white p-6 rounded-xl border border-nexius-gray">
+                <h3 className="text-lg font-semibold text-nexius-navy mb-4">Stay Updated</h3>
+                <form className="flex gap-3">
+                  <input
+                    type="email"
+                    placeholder="Enter your email"
+                    className="flex-1 px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-nexius-teal focus:border-nexius-teal"
+                  />
+                  <button
+                    type="submit"
+                    className="px-4 py-2 bg-nexius-teal text-white rounded-lg hover:bg-nexius-teal/90 transition-colors font-medium"
+                  >
+                    Subscribe
+                  </button>
+                </form>
+                <p className="text-sm text-gray-600 mt-2">
+                  Weekly tips. Unsubscribe anytime.
+                </p>
+              </div>
+            </div>
+            <div>
+              <div className="bg-white p-6 rounded-xl border border-nexius-gray">
+                <h3 className="text-lg font-semibold text-nexius-navy mb-4">Upcoming Event</h3>
+                <p className="text-nexius-charcoal mb-4">
+                  Next event: AI Ignite – 14 Aug. Reserve your seat.
+                </p>
+                <Link
+                  to="/ai-ignite"
+                  className="inline-flex items-center px-4 py-2 bg-nexius-teal text-white rounded-lg hover:bg-nexius-teal/90 transition-colors font-medium"
+                >
+                  Reserve Seat <ArrowRight className="ml-2 h-4 w-4" />
+                </Link>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Final CTA Section */}
       <section className="py-24 bg-nexius-navy">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <h2 className="text-3xl font-display font-bold text-white mb-4 tracking-tight">
-            Ready to adopt AI to grow your business?
+            More customers shouldn't mean more work.
           </h2>
           <p className="font-body text-white/80 mb-8 max-w-2xl mx-auto leading-relaxed">
-            Join industry leaders who are already leveraging NEXIUS Labs to illuminate opportunities
-            and drive unprecedented growth.
+            Let us show you the first 3 processes you can automate this month.
           </p>
-          <a 
-            href="https://tidycal.com/melverick/discovery-call-via-zoom-30min"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="bg-nexius-teal text-white px-8 py-4 rounded-lg hover:bg-nexius-teal/90 transition-colors font-display font-semibold tracking-wide uppercase text-sm inline-flex items-center"
-          >
-            Schedule A Call <Clock className="ml-2 h-5 w-5" />
-          </a>
+          <div className="flex flex-col sm:flex-row gap-4 justify-center">
+            <a
+              href="#assessment"
+              className="bg-nexius-teal text-white px-8 py-4 rounded-lg hover:bg-nexius-teal/90 transition-colors font-display font-semibold tracking-wide uppercase text-sm inline-flex items-center"
+            >
+              Get My 15‑Minute Assessment <ArrowRight className="ml-2 h-5 w-5" />
+            </a>
+            <a
+              href="#assessment"
+              className="bg-transparent border-2 border-white text-white px-8 py-4 rounded-lg hover:bg-white/10 transition-colors font-display font-semibold tracking-wide uppercase text-sm inline-flex items-center"
+            >
+              Try It Free
+            </a>
+          </div>
         </div>
       </section>
 
@@ -502,23 +619,23 @@ function HomePage() {
                 <span className="ml-2 text-lg font-bold group-hover:text-nexius-teal transition-colors">NEXIUS Labs</span>
               </button>
               <p className="text-sm">
-                Empower Your Business With AI-Driven Automation
+                Build a 10x business without a 10x headcount.
               </p>
             </div>
             <div>
-              <h3 className="text-white font-semibold mb-4">Product</h3>
+              <h3 className="text-white font-semibold mb-4">Solutions</h3>
               <ul className="space-y-2">
                 <li><a href="#services" className="hover:text-white transition-colors">Services</a></li>
-                <li><a href="#benefits" className="hover:text-white transition-colors">Benefits</a></li>
-                <li><a href="#" className="hover:text-white transition-colors">Security</a></li>
+                <li><Link to="/case-studies" className="hover:text-white transition-colors">Case Studies</Link></li>
+                <li><Link to="/blog" className="hover:text-white transition-colors">Blog</Link></li>
               </ul>
             </div>
             <div>
               <h3 className="text-white font-semibold mb-4">Company</h3>
               <ul className="space-y-2">
-                <li><a href="#" className="hover:text-white transition-colors">About Us</a></li>
-                <li><a href="#" className="hover:text-white transition-colors">Contact</a></li>
-                <li><Link to="/case-studies" className="hover:text-white transition-colors">Case Studies</Link></li>
+                <li><Link to="/events" className="hover:text-white transition-colors">Events</Link></li>
+                <li><Link to="/ai-ignite" className="hover:text-white transition-colors">AI-Ignite</Link></li>
+                <li><a href="mailto:hello@nexiuslabs.com" className="hover:text-white transition-colors">Contact</a></li>
               </ul>
             </div>
             <div>
@@ -540,7 +657,6 @@ function HomePage() {
 }
 
 function App() {
-  const [isContactFormOpen, setIsContactFormOpen] = useState(false);
   const [authChecked, setAuthChecked] = useState(false);
   const location = useLocation();
 
@@ -565,8 +681,7 @@ function App() {
 
   return (
     <>
-      {shouldShowNav && <Navigation onContactClick={() => setIsContactFormOpen(true)} />}
-      <ContactForm isOpen={isContactFormOpen} onClose={() => setIsContactFormOpen(false)} />
+      {shouldShowNav && <Navigation />}
 
       <Routes>
         <Route path="/" element={<HomePage />} />
