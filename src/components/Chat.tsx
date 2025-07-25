@@ -61,14 +61,14 @@ export function Chat() {
 
       // Set up real-time subscription
       const channel = supabase
-        .channel(\`chat_${sessionId}`)
+        .channel(`chat_${sessionId}`)
         .on(
           'postgres_changes',
           {
             event: 'INSERT',
             schema: 'public', 
             table: 'chat_messages', 
-            filter: \`session_id=eq.${sessionId}` 
+            filter: `session_id=eq.${sessionId}` 
           },
           (payload) => {
             console.log('New message received:', payload);
@@ -219,7 +219,7 @@ export function Chat() {
     <div className="fixed bottom-6 right-6 z-50">
       {isOpen ? (
         <div
-          className={\`bg-surface rounded-lg shadow-xl transition-all duration-300 ${
+            className={`bg-surface rounded-lg shadow-xl transition-all duration-300 ${
             isMinimized ? 'h-14' : 'h-[500px]'
           } w-[350px] flex flex-col`}
         >
@@ -258,13 +258,13 @@ export function Chat() {
               >
                 {messages.map((msg, index) => (
                   <div
-                    key={msg.id || index}
+                    className={`flex ${
                     className={\`flex ${
                       msg.is_from_visitor ? 'justify-end' : 'justify-start'
                     }`}
                   >
                     <div
-                      className={\`max-w-[75%] rounded-lg px-4 py-2 ${
+                      className={`max-w-[75%] rounded-lg px-4 py-2 ${
                         msg.is_from_visitor
                           ? 'bg-primary text-white'
                           : 'bg-surface text-text'
