@@ -297,7 +297,7 @@ function HomePage() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center">
             <h1 className="relative text-5xl font-display font-extrabold text-white mb-6 tracking-tight">
-              More customers ≠ more{" "}
+              More customers ≠ more{' '}
               <RotatingText
                 texts={[
                   "admin work",
@@ -307,13 +307,13 @@ function HomePage() {
                   "spreadsheets",
                   "late nights"
                 ]}
-                mainClassName="text-nexius-teal inline-block min-w-[8ch]"
+                mainClassName="text-nexius-teal inline min-w-[12ch]"
                 staggerFrom="last"
                 initial={{ y: "100%" }}
                 animate={{ y: 0 }}
                 exit={{ y: "-120%" }}
                 staggerDuration={0.025}
-                splitLevelClassName="overflow-hidden"
+                splitLevelClassName="overflow-hidden inline-block"
                 transition={{ type: "spring", damping: 30, stiffness: 400 }}
                 rotationInterval={2000}
               />
