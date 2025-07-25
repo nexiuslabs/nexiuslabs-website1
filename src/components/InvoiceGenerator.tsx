@@ -27,19 +27,19 @@ export function InvoiceGenerator({
 
       // Create a filename with timestamp
       const timestamp = new Date().toISOString().slice(0, 10);
-      const filename = `invoice-${type}-${timestamp}.pdf`;
+      const filename = \`invoice-${type}-${timestamp}.pdf`;
 
       // Download the PDF
       downloadInvoice(pdfBlob, filename);
 
       // Callback with result
-      const result = { invoiceNumber: `Generated-${timestamp}` };
+      const result = { invoiceNumber: 'Generated-' + timestamp };
       setLastResult(result);
       onInvoiceGenerated?.(result);
 
     } catch (error) {
       console.error('Error generating invoice:', error);
-      alert(`Error generating invoice: ${error.message}`);
+      alert(\`Error generating invoice: ${error.message}`);
     } finally {
       setLoading(false);
     }
@@ -56,11 +56,11 @@ export function InvoiceGenerator({
       setLastResult(result);
       onInvoiceGenerated?.(result);
 
-      alert(`Invoice ${result.invoiceNumber} has been sent to ${result.sentTo}`);
+      alert(\`Invoice ${result.invoiceNumber} has been sent to ${result.sentTo}`);
 
     } catch (error) {
       console.error('Error sending invoice email:', error);
-      alert(`Error sending invoice email: ${error.message}`);
+      alert(\`Error sending invoice email: ${error.message}`);
     } finally {
       setEmailLoading(false);
     }
@@ -118,5 +118,7 @@ export function InvoiceGenerator({
       )}
     </div>
   );
+}
+```  );
 }
 ```

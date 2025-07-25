@@ -193,7 +193,7 @@ export function ArticleEditor({ onSave, article, onCancel }: ArticleEditorProps)
     }).run();
 
     // Apply styles to cells
-    const style = \`border: ${borderWidths} solid #1F2937; padding: 8px;`; // Use surface color directly
+    const style = `border: ${borderWidths} solid #1F2937; padding: 8px;`; // Use surface color directly
     
     // Update all cells with proper styling
     editor.state.doc.descendants((node, pos) => {
