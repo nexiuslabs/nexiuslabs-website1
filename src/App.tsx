@@ -622,7 +622,7 @@ function HomePage() {
   );
 }
 
-function App() {
+const App = () => {
   const [authChecked, setAuthChecked] = useState(false);
   const location = useLocation();
 
@@ -668,7 +668,7 @@ function App() {
       <Chat />
     </>
   );
-}
+};
 
 export default App;
 ```
