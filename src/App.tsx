@@ -281,6 +281,24 @@ function Navigation({ onContactClick }: { onContactClick: () => void }) {
 }
 
 function HomePage() {
+  const phrases = [
+    "admin work",
+    "headcount", 
+    "costs",
+    "chaos",
+    "spreadsheets",
+    "late nights"
+  ];
+  
+  const [phraseIndex, setPhraseIndex] = useState(0);
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setPhraseIndex(i => (i + 1) % phrases.length);
+    }, 2000);
+    return () => clearInterval(interval);
+  }, [phrases.length]);
+
   const scrollToTop = () => {
     window.scrollTo({
       top: 0,
@@ -296,23 +314,36 @@ function HomePage() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center">
             <h1 className="relative text-5xl font-display font-extrabold text-white mb-6 tracking-tight">
-              AI Automation & Business Process Optimization for Growth
+              More customers ≠ more{" "}
+              <span className="inline-block relative min-w-[8ch]">
+                <span
+                  key={phrases[phraseIndex]}
+                  className="absolute inset-0 animate-fade text-nexius-teal"
+                >
+                  {phrases[phraseIndex]}
+                </span>
+                {/* Hidden spacer to keep width stable */}
+                <span className="opacity-0">{phrases[0]}</span>
+              </span>
             </h1>
             <p className="relative text-xl font-body text-white/80 mb-8 max-w-3xl mx-auto leading-relaxed">
-              At Nexius Labs, we turn AI into a powerful growth engine for businesses—automating operations, streamlining workflows, and maximizing efficiency.
+              We get you more customers and quietly take care of the extra workload they create.
             </p>
             <div className="relative flex justify-center gap-4">
-              <button 
-                onClick={() => {
-                  const contactButton = document.querySelector('button[data-contact="true"]');
-                  if (contactButton instanceof HTMLButtonElement) {
-                    contactButton.click();
-                  }
-                }}
-                className="bg-nexius-teal text-white px-6 py-3 rounded-lg hover:bg-nexius-teal/90 transition-colors flex items-center group font-display font-semibold tracking-wide uppercase text-sm"
+              <a
+                href="https://tidycal.com/melverick/discovery-call-via-zoom-30min"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="bg-nexius-teal text-white px-6 py-3 rounded-lg hover:bg-nexius-teal/90 transition-colors flex items-center group font-display font-semibold tracking-wide text-sm"
               >
-                Let's Talk <ArrowRight className="ml-2 h-5 w-5 group-hover:translate-x-1 transition-transform" />
-              </button>
+                Get My 15‑Minute Assessment <ArrowRight className="ml-2 h-5 w-5 group-hover:translate-x-1 transition-transform" />
+              </a>
+              <a
+                href="#services"
+                className="bg-transparent border-2 border-white text-white px-6 py-3 rounded-lg hover:bg-white/10 transition-colors flex items-center group font-display font-semibold tracking-wide text-sm"
+              >
+                See What It Automates
+              </a>
             </div>
             <div className="relative mt-16">
               <img
