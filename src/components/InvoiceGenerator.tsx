@@ -33,7 +33,7 @@ export function InvoiceGenerator({
       downloadInvoice(pdfBlob, filename);
 
       // Callback with result
-      const result = { invoiceNumber: `Generated-${timestamp}` };
+      const result = { invoiceNumber: 'Generated-' + timestamp };
       setLastResult(result);
       onInvoiceGenerated?.(result);
 
@@ -56,7 +56,7 @@ export function InvoiceGenerator({
       setLastResult(result);
       onInvoiceGenerated?.(result);
 
-      alert(\`Invoice ${result.invoiceNumber} has been sent to ${result.sentTo}`);
+      alert(`Invoice ${result.invoiceNumber} has been sent to ${result.sentTo}`);
 
     } catch (error) {
       console.error('Error sending invoice email:', error);
@@ -118,7 +118,5 @@ export function InvoiceGenerator({
       )}
     </div>
   );
-}
-```  );
 }
 ```
