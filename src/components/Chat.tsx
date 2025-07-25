@@ -61,14 +61,14 @@ export function Chat() {
 
       // Set up real-time subscription
       const channel = supabase
-        .channel(`chat_${sessionId}`)
+        .channel(\`chat_${sessionId}`)
         .on(
           'postgres_changes',
           {
             event: 'INSERT',
             schema: 'public', 
             table: 'chat_messages', 
-            filter: `session_id=eq.${sessionId}` 
+            filter: \`session_id=eq.${sessionId}` 
           },
           (payload) => {
             console.log('New message received:', payload);
@@ -156,7 +156,7 @@ export function Chat() {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json',
-            'Authorization': \`Bearer ${import.meta.env.VITE_SUPABASE_ANON_KEY}`,
+            'Authorization': `Bearer ${import.meta.env.VITE_SUPABASE_ANON_KEY}`,
             'x-client-info': 'chat-widget'
           },
           body: JSON.stringify({
@@ -258,8 +258,8 @@ export function Chat() {
               >
                 {messages.map((msg, index) => (
                   <div
+                    key={index}
                     className={`flex ${
-                    className={\`flex ${
                       msg.is_from_visitor ? 'justify-end' : 'justify-start'
                     }`}
                   >
