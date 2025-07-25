@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { Link, Routes, Route, useLocation } from 'react-router-dom';
 import { supabase } from './lib/supabase';
+import RotatingText from './components/RotatingText';
 import {
   Menu,
   X as XIcon,
@@ -281,24 +282,6 @@ function Navigation({ onContactClick }: { onContactClick: () => void }) {
 }
 
 function HomePage() {
-  const phrases = [
-    "admin work",
-    "headcount", 
-    "costs",
-    "chaos",
-    "spreadsheets",
-    "late nights"
-  ];
-  
-  const [phraseIndex, setPhraseIndex] = useState(0);
-
-  useEffect(() => {
-    const interval = setInterval(() => {
-      setPhraseIndex(i => (i + 1) % phrases.length);
-    }, 2000);
-    return () => clearInterval(interval);
-  }, [phrases.length]);
-
   const scrollToTop = () => {
     window.scrollTo({
       top: 0,
@@ -315,16 +298,25 @@ function HomePage() {
           <div className="text-center">
             <h1 className="relative text-5xl font-display font-extrabold text-white mb-6 tracking-tight">
               More customers ≠ more{" "}
-              <span className="inline-block relative min-w-[8ch]">
-                <span
-                  key={phrases[phraseIndex]}
-                  className="absolute inset-0 animate-fade text-nexius-teal"
-                >
-                  {phrases[phraseIndex]}
-                </span>
-                {/* Hidden spacer to keep width stable */}
-                <span className="opacity-0">{phrases[0]}</span>
-              </span>
+              <RotatingText
+                texts={[
+                  "admin work",
+                  "headcount", 
+                  "costs",
+                  "chaos",
+                  "spreadsheets",
+                  "late nights"
+                ]}
+                mainClassName="text-nexius-teal inline-block min-w-[8ch]"
+                staggerFrom="last"
+                initial={{ y: "100%" }}
+                animate={{ y: 0 }}
+                exit={{ y: "-120%" }}
+                staggerDuration={0.025}
+                splitLevelClassName="overflow-hidden"
+                transition={{ type: "spring", damping: 30, stiffness: 400 }}
+                rotationInterval={2000}
+              />
             </h1>
             <p className="relative text-xl font-body text-white/80 mb-8 max-w-3xl mx-auto leading-relaxed">
               We get you more customers and quietly take care of the extra workload they create.
