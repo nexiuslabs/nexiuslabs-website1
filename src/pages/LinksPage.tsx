@@ -214,14 +214,14 @@ export function LinksPage() {
               <p className="text-muted mb-6">Co-Founder</p>
               <div className="space-y-4">
                 <a
-                  href={`tel:${founder.phone}`}
+                  href={\`tel:${founder.phone}`}
                   className="flex items-center justify-center text-muted hover:text-white transition-colors"
                 >
                   <Phone className="h-5 w-5 mr-2" />
                   {founder.phone}
                 </a>
                 <a
-                  href={`mailto:${founder.email}`}
+                  href={\`mailto:${founder.email}`}
                   className="flex items-center justify-center text-muted hover:text-white transition-colors"
                 >
                   <Mail className="h-5 w-5 mr-2" />
@@ -237,7 +237,7 @@ export function LinksPage() {
                   Connect on LinkedIn
                 </a>
                 <a
-                  href={`data:text/vcard;charset=UTF-8,BEGIN:VCARD%0AVERSION:3.0%0AFN:${founder.name}%0ATITLE:${founder.title} at NEXIUS Labs%0ATEL:${founder.phone}%0AEMAIL:${founder.email}%0AURL:${founder.linkedin}%0AEND:VCARD`}
+                  href={\`data:text/vcard;charset=UTF-8,BEGIN:VCARD%0AVERSION:3.0%0AFN:${founder.name}%0ATITLE:${founder.title} at NEXIUS Labs%0ATEL:${founder.phone}%0AEMAIL:${founder.email}%0AURL:${founder.linkedin}%0AEND:VCARD`}
                   download={founder.name.replace(' ', '_') + ".vcf"}
                   className="inline-flex items-center justify-center px-4 py-2 mt-2 bg-surface/10 text-white rounded-lg hover:bg-surface/20 transition-colors"
                 >
@@ -259,8 +259,4 @@ export function LinksPage() {
     </div>
   );
 }
-```r>
-    </div>
-  );
-}
-```
+``\`
