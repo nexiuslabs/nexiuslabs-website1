@@ -60,7 +60,7 @@ export function EventsList({ events, onEventClick }: EventsListProps) {
             <div className="flex-1 min-w-0">
               <div className="sm:hidden mb-2">
                 <div className="flex items-center">
-                  <span className={`px-2 py-1 text-xs font-medium rounded-full ${
+                  <span className={\`px-2 py-1 text-xs font-medium rounded-full ${
                     event.status === 'published'
                       ? 'bg-primary/20 text-primary'
                       : event.status === 'draft'
@@ -80,7 +80,7 @@ export function EventsList({ events, onEventClick }: EventsListProps) {
                   </div>
                 </div>
                 <div className="hidden sm:flex items-center self-center">
-                  <span className={`px-2 py-1 text-xs font-medium rounded-full ${
+                  <span className={\`px-2 py-1 text-xs font-medium rounded-full ${
                     event.status === 'published'
                       ? 'bg-primary/20 text-primary'
                       : event.status === 'draft'
@@ -99,7 +99,7 @@ export function EventsList({ events, onEventClick }: EventsListProps) {
                 </div>
                 <div className="flex items-center text-sm text-muted">
                   <Users className="h-4 w-4 mr-1" />
-                  <span>{event.capacity ? `${event.capacity} seats` : 'Unlimited'}</span>
+                  <span>{event.capacity ? \`${event.capacity} seats` : 'Unlimited'}</span>
                 </div>
               </div>
             </div>

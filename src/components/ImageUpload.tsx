@@ -143,7 +143,7 @@ export function ImageUpload({ onUploadComplete, editMode, initialData, onSave, o
       />
       <label
         htmlFor="logo-upload"
-        className={`inline-flex items-center px-4 py-2 rounded-lg ${
+        className={\`inline-flex items-center px-4 py-2 rounded-lg ${
           uploading
             ? 'bg-surface cursor-not-allowed'
             : 'bg-primary hover:bg-primary-dark cursor-pointer'

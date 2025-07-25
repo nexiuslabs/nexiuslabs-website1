@@ -78,11 +78,11 @@ export function ContactForm({ isOpen, onClose }: ContactFormProps) {
 
       // Send confirmation email
       try {
-        const response = await fetch(`${import.meta.env.VITE_SUPABASE_URL}/functions/v1/send-confirmation-email`, {
+        const response = await fetch(\`${import.meta.env.VITE_SUPABASE_URL}/functions/v1/send-confirmation-email`, {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json',
-            'Authorization': `Bearer ${import.meta.env.VITE_SUPABASE_ANON_KEY}`
+            'Authorization': \`Bearer ${import.meta.env.VITE_SUPABASE_ANON_KEY}`
           },
           body: JSON.stringify({
             to: formData.email,

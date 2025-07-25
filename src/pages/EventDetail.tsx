@@ -93,7 +93,7 @@ export function EventDetail() {
           
           <div className="flex flex-col justify-center mt-8">
             <div className="flex items-center gap-2 mb-4">
-              <span className={`px-3 py-1 rounded-full text-sm font-medium ${
+              <span className={\`px-3 py-1 rounded-full text-sm font-medium ${
                 event.status === 'published'
                   ? 'bg-primary/20 text-primary'
                   : 'bg-surface text-text'

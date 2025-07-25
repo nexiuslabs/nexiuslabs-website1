@@ -72,7 +72,7 @@ export default function Events() {
             <div className="inline-flex rounded-lg border border-surface p-1">
               <button
                 onClick={() => setFilter('upcoming')}
-                className={`px-4 py-2 rounded-md text-sm font-medium transition-colors ${
+                className={\`px-4 py-2 rounded-md text-sm font-medium transition-colors ${
                   filter === 'upcoming'
                     ? 'bg-primary text-white'
                     : 'text-muted hover:text-text'
@@ -82,7 +82,7 @@ export default function Events() {
               </button>
               <button
                 onClick={() => setFilter('past')}
-                className={`px-4 py-2 rounded-md text-sm font-medium transition-colors ${
+                className={\`px-4 py-2 rounded-md text-sm font-medium transition-colors ${
                   filter === 'past'
                     ? 'bg-primary text-white'
                     : 'text-muted hover:text-text'

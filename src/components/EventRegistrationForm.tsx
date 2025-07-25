@@ -63,12 +63,12 @@ export function EventRegistrationForm({ event, isOpen, onClose }: EventRegistrat
         if (!stripe) throw new Error('Stripe failed to load');
 
         // Create Stripe checkout session
-        const response = await fetch(`${import.meta.env.VITE_SUPABASE_URL}/functions/v1/create-checkout`, {
+        const response = await fetch(\`${import.meta.env.VITE_SUPABASE_URL}/functions/v1/create-checkout`, {
           method: 'POST',
           headers: {
             'Accept': 'application/json',
             'Content-Type': 'application/json',
-            'Authorization': `Bearer ${import.meta.env.VITE_SUPABASE_ANON_KEY}`
+            'Authorization': \`Bearer ${import.meta.env.VITE_SUPABASE_ANON_KEY}`
           },
           body: JSON.stringify({
             eventId: event.id,
@@ -124,7 +124,7 @@ export function EventRegistrationForm({ event, isOpen, onClose }: EventRegistrat
           <div className="flex justify-between items-center mb-6">
             <h2 className="text-2xl font-display font-bold text-text">
               {event.ticket_price 
-                ? `Register for Event - $${event.ticket_price}`
+                ? \`Register for Event - $${event.ticket_price}`
                 : 'Register for Event'
               }
             </h2>

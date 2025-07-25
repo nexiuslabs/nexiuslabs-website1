@@ -248,11 +248,11 @@ export function BuildWithAIRegistrationForm({ isOpen, onClose, cohort }: BuildWi
 
       // Send confirmation email
       try {
-        const response = await fetch(`${import.meta.env.VITE_SUPABASE_URL}/functions/v1/send-confirmation-email`, {
+        const response = await fetch(\`${import.meta.env.VITE_SUPABASE_URL}/functions/v1/send-confirmation-email`, {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json',
-            'Authorization': `Bearer ${import.meta.env.VITE_SUPABASE_ANON_KEY}`
+            'Authorization': \`Bearer ${import.meta.env.VITE_SUPABASE_ANON_KEY}`
           },
           body: JSON.stringify({
             to: formData.email,
@@ -345,7 +345,7 @@ export function BuildWithAIRegistrationForm({ isOpen, onClose, cohort }: BuildWi
                   value={formData.fullName}
                   onChange={handleChange}
                   onBlur={handleBlur}
-                  className={`pl-10 pr-10 py-2 w-full border rounded-lg focus:ring-2 transition-colors bg-background text-text ${fullNameState.className}`}
+                  className={\`pl-10 pr-10 py-2 w-full border rounded-lg focus:ring-2 transition-colors bg-background text-text ${fullNameState.className}`}
                   placeholder="Enter your full name"
                 />
                 {fullNameState.isValid && (
@@ -375,7 +375,7 @@ export function BuildWithAIRegistrationForm({ isOpen, onClose, cohort }: BuildWi
                   value={formData.email}
                   onChange={handleChange}
                   onBlur={handleBlur}
-                  className={`pl-10 pr-10 py-2 w-full border rounded-lg focus:ring-2 transition-colors bg-background text-text ${emailState.className}`}
+                  className={\`pl-10 pr-10 py-2 w-full border rounded-lg focus:ring-2 transition-colors bg-background text-text ${emailState.className}`}
                   placeholder="Enter your email"
                 />
                 {emailState.isValid && (
@@ -410,7 +410,7 @@ export function BuildWithAIRegistrationForm({ isOpen, onClose, cohort }: BuildWi
                   value={formData.phone}
                   onChange={handleChange}
                   onBlur={handleBlur}
-                  className={`pl-10 pr-10 py-2 w-full border rounded-lg focus:ring-2 transition-colors bg-background text-text ${phoneState.className}`}
+                  className={\`pl-10 pr-10 py-2 w-full border rounded-lg focus:ring-2 transition-colors bg-background text-text ${phoneState.className}`}
                   placeholder="Enter your phone number"
                 />
                 {phoneState.isValid && (
@@ -475,7 +475,7 @@ export function BuildWithAIRegistrationForm({ isOpen, onClose, cohort }: BuildWi
             <button
               type="submit"
               disabled={loading || !isFormValid}
-              className={`w-full py-3 rounded-lg transition-all font-semibold ${
+              className={\`w-full py-3 rounded-lg transition-all font-semibold ${
                 loading || !isFormValid
                   ? 'bg-surface text-muted cursor-not-allowed'
                   : 'bg-primary text-white hover:bg-primary-dark hover:shadow-md transform hover:-translate-y-0.5'
