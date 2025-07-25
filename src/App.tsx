@@ -200,7 +200,7 @@ function Navigation() {
           </div>
         </div>
         {/* Mobile menu */}
-        <div className={\`md:hidden ${isMenuOpen ? 'block' : 'hidden'}`}>
+        <div className={"md:hidden " + (isMenuOpen ? 'block' : 'hidden')}>
           <div className="px-2 pt-2 pb-3 space-y-1 border-t border-surface">
             <Link 
               to="/blog" 
