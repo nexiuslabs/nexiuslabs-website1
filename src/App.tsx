@@ -1,4 +1,3 @@
-```typescript
 import React, { useState, useEffect } from 'react';
 import { Link, Routes, Route, useLocation } from 'react-router-dom';
 import { supabase } from './lib/supabase';
@@ -668,4 +667,3 @@ export default function App() {
     </>
   );
 }
-```
