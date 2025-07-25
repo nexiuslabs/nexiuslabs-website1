@@ -4,9 +4,13 @@
 
 @layer base {
   html {
-    font-family: 'Inter', sans-serif;
+    font-family: Inter, sans-serif;
   }
   
+  h1, h2, h3, h4, h5, h6 {
+    font-family: Montserrat, sans-serif;
+  }
+
   /* Prose Styles */
   .prose {
     @apply text-nexius-charcoal;
@@ -19,7 +23,7 @@
   .prose h4,
   .prose h5,
   .prose h6 {
-    @apply font-display font-bold text-nexius-navy;
+    @apply font-heading font-bold text-nexius-navy;
     margin-top: 2em;
     margin-bottom: 1em;
   }
