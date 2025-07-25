@@ -188,7 +188,7 @@ export function ArticleEditor({ onSave, article, onCancel }: ArticleEditorProps)
       withHeaderRow: withHeader,
       HTMLAttributes: {
         class: 'border-collapse',
-        style: \`border: ${borderWidths} solid #1F2937;` // Use surface color directly
+        style: `border: ${borderWidths} solid #1F2937;` // Use surface color directly
       }
     }).run();
 

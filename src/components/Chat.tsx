@@ -61,7 +61,7 @@ export function Chat() {
 
       // Set up real-time subscription
       const channel = supabase
-        .channel(\`chat_${sessionId}`)
+        .channel(`chat_${sessionId}`)
         .on(
           'postgres_changes',
           {

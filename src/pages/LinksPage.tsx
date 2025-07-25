@@ -214,7 +214,7 @@ export function LinksPage() {
               <p className="text-muted mb-6">Co-Founder</p>
               <div className="space-y-4">
                 <a
-                  href={\`tel:${founder.phone}`}
+                  href={`tel:${founder.phone}`}
                   className="flex items-center justify-center text-muted hover:text-white transition-colors"
                 >
                   <Phone className="h-5 w-5 mr-2" />

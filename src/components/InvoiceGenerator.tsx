@@ -33,7 +33,7 @@ export function InvoiceGenerator({
       downloadInvoice(pdfBlob, filename);
 
       // Callback with result
-      const result = { invoiceNumber: \`Generated-${timestamp}` };
+      const result = { invoiceNumber: `Generated-${timestamp}` };
       setLastResult(result);
       onInvoiceGenerated?.(result);
 

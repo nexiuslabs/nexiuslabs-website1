@@ -1,4 +1,3 @@
-```typescript
 import React from 'react';
 import { MapPin, Users, ChevronRight, Calendar, Clock } from 'lucide-react';
 import { useLocation, useNavigate } from 'react-router-dom';
@@ -60,13 +59,14 @@ export function EventsList({ events, onEventClick }: EventsListProps) {
             <div className="flex-1 min-w-0">
               <div className="sm:hidden mb-2">
                 <div className="flex items-center">
-                  <span className={\`px-2 py-1 text-xs font-medium rounded-full ${
+                  <span className={`px-2 py-1 text-xs font-medium rounded-full ${
                     event.status === 'published'
                       ? 'bg-primary/20 text-primary'
                       : event.status === 'draft'
                       ? 'bg-surface text-text'
                       : 'bg-red-500/20 text-red-500'
-                  }`}>
+                  }`}
+                >
                     {event.status.charAt(0).toUpperCase() + event.status.slice(1)}
                   </span>
                 </div>
@@ -80,13 +80,14 @@ export function EventsList({ events, onEventClick }: EventsListProps) {
                   </div>
                 </div>
                 <div className="hidden sm:flex items-center self-center">
-                  <span className={\`px-2 py-1 text-xs font-medium rounded-full ${
+                  <span className={`px-2 py-1 text-xs font-medium rounded-full ${
                     event.status === 'published'
                       ? 'bg-primary/20 text-primary'
                       : event.status === 'draft'
                       ? 'bg-surface text-text'
                       : 'bg-red-500/20 text-red-500'
-                  }`}>
+                  }`}
+                >
                     {event.status.charAt(0).toUpperCase() + event.status.slice(1)}
                   </span>
                   <ChevronRight className="h-5 w-5 text-muted ml-2" />
@@ -99,7 +100,7 @@ export function EventsList({ events, onEventClick }: EventsListProps) {
                 </div>
                 <div className="flex items-center text-sm text-muted">
                   <Users className="h-4 w-4 mr-1" />
-                  <span>{event.capacity ? \`${event.capacity} seats` : 'Unlimited'}</span>
+                  <span>{event.capacity ? `${event.capacity} seats` : 'Unlimited'}</span>
                 </div>
               </div>
             </div>
@@ -109,4 +110,3 @@ export function EventsList({ events, onEventClick }: EventsListProps) {
     </div>
   );
 }
-```
