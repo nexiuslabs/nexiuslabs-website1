@@ -574,6 +574,53 @@ function HomePage() {
           <div className="grid md:grid-cols-4 gap-8">
             <div>
               <button
+                onClick={scrollToTop}
+                className="flex items-center text-sm text-muted hover:text-text transition-colors focus:outline-none group"
+              >
+                <img
+                  src="https://tunidbyclygzipvbfzee.supabase.co/storage/v1/object/public/website-images/m04h4fs8wns-1739784195705.png"
+                  alt="NEXIUS Labs"
+                  className="h-6 w-6 object-contain group-hover:opacity-90 transition-opacity"
+                />
+                <span className="ml-2 font-heading font-bold tracking-tight group-hover:text-primary transition-colors">NEXIUS Labs</span>
+              </button>
+              <p className="text-sm text-muted mt-2 font-body">
+                Streamlining business operations with intelligent automation.
+              </p>
+            </div>
+            <div>
+              <h3 className="text-text font-semibold mb-4 font-heading">Company</h3>
+              <ul className="space-y-2">
+                <li><Link to="/case-studies" className="text-muted hover:text-text transition-colors font-body">Case Studies</Link></li>
+                <li><Link to="/blog" className="text-muted hover:text-text transition-colors font-body">Blog</Link></li>
+                <li><Link to="/events" className="text-muted hover:text-text transition-colors font-body">Events</Link></li>
+                <li><Link to="/ai-ignite" className="text-muted hover:text-text transition-colors font-body">AI-Ignite</Link></li>
+              </ul>
+            </div>
+            <div>
+              <h3 className="text-text font-semibold mb-4 font-heading">Contact</h3>
+              <ul className="space-y-2 text-sm">
+                <li className="text-muted font-body">hello@nexius.sg</li>
+                <li className="text-muted font-body">+65 8123 4567</li>
+              </ul>
+            </div>
+            <div>
+              <h3 className="text-text font-semibold mb-4 font-heading">Legal</h3>
+              <ul className="space-y-2">
+                <li><Link to="/privacy" className="text-muted hover:text-text transition-colors font-body">Privacy Policy</Link></li>
+              </ul>
+            </div>
+          </div>
+          <div className="border-t border-surface pt-8 mt-8 text-center">
+            <p className="text-sm text-muted font-body">
+              © 2025 NEXIUS Labs. All rights reserved.
+            </p>
+          </div>
+        </div>
+      </footer>
+    </div>
+  );
+}
 export default function App() {
   const [authChecked, setAuthChecked] = useState(false);
   const location = useLocation();
