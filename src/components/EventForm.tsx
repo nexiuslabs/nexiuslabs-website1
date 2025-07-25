@@ -293,7 +293,7 @@ export function EventForm({ onClose, onSave, event }: EventFormProps) {
               <button
                 type="button"
                 onClick={() => descriptionEditor?.chain().focus().toggleBold().run()}
-                className={\`p-2 rounded hover:bg-surface ${
+                className={`p-2 rounded hover:bg-surface ${
                   descriptionEditor?.isActive('bold') ? 'bg-surface' : ''
                 }`}
               >
@@ -302,7 +302,7 @@ export function EventForm({ onClose, onSave, event }: EventFormProps) {
               <button
                 type="button"
                 onClick={() => descriptionEditor?.chain().focus().toggleItalic().run()}
-                className={\`p-2 rounded hover:bg-surface ${
+                className={`p-2 rounded hover:bg-surface ${
                   descriptionEditor?.isActive('italic') ? 'bg-surface' : ''
                 }`}
               >
@@ -311,7 +311,7 @@ export function EventForm({ onClose, onSave, event }: EventFormProps) {
               <button
                 type="button"
                 onClick={() => descriptionEditor?.chain().focus().toggleUnderline().run()}
-                className={\`p-2 rounded hover:bg-surface ${
+                className={`p-2 rounded hover:bg-surface ${
                   descriptionEditor?.isActive('underline') ? 'bg-surface' : ''
                 }`}
               >
@@ -320,7 +320,7 @@ export function EventForm({ onClose, onSave, event }: EventFormProps) {
               <button
                 type="button"
                 onClick={() => descriptionEditor?.chain().focus().toggleBulletList().run()}
-                className={\`p-2 rounded hover:bg-surface ${
+                className={`p-2 rounded hover:bg-surface ${
                   descriptionEditor?.isActive('bulletList') ? 'bg-surface' : ''
                 }`}
               >
@@ -344,7 +344,7 @@ export function EventForm({ onClose, onSave, event }: EventFormProps) {
               <button
                 type="button"
                 onClick={() => editor?.chain().focus().toggleBold().run()}
-                className={\`p-2 rounded hover:bg-surface ${
+                className={`p-2 rounded hover:bg-surface ${
                   editor?.isActive('bold') ? 'bg-surface' : ''
                 }`}
               >
@@ -353,7 +353,7 @@ export function EventForm({ onClose, onSave, event }: EventFormProps) {
               <button
                 type="button"
                 onClick={() => editor?.chain().focus().toggleItalic().run()}
-                className={\`p-2 rounded hover:bg-surface ${
+                className={`p-2 rounded hover:bg-surface ${
                   editor?.isActive('italic') ? 'bg-surface' : ''
                 }`}
               >
@@ -362,7 +362,7 @@ export function EventForm({ onClose, onSave, event }: EventFormProps) {
               <button
                 type="button"
                 onClick={() => editor?.chain().focus().toggleUnderline().run()}
-                className={\`p-2 rounded hover:bg-surface ${
+                className={`p-2 rounded hover:bg-surface ${
                   editor?.isActive('underline') ? 'bg-surface' : ''
                 }`}
               >
@@ -371,7 +371,7 @@ export function EventForm({ onClose, onSave, event }: EventFormProps) {
               <button
                 type="button"
                 onClick={() => editor?.chain().focus().toggleHeading({ level: 2 }).run()}
-                className={\`p-2 rounded hover:bg-surface ${
+                className={`p-2 rounded hover:bg-surface ${
                   editor?.isActive('heading', { level: 2 }) ? 'bg-surface' : ''
                 }`}
               >
@@ -380,7 +380,7 @@ export function EventForm({ onClose, onSave, event }: EventFormProps) {
               <button
                 type="button"
                 onClick={() => editor?.chain().focus().toggleBulletList().run()}
-                className={\`p-2 rounded hover:bg-surface ${
+                className={`p-2 rounded hover:bg-surface ${
                   editor?.isActive('bulletList') ? 'bg-surface' : ''
                 }`}
               >
@@ -410,7 +410,7 @@ export function EventForm({ onClose, onSave, event }: EventFormProps) {
             <button
               type="button"
               onClick={() => setStatus(status === 'published' ? 'draft' : 'published')}
-              className={\`px-3 py-1 rounded-full text-sm font-medium transition-colors ${
+              className={`px-3 py-1 rounded-full text-sm font-medium transition-colors ${
                 status === 'published'
                   ? 'bg-primary/20 text-primary hover:bg-primary/30'
                   : 'bg-surface text-text hover:bg-surface'
