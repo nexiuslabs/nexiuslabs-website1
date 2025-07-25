@@ -200,7 +200,7 @@ function Navigation() {
           </div>
         </div>
         {/* Mobile menu */}
-        <div className={`md:hidden ${isMenuOpen ? 'block' : 'hidden'}`}>
+        <div className={\`md:hidden ${isMenuOpen ? 'block' : 'hidden'}`}>
           <div className="px-2 pt-2 pb-3 space-y-1 border-t border-surface">
             <Link 
               to="/blog" 
@@ -422,7 +422,7 @@ function HomePage() {
               <div className="flex items-center">
                 <img
                   src={testimonial.image}
-                  alt={\`${testimonial.author} - ${testimonial.title}`}
+                  alt={`${testimonial.author} - ${testimonial.title}`}
                   className="h-12 w-12 rounded-full object-cover"
                   crossOrigin="anonymous"
                 />
