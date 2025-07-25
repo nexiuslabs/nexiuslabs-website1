@@ -1,3 +1,4 @@
+```typescript
 import React, { useState, useEffect } from 'react';
 import { supabase } from '../lib/supabase';
 import { EventsList } from '../components/EventsList';
@@ -81,9 +82,11 @@ export default function Events() {
               </button>
               <button
                 onClick={() => setFilter('past')}
-                className={(filter === 'past'
+                className={`px-4 py-2 rounded-md text-sm font-medium transition-colors ${
+                  filter === 'past'
                     ? 'bg-primary text-white'
-                    : 'text-muted hover:text-text') + ' px-4 py-2 rounded-md text-sm font-medium transition-colors'}
+                    : 'text-muted hover:text-text'
+                }`}
               >
                 Past
               </button>
@@ -143,4 +146,5 @@ export default function Events() {
   );
 }
 
-export { Events }
+export { Events };
+```
