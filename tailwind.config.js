@@ -27,7 +27,7 @@ export default {
     },
   },
   plugins: [
-    typography
+    typography()
   ],
 }
 ```
