@@ -1,3 +1,4 @@
+```css
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -13,7 +14,7 @@
 
   /* Prose Styles */
   .prose {
-    @apply text-nexius-charcoal;
+    @apply text-muted;
     max-width: 100%;
   }
 
@@ -23,7 +24,7 @@
   .prose h4,
   .prose h5,
   .prose h6 {
-    @apply font-heading font-bold text-nexius-navy;
+    @apply font-heading font-bold text-text;
     margin-top: 2em;
     margin-bottom: 1em;
   }
@@ -54,19 +55,19 @@
   }
 
   .prose hr {
-    @apply my-8 border-t-2 border-gray-200;
+    @apply my-8 border-t-2 border-surface;
   }
 
   .prose blockquote {
-    @apply pl-4 border-l-4 border-nexius-teal italic my-6;
+    @apply pl-4 border-l-4 border-primary italic my-6;
   }
 
   .prose code {
-    @apply bg-gray-100 px-1 py-0.5 rounded text-nexius-navy;
+    @apply bg-surface px-1 py-0.5 rounded text-text;
   }
 
   .prose pre {
-    @apply bg-gray-900 text-white p-4 rounded-lg overflow-x-auto my-6;
+    @apply bg-background text-white p-4 rounded-lg overflow-x-auto my-6;
   }
 
   .prose pre code {
@@ -78,7 +79,7 @@
   }
 
   .prose a {
-    @apply text-nexius-teal hover:text-nexius-teal/90 no-underline;
+    @apply text-primary hover:text-primary-dark no-underline;
   }
 
   .prose table {
@@ -87,11 +88,11 @@
 
   .prose th,
   .prose td {
-    @apply border border-gray-200 px-4 py-2;
+    @apply border border-surface px-4 py-2;
   }
 
   .prose th {
-    @apply bg-gray-50 font-semibold;
+    @apply bg-surface font-semibold;
   }
 
   h1, h2, h3, h4, h5, h6 {
@@ -155,7 +156,7 @@
 }
 
 .benefit-card {
-  @apply relative p-6 bg-white rounded-xl border border-nexius-gray transition-all duration-300 overflow-hidden;
+  @apply relative p-6 bg-surface rounded-xl border border-surface transition-all duration-300 overflow-hidden;
   transform-style: preserve-3d;
 }
 
@@ -163,9 +164,9 @@
   content: '';
   @apply absolute inset-0 opacity-0 transition-opacity duration-300;
   background: linear-gradient(45deg, 
-    rgba(0, 202, 186, 0.1),
-    rgba(29, 42, 77, 0.1),
-    rgba(0, 202, 186, 0.1)
+    rgba(16, 185, 129, 0.1),
+    rgba(31, 41, 55, 0.1),
+    rgba(16, 185, 129, 0.1)
   );
   background-size: 200% 200%;
   animation: gradientBg 15s ease infinite;
@@ -173,7 +174,7 @@
 }
 
 .benefit-card:hover {
-  @apply border-nexius-teal/30 shadow-lg transform -translate-y-1;
+  @apply border-primary/30 shadow-lg transform -translate-y-1;
 }
 
 .benefit-card:hover::before {
@@ -185,7 +186,7 @@
 }
 
 .benefit-icon {
-  @apply relative h-12 w-12 text-nexius-teal mb-4 transition-transform duration-300;
+  @apply relative h-12 w-12 text-primary mb-4 transition-transform duration-300;
 }
 
 .benefit-card:hover .benefit-icon {
@@ -194,7 +195,7 @@
 
 /* Blog styles */
 .prose {
-  @apply text-nexius-charcoal;
+  @apply text-muted;
   max-width: 100%;
 }
 
@@ -204,11 +205,11 @@
 .prose h4,
 .prose h5,
 .prose h6 {
-  @apply font-display font-bold text-nexius-navy;
+  @apply font-display font-bold text-text;
 }
 
 .prose a {
-  @apply text-nexius-teal hover:text-nexius-teal/90 no-underline;
+  @apply text-primary hover:text-primary-dark no-underline;
 }
 
 .prose img {
@@ -216,15 +217,15 @@
 }
 
 .prose blockquote {
-  @apply border-l-4 border-nexius-teal pl-4 italic;
+  @apply border-l-4 border-primary pl-4 italic;
 }
 
 .prose code {
-  @apply bg-gray-100 px-1 py-0.5 rounded text-nexius-navy;
+  @apply bg-surface px-1 py-0.5 rounded text-text;
 }
 
 .prose pre {
-  @apply bg-gray-900 text-white p-4 rounded-lg overflow-x-auto;
+  @apply bg-background text-white p-4 rounded-lg overflow-x-auto;
 }
 
 .prose pre code {
@@ -237,19 +238,19 @@
 
 .prose th,
 .prose td {
-  @apply border border-gray-200 px-4 py-2;
+  @apply border border-surface px-4 py-2;
 }
 
 .prose th {
-  @apply bg-gray-50 font-semibold;
+  @apply bg-surface font-semibold;
 }
 
 .prose thead {
-  @apply bg-gray-50;
+  @apply bg-surface;
 }
 
 .prose tbody tr:hover {
-  @apply bg-gray-50;
+  @apply bg-surface;
 }
 
 .prose ul,
@@ -262,7 +263,7 @@
 }
 
 .prose hr {
-  @apply my-8 border-gray-200;
+  @apply my-8 border-surface;
 }
 
 .prose figure {
@@ -271,10 +272,10 @@
 
 /* Toggle Switch Styles */
 .toggle-checkbox:checked {
-  @apply right-0 border-nexius-teal;
+  @apply right-0 border-primary;
 }
 .toggle-checkbox:checked + .toggle-label {
-  @apply bg-nexius-teal;
+  @apply bg-primary;
 }
 .toggle-checkbox {
   right: 0;
@@ -287,5 +288,6 @@
 }
 
 .prose figcaption {
-  @apply text-sm text-gray-500 text-center mt-2;
+  @apply text-sm text-muted text-center mt-2;
 }
+```

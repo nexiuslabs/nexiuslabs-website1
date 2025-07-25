@@ -1,3 +1,4 @@
+```typescript
 import React, { useState } from 'react';
 import { Calendar, Clock, MapPin, Globe, Users, Ticket, Shield, X, Image, Eye, EyeOff } from 'lucide-react';
 import { useEditor, EditorContent } from '@tiptap/react';
@@ -132,14 +133,14 @@ export function EventForm({ onClose, onSave, event }: EventFormProps) {
   };
 
   return (
-    <div className="bg-white rounded-lg shadow-lg p-6">
+    <div className="bg-surface rounded-lg shadow-lg p-6">
       <div className="flex justify-between items-center mb-6">
-        <h2 className="text-2xl font-display font-bold text-nexius-navy">
+        <h2 className="text-2xl font-display font-bold text-text">
           {event ? 'Edit Event' : 'Create Event'}
         </h2>
         <button
           onClick={onClose}
-          className="text-gray-400 hover:text-gray-500 transition-colors"
+          className="text-muted hover:text-text transition-colors"
         >
           <X className="h-6 w-6" />
         </button>
@@ -148,7 +149,7 @@ export function EventForm({ onClose, onSave, event }: EventFormProps) {
       <form onSubmit={handleSubmit} className="space-y-6">
         {/* Event Title */}
         <div>
-          <label htmlFor="title" className="block text-sm font-medium text-gray-700 mb-1">
+          <label htmlFor="title" className="block text-sm font-medium text-muted mb-1">
             Event Name
           </label>
           <input
@@ -157,7 +158,7 @@ export function EventForm({ onClose, onSave, event }: EventFormProps) {
             value={title}
             onChange={(e) => setTitle(e.target.value)}
             required
-            className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-nexius-teal focus:border-nexius-teal"
+            className="w-full px-3 py-2 border border-surface rounded-lg focus:ring-2 focus:ring-primary focus:border-primary bg-background text-text"
             placeholder="Enter event name"
           />
         </div>
@@ -165,7 +166,7 @@ export function EventForm({ onClose, onSave, event }: EventFormProps) {
         {/* Date and Time */}
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
           <div>
-            <label className="block text-sm font-medium text-gray-700 mb-1">
+            <label className="block text-sm font-medium text-muted mb-1">
               Start
             </label>
             <div className="grid grid-cols-2 gap-2">
@@ -174,19 +175,19 @@ export function EventForm({ onClose, onSave, event }: EventFormProps) {
                 value={startDate}
                 onChange={(e) => setStartDate(e.target.value)}
                 required
-                className="px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-nexius-teal focus:border-nexius-teal"
+                className="px-3 py-2 border border-surface rounded-lg focus:ring-2 focus:ring-primary focus:border-primary bg-background text-text"
               />
               <input
                 type="time"
                 value={startTime}
                 onChange={(e) => setStartTime(e.target.value)}
                 required
-                className="px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-nexius-teal focus:border-nexius-teal"
+                className="px-3 py-2 border border-surface rounded-lg focus:ring-2 focus:ring-primary focus:border-primary bg-background text-text"
               />
             </div>
           </div>
           <div>
-            <label className="block text-sm font-medium text-gray-700 mb-1">
+            <label className="block text-sm font-medium text-muted mb-1">
               End
             </label>
             <div className="grid grid-cols-2 gap-2">
@@ -195,14 +196,14 @@ export function EventForm({ onClose, onSave, event }: EventFormProps) {
                 value={endDate}
                 onChange={(e) => setEndDate(e.target.value)}
                 required
-                className="px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-nexius-teal focus:border-nexius-teal"
+                className="px-3 py-2 border border-surface rounded-lg focus:ring-2 focus:ring-primary focus:border-primary bg-background text-text"
               />
               <input
                 type="time"
                 value={endTime}
                 onChange={(e) => setEndTime(e.target.value)}
                 required
-                className="px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-nexius-teal focus:border-nexius-teal"
+                className="px-3 py-2 border border-surface rounded-lg focus:ring-2 focus:ring-primary focus:border-primary bg-background text-text"
               />
             </div>
           </div>
@@ -210,18 +211,18 @@ export function EventForm({ onClose, onSave, event }: EventFormProps) {
 
         {/* Location */}
         <div>
-          <label htmlFor="location" className="block text-sm font-medium text-gray-700 mb-1">
+          <label htmlFor="location" className="block text-sm font-medium text-muted mb-1">
             Location
           </label>
           <div className="relative">
-            <MapPin className="absolute left-3 top-1/2 -translate-y-1/2 h-5 w-5 text-gray-400" />
+            <MapPin className="absolute left-3 top-1/2 -translate-y-1/2 h-5 w-5 text-muted" />
             <input
               type="text"
               id="location"
               value={location}
               onChange={(e) => setLocation(e.target.value)}
               required
-              className="w-full pl-10 pr-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-nexius-teal focus:border-nexius-teal"
+              className="w-full pl-10 pr-3 py-2 border border-surface rounded-lg focus:ring-2 focus:ring-primary focus:border-primary bg-background text-text"
               placeholder="Add event location or virtual link"
             />
           </div>
@@ -229,14 +230,14 @@ export function EventForm({ onClose, onSave, event }: EventFormProps) {
 
         {/* Event Type */}
         <div>
-          <label htmlFor="eventType" className="block text-sm font-medium text-gray-700 mb-1">
+          <label htmlFor="eventType" className="block text-sm font-medium text-muted mb-1">
             Event Type
           </label>
           <select
             id="eventType"
             value={eventType}
             onChange={(e) => setEventType(e.target.value)}
-            className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-nexius-teal focus:border-nexius-teal"
+            className="w-full px-3 py-2 border border-surface rounded-lg focus:ring-2 focus:ring-primary focus:border-primary bg-background text-text"
           >
             <option value="webinar">Webinar</option>
             <option value="workshop">Workshop</option>
@@ -248,15 +249,15 @@ export function EventForm({ onClose, onSave, event }: EventFormProps) {
 
         {/* Featured Image */}
         <div>
-          <label htmlFor="featuredImage" className="block text-sm font-medium text-gray-700 mb-1">
+          <label htmlFor="featuredImage" className="block text-sm font-medium text-muted mb-1">
             Featured Image
           </label>
           {showImageUpload ? (
-            <div className="bg-gray-50 p-4 rounded-lg">
+            <div className="bg-surface p-4 rounded-lg">
               <ImageUpload onUploadComplete={handleImageUpload} />
             </div>
           ) : featuredImage ? (
-            <div className="relative aspect-video rounded-lg overflow-hidden bg-gray-100">
+            <div className="relative aspect-video rounded-lg overflow-hidden bg-surface">
               <img
                 src={featuredImage}
                 alt="Featured"
@@ -273,27 +274,27 @@ export function EventForm({ onClose, onSave, event }: EventFormProps) {
           ) : (
             <div
               onClick={() => setShowImageUpload(true)}
-              className="w-full px-4 py-2 border-2 border-dashed border-gray-300 rounded-lg text-gray-600 hover:border-nexius-teal hover:text-nexius-teal transition-colors cursor-pointer flex flex-col items-center justify-center gap-2"
+              className="w-full px-4 py-2 border-2 border-dashed border-surface rounded-lg text-muted hover:border-primary hover:text-primary transition-colors cursor-pointer flex flex-col items-center justify-center gap-2"
             >
-              <Image className="h-8 w-8 text-gray-400" />
+              <Image className="h-8 w-8 text-muted" />
               <span>Upload Featured Image</span>
-              <span className="text-sm text-gray-500">Click to browse</span>
+              <span className="text-sm text-muted">Click to browse</span>
             </div>
           )}
         </div>
 
         {/* Description */}
         <div>
-          <label htmlFor="description" className="block text-sm font-medium text-gray-700 mb-1">
+          <label htmlFor="description" className="block text-sm font-medium text-muted mb-1">
             Description (Rich Text)
           </label>
-          <div className="border border-gray-300 rounded-lg overflow-hidden">
-            <div className="bg-white border-b border-gray-200 p-2 flex flex-wrap gap-1">
+          <div className="border border-surface rounded-lg overflow-hidden">
+            <div className="bg-surface border-b border-surface p-2 flex flex-wrap gap-1">
               <button
                 type="button"
                 onClick={() => descriptionEditor?.chain().focus().toggleBold().run()}
-                className={`p-2 rounded hover:bg-gray-100 ${
-                  descriptionEditor?.isActive('bold') ? 'bg-gray-100' : ''
+                className={`p-2 rounded hover:bg-surface ${
+                  descriptionEditor?.isActive('bold') ? 'bg-surface' : ''
                 }`}
               >
                 Bold
@@ -301,8 +302,8 @@ export function EventForm({ onClose, onSave, event }: EventFormProps) {
               <button
                 type="button"
                 onClick={() => descriptionEditor?.chain().focus().toggleItalic().run()}
-                className={`p-2 rounded hover:bg-gray-100 ${
-                  descriptionEditor?.isActive('italic') ? 'bg-gray-100' : ''
+                className={`p-2 rounded hover:bg-surface ${
+                  descriptionEditor?.isActive('italic') ? 'bg-surface' : ''
                 }`}
               >
                 Italic
@@ -310,8 +311,8 @@ export function EventForm({ onClose, onSave, event }: EventFormProps) {
               <button
                 type="button"
                 onClick={() => descriptionEditor?.chain().focus().toggleUnderline().run()}
-                className={`p-2 rounded hover:bg-gray-100 ${
-                  descriptionEditor?.isActive('underline') ? 'bg-gray-100' : ''
+                className={`p-2 rounded hover:bg-surface ${
+                  descriptionEditor?.isActive('underline') ? 'bg-surface' : ''
                 }`}
               >
                 Underline
@@ -319,8 +320,8 @@ export function EventForm({ onClose, onSave, event }: EventFormProps) {
               <button
                 type="button"
                 onClick={() => descriptionEditor?.chain().focus().toggleBulletList().run()}
-                className={`p-2 rounded hover:bg-gray-100 ${
-                  descriptionEditor?.isActive('bulletList') ? 'bg-gray-100' : ''
+                className={`p-2 rounded hover:bg-surface ${
+                  descriptionEditor?.isActive('bulletList') ? 'bg-surface' : ''
                 }`}
               >
                 Bullet List
@@ -335,16 +336,16 @@ export function EventForm({ onClose, onSave, event }: EventFormProps) {
 
         {/* Content */}
         <div>
-          <label htmlFor="content" className="block text-sm font-medium text-gray-700 mb-1">
+          <label htmlFor="content" className="block text-sm font-medium text-muted mb-1">
             Content (Rich Text)
           </label>
-          <div className="border border-gray-300 rounded-lg overflow-hidden">
-            <div className="bg-white border-b border-gray-200 p-2 flex flex-wrap gap-1">
+          <div className="border border-surface rounded-lg overflow-hidden">
+            <div className="bg-surface border-b border-surface p-2 flex flex-wrap gap-1">
               <button
                 type="button"
                 onClick={() => editor?.chain().focus().toggleBold().run()}
-                className={`p-2 rounded hover:bg-gray-100 ${
-                  editor?.isActive('bold') ? 'bg-gray-100' : ''
+                className={`p-2 rounded hover:bg-surface ${
+                  editor?.isActive('bold') ? 'bg-surface' : ''
                 }`}
               >
                 Bold
@@ -352,8 +353,8 @@ export function EventForm({ onClose, onSave, event }: EventFormProps) {
               <button
                 type="button"
                 onClick={() => editor?.chain().focus().toggleItalic().run()}
-                className={`p-2 rounded hover:bg-gray-100 ${
-                  editor?.isActive('italic') ? 'bg-gray-100' : ''
+                className={`p-2 rounded hover:bg-surface ${
+                  editor?.isActive('italic') ? 'bg-surface' : ''
                 }`}
               >
                 Italic
@@ -361,8 +362,8 @@ export function EventForm({ onClose, onSave, event }: EventFormProps) {
               <button
                 type="button"
                 onClick={() => editor?.chain().focus().toggleUnderline().run()}
-                className={`p-2 rounded hover:bg-gray-100 ${
-                  editor?.isActive('underline') ? 'bg-gray-100' : ''
+                className={`p-2 rounded hover:bg-surface ${
+                  editor?.isActive('underline') ? 'bg-surface' : ''
                 }`}
               >
                 Underline
@@ -370,8 +371,8 @@ export function EventForm({ onClose, onSave, event }: EventFormProps) {
               <button
                 type="button"
                 onClick={() => editor?.chain().focus().toggleHeading({ level: 2 }).run()}
-                className={`p-2 rounded hover:bg-gray-100 ${
-                  editor?.isActive('heading', { level: 2 }) ? 'bg-gray-100' : ''
+                className={`p-2 rounded hover:bg-surface ${
+                  editor?.isActive('heading', { level: 2 }) ? 'bg-surface' : ''
                 }`}
               >
                 H2
@@ -379,8 +380,8 @@ export function EventForm({ onClose, onSave, event }: EventFormProps) {
               <button
                 type="button"
                 onClick={() => editor?.chain().focus().toggleBulletList().run()}
-                className={`p-2 rounded hover:bg-gray-100 ${
-                  editor?.isActive('bulletList') ? 'bg-gray-100' : ''
+                className={`p-2 rounded hover:bg-surface ${
+                  editor?.isActive('bulletList') ? 'bg-surface' : ''
                 }`}
               >
                 Bullet List
@@ -394,54 +395,54 @@ export function EventForm({ onClose, onSave, event }: EventFormProps) {
         </div>
 
         {/* Event Options */}
-        <div className="space-y-4 border-t border-gray-200 pt-6 mt-6">
-          <h3 className="text-lg font-semibold text-gray-900">Event Options</h3>
+        <div className="space-y-4 border-t border-surface pt-6 mt-6">
+          <h3 className="text-lg font-semibold text-text">Event Options</h3>
           
-          <div className="flex items-center justify-between py-3 border-b border-gray-200">
+          <div className="flex items-center justify-between py-3 border-b border-surface">
             <div className="flex items-center">
               {status === 'published' ? (
-                <Eye className="h-5 w-5 text-gray-400 mr-2" />
+                <Eye className="h-5 w-5 text-muted mr-2" />
               ) : (
-                <EyeOff className="h-5 w-5 text-gray-400 mr-2" />
+                <EyeOff className="h-5 w-5 text-muted mr-2" />
               )}
-              <span className="text-gray-700">Status</span>
+              <span className="text-muted">Status</span>
             </div>
             <button
               type="button"
               onClick={() => setStatus(status === 'published' ? 'draft' : 'published')}
               className={`px-3 py-1 rounded-full text-sm font-medium transition-colors ${
                 status === 'published'
-                  ? 'bg-green-100 text-green-800 hover:bg-green-200'
-                  : 'bg-gray-100 text-gray-800 hover:bg-gray-200'
+                  ? 'bg-primary/20 text-primary hover:bg-primary/30'
+                  : 'bg-surface text-text hover:bg-surface'
               }`}
             >
               {status === 'published' ? 'Published' : 'Draft'}
             </button>
           </div>
 
-          <div className="flex items-center justify-between py-3 border-b border-gray-200">
+          <div className="flex items-center justify-between py-3 border-b border-surface">
             <div className="flex items-center">
-              <Shield className="h-5 w-5 text-gray-400 mr-2" />
-              <span className="text-gray-700">Require Approval</span>
+              <Shield className="h-5 w-5 text-muted mr-2" />
+              <span className="text-muted">Require Approval</span>
             </div>
             <div className="relative inline-block w-10 mr-2 align-middle select-none">
               <input
                 type="checkbox"
                 name="toggle"
                 id="toggle"
-                className="toggle-checkbox absolute block w-6 h-6 rounded-full bg-white border-4 appearance-none cursor-pointer"
+                className="toggle-checkbox absolute block w-6 h-6 rounded-full bg-background border-4 appearance-none cursor-pointer"
               />
               <label
                 htmlFor="toggle"
-                className="toggle-label block overflow-hidden h-6 rounded-full bg-gray-300 cursor-pointer"
+                className="toggle-label block overflow-hidden h-6 rounded-full bg-surface cursor-pointer"
               />
             </div>
           </div>
 
-          <div className="flex items-center justify-between py-3 border-b border-gray-200">
+          <div className="flex items-center justify-between py-3 border-b border-surface">
             <div className="flex items-center">
-              <Users className="h-5 w-5 text-gray-400 mr-2" />
-              <span className="text-gray-700">Event Capacity</span>
+              <Users className="h-5 w-5 text-muted mr-2" />
+              <span className="text-muted">Event Capacity</span>
             </div>
             <div className="flex items-center gap-2">
               <input
@@ -450,19 +451,19 @@ export function EventForm({ onClose, onSave, event }: EventFormProps) {
                 value={capacity === null ? '' : capacity}
                 onChange={(e) => setCapacity(e.target.value ? parseInt(e.target.value) : null)}
                 placeholder="Unlimited"
-                className="w-24 px-3 py-1 border border-gray-300 rounded-lg focus:ring-2 focus:ring-nexius-teal focus:border-nexius-teal text-right"
+                className="w-24 px-3 py-1 border border-surface rounded-lg focus:ring-2 focus:ring-primary focus:border-primary bg-background text-text"
               />
-              <span className="text-gray-500 text-sm">seats</span>
+              <span className="text-muted text-sm">seats</span>
             </div>
           </div>
           
-          <div className="flex items-center justify-between py-3 border-b border-gray-200">
+          <div className="flex items-center justify-between py-3 border-b border-surface">
             <div className="flex items-center">
-              <Ticket className="h-5 w-5 text-gray-400 mr-2" />
-              <span className="text-gray-700">Ticket Price</span>
+              <Ticket className="h-5 w-5 text-muted mr-2" />
+              <span className="text-muted">Ticket Price</span>
             </div>
             <div className="flex items-center gap-2">
-              <span className="text-gray-500">$</span>
+              <span className="text-muted">$</span>
               <input
                 type="number"
                 min="0"
@@ -470,7 +471,7 @@ export function EventForm({ onClose, onSave, event }: EventFormProps) {
                 value={ticketPrice === null ? '' : ticketPrice}
                 onChange={(e) => setTicketPrice(e.target.value ? parseFloat(e.target.value) : null)}
                 placeholder="Free"
-                className="w-24 px-3 py-1 border border-gray-300 rounded-lg focus:ring-2 focus:ring-nexius-teal focus:border-nexius-teal text-right"
+                className="w-24 px-3 py-1 border border-surface rounded-lg focus:ring-2 focus:ring-primary focus:border-primary bg-background text-text"
               />
             </div>
           </div>
@@ -481,14 +482,14 @@ export function EventForm({ onClose, onSave, event }: EventFormProps) {
           <button
             type="button"
             onClick={onClose}
-            className="px-4 py-2 text-gray-700 hover:bg-gray-100 rounded-lg transition-colors"
+            className="px-4 py-2 text-muted hover:bg-surface rounded-lg transition-colors"
           >
             Cancel
           </button>
           <button
             type="submit"
             disabled={loading}
-            className="px-6 py-2 bg-nexius-teal text-white rounded-lg hover:bg-nexius-teal/90 transition-colors disabled:opacity-50 disabled:cursor-not-allowed font-medium"
+            className="px-6 py-2 bg-primary text-white rounded-lg hover:bg-primary-dark transition-colors disabled:opacity-50 disabled:cursor-not-allowed font-medium"
           >
             {loading ? (event ? 'Updating...' : 'Creating...') : (event ? 'Update Event' : 'Create Event')}
           </button>
@@ -497,3 +498,4 @@ export function EventForm({ onClose, onSave, event }: EventFormProps) {
     </div>
   );
 }
+```

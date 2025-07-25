@@ -1,3 +1,4 @@
+```typescript
 import React, { useState, useEffect } from 'react';
 import { useParams, Link } from 'react-router-dom';
 import parse from 'html-react-parser';
@@ -52,22 +53,22 @@ export function EventDetail() {
 
   if (loading) {
     return (
-      <div className="min-h-screen bg-white flex items-center justify-center">
-        <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-nexius-teal"></div>
+      <div className="min-h-screen bg-background flex items-center justify-center">
+        <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-primary"></div>
       </div>
     );
   }
 
   if (error || !event) {
     return (
-      <div className="min-h-screen bg-white py-32 px-4">
+      <div className="min-h-screen bg-background py-32 px-4">
         <div className="max-w-3xl mx-auto text-center">
-          <h1 className="text-2xl font-display font-bold text-nexius-navy mb-4">
+          <h1 className="text-2xl font-display font-bold text-text mb-4">
             Event Not Found
           </h1>
           <Link
             to="/events"
-            className="inline-flex items-center text-nexius-teal hover:text-nexius-teal/90"
+            className="inline-flex items-center text-primary hover:text-primary-dark"
           >
             <ArrowLeft className="h-5 w-5 mr-2" />
             Back to Events
@@ -78,13 +79,13 @@ export function EventDetail() {
   }
 
   return (
-    <div className="min-h-screen bg-white">
+    <div className="min-h-screen bg-background">
       {/* Hero Section */}
-      <div className="relative bg-nexius-navy py-16">
+      <div className="relative bg-background py-16">
         <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-full">
           <Link 
             to="/events" 
-            className="inline-flex items-center text-white/80 hover:text-white pt-8 transition-colors"
+            className="inline-flex items-center text-muted hover:text-text pt-8 transition-colors"
           >
             <ArrowLeft className="h-5 w-5 mr-2" />
             Back to Events
@@ -94,8 +95,8 @@ export function EventDetail() {
             <div className="flex items-center gap-2 mb-4">
               <span className={`px-3 py-1 rounded-full text-sm font-medium ${
                 event.status === 'published'
-                  ? 'bg-green-100 text-green-800'
-                  : 'bg-gray-100 text-gray-800'
+                  ? 'bg-primary/20 text-primary'
+                  : 'bg-surface text-text'
               }`}>
                 {event.event_type.charAt(0).toUpperCase() + event.event_type.slice(1)}
               </span>
@@ -115,7 +116,7 @@ export function EventDetail() {
             {/* Featured Image */}
             <div className="space-y-8">
               {event.featured_image && (
-                <div className="relative aspect-[16/9] rounded-xl overflow-hidden bg-gray-100">
+                <div className="relative aspect-[16/9] rounded-xl overflow-hidden bg-surface">
                   <img
                     src={event.featured_image}
                     alt={event.title}
@@ -126,7 +127,7 @@ export function EventDetail() {
 
               {event.description && (
                 <div className="prose max-w-none mb-8">
-                  <p className="text-lg text-nexius-charcoal leading-relaxed">{event.description}</p>
+                  <p className="text-lg text-muted leading-relaxed">{event.description}</p>
                 </div>
               )}
 
@@ -140,17 +141,17 @@ export function EventDetail() {
 
           {/* Sidebar */}
           <div className="lg:col-span-1 order-1 lg:order-2">
-            <div className="sticky top-24 bg-nexius-gray rounded-xl p-4 md:p-6 space-y-6">
+            <div className="sticky top-24 bg-surface rounded-xl p-4 md:p-6 space-y-6">
               <div>
-                <h3 className="text-lg font-display font-bold text-nexius-navy mb-4">
+                <h3 className="text-lg font-display font-bold text-text mb-4">
                   Event Details
                 </h3>
                 <div className="space-y-4">
                   <div className="flex items-start gap-3">
-                    <Calendar className="h-5 w-5 text-nexius-teal shrink-0 mt-1" />
+                    <Calendar className="h-5 w-5 text-primary shrink-0 mt-1" />
                     <div className="flex-1 min-w-0">
-                      <div className="font-medium text-nexius-navy">Date & Time</div>
-                      <div className="text-nexius-charcoal break-words">
+                      <div className="font-medium text-text">Date & Time</div>
+                      <div className="text-muted break-words">
                         {formatDateTime(event.start_date)}
                         {' - '}
                         {formatDateTime(event.end_date)}
@@ -159,19 +160,19 @@ export function EventDetail() {
                   </div>
                   
                   <div className="flex items-start gap-3">
-                    <MapPin className="h-5 w-5 text-nexius-teal shrink-0 mt-1" />
+                    <MapPin className="h-5 w-5 text-primary shrink-0 mt-1" />
                     <div className="flex-1 min-w-0">
-                      <div className="font-medium text-nexius-navy">Location</div>
-                      <div className="text-nexius-charcoal break-words">{event.location}</div>
+                      <div className="font-medium text-text">Location</div>
+                      <div className="text-muted break-words">{event.location}</div>
                     </div>
                   </div>
                 </div>
               </div>
 
-              <div className="pt-6 border-t border-gray-200">
+              <div className="pt-6 border-t border-surface">
                 <button
                   onClick={() => setShowRegistration(true)}
-                  className="block w-full bg-nexius-teal text-white text-center px-6 py-3 rounded-lg hover:bg-nexius-teal/90 transition-colors font-display font-semibold tracking-wide uppercase text-sm"
+                  className="block w-full bg-primary text-white text-center px-6 py-3 rounded-lg hover:bg-primary-dark transition-colors font-display font-semibold tracking-wide uppercase text-sm"
                 >
                   Register Now
                 </button>
@@ -189,3 +190,4 @@ export function EventDetail() {
     </div>
   );
 }
+```

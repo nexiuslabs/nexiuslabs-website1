@@ -1,3 +1,4 @@
+```typescript
 import React, { useState, useEffect, useRef } from 'react';
 import { MessageCircle, Send, X, Minimize2, Maximize2 } from 'lucide-react';
 import { supabase } from '../lib/supabase';
@@ -218,12 +219,12 @@ export function Chat() {
     <div className="fixed bottom-6 right-6 z-50">
       {isOpen ? (
         <div
-          className={`bg-white rounded-lg shadow-xl transition-all duration-300 ${
+          className={`bg-surface rounded-lg shadow-xl transition-all duration-300 ${
             isMinimized ? 'h-14' : 'h-[500px]'
           } w-[350px] flex flex-col`}
         >
           {/* Header */}
-          <div className="px-4 py-3 bg-nexius-navy text-white rounded-t-lg flex items-center justify-between">
+          <div className="px-4 py-3 bg-background text-white rounded-t-lg flex items-center justify-between">
             <div className="flex items-center gap-2">
               <MessageCircle className="h-5 w-5" />
               <span className="font-medium">Chat with Us</span>
@@ -265,8 +266,8 @@ export function Chat() {
                     <div
                       className={`max-w-[75%] rounded-lg px-4 py-2 ${
                         msg.is_from_visitor
-                          ? 'bg-nexius-teal text-white'
-                          : 'bg-gray-100 text-gray-900'
+                          ? 'bg-primary text-white'
+                          : 'bg-surface text-text'
                       }`}
                     >
                       {msg.content}
@@ -275,11 +276,11 @@ export function Chat() {
                 ))}
                 {aiTyping && (
                   <div className="flex justify-start">
-                    <div className="bg-gray-100 text-gray-900 rounded-lg px-4 py-2">
+                    <div className="bg-surface text-text rounded-lg px-4 py-2">
                       <div className="flex space-x-2">
-                        <div className="w-2 h-2 bg-gray-400 rounded-full animate-bounce" style={{ animationDelay: '0ms' }}></div>
-                        <div className="w-2 h-2 bg-gray-400 rounded-full animate-bounce" style={{ animationDelay: '150ms' }}></div>
-                        <div className="w-2 h-2 bg-gray-400 rounded-full animate-bounce" style={{ animationDelay: '300ms' }}></div>
+                        <div className="w-2 h-2 bg-muted rounded-full animate-bounce" style={{ animationDelay: '0ms' }}></div>
+                        <div className="w-2 h-2 bg-muted rounded-full animate-bounce" style={{ animationDelay: '150ms' }}></div>
+                        <div className="w-2 h-2 bg-muted rounded-full animate-bounce" style={{ animationDelay: '300ms' }}></div>
                       </div>
                     </div>
                   </div>
@@ -288,19 +289,19 @@ export function Chat() {
               </div>
 
               {/* Input */}
-              <form onSubmit={handleSendMessage} className="p-4 border-t">
+              <form onSubmit={handleSendMessage} className="p-4 border-t border-surface">
                 <div className="flex gap-2">
                   <input
                     type="text"
                     value={message}
                     onChange={(e) => setMessage(e.target.value)}
                     placeholder="Type your message..."
-                    className="flex-1 px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-nexius-teal focus:border-nexius-teal"
+                    className="flex-1 px-3 py-2 border border-surface rounded-lg focus:ring-2 focus:ring-primary focus:border-primary bg-background text-text"
                   />
                   <button
                     type="submit"
                     disabled={!message.trim()}
-                    className="px-4 py-2 bg-nexius-teal text-white rounded-lg hover:bg-nexius-teal/90 transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
+                    className="px-4 py-2 bg-primary text-white rounded-lg hover:bg-primary-dark transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
                   >
                     <Send className="h-5 w-5" />
                   </button>
@@ -312,7 +313,7 @@ export function Chat() {
       ) : (
         <button
           onClick={toggleChat}
-          className="bg-nexius-teal text-white p-4 rounded-full shadow-lg hover:bg-nexius-teal/90 transition-colors"
+          className="bg-primary text-white p-4 rounded-full shadow-lg hover:bg-primary-dark transition-colors"
         >
           <MessageCircle className="h-6 w-6" />
         </button>
@@ -320,3 +321,4 @@ export function Chat() {
     </div>
   );
 }
+```

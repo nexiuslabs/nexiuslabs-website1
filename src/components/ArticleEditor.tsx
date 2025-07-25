@@ -1,3 +1,4 @@
+```typescript
 import React, { useState, useEffect } from 'react';
 import { useEditor, EditorContent } from '@tiptap/react';
 import StarterKit from '@tiptap/starter-kit';
@@ -116,7 +117,7 @@ export function ArticleEditor({ onSave, article, onCancel }: ArticleEditorProps)
       Table.configure({
         resizable: true,
         HTMLAttributes: {
-          class: 'border-collapse border border-gray-300',
+          class: 'border-collapse border border-surface',
         },
       }),
       TableRow,
@@ -187,12 +188,12 @@ export function ArticleEditor({ onSave, article, onCancel }: ArticleEditorProps)
       withHeaderRow: withHeader,
       HTMLAttributes: {
         class: 'border-collapse',
-        style: `border: ${borderWidths} solid #e5e7eb;`
+        style: `border: ${borderWidths} solid #1F2937;` // Use surface color directly
       }
     }).run();
 
     // Apply styles to cells
-    const style = `border: ${borderWidths} solid #e5e7eb; padding: 8px;`;
+    const style = `border: ${borderWidths} solid #1F2937; padding: 8px;`; // Use surface color directly
     
     // Update all cells with proper styling
     editor.state.doc.descendants((node, pos) => {
@@ -215,12 +216,12 @@ export function ArticleEditor({ onSave, article, onCancel }: ArticleEditorProps)
   return (
     <div className="space-y-6">
       <div className="flex items-center justify-between">
-        <h2 className="text-xl font-semibold text-gray-900">
+        <h2 className="text-xl font-semibold text-text">
           {article ? 'Edit Article' : 'Create New Article'}
         </h2>
         <button
           onClick={onCancel}
-          className="inline-flex items-center px-3 py-2 border border-gray-300 shadow-sm text-sm font-medium rounded-md text-gray-700 bg-white hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-nexius-teal"
+          className="inline-flex items-center px-3 py-2 border border-surface shadow-sm text-sm font-medium rounded-md text-muted bg-surface hover:bg-surface focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary"
         >
           <X className="h-4 w-4 mr-2" />
           Cancel
@@ -230,10 +231,10 @@ export function ArticleEditor({ onSave, article, onCancel }: ArticleEditorProps)
       {/* Featured Image */}
       <div className="space-y-4">
         <div className="flex items-center justify-between">
-          <h2 className="text-lg font-semibold text-gray-900">Featured Image</h2>
+          <h2 className="text-lg font-semibold text-text">Featured Image</h2>
           <button
             onClick={() => setShowImageUpload(true)}
-            className="inline-flex items-center px-3 py-2 border border-gray-300 shadow-sm text-sm font-medium rounded-md text-gray-700 bg-white hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-nexius-teal"
+            className="inline-flex items-center px-3 py-2 border border-surface shadow-sm text-sm font-medium rounded-md text-muted bg-surface hover:bg-surface focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary"
           >
             <ImageIcon className="h-4 w-4 mr-2" />
             {featuredImage ? 'Change Image' : 'Add Image'}
@@ -241,11 +242,11 @@ export function ArticleEditor({ onSave, article, onCancel }: ArticleEditorProps)
         </div>
         
         {showImageUpload ? (
-          <div className="bg-gray-50 p-4 rounded-lg">
+          <div className="bg-surface p-4 rounded-lg">
             <ImageUpload onUploadComplete={handleFeaturedImageUpload} />
           </div>
         ) : featuredImage && (
-          <div className="relative aspect-video rounded-lg overflow-hidden bg-gray-100">
+          <div className="relative aspect-video rounded-lg overflow-hidden bg-surface">
             <img
               src={featuredImage}
               alt="Featured"
@@ -257,7 +258,7 @@ export function ArticleEditor({ onSave, article, onCancel }: ArticleEditorProps)
 
       {/* Title */}
       <div>
-        <label htmlFor="title" className="block text-sm font-medium text-gray-700">
+        <label htmlFor="title" className="block text-sm font-medium text-muted">
           Title
         </label>
         <input
@@ -265,14 +266,14 @@ export function ArticleEditor({ onSave, article, onCancel }: ArticleEditorProps)
           id="title"
           value={title}
           onChange={(e) => setTitle(e.target.value)}
-          className="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:ring-nexius-teal focus:border-nexius-teal sm:text-sm"
+          className="mt-1 block w-full border-surface rounded-md shadow-sm focus:ring-primary focus:border-primary sm:text-sm bg-background text-text"
           placeholder="Enter article title"
         />
       </div>
 
       {/* Description */}
       <div>
-        <label htmlFor="description" className="block text-sm font-medium text-gray-700">
+        <label htmlFor="description" className="block text-sm font-medium text-muted">
           Short Description
         </label>
         <textarea
@@ -280,21 +281,21 @@ export function ArticleEditor({ onSave, article, onCancel }: ArticleEditorProps)
           value={description}
           onChange={(e) => setDescription(e.target.value)}
           rows={3}
-          className="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:ring-nexius-teal focus:border-nexius-teal sm:text-sm"
+          className="mt-1 block w-full border-surface rounded-md shadow-sm focus:ring-primary focus:border-primary sm:text-sm bg-background text-text"
           placeholder="Enter a brief description"
         />
       </div>
 
       {/* Editor */}
       {editor && (
-        <div className="border border-gray-200 rounded-lg overflow-hidden">
+        <div className="border border-surface rounded-lg overflow-hidden">
           {/* Toolbar */}
-          <div className="bg-white border-b border-gray-200 p-2 flex flex-wrap gap-1">
+          <div className="bg-surface border-b border-surface p-2 flex flex-wrap gap-1">
             {/* Text Style */}
-            <div className="flex items-center border-r border-gray-200 pr-2 mr-2">
+            <div className="flex items-center border-r border-surface pr-2 mr-2">
               <select
                 onChange={(e) => editor?.chain().focus().setFontFamily(e.target.value).run()}
-                className="p-2 rounded hover:bg-gray-100 border border-gray-300"
+                className="p-2 rounded hover:bg-surface border border-surface bg-background text-text"
               >
                 <option value="">Font Family</option>
                 {FONT_FAMILIES.map((font) => (
@@ -305,7 +306,7 @@ export function ArticleEditor({ onSave, article, onCancel }: ArticleEditorProps)
               </select>
               <select
                 onChange={(e) => editor?.chain().focus().setFontSize(e.target.value).run()}
-                className="ml-2 p-2 rounded hover:bg-gray-100 border border-gray-300"
+                className="ml-2 p-2 rounded hover:bg-surface border border-surface bg-background text-text"
                 value={editor.getAttributes('textStyle').fontSize || ''}
               >
                 <option value="">Font Size</option>
@@ -318,12 +319,12 @@ export function ArticleEditor({ onSave, article, onCancel }: ArticleEditorProps)
             </div>
 
             {/* Text Color */}
-            <div className="flex items-center border-r border-gray-200 pr-2 mr-2">
+            <div className="flex items-center border-r border-surface pr-2 mr-2">
               <div className="relative group">
-                <button className="p-2 rounded hover:bg-gray-100">
-                  <FontIcon className="h-4 w-4" />
+                <button className="p-2 rounded hover:bg-surface">
+                  <FontIcon className="h-4 w-4 text-text" />
                 </button>
-                <div className="absolute top-full left-0 mt-1 bg-white border border-gray-200 rounded-lg p-2 hidden group-hover:block shadow-lg">
+                <div className="absolute top-full left-0 mt-1 bg-surface border border-surface rounded-lg p-2 hidden group-hover:block shadow-lg">
                   <div className="grid grid-cols-7 gap-1">
                     {COLORS.map((color) => (
                       <button
@@ -337,10 +338,10 @@ export function ArticleEditor({ onSave, article, onCancel }: ArticleEditorProps)
                 </div>
               </div>
               <div className="relative group ml-2">
-                <button className="p-2 rounded hover:bg-gray-100">
-                  <Highlighter className="h-4 w-4" />
+                <button className="p-2 rounded hover:bg-surface">
+                  <Highlighter className="h-4 w-4 text-text" />
                 </button>
-                <div className="absolute top-full left-0 mt-1 bg-white border border-gray-200 rounded-lg p-2 hidden group-hover:block shadow-lg">
+                <div className="absolute top-full left-0 mt-1 bg-surface border border-surface rounded-lg p-2 hidden group-hover:block shadow-lg">
                   <div className="grid grid-cols-5 gap-1">
                     {HIGHLIGHT_COLORS.map((color) => (
                       <button
@@ -356,150 +357,150 @@ export function ArticleEditor({ onSave, article, onCancel }: ArticleEditorProps)
             </div>
 
             {/* Basic Formatting */}
-            <div className="flex items-center border-r border-gray-200 pr-2 mr-2">
+            <div className="flex items-center border-r border-surface pr-2 mr-2">
               <button
                 onClick={() => editor.chain().focus().toggleBold().run()}
-                className={`p-2 rounded hover:bg-gray-100 ${
-                  editor.isActive('bold') ? 'bg-gray-100' : ''
+                className={`p-2 rounded hover:bg-surface ${
+                  editor.isActive('bold') ? 'bg-surface' : ''
                 }`}
               >
-                <Bold className="h-4 w-4" />
+                <Bold className="h-4 w-4 text-text" />
               </button>
               <button
                 onClick={() => editor.chain().focus().toggleItalic().run()}
-                className={`p-2 rounded hover:bg-gray-100 ${
-                  editor.isActive('italic') ? 'bg-gray-100' : ''
+                className={`p-2 rounded hover:bg-surface ${
+                  editor.isActive('italic') ? 'bg-surface' : ''
                 }`}
               >
-                <Italic className="h-4 w-4" />
+                <Italic className="h-4 w-4 text-text" />
               </button>
               <button
                 onClick={() => editor.chain().focus().toggleUnderline().run()}
-                className={`p-2 rounded hover:bg-gray-100 ${
-                  editor.isActive('underline') ? 'bg-gray-100' : ''
+                className={`p-2 rounded hover:bg-surface ${
+                  editor.isActive('underline') ? 'bg-surface' : ''
                 }`}
               >
-                <UnderlineIcon className="h-4 w-4" />
+                <UnderlineIcon className="h-4 w-4 text-text" />
               </button>
             </div>
 
             {/* Alignment */}
-            <div className="flex items-center border-r border-gray-200 pr-2 mr-2">
+            <div className="flex items-center border-r border-surface pr-2 mr-2">
               <button
                 onClick={() => editor.chain().focus().setTextAlign('left').run()}
-                className={`p-2 rounded hover:bg-gray-100 ${
-                  editor.isActive({ textAlign: 'left' }) ? 'bg-gray-100' : ''
+                className={`p-2 rounded hover:bg-surface ${
+                  editor.isActive({ textAlign: 'left' }) ? 'bg-surface' : ''
                 }`}
               >
-                <AlignLeft className="h-4 w-4" />
+                <AlignLeft className="h-4 w-4 text-text" />
               </button>
               <button
                 onClick={() => editor.chain().focus().setTextAlign('center').run()}
-                className={`p-2 rounded hover:bg-gray-100 ${
-                  editor.isActive({ textAlign: 'center' }) ? 'bg-gray-100' : ''
+                className={`p-2 rounded hover:bg-surface ${
+                  editor.isActive({ textAlign: 'center' }) ? 'bg-surface' : ''
                 }`}
               >
-                <AlignCenter className="h-4 w-4" />
+                <AlignCenter className="h-4 w-4 text-text" />
               </button>
               <button
                 onClick={() => editor.chain().focus().setTextAlign('right').run()}
-                className={`p-2 rounded hover:bg-gray-100 ${
-                  editor.isActive({ textAlign: 'right' }) ? 'bg-gray-100' : ''
+                className={`p-2 rounded hover:bg-surface ${
+                  editor.isActive({ textAlign: 'right' }) ? 'bg-surface' : ''
                 }`}
               >
-                <AlignRight className="h-4 w-4" />
+                <AlignRight className="h-4 w-4 text-text" />
               </button>
               <button
                 onClick={() => editor.chain().focus().setTextAlign('justify').run()}
-                className={`p-2 rounded hover:bg-gray-100 ${
-                  editor.isActive({ textAlign: 'justify' }) ? 'bg-gray-100' : ''
+                className={`p-2 rounded hover:bg-surface ${
+                  editor.isActive({ textAlign: 'justify' }) ? 'bg-surface' : ''
                 }`}
               >
-                <AlignJustify className="h-4 w-4" />
+                <AlignJustify className="h-4 w-4 text-text" />
               </button>
             </div>
 
             {/* Headings */}
-            <div className="flex items-center border-r border-gray-200 pr-2 mr-2">
+            <div className="flex items-center border-r border-surface pr-2 mr-2">
               <button
                 onClick={() => editor.chain().focus().setParagraph().run()}
-                className={`p-2 rounded hover:bg-gray-100 ${
-                  editor.isActive('paragraph') ? 'bg-gray-100' : ''
+                className={`p-2 rounded hover:bg-surface ${
+                  editor.isActive('paragraph') ? 'bg-surface' : ''
                 }`}
               >
-                <Type className="h-4 w-4" />
+                <Type className="h-4 w-4 text-text" />
               </button>
               <button
                 onClick={() => editor.chain().focus().toggleHeading({ level: 1 }).run()}
-                className={`p-2 rounded hover:bg-gray-100 ${
-                  editor.isActive('heading', { level: 1 }) ? 'bg-gray-100' : ''
+                className={`p-2 rounded hover:bg-surface ${
+                  editor.isActive('heading', { level: 1 }) ? 'bg-surface' : ''
                 }`}
               >
-                <Heading1 className="h-4 w-4" />
+                <Heading1 className="h-4 w-4 text-text" />
               </button>
               <button
                 onClick={() => editor.chain().focus().toggleHeading({ level: 2 }).run()}
-                className={`p-2 rounded hover:bg-gray-100 ${
-                  editor.isActive('heading', { level: 2 }) ? 'bg-gray-100' : ''
+                className={`p-2 rounded hover:bg-surface ${
+                  editor.isActive('heading', { level: 2 }) ? 'bg-surface' : ''
                 }`}
               >
-                <Heading2 className="h-4 w-4" />
+                <Heading2 className="h-4 w-4 text-text" />
               </button>
             </div>
 
             {/* Lists */}
-            <div className="flex items-center border-r border-gray-200 pr-2 mr-2">
+            <div className="flex items-center border-r border-surface pr-2 mr-2">
               <button
                 onClick={() => editor.chain().focus().toggleBulletList().run()}
-                className={`p-2 rounded hover:bg-gray-100 ${
-                  editor.isActive('bulletList') ? 'bg-gray-100' : ''
+                className={`p-2 rounded hover:bg-surface ${
+                  editor.isActive('bulletList') ? 'bg-surface' : ''
                 }`}
               >
-                <List className="h-4 w-4" />
+                <List className="h-4 w-4 text-text" />
               </button>
               <button
                 onClick={() => editor.chain().focus().toggleOrderedList().run()}
-                className={`p-2 rounded hover:bg-gray-100 ${
-                  editor.isActive('orderedList') ? 'bg-gray-100' : ''
+                className={`p-2 rounded hover:bg-surface ${
+                  editor.isActive('orderedList') ? 'bg-surface' : ''
                 }`}
               >
-                <ListOrdered className="h-4 w-4" />
+                <ListOrdered className="h-4 w-4 text-text" />
               </button>
               <button
                 onClick={() => editor.chain().focus().toggleBlockquote().run()}
-                className={`p-2 rounded hover:bg-gray-100 ${
-                  editor.isActive('blockquote') ? 'bg-gray-100' : ''
+                className={`p-2 rounded hover:bg-surface ${
+                  editor.isActive('blockquote') ? 'bg-surface' : ''
                 }`}
               >
-                <Quote className="h-4 w-4" />
+                <Quote className="h-4 w-4 text-text" />
               </button>
             </div>
 
             {/* Links and Images */}
-            <div className="flex items-center border-r border-gray-200 pr-2 mr-2">
+            <div className="flex items-center border-r border-surface pr-2 mr-2">
               <button
                 onClick={setLink}
-                className={`p-2 rounded hover:bg-gray-100 ${
-                  editor.isActive('link') ? 'bg-gray-100' : ''
+                className={`p-2 rounded hover:bg-surface ${
+                  editor.isActive('link') ? 'bg-surface' : ''
                 }`}
               >
-                <LinkIcon className="h-4 w-4" />
+                <LinkIcon className="h-4 w-4 text-text" />
               </button>
             </div>
 
             {/* Tables and Media */}
-            <div className="flex items-center border-r border-gray-200 pr-2 mr-2">
+            <div className="flex items-center border-r border-surface pr-2 mr-2">
               <button
                 onClick={() => setShowTableDialog(true)}
-                className="p-2 rounded hover:bg-gray-100"
+                className="p-2 rounded hover:bg-surface"
               >
-                <TableIcon className="h-4 w-4" />
+                <TableIcon className="h-4 w-4 text-text" />
               </button>
               <button
                 onClick={() => setShowYoutubeDialog(true)}
-                className="p-2 rounded hover:bg-gray-100"
+                className="p-2 rounded hover:bg-surface"
               >
-                <YoutubeIcon className="h-4 w-4" />
+                <YoutubeIcon className="h-4 w-4 text-text" />
               </button>
             </div>
 
@@ -508,22 +509,22 @@ export function ArticleEditor({ onSave, article, onCancel }: ArticleEditorProps)
               <button
                 onClick={() => editor.chain().focus().undo().run()}
                 disabled={!editor.can().undo()}
-                className="p-2 rounded hover:bg-gray-100 disabled:opacity-50"
+                className="p-2 rounded hover:bg-surface disabled:opacity-50"
               >
-                <Undo className="h-4 w-4" />
+                <Undo className="h-4 w-4 text-text" />
               </button>
               <button
                 onClick={() => editor.chain().focus().redo().run()}
                 disabled={!editor.can().redo()}
-                className="p-2 rounded hover:bg-gray-100 disabled:opacity-50"
+                className="p-2 rounded hover:bg-surface disabled:opacity-50"
               >
-                <Redo className="h-4 w-4" />
+                <Redo className="h-4 w-4 text-text" />
               </button>
             </div>
           </div>
 
           {/* Content Area */}
-          <div className="bg-white p-4">
+          <div className="bg-surface p-4">
             <EditorContent editor={editor} className="prose max-w-none" />
           </div>
         </div>
@@ -532,25 +533,25 @@ export function ArticleEditor({ onSave, article, onCancel }: ArticleEditorProps)
       {/* YouTube Dialog */}
       {showYoutubeDialog && (
         <div className="fixed inset-0 bg-black/50 flex items-center justify-center">
-          <div className="bg-white rounded-lg p-6 max-w-md w-full">
-            <h3 className="text-lg font-semibold mb-4">Insert YouTube Video</h3>
+          <div className="bg-surface rounded-lg p-6 max-w-md w-full">
+            <h3 className="text-lg font-semibold text-text mb-4">Insert YouTube Video</h3>
             <input
               type="text"
               value={youtubeUrl}
               onChange={(e) => setYoutubeUrl(e.target.value)}
               placeholder="Enter YouTube URL"
-              className="w-full px-3 py-2 border border-gray-300 rounded-lg mb-4"
+              className="w-full px-3 py-2 border border-surface rounded-lg mb-4 bg-background text-text"
             />
             <div className="flex justify-end gap-2">
               <button
                 onClick={() => setShowYoutubeDialog(false)}
-                className="px-4 py-2 text-gray-600 hover:bg-gray-100 rounded-lg"
+                className="px-4 py-2 text-muted hover:bg-surface rounded-lg"
               >
                 Cancel
               </button>
               <button
                 onClick={insertYoutubeVideo}
-                className="px-4 py-2 bg-nexius-teal text-white rounded-lg hover:bg-nexius-teal/90"
+                className="px-4 py-2 bg-primary text-white rounded-lg hover:bg-primary-dark"
               >
                 Insert
               </button>
@@ -571,11 +572,13 @@ export function ArticleEditor({ onSave, article, onCancel }: ArticleEditorProps)
       <div className="flex justify-end">
         <button
           onClick={handleSave}
-          className="inline-flex items-center px-4 py-2 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-nexius-teal hover:bg-nexius-teal/90 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-nexius-teal"
+          className="inline-flex items-center px-4 py-2 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-primary hover:bg-primary-dark focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary"
         >
           <Save className="h-4 w-4 mr-2" />
           {article ? 'Update Article' : 'Save Article'}
         </button>
       </div>
     </div>
-  );}
+  );
+}
+```

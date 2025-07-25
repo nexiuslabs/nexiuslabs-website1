@@ -1,3 +1,4 @@
+```typescript
 import React, { useState, useEffect } from 'react';
 import { supabase } from '../lib/supabase';
 import { EventsList } from '../components/EventsList';
@@ -49,15 +50,15 @@ export default function Events() {
   };
 
   return (
-    <div className="min-h-screen bg-white">
+    <div className="min-h-screen bg-background">
       {/* Hero Section */}
-      <section className="relative pt-32 pb-24 bg-gradient-to-b from-nexius-navy to-nexius-navy/95">
+      <section className="relative pt-32 pb-24 bg-gradient-to-b from-background to-background/95">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center">
             <h1 className="text-4xl md:text-5xl font-display font-bold text-white mb-6 tracking-tight">
               Upcoming Events
             </h1>
-            <p className="text-xl text-white/80 max-w-3xl mx-auto leading-relaxed">
+            <p className="text-xl text-muted max-w-3xl mx-auto leading-relaxed">
               Join us for workshops, webinars, and conferences focused on AI innovation and business transformation.
             </p>
           </div>
@@ -68,13 +69,13 @@ export default function Events() {
       <section className="py-24">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex justify-center mb-8">
-            <div className="inline-flex rounded-lg border border-gray-200 p-1">
+            <div className="inline-flex rounded-lg border border-surface p-1">
               <button
                 onClick={() => setFilter('upcoming')}
                 className={`px-4 py-2 rounded-md text-sm font-medium transition-colors ${
                   filter === 'upcoming'
-                    ? 'bg-nexius-teal text-white'
-                    : 'text-gray-500 hover:text-gray-700'
+                    ? 'bg-primary text-white'
+                    : 'text-muted hover:text-text'
                 }`}
               >
                 Upcoming
@@ -83,8 +84,8 @@ export default function Events() {
                 onClick={() => setFilter('past')}
                 className={`px-4 py-2 rounded-md text-sm font-medium transition-colors ${
                   filter === 'past'
-                    ? 'bg-nexius-teal text-white'
-                    : 'text-gray-500 hover:text-gray-700'
+                    ? 'bg-primary text-white'
+                    : 'text-muted hover:text-text'
                 }`}
               >
                 Past
@@ -94,19 +95,19 @@ export default function Events() {
           {error ? (
             <div className="text-center py-16">
               <div className="text-red-500 mb-4">{error}</div>
-              <button onClick={loadEvents} className="inline-flex items-center px-4 py-2 bg-nexius-teal text-white rounded-lg hover:bg-nexius-teal/90">Try Again</button>
+              <button onClick={loadEvents} className="inline-flex items-center px-4 py-2 bg-primary text-white rounded-lg hover:bg-primary-dark">Try Again</button>
             </div>
           ) : loading ? (
             <div className="flex justify-center items-center h-64">
-              <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-nexius-teal"></div>
+              <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-primary"></div>
             </div>
           ) : events.length === 0 ? (
             <div className="text-center py-16">
-              <Calendar className="h-16 w-16 text-nexius-teal mx-auto mb-6" />
-              <h2 className="text-2xl font-display font-bold text-nexius-navy mb-4">
+              <Calendar className="h-16 w-16 text-primary mx-auto mb-6" />
+              <h2 className="text-2xl font-display font-bold text-text mb-4">
                 No {filter === 'upcoming' ? 'Upcoming' : 'Past'} Events
               </h2>
-              <p className="text-nexius-charcoal max-w-md mx-auto mb-6">
+              <p className="text-muted max-w-md mx-auto mb-6">
                 {filter === 'upcoming' 
                   ? 'Check back soon for our upcoming events and workshops.'
                   : 'No past events to display at this time.'}
@@ -123,19 +124,19 @@ export default function Events() {
       </section>
 
       {/* CTA Section */}
-      <section className="py-24 bg-nexius-navy">
+      <section className="py-24 bg-background">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <h2 className="text-3xl font-display font-bold text-white mb-4">
             Want to Learn More?
           </h2>
-          <p className="text-white/80 mb-8 max-w-2xl mx-auto">
+          <p className="text-muted mb-8 max-w-2xl mx-auto">
             Schedule a discovery call to discuss how our AI solutions can help transform your business.
           </p>
           <a 
             href="https://tidycal.com/melverick/discovery-call-via-zoom-30min"
             target="_blank"
             rel="noopener noreferrer"
-            className="bg-nexius-teal text-white px-8 py-4 rounded-lg hover:bg-nexius-teal/90 transition-colors inline-flex items-center font-display font-semibold tracking-wide uppercase text-sm"
+            className="bg-primary text-white px-8 py-4 rounded-lg hover:bg-primary-dark transition-colors inline-flex items-center font-display font-semibold tracking-wide uppercase text-sm"
           >
             Schedule A Call <Clock className="ml-2 h-5 w-5" />
           </a>
@@ -146,3 +147,4 @@ export default function Events() {
 }
 
 export { Events }
+```

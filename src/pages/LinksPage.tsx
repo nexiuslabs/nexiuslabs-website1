@@ -1,3 +1,4 @@
+```typescript
 import React, { useState, useEffect } from 'react';
 import { supabase } from '../lib/supabase';
 import { HeroAnimation } from '../components/HeroAnimation';
@@ -131,7 +132,7 @@ export function LinksPage() {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-b from-nexius-navy to-nexius-navy/95">
+    <div className="min-h-screen bg-gradient-to-b from-background to-background/95">
       <HeroAnimation />
       {/* Header */}
       <header className="pt-12 px-4 sm:px-6 lg:px-8 flex justify-center">
@@ -142,7 +143,7 @@ export function LinksPage() {
               alt="NEXIUS Labs"
               className="relative h-12 w-12 object-contain group-hover:opacity-90 transition-opacity mb-3"
             />
-            <h1 className="relative text-xl font-display font-bold text-white group-hover:text-nexius-teal transition-colors">
+            <h1 className="relative text-xl font-display font-bold text-white group-hover:text-primary transition-colors">
               NEXIUS Labs
             </h1>
           </a>
@@ -157,7 +158,7 @@ export function LinksPage() {
             alt="NEXIUS Labs Cover"
             className="relative w-full h-[200px] object-cover rounded-xl shadow-2xl mb-8"
           />
-          <p className="relative text-xl text-white/90 max-w-2xl mx-auto">
+          <p className="relative text-xl text-muted max-w-2xl mx-auto">
             Empowering businesses with AI-driven automation and intelligent insights
           </p>
         </div>
@@ -176,12 +177,12 @@ export function LinksPage() {
                 target="_blank"
                 rel="noopener noreferrer"
                 onClick={() => handleLinkClick(link.id)}
-                className="block bg-white/10 hover:bg-white/20 border border-white/20 rounded-lg p-4 transition-all duration-300 transform hover:scale-[1.02] hover:shadow-lg group"
+                className="block bg-surface/10 hover:bg-surface/20 border border-surface/20 rounded-lg p-4 transition-all duration-300 transform hover:scale-[1.02] hover:shadow-lg group"
               >
                 <div className="flex items-center">
-                  <Icon className="h-6 w-6 text-nexius-teal mr-4" />
+                  <Icon className="h-6 w-6 text-primary mr-4" />
                   <span className="flex-1 text-white font-medium">{link.title}</span>
-                  <ExternalLink className="h-5 w-5 text-white/50 group-hover:text-white transition-colors" />
+                  <ExternalLink className="h-5 w-5 text-muted group-hover:text-white transition-colors" />
                 </div>
               </a>
             );
@@ -199,7 +200,7 @@ export function LinksPage() {
           {founders.map((founder) => (
             <div
               key={founder.name}
-              className="bg-white/10 border border-white/20 rounded-xl p-8 text-center"
+              className="bg-surface/10 border border-surface/20 rounded-xl p-8 text-center"
             >
               <img
                 src={founder.image}
@@ -210,18 +211,18 @@ export function LinksPage() {
               <h3 className="text-xl font-display font-bold text-white mb-2">
                 {founder.name}
               </h3>
-              <p className="text-white/80 mb-6">Co-Founder</p>
+              <p className="text-muted mb-6">Co-Founder</p>
               <div className="space-y-4">
                 <a
                   href={`tel:${founder.phone}`}
-                  className="flex items-center justify-center text-white/80 hover:text-white transition-colors"
+                  className="flex items-center justify-center text-muted hover:text-white transition-colors"
                 >
                   <Phone className="h-5 w-5 mr-2" />
                   {founder.phone}
                 </a>
                 <a
                   href={`mailto:${founder.email}`}
-                  className="flex items-center justify-center text-white/80 hover:text-white transition-colors"
+                  className="flex items-center justify-center text-muted hover:text-white transition-colors"
                 >
                   <Mail className="h-5 w-5 mr-2" />
                   {founder.email}
@@ -230,7 +231,7 @@ export function LinksPage() {
                   href={founder.linkedin}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="inline-flex items-center justify-center px-4 py-2 bg-nexius-teal text-white rounded-lg hover:bg-nexius-teal/90 transition-colors"
+                  className="inline-flex items-center justify-center px-4 py-2 bg-primary text-white rounded-lg hover:bg-primary-dark transition-colors"
                 >
                   <Linkedin className="h-5 w-5 mr-2" />
                   Connect on LinkedIn
@@ -238,7 +239,7 @@ export function LinksPage() {
                 <a
                   href={`data:text/vcard;charset=UTF-8,BEGIN:VCARD%0AVERSION:3.0%0AFN:${founder.name}%0ATITLE:${founder.title} at NEXIUS Labs%0ATEL:${founder.phone}%0AEMAIL:${founder.email}%0AURL:${founder.linkedin}%0AEND:VCARD`}
                   download={`${founder.name.replace(' ', '_')}.vcf`}
-                  className="inline-flex items-center justify-center px-4 py-2 mt-2 bg-white/10 text-white rounded-lg hover:bg-white/20 transition-colors"
+                  className="inline-flex items-center justify-center px-4 py-2 mt-2 bg-surface/10 text-white rounded-lg hover:bg-surface/20 transition-colors"
                 >
                   <UserPlus className="h-5 w-5 mr-2" />
                   Add to Contacts
@@ -251,10 +252,11 @@ export function LinksPage() {
 
       {/* Footer */}
       <footer className="text-center py-8">
-        <p className="text-white/60">
+        <p className="text-muted">
           © {new Date().getFullYear()} NEXIUS Labs. All rights reserved.
         </p>
       </footer>
     </div>
   );
 }
+```

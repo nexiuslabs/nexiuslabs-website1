@@ -1,3 +1,4 @@
+```typescript
 import React, { useState } from 'react';
 import { X, User, Mail, Phone, Building, Lightbulb, AlertCircle, CheckCircle2 } from 'lucide-react';
 import { supabase } from '../lib/supabase';
@@ -167,10 +168,10 @@ export function BuildWithAIRegistrationForm({ isOpen, onClose, cohort }: BuildWi
       hasError,
       isValid,
       className: hasError 
-        ? 'border-red-300 bg-red-50 focus:ring-red-500 focus:border-red-500' 
+        ? 'border-red-500 bg-red-500/20 focus:ring-red-500 focus:border-red-500' 
         : isValid 
-        ? 'border-green-300 bg-green-50 focus:ring-green-500 focus:border-green-500'
-        : 'border-gray-300 focus:ring-indigo-500 focus:border-indigo-500'
+        ? 'border-primary bg-primary/20 focus:ring-primary focus:border-primary'
+        : 'border-surface focus:ring-primary focus:border-primary'
     };
   };
 
@@ -309,20 +310,20 @@ export function BuildWithAIRegistrationForm({ isOpen, onClose, cohort }: BuildWi
 
   return (
     <div className="fixed inset-0 bg-black/50 backdrop-blur-sm z-50 flex items-center justify-center p-4">
-      <div className="bg-white rounded-xl shadow-xl max-w-lg w-full max-h-[90vh] overflow-y-auto">
+      <div className="bg-surface rounded-xl shadow-xl max-w-lg w-full max-h-[90vh] overflow-y-auto">
         <div className="p-6">
           <div className="flex justify-between items-center mb-6">
             <div>
-              <h2 className="text-2xl font-bold text-gray-900">
+              <h2 className="text-2xl font-bold text-text">
                 Register for Workshop
               </h2>
-              <p className="text-sm text-gray-600 mt-1">
+              <p className="text-sm text-muted mt-1">
                 {cohort} - Build With AI for Non‑Coders
               </p>
             </div>
             <button
               onClick={onClose}
-              className="text-gray-400 hover:text-gray-600 transition-colors"
+              className="text-muted hover:text-text transition-colors"
             >
               <X className="h-6 w-6" />
             </button>
@@ -331,11 +332,11 @@ export function BuildWithAIRegistrationForm({ isOpen, onClose, cohort }: BuildWi
           <form onSubmit={handleSubmit} className="space-y-6">
             {/* Full Name */}
             <div>
-              <label htmlFor="fullName" className="block text-sm font-medium text-gray-700 mb-1">
+              <label htmlFor="fullName" className="block text-sm font-medium text-muted mb-1">
                 Full Name *
               </label>
               <div className="relative">
-                <User className="absolute left-3 top-1/2 -translate-y-1/2 h-5 w-5 text-gray-400" />
+                <User className="absolute left-3 top-1/2 -translate-y-1/2 h-5 w-5 text-muted" />
                 <input
                   type="text"
                   id="fullName"
@@ -344,15 +345,15 @@ export function BuildWithAIRegistrationForm({ isOpen, onClose, cohort }: BuildWi
                   value={formData.fullName}
                   onChange={handleChange}
                   onBlur={handleBlur}
-                  className={`pl-10 pr-10 py-2 w-full border rounded-lg focus:ring-2 transition-colors ${fullNameState.className}`}
+                  className={`pl-10 pr-10 py-2 w-full border rounded-lg focus:ring-2 transition-colors bg-background text-text ${fullNameState.className}`}
                   placeholder="Enter your full name"
                 />
                 {fullNameState.isValid && (
-                  <CheckCircle2 className="absolute right-3 top-1/2 -translate-y-1/2 h-5 w-5 text-green-500" />
+                  <CheckCircle2 className="absolute right-3 top-1/2 -translate-y-1/2 h-5 w-5 text-primary" />
                 )}
               </div>
               {errors.fullName && touched.fullName && (
-                <div className="mt-1 flex items-center text-sm text-red-600">
+                <div className="mt-1 flex items-center text-sm text-red-500">
                   <AlertCircle className="h-4 w-4 mr-1 flex-shrink-0" />
                   {errors.fullName}
                 </div>
@@ -361,11 +362,11 @@ export function BuildWithAIRegistrationForm({ isOpen, onClose, cohort }: BuildWi
 
             {/* Email */}
             <div>
-              <label htmlFor="email" className="block text-sm font-medium text-gray-700 mb-1">
+              <label htmlFor="email" className="block text-sm font-medium text-muted mb-1">
                 Email Address *
               </label>
               <div className="relative">
-                <Mail className="absolute left-3 top-1/2 -translate-y-1/2 h-5 w-5 text-gray-400" />
+                <Mail className="absolute left-3 top-1/2 -translate-y-1/2 h-5 w-5 text-muted" />
                 <input
                   type="email"
                   id="email"
@@ -374,21 +375,21 @@ export function BuildWithAIRegistrationForm({ isOpen, onClose, cohort }: BuildWi
                   value={formData.email}
                   onChange={handleChange}
                   onBlur={handleBlur}
-                  className={`pl-10 pr-10 py-2 w-full border rounded-lg focus:ring-2 transition-colors ${emailState.className}`}
+                  className={`pl-10 pr-10 py-2 w-full border rounded-lg focus:ring-2 transition-colors bg-background text-text ${emailState.className}`}
                   placeholder="Enter your email"
                 />
                 {emailState.isValid && (
-                  <CheckCircle2 className="absolute right-3 top-1/2 -translate-y-1/2 h-5 w-5 text-green-500" />
+                  <CheckCircle2 className="absolute right-3 top-1/2 -translate-y-1/2 h-5 w-5 text-primary" />
                 )}
               </div>
               {errors.email && touched.email && (
-                <div className="mt-1 flex items-start text-sm text-red-600">
+                <div className="mt-1 flex items-start text-sm text-red-500">
                   <AlertCircle className="h-4 w-4 mr-1 flex-shrink-0 mt-0.5" />
                   <span>{errors.email}</span>
                 </div>
               )}
               {emailState.isValid && (
-                <div className="mt-1 flex items-center text-sm text-green-600">
+                <div className="mt-1 flex items-center text-sm text-primary">
                   <CheckCircle2 className="h-4 w-4 mr-1" />
                   Email format is valid
                 </div>
@@ -397,11 +398,11 @@ export function BuildWithAIRegistrationForm({ isOpen, onClose, cohort }: BuildWi
 
             {/* Phone */}
             <div>
-              <label htmlFor="phone" className="block text-sm font-medium text-gray-700 mb-1">
+              <label htmlFor="phone" className="block text-sm font-medium text-muted mb-1">
                 Phone Number
               </label>
               <div className="relative">
-                <Phone className="absolute left-3 top-1/2 -translate-y-1/2 h-5 w-5 text-gray-400" />
+                <Phone className="absolute left-3 top-1/2 -translate-y-1/2 h-5 w-5 text-muted" />
                 <input
                   type="tel"
                   id="phone"
@@ -409,15 +410,15 @@ export function BuildWithAIRegistrationForm({ isOpen, onClose, cohort }: BuildWi
                   value={formData.phone}
                   onChange={handleChange}
                   onBlur={handleBlur}
-                  className={`pl-10 pr-10 py-2 w-full border rounded-lg focus:ring-2 transition-colors ${phoneState.className}`}
+                  className={`pl-10 pr-10 py-2 w-full border rounded-lg focus:ring-2 transition-colors bg-background text-text ${phoneState.className}`}
                   placeholder="Enter your phone number"
                 />
                 {phoneState.isValid && (
-                  <CheckCircle2 className="absolute right-3 top-1/2 -translate-y-1/2 h-5 w-5 text-green-500" />
+                  <CheckCircle2 className="absolute right-3 top-1/2 -translate-y-1/2 h-5 w-5 text-primary" />
                 )}
               </div>
               {errors.phone && touched.phone && (
-                <div className="mt-1 flex items-center text-sm text-red-600">
+                <div className="mt-1 flex items-center text-sm text-red-500">
                   <AlertCircle className="h-4 w-4 mr-1" />
                   {errors.phone}
                 </div>
@@ -426,18 +427,18 @@ export function BuildWithAIRegistrationForm({ isOpen, onClose, cohort }: BuildWi
 
             {/* Company */}
             <div>
-              <label htmlFor="company" className="block text-sm font-medium text-gray-700 mb-1">
+              <label htmlFor="company" className="block text-sm font-medium text-muted mb-1">
                 Company/Organization
               </label>
               <div className="relative">
-                <Building className="absolute left-3 top-1/2 -translate-y-1/2 h-5 w-5 text-gray-400" />
+                <Building className="absolute left-3 top-1/2 -translate-y-1/2 h-5 w-5 text-muted" />
                 <input
                   type="text"
                   id="company"
                   name="company"
                   value={formData.company}
                   onChange={handleChange}
-                  className="pl-10 pr-3 py-2 w-full border border-gray-300 rounded-lg focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500"
+                  className="pl-10 pr-3 py-2 w-full border border-surface rounded-lg focus:ring-2 focus:ring-primary focus:border-primary bg-background text-text"
                   placeholder="Enter your company or organization"
                 />
               </div>
@@ -445,26 +446,26 @@ export function BuildWithAIRegistrationForm({ isOpen, onClose, cohort }: BuildWi
 
             {/* Project Idea */}
             <div>
-              <label htmlFor="projectIdea" className="block text-sm font-medium text-gray-700 mb-1">
+              <label htmlFor="projectIdea" className="block text-sm font-medium text-muted mb-1">
                 Brief Description of Your Project Idea
               </label>
               <div className="relative">
-                <Lightbulb className="absolute left-3 top-3 h-5 w-5 text-gray-400" />
+                <Lightbulb className="absolute left-3 top-3 h-5 w-5 text-muted" />
                 <textarea
                   id="projectIdea"
                   name="projectIdea"
                   rows={4}
                   value={formData.projectIdea}
                   onChange={handleChange}
-                  className="pl-10 pr-3 py-2 w-full border border-gray-300 rounded-lg focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500"
+                  className="pl-10 pr-3 py-2 w-full border border-surface rounded-lg focus:ring-2 focus:ring-primary focus:border-primary bg-background text-text"
                   placeholder="What kind of app would you like to build?"
                 />
               </div>
             </div>
 
-            <div className="bg-indigo-50 border border-indigo-200 rounded-lg p-4">
-              <h4 className="font-medium text-indigo-900 mb-2">What's Next?</h4>
-              <ul className="text-sm text-indigo-700 space-y-1">
+            <div className="bg-primary/10 border border-primary/20 rounded-lg p-4">
+              <h4 className="font-medium text-text mb-2">What's Next?</h4>
+              <ul className="text-sm text-muted space-y-1">
                 <li>• We'll email you PayNow details within 24 hours</li>
                 <li>• Your seat is secured once payment is received</li>
                 <li>• You'll receive workshop materials 1 week before</li>
@@ -476,8 +477,8 @@ export function BuildWithAIRegistrationForm({ isOpen, onClose, cohort }: BuildWi
               disabled={loading || !isFormValid}
               className={`w-full py-3 rounded-lg transition-all font-semibold ${
                 loading || !isFormValid
-                  ? 'bg-gray-300 text-gray-500 cursor-not-allowed'
-                  : 'bg-indigo-600 text-white hover:bg-indigo-700 hover:shadow-md transform hover:-translate-y-0.5'
+                  ? 'bg-surface text-muted cursor-not-allowed'
+                  : 'bg-primary text-white hover:bg-primary-dark hover:shadow-md transform hover:-translate-y-0.5'
               }`}
             >
               {loading ? (
@@ -498,3 +499,4 @@ export function BuildWithAIRegistrationForm({ isOpen, onClose, cohort }: BuildWi
     </div>
   );
 }
+```

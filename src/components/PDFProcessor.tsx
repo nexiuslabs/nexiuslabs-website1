@@ -1,3 +1,4 @@
+```typescript
 import React, { useState, useCallback } from 'react';
 import { FileText, Download, Loader2, Search } from 'lucide-react';
 import { PDFProcessor } from '../lib/pdfProcessor';
@@ -74,8 +75,8 @@ export function PDFProcessorComponent() {
 
   return (
     <div className="max-w-2xl mx-auto p-6">
-      <div className="bg-white rounded-xl shadow-sm border border-gray-200 p-6">
-        <h2 className="text-2xl font-display font-bold text-nexius-navy mb-6">
+      <div className="bg-surface rounded-xl shadow-sm border border-surface p-6">
+        <h2 className="text-2xl font-display font-bold text-text mb-6">
           PDF Text Processor
         </h2>
 
@@ -83,10 +84,10 @@ export function PDFProcessorComponent() {
         <div className="mb-8">
           <label 
             htmlFor="pdf-upload"
-            className="block w-full border-2 border-dashed border-gray-300 rounded-lg p-8 text-center hover:border-nexius-teal transition-colors cursor-pointer"
+            className="block w-full border-2 border-dashed border-surface rounded-lg p-8 text-center hover:border-primary transition-colors cursor-pointer"
           >
-            <FileText className="h-12 w-12 mx-auto mb-4 text-gray-400" />
-            <span className="text-gray-600">
+            <FileText className="h-12 w-12 mx-auto mb-4 text-muted" />
+            <span className="text-muted">
               {processing ? (
                 <span className="flex items-center justify-center gap-2">
                   <Loader2 className="h-5 w-5 animate-spin" />
@@ -109,7 +110,7 @@ export function PDFProcessorComponent() {
 
         {/* Error Message */}
         {error && (
-          <div className="mb-6 p-4 bg-red-50 text-red-700 rounded-lg">
+          <div className="mb-6 p-4 bg-red-500/20 text-red-500 rounded-lg">
             {error}
           </div>
         )}
@@ -125,12 +126,12 @@ export function PDFProcessorComponent() {
                   value={query}
                   onChange={(e) => setQuery(e.target.value)}
                   placeholder="Ask a question about the document..."
-                  className="flex-1 px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-nexius-teal focus:border-nexius-teal"
+                  className="flex-1 px-4 py-2 border border-surface rounded-lg focus:ring-2 focus:ring-primary focus:border-primary bg-background text-text"
                 />
                 <button
                   onClick={handleQuery}
                   disabled={querying || !query.trim()}
-                  className="px-4 py-2 bg-nexius-teal text-white rounded-lg hover:bg-nexius-teal/90 transition-colors disabled:opacity-50 disabled:cursor-not-allowed inline-flex items-center"
+                  className="px-4 py-2 bg-primary text-white rounded-lg hover:bg-primary-dark transition-colors disabled:opacity-50 disabled:cursor-not-allowed inline-flex items-center"
                 >
                   {querying ? (
                     <Loader2 className="h-5 w-5 animate-spin" />
@@ -142,20 +143,20 @@ export function PDFProcessorComponent() {
 
               {queryResult && (
                 <div className="space-y-4">
-                  <div className="p-4 bg-nexius-teal/10 rounded-lg">
-                    <h4 className="font-semibold text-nexius-navy mb-2">Answer:</h4>
-                    <p className="text-gray-700">{queryResult.answer}</p>
+                  <div className="p-4 bg-primary/10 rounded-lg">
+                    <h4 className="font-semibold text-text mb-2">Answer:</h4>
+                    <p className="text-muted">{queryResult.answer}</p>
                   </div>
                   
                   <div>
-                    <h4 className="font-semibold text-nexius-navy mb-2">Sources:</h4>
+                    <h4 className="font-semibold text-text mb-2">Sources:</h4>
                     <div className="space-y-2">
                       {queryResult.sources.map((source, index) => (
-                        <div key={index} className="p-3 bg-gray-50 rounded border border-gray-200">
-                          <div className="text-sm text-gray-500 mb-1">
+                        <div key={index} className="p-3 bg-surface rounded border border-surface">
+                          <div className="text-sm text-muted mb-1">
                             Page {source.metadata.pageNumber}
                           </div>
-                          <p className="text-gray-700 line-clamp-2">{source.text}</p>
+                          <p className="text-muted line-clamp-2">{source.text}</p>
                         </div>
                       ))}
                     </div>
@@ -165,12 +166,12 @@ export function PDFProcessorComponent() {
             </div>
 
             <div className="flex items-center justify-between">
-              <h3 className="text-lg font-semibold text-gray-900">
+              <h3 className="text-lg font-semibold text-text">
                 Processed Chunks ({chunks.length})
               </h3>
               <button
                 onClick={handleDownload}
-                className="inline-flex items-center px-4 py-2 bg-nexius-teal text-white rounded-lg hover:bg-nexius-teal/90 transition-colors"
+                className="inline-flex items-center px-4 py-2 bg-primary text-white rounded-lg hover:bg-primary-dark transition-colors"
               >
                 <Download className="h-5 w-5 mr-2" />
                 Download All
@@ -181,12 +182,12 @@ export function PDFProcessorComponent() {
               {chunks.map((chunk, index) => (
                 <div 
                   key={index}
-                  className="p-4 bg-gray-50 rounded-lg"
+                  className="p-4 bg-surface rounded-lg"
                 >
-                  <div className="text-sm text-gray-500 mb-2">
+                  <div className="text-sm text-muted mb-2">
                     Chunk {index + 1} (Characters {chunk.startIndex} - {chunk.endIndex})
                   </div>
-                  <div className="text-gray-700 line-clamp-3">
+                  <div className="text-muted line-clamp-3">
                     {chunk.text}
                   </div>
                 </div>
@@ -197,4 +198,4 @@ export function PDFProcessorComponent() {
       </div>
     </div>
   );
-}
+}```

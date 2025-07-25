@@ -1,3 +1,4 @@
+```typescript
 import React, { useState } from 'react';
 import { ImageUpload } from '../components/ImageUpload';
 
@@ -10,11 +11,11 @@ export function UploadLogo() {
   };
 
   return (
-    <div className="min-h-screen bg-gray-50 py-32">
+    <div className="min-h-screen bg-background py-32">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="max-w-3xl mx-auto">
-          <div className="bg-white rounded-lg shadow-sm p-8">
-            <h1 className="text-2xl font-display font-bold text-nexius-navy mb-6">
+          <div className="bg-surface rounded-lg shadow-sm p-8">
+            <h1 className="text-2xl font-display font-bold text-text mb-6">
               Upload Co-founder Photos
             </h1>
             
@@ -24,8 +25,8 @@ export function UploadLogo() {
                   onClick={() => setUploadType('melverick')}
                   className={`px-4 py-2 rounded-lg ${
                     uploadType === 'melverick'
-                      ? 'bg-nexius-teal text-white'
-                      : 'bg-gray-100 text-gray-700 hover:bg-gray-200'
+                      ? 'bg-primary text-white'
+                      : 'bg-surface text-text hover:bg-surface'
                   } transition-colors`}
                 >
                   Melverick's Photo
@@ -34,8 +35,8 @@ export function UploadLogo() {
                   onClick={() => setUploadType('darryl')}
                   className={`px-4 py-2 rounded-lg ${
                     uploadType === 'darryl'
-                      ? 'bg-nexius-teal text-white'
-                      : 'bg-gray-100 text-gray-700 hover:bg-gray-200'
+                      ? 'bg-primary text-white'
+                      : 'bg-surface text-text hover:bg-surface'
                   } transition-colors`}
                 >
                   Darryl's Photo
@@ -46,8 +47,8 @@ export function UploadLogo() {
               
               {logoUrl && (
                 <div className="mt-6">
-                  <h2 className="text-lg font-semibold mb-2">Preview:</h2>
-                  <div className="p-4 bg-gray-50 rounded-lg">
+                  <h2 className="text-lg font-semibold mb-2 text-text">Preview:</h2>
+                  <div className="p-4 bg-background rounded-lg">
                     <img
                       src={logoUrl}
                       alt={uploadType === 'melverick' ? 'Melverick Ng' : 'Darryl Wong'}
@@ -55,10 +56,10 @@ export function UploadLogo() {
                       crossOrigin="anonymous"
                     />
                   </div>
-                  <p className="mt-2 text-sm text-gray-600">
+                  <p className="mt-2 text-sm text-muted">
                     Photo uploaded successfully! You can now use this URL in your application:
                   </p>
-                  <code className="mt-2 block p-2 bg-gray-50 rounded text-sm font-mono break-all">
+                  <code className="mt-2 block p-2 bg-background rounded text-sm font-mono break-all text-text">
                     {logoUrl}
                   </code>
                 </div>
@@ -70,3 +71,4 @@ export function UploadLogo() {
     </div>
   );
 }
+```

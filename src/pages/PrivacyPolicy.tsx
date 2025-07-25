@@ -1,16 +1,17 @@
+```typescript
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { ArrowLeft } from 'lucide-react';
 
 export function PrivacyPolicy() {
   return (
-    <div className="min-h-screen bg-white">
+    <div className="min-h-screen bg-background">
       {/* Header */}
-      <div className="bg-nexius-navy py-16">
+      <div className="bg-background py-16">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <Link 
             to="/" 
-            className="inline-flex items-center text-white/80 hover:text-white transition-colors mb-6"
+            className="inline-flex items-center text-muted hover:text-text transition-colors mb-6"
           >
             <ArrowLeft className="h-5 w-5 mr-2" />
             Back to Home
@@ -18,7 +19,7 @@ export function PrivacyPolicy() {
           <h1 className="text-4xl font-display font-bold text-white">
             Privacy Policy
           </h1>
-          <p className="text-white/80 mt-2">
+          <p className="text-muted mt-2">
             Last Updated: 09th Apr 2025
           </p>
         </div>
@@ -156,7 +157,7 @@ export function PrivacyPolicy() {
 
           <hr />
 
-          <p className="text-sm text-gray-500">
+          <p className="text-sm text-muted">
             This Privacy Policy was last updated on 09th Apr 2025.
           </p>
         </div>
@@ -164,3 +165,4 @@ export function PrivacyPolicy() {
     </div>
   );
 }
+```

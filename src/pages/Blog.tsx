@@ -1,3 +1,4 @@
+```typescript
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { supabase } from '../lib/supabase';
@@ -38,15 +39,15 @@ export function Blog() {
   };
 
   return (
-    <div className="min-h-screen bg-white">
+    <div className="min-h-screen bg-background">
       {/* Hero Section */}
-      <section className="relative pt-32 pb-24 bg-gradient-to-b from-nexius-navy to-nexius-navy/95">
+      <section className="relative pt-32 pb-24 bg-gradient-to-b from-background to-background/95">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center">
             <h1 className="text-4xl md:text-5xl font-display font-bold text-white mb-6 tracking-tight">
               NEXIUS Labs Blog
             </h1>
-            <p className="text-xl text-white/80 max-w-3xl mx-auto leading-relaxed">
+            <p className="text-xl text-muted max-w-3xl mx-auto leading-relaxed">
               Insights, tutorials, and updates from our team of AI experts
             </p>
           </div>
@@ -58,14 +59,14 @@ export function Blog() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           {loading ? (
             <div className="flex justify-center items-center h-64">
-              <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-nexius-teal"></div>
+              <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-primary"></div>
             </div>
           ) : articles.length === 0 ? (
             <div className="text-center py-16">
-              <h2 className="text-2xl font-display font-bold text-nexius-navy mb-4">
+              <h2 className="text-2xl font-display font-bold text-text mb-4">
                 No Articles Yet
               </h2>
-              <p className="text-nexius-charcoal">
+              <p className="text-muted">
                 Check back soon for our latest insights and updates.
               </p>
             </div>
@@ -77,7 +78,7 @@ export function Blog() {
                   to={`/blog/${article.slug}`}
                   className="group block"
                 >
-                  <div className="bg-white rounded-xl overflow-hidden border border-nexius-gray hover:border-nexius-teal/30 hover:shadow-lg transition-all">
+                  <div className="bg-surface rounded-xl overflow-hidden border border-surface hover:border-primary/30 hover:shadow-lg transition-all">
                     {article.featured_image && (
                       <div className="aspect-video relative overflow-hidden">
                         <img
@@ -89,7 +90,7 @@ export function Blog() {
                       </div>
                     )}
                     <div className="p-6">
-                      <div className="flex items-center gap-4 text-sm text-nexius-charcoal/80 mb-3">
+                      <div className="flex items-center gap-4 text-sm text-muted mb-3">
                         <div className="flex items-center">
                           <Calendar className="h-4 w-4 mr-1" />
                           {formatDate(article.published_at || article.created_at)}
@@ -99,15 +100,15 @@ export function Blog() {
                           Author
                         </div>
                       </div>
-                      <h3 className="text-xl font-display font-bold text-nexius-navy mb-3 group-hover:text-nexius-teal transition-colors">
+                      <h3 className="text-xl font-display font-bold text-text mb-3 group-hover:text-primary transition-colors">
                         {article.title}
                       </h3>
                       {article.description && (
-                        <p className="text-nexius-charcoal mb-4 line-clamp-3">
+                        <p className="text-muted mb-4 line-clamp-3">
                           {article.description}
                         </p>
                       )}
-                      <div className="flex items-center text-nexius-teal font-medium">
+                      <div className="flex items-center text-primary font-medium">
                         Read Article{' '}
                         <ArrowRight className="ml-2 h-4 w-4 group-hover:translate-x-1 transition-transform" />
                       </div>
@@ -121,19 +122,19 @@ export function Blog() {
       </section>
 
       {/* CTA Section */}
-      <section className="py-24 bg-nexius-navy">
+      <section className="py-24 bg-background">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <h2 className="text-3xl font-display font-bold text-white mb-4">
             Want to Learn More?
           </h2>
-          <p className="text-white/80 mb-8 max-w-2xl mx-auto">
+          <p className="text-muted mb-8 max-w-2xl mx-auto">
             Schedule a discovery call to discuss how our AI solutions can help transform your business.
           </p>
           <a 
             href="https://tidycal.com/melverick/discovery-call-via-zoom-30min"
             target="_blank"
             rel="noopener noreferrer"
-            className="bg-nexius-teal text-white px-8 py-4 rounded-lg hover:bg-nexius-teal/90 transition-colors inline-flex items-center font-display font-semibold tracking-wide uppercase text-sm"
+            className="bg-primary text-white px-8 py-4 rounded-lg hover:bg-primary-dark transition-colors inline-flex items-center font-display font-semibold tracking-wide uppercase text-sm"
           >
             Schedule A Call <Clock className="ml-2 h-5 w-5" />
           </a>
@@ -142,3 +143,4 @@ export function Blog() {
     </div>
   );
 }
+```

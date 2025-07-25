@@ -1,3 +1,4 @@
+```typescript
 import React, { useState, useEffect } from 'react';
 import { useParams, Link, useNavigate } from 'react-router-dom';
 import { supabase } from '../lib/supabase';
@@ -48,8 +49,8 @@ export function BlogPost() {
 
   if (loading) {
     return (
-      <div className="min-h-screen bg-white flex items-center justify-center">
-        <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-nexius-teal"></div>
+      <div className="min-h-screen bg-background flex items-center justify-center">
+        <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-primary"></div>
       </div>
     );
   }
@@ -59,9 +60,9 @@ export function BlogPost() {
   }
 
   return (
-    <div className="min-h-screen bg-white">
+    <div className="min-h-screen bg-background">
       {/* Hero Section */}
-      <div className="relative h-[60vh] min-h-[400px] bg-nexius-navy">
+      <div className="relative h-[60vh] min-h-[400px] bg-background">
         {article.featured_image && (
           <div className="absolute inset-0">
             <img
@@ -69,21 +70,21 @@ export function BlogPost() {
               alt={article.title}
               className="w-full h-full object-cover opacity-20"
             />
-            <div className="absolute inset-0 bg-gradient-to-b from-nexius-navy/50 to-nexius-navy"></div>
+            <div className="absolute inset-0 bg-gradient-to-b from-background/50 to-background"></div>
           </div>
         )}
         
         <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-full">
           <Link 
             to="/blog" 
-            className="inline-flex items-center text-white/80 hover:text-white pt-8 transition-colors"
+            className="inline-flex items-center text-muted hover:text-text pt-8 transition-colors"
           >
             <ArrowLeft className="h-5 w-5 mr-2" />
             Back to Blog
           </Link>
           
           <div className="flex flex-col justify-center h-full pb-16">
-            <div className="flex items-center gap-4 text-white/80 mb-4">
+            <div className="flex items-center gap-4 text-muted mb-4">
               <div className="flex items-center">
                 <Calendar className="h-4 w-4 mr-1" />
                 {formatDate(article.published_at || article.created_at)}
@@ -97,7 +98,7 @@ export function BlogPost() {
               {article.title}
             </h1>
             {article.description && (
-              <p className="text-xl text-white/80 mt-6 max-w-3xl">
+              <p className="text-xl text-muted mt-6 max-w-3xl">
                 {article.description}
               </p>
             )}
@@ -113,19 +114,19 @@ export function BlogPost() {
       </div>
 
       {/* CTA Section */}
-      <section className="py-24 bg-nexius-navy">
+      <section className="py-24 bg-background">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <h2 className="text-3xl font-display font-bold text-white mb-4">
             Want to Learn More?
           </h2>
-          <p className="text-white/80 mb-8 max-w-2xl mx-auto">
+          <p className="text-muted mb-8 max-w-2xl mx-auto">
             Schedule a discovery call to discuss how our AI solutions can help transform your business.
           </p>
           <a 
             href="https://tidycal.com/melverick/discovery-call-via-zoom-30min"
             target="_blank"
             rel="noopener noreferrer"
-            className="bg-nexius-teal text-white px-8 py-4 rounded-lg hover:bg-nexius-teal/90 transition-colors inline-flex items-center font-display font-semibold tracking-wide uppercase text-sm"
+            className="bg-primary text-white px-8 py-4 rounded-lg hover:bg-primary-dark transition-colors inline-flex items-center font-display font-semibold tracking-wide uppercase text-sm"
           >
             Schedule A Call <Clock className="ml-2 h-5 w-5" />
           </a>
@@ -134,3 +135,4 @@ export function BlogPost() {
     </div>
   );
 }
+```

@@ -1,19 +1,20 @@
+```javascript
 /** @type {import('tailwindcss').Config} */
 export default {
   content: [
     "./index.html",
     "./src/**/*.{js,ts,jsx,tsx}",
   ],
+  darkMode: 'class',
   theme: {
     extend: {
       colors: {
-        'nexius-navy': '#1D2A4D',
-        'nexius-teal': '#00CABA', 
-        'nexius-gray': '#F5F7FA',
-        'nexius-charcoal': '#3A3A3A',
-        primary: '#1D2A4D',
-        accent: '#00CABA',
-        muted: '#F5F7FA'
+        background: '#111827',     // dark bg
+        surface:    '#1F2937',     // darker card bg
+        text:       '#F9FAFB',     // light text
+        muted:      '#9CA3AF',     // secondary text
+        primary:    '#10B981',     // accent/brand
+        'primary-dark': '#059669', // hover accent
       },
       fontFamily: {
         sans: ['Inter', 'sans-serif'],
@@ -27,3 +28,4 @@ export default {
     require('@tailwindcss/typography')
   ],
 }
+```

@@ -1,3 +1,4 @@
+```typescript
 import React, { useState } from 'react';
 import { X } from 'lucide-react';
 
@@ -27,12 +28,12 @@ export function TableDialog({ onClose, onInsert }: TableDialogProps) {
 
   return (
     <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-50">
-      <div className="bg-white rounded-lg p-6 max-w-md w-full">
+      <div className="bg-surface rounded-lg p-6 max-w-md w-full">
         <div className="flex justify-between items-center mb-4">
-          <h3 className="text-lg font-semibold">Insert Table</h3>
+          <h3 className="text-lg font-semibold text-text">Insert Table</h3>
           <button
             onClick={onClose}
-            className="text-gray-400 hover:text-gray-500"
+            className="text-muted hover:text-text"
           >
             <X className="h-5 w-5" />
           </button>
@@ -41,7 +42,7 @@ export function TableDialog({ onClose, onInsert }: TableDialogProps) {
         <form onSubmit={handleSubmit} className="space-y-4">
           <div className="grid grid-cols-2 gap-4">
             <div>
-              <label className="block text-sm font-medium text-gray-700 mb-1">
+              <label className="block text-sm font-medium text-muted mb-1">
                 Rows
               </label>
               <input
@@ -50,11 +51,11 @@ export function TableDialog({ onClose, onInsert }: TableDialogProps) {
                 max="10"
                 value={rows}
                 onChange={(e) => handleNumberInput(e.target.value, setRows)}
-                className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-nexius-teal focus:border-nexius-teal"
+                className="w-full px-3 py-2 border border-surface rounded-lg focus:ring-primary focus:border-primary bg-background text-text"
               />
             </div>
             <div>
-              <label className="block text-sm font-medium text-gray-700 mb-1">
+              <label className="block text-sm font-medium text-muted mb-1">
                 Columns
               </label>
               <input
@@ -63,19 +64,19 @@ export function TableDialog({ onClose, onInsert }: TableDialogProps) {
                 max="10"
                 value={cols}
                 onChange={(e) => handleNumberInput(e.target.value, setCols)}
-                className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-nexius-teal focus:border-nexius-teal"
+                className="w-full px-3 py-2 border border-surface rounded-lg focus:ring-primary focus:border-primary bg-background text-text"
               />
             </div>
           </div>
 
           <div>
-            <label className="block text-sm font-medium text-gray-700 mb-1">
+            <label className="block text-sm font-medium text-muted mb-1">
               Border Style
             </label>
             <select
               value={borderStyle}
               onChange={(e) => setBorderStyle(e.target.value)}
-              className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-nexius-teal focus:border-nexius-teal"
+              className="w-full px-3 py-2 border border-surface rounded-lg focus:ring-primary focus:border-primary bg-background text-text"
             >
               <option value="thin">Thin</option>
               <option value="medium">Medium</option>
@@ -89,9 +90,9 @@ export function TableDialog({ onClose, onInsert }: TableDialogProps) {
               id="withHeader"
               checked={withHeader}
               onChange={(e) => setWithHeader(e.target.checked)}
-              className="h-4 w-4 text-nexius-teal focus:ring-nexius-teal border-gray-300 rounded"
+              className="h-4 w-4 text-primary focus:ring-primary border-surface rounded bg-background"
             />
-            <label htmlFor="withHeader" className="ml-2 text-sm text-gray-700">
+            <label htmlFor="withHeader" className="ml-2 text-sm text-muted">
               Include header row
             </label>
           </div>
@@ -100,13 +101,13 @@ export function TableDialog({ onClose, onInsert }: TableDialogProps) {
             <button
               type="button"
               onClick={onClose}
-              className="px-4 py-2 text-gray-600 hover:bg-gray-100 rounded-lg"
+              className="px-4 py-2 text-muted hover:bg-surface rounded-lg"
             >
               Cancel
             </button>
             <button
               type="submit"
-              className="px-4 py-2 bg-nexius-teal text-white rounded-lg hover:bg-nexius-teal/90"
+              className="px-4 py-2 bg-primary text-white rounded-lg hover:bg-primary-dark"
             >
               Insert Table
             </button>
@@ -116,3 +117,4 @@ export function TableDialog({ onClose, onInsert }: TableDialogProps) {
     </div>
   );
 }
+```

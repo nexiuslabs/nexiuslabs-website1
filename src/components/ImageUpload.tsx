@@ -1,3 +1,4 @@
+```typescript
 import React, { useState } from 'react';
 import { uploadImage } from '../lib/storage';
 import { createImageRecord } from '../lib/images';
@@ -77,17 +78,17 @@ export function ImageUpload({ onUploadComplete, editMode, initialData, onSave, o
     return (
       <form onSubmit={handleSave} className="space-y-4">
         <div className="flex justify-between items-center mb-4">
-          <h3 className="text-lg font-semibold text-gray-900">Edit Image Details</h3>
+          <h3 className="text-lg font-semibold text-text">Edit Image Details</h3>
           <button
             type="button"
             onClick={onCancel}
-            className="text-gray-400 hover:text-gray-500"
+            className="text-muted hover:text-text"
           >
             <X className="h-5 w-5" />
           </button>
         </div>
         <div>
-          <label htmlFor="title" className="block text-sm font-medium text-gray-700 mb-1">
+          <label htmlFor="title" className="block text-sm font-medium text-muted mb-1">
             Title
           </label>
           <input
@@ -96,11 +97,11 @@ export function ImageUpload({ onUploadComplete, editMode, initialData, onSave, o
             required
             value={title}
             onChange={(e) => setTitle(e.target.value)}
-            className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-nexius-teal focus:border-nexius-teal"
+            className="w-full px-3 py-2 border border-surface rounded-lg focus:ring-primary focus:border-primary bg-background text-text"
           />
         </div>
         <div>
-          <label htmlFor="description" className="block text-sm font-medium text-gray-700 mb-1">
+          <label htmlFor="description" className="block text-sm font-medium text-muted mb-1">
             Description
           </label>
           <textarea
@@ -108,20 +109,20 @@ export function ImageUpload({ onUploadComplete, editMode, initialData, onSave, o
             value={description}
             onChange={(e) => setDescription(e.target.value)}
             rows={3}
-            className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-nexius-teal focus:border-nexius-teal sm:text-sm"
+            className="w-full px-3 py-2 border border-surface rounded-lg focus:ring-primary focus:border-primary sm:text-sm bg-background text-text"
           />
         </div>
         <div className="flex justify-end gap-2">
           <button
             type="button"
             onClick={onCancel}
-            className="px-4 py-2 text-gray-600 hover:bg-gray-100 rounded-lg"
+            className="px-4 py-2 text-muted hover:bg-surface rounded-lg"
           >
             Cancel
           </button>
           <button
             type="submit"
-            className="px-4 py-2 bg-nexius-teal text-white rounded-lg hover:bg-nexius-teal/90"
+            className="px-4 py-2 bg-primary text-white rounded-lg hover:bg-primary-dark"
           >
             Save Changes
           </button>
@@ -144,8 +145,8 @@ export function ImageUpload({ onUploadComplete, editMode, initialData, onSave, o
         htmlFor="logo-upload"
         className={`inline-flex items-center px-4 py-2 rounded-lg ${
           uploading
-            ? 'bg-gray-300 cursor-not-allowed'
-            : 'bg-nexius-teal hover:bg-nexius-teal/90 cursor-pointer'
+            ? 'bg-surface cursor-not-allowed'
+            : 'bg-primary hover:bg-primary-dark cursor-pointer'
         } text-white font-display font-semibold tracking-wide uppercase text-sm transition-colors`}
       >
         {uploading ? 'Uploading...' : 'Upload Logo'}
@@ -153,3 +154,4 @@ export function ImageUpload({ onUploadComplete, editMode, initialData, onSave, o
     </div>
   );
 }
+```

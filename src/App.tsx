@@ -1,3 +1,4 @@
+```typescript
 import React, { useState, useEffect } from 'react';
 import { Link, Routes, Route, useLocation } from 'react-router-dom';
 import { supabase } from './lib/supabase';
@@ -170,7 +171,7 @@ function Navigation() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
   return (
-    <nav className="fixed w-full bg-white/80 backdrop-blur-md z-50 border-b border-gray-100">
+    <nav className="fixed w-full bg-surface/80 backdrop-blur-md z-50 border-b border-surface">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between h-16">
           <Link 
@@ -182,17 +183,17 @@ function Navigation() {
               alt="NEXIUS Labs"
               className="h-8 w-8 object-contain group-hover:opacity-90 transition-opacity"
             />
-            <span className="ml-3 text-xl font-heading font-extrabold text-nexius-navy tracking-tight group-hover:text-nexius-teal transition-colors">NEXIUS Labs</span>
+            <span className="ml-3 text-xl font-heading font-extrabold text-text tracking-tight group-hover:text-primary transition-colors">NEXIUS Labs</span>
           </Link>
           {/* Mobile menu button */}
-          <button onClick={() => setIsMenuOpen(!isMenuOpen)} className="md:hidden p-2 rounded-lg hover:bg-gray-100">
-            {isMenuOpen ? <XIcon className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
+          <button onClick={() => setIsMenuOpen(!isMenuOpen)} className="md:hidden p-2 rounded-lg hover:bg-surface">
+            {isMenuOpen ? <XIcon className="h-6 w-6 text-text" /> : <Menu className="h-6 w-6 text-text" />}
           </button>
           <div className="hidden md:flex items-center space-x-8 relative">
-            <Link to="/blog" className="font-body font-medium text-nexius-charcoal hover:text-nexius-navy transition-colors">Blog</Link>
-            <Link to="/case-studies" className="font-body font-medium text-nexius-charcoal hover:text-nexius-navy transition-colors">Case Studies</Link>
-            <Link to="/events" className="font-body font-medium text-nexius-charcoal hover:text-nexius-navy transition-colors">Events</Link>
-            <Link to="/ai-ignite" className="font-body font-medium text-nexius-charcoal hover:text-nexius-navy transition-colors">AI-Ignite</Link>
+            <Link to="/blog" className="font-body font-medium text-muted hover:text-text transition-colors">Blog</Link>
+            <Link to="/case-studies" className="font-body font-medium text-muted hover:text-text transition-colors">Case Studies</Link>
+            <Link to="/events" className="font-body font-medium text-muted hover:text-text transition-colors">Events</Link>
+            <Link to="/ai-ignite" className="font-body font-medium text-muted hover:text-text transition-colors">AI-Ignite</Link>
             <Button href="#assessment" variant="primary" size="sm">
               Let's Talk
             </Button>
@@ -200,32 +201,32 @@ function Navigation() {
         </div>
         {/* Mobile menu */}
         <div className={`md:hidden ${isMenuOpen ? 'block' : 'hidden'}`}>
-          <div className="px-2 pt-2 pb-3 space-y-1 border-t border-gray-200">
+          <div className="px-2 pt-2 pb-3 space-y-1 border-t border-surface">
             <Link 
               to="/blog" 
               onClick={() => setIsMenuOpen(false)}
-              className="block px-3 py-2 rounded-md text-base font-medium text-nexius-charcoal hover:text-nexius-navy hover:bg-gray-50"
+              className="block px-3 py-2 rounded-md text-base font-medium text-muted hover:text-text hover:bg-surface"
             >
               Blog
             </Link>
             <Link 
               to="/case-studies" 
               onClick={() => setIsMenuOpen(false)}
-              className="block px-3 py-2 rounded-md text-base font-medium text-nexius-charcoal hover:text-nexius-navy hover:bg-gray-50"
+              className="block px-3 py-2 rounded-md text-base font-medium text-muted hover:text-text hover:bg-surface"
             >
               Case Studies
             </Link>
             <Link 
               to="/events" 
               onClick={() => setIsMenuOpen(false)}
-              className="block px-3 py-2 rounded-md text-base font-medium text-nexius-charcoal hover:text-nexius-navy hover:bg-gray-50"
+              className="block px-3 py-2 rounded-md text-base font-medium text-muted hover:text-text hover:bg-surface"
             >
               Events
             </Link>
             <Link 
               to="/ai-ignite"
               onClick={() => setIsMenuOpen(false)}
-              className="block px-3 py-2 rounded-md text-base font-medium text-nexius-charcoal hover:text-nexius-navy hover:bg-gray-50"
+              className="block px-3 py-2 rounded-md text-base font-medium text-muted hover:text-text hover:bg-surface"
             >
               AI-Ignite
             </Link>
@@ -254,9 +255,9 @@ function HomePage() {
   };
 
   return (
-    <div className="min-h-screen bg-white">
+    <div className="min-h-screen bg-background">
       {/* Hero Section */}
-      <Section background="navy" size="xl" contained={false}>
+      <Section background="background" size="xl" contained={false}>
         <HeroAnimation />
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative">
           <div className="text-center">
@@ -271,7 +272,7 @@ function HomePage() {
                   "spreadsheets",
                   "late nights"
                 ]}
-                mainClassName="text-nexius-teal inline-block min-w-[6ch] sm:min-w-[8ch]"
+                mainClassName="text-primary inline-block min-w-[6ch] sm:min-w-[8ch]"
                 staggerFrom="last"
                 initial={{ y: "100%" }}
                 animate={{ y: 0 }}
@@ -282,7 +283,7 @@ function HomePage() {
                 rotationInterval={2000}
               />
             </Heading>
-            <p className="text-xl font-body text-white/80 mb-8 max-w-3xl mx-auto leading-relaxed">
+            <p className="text-xl font-body text-muted mb-8 max-w-3xl mx-auto leading-relaxed">
               We get you more customers and quietly take care of the extra workload they create.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
@@ -306,7 +307,7 @@ function HomePage() {
               <img
                 src="/images/hero.png"
                 alt="AI Executive Intelligence Dashboard"
-                className="rounded-xl shadow-2xl border border-white/10"
+                className="rounded-xl shadow-2xl border border-surface/10"
               />
             </div>
           </div>
@@ -314,12 +315,12 @@ function HomePage() {
       </Section>
 
       {/* Problem Section */}
-      <Section background="white" size="lg">
+      <Section background="background" size="lg">
         <div className="text-center">
           <Heading level={2} className="mb-6">
             Growing shouldn't feel like drowning.
           </Heading>
-          <p className="font-body text-nexius-charcoal max-w-4xl mx-auto text-lg leading-relaxed">
+          <p className="font-body text-muted max-w-4xl mx-auto text-lg leading-relaxed">
             When new customers arrive, the busywork explodes: forgotten follow‑ups, messy spreadsheets, late‑night invoicing. 
             Hiring too early is risky; doing it yourself burns you out. You need a way to handle more volume without expanding payroll.
           </p>
@@ -327,12 +328,12 @@ function HomePage() {
       </Section>
 
       {/* Solution / Starter Workflows Section */}
-      <Section id="services" background="gray" size="lg">
+      <Section id="services" background="surface" size="lg">
         <div className="text-center mb-16">
           <Heading level={2} className="mb-4">
             One place to run the business.
           </Heading>
-          <p className="font-body text-nexius-charcoal max-w-2xl mx-auto leading-relaxed">
+          <p className="font-body text-muted max-w-2xl mx-auto leading-relaxed">
             We centralise your leads, sales and billing in a single organised system. Then we turn on smart automations—so tasks that used to steal hours simply happen in the background.
           </p>
         </div>
@@ -340,13 +341,13 @@ function HomePage() {
           {workflowCards.map((workflow) => (
             <Card key={workflow.title} variant="default">
               <div className="relative inline-block mb-4">
-                <div className="absolute -inset-2 bg-nexius-teal/20 rounded-lg blur opacity-0 group-hover:opacity-100 transition-opacity"></div>
-                <workflow.icon className="relative h-12 w-12 text-nexius-teal" />
+                <div className="absolute -inset-2 bg-primary/20 rounded-lg blur opacity-0 group-hover:opacity-100 transition-opacity"></div>
+                <workflow.icon className="relative h-12 w-12 text-primary" />
               </div>
               <Heading level={3} size="lg" className="mb-2">
                 {workflow.title}
               </Heading>
-              <p className="text-nexius-charcoal font-body">{workflow.description}</p>
+              <p className="text-muted font-body">{workflow.description}</p>
             </Card>
           ))}
         </div>
@@ -358,7 +359,7 @@ function HomePage() {
       </Section>
 
       {/* How It Works Section */}
-      <Section background="white" size="lg">
+      <Section background="background" size="lg">
         <div className="text-center mb-16">
           <Heading level={2} className="mb-4">
             From messy tools to running smooth—in a week.
@@ -368,15 +369,15 @@ function HomePage() {
           {processSteps.map((step) => (
             <Card key={step.step} variant="default">
               <div className="flex items-center mb-4">
-                <span className="w-8 h-8 bg-nexius-teal text-white rounded-full flex items-center justify-center text-sm font-bold">
+                <span className="w-8 h-8 bg-primary text-white rounded-full flex items-center justify-center text-sm font-bold">
                   {step.step}
                 </span>
-                <step.icon className="h-8 w-8 text-nexius-teal ml-3" />
+                <step.icon className="h-8 w-8 text-primary ml-3" />
               </div>
               <Heading level={3} size="lg" className="mb-2">
                 {step.title}
               </Heading>
-              <p className="text-nexius-charcoal font-body">{step.description}</p>
+              <p className="text-muted font-body">{step.description}</p>
             </Card>
           ))}
         </div>
@@ -388,7 +389,7 @@ function HomePage() {
       </Section>
 
       {/* Benefits Section */}
-      <Section id="benefits" background="gray" size="lg">
+      <Section id="benefits" background="surface" size="lg">
         <div className="text-center mb-16">
           <Heading level={2} className="mb-4">
             What you gain immediately.
@@ -397,18 +398,18 @@ function HomePage() {
         <div className="grid md:grid-cols-2 lg:grid-cols-5 gap-8">
           {benefitsList.map((benefit) => (
             <Card key={benefit.title} variant="default">
-              <benefit.icon className="h-8 w-8 text-nexius-teal mb-4" />
+              <benefit.icon className="h-8 w-8 text-primary mb-4" />
               <Heading level={3} size="md" className="mb-2">
                 {benefit.title}
               </Heading>
-              <p className="text-nexius-charcoal font-body">{benefit.description}</p>
+              <p className="text-muted font-body">{benefit.description}</p>
             </Card>
           ))}
         </div>
       </Section>
 
       {/* Testimonials Section */}
-      <Section id="testimonials" background="white" size="lg">
+      <Section id="testimonials" background="background" size="lg">
         <div className="text-center mb-16">
           <Heading level={2} className="mb-4">
             Small teams working like big ones.
@@ -417,7 +418,7 @@ function HomePage() {
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
           {testimonials.map((testimonial) => (
             <Card key={testimonial.author} variant="testimonial" padding="lg">
-              <p className="text-nexius-charcoal mb-6 text-lg italic font-body">"{testimonial.quote}"</p>
+              <p className="text-muted mb-6 text-lg italic font-body">"{testimonial.quote}"</p>
               <div className="flex items-center">
                 <img
                   src={testimonial.image}
@@ -426,8 +427,8 @@ function HomePage() {
                   crossOrigin="anonymous"
                 />
                 <div className="ml-4">
-                  <h4 className="text-nexius-navy font-semibold font-heading">{testimonial.author}</h4>
-                  <p className="text-nexius-charcoal font-body">
+                  <h4 className="text-text font-semibold font-heading">{testimonial.author}</h4>
+                  <p className="text-muted font-body">
                     {testimonial.title}, {testimonial.company}
                   </p>
                 </div>
@@ -443,7 +444,7 @@ function HomePage() {
       </Section>
 
       {/* Case Studies Summary Section */}
-      <Section background="gray" size="lg">
+      <Section background="surface" size="lg">
         <div className="text-center mb-16">
           <Heading level={2} className="mb-4">
             Proven Results Across Industries
@@ -453,15 +454,15 @@ function HomePage() {
           {caseStudiesSummary.map((study) => (
             <Card key={study.title} variant="default">
               <div className="flex items-center mb-4">
-                <study.icon className="h-8 w-8 text-nexius-teal mr-3" />
-                <span className="inline-flex items-center px-3 py-1 rounded-full text-sm font-medium bg-nexius-teal/10 text-nexius-teal">
+                <study.icon className="h-8 w-8 text-primary mr-3" />
+                <span className="inline-flex items-center px-3 py-1 rounded-full text-sm font-medium bg-primary/10 text-primary">
                   {study.metric}
                 </span>
               </div>
               <Heading level={3} size="lg" className="mb-2">
                 {study.title}
               </Heading>
-              <p className="text-nexius-charcoal font-body">{study.description}</p>
+              <p className="text-muted font-body">{study.description}</p>
             </Card>
           ))}
         </div>
@@ -476,12 +477,12 @@ function HomePage() {
       <AssessmentForm />
 
       {/* Roadmap / Expansion Section */}
-      <Section background="white" size="lg">
+      <Section background="background" size="lg">
         <div className="text-center mb-16">
           <Heading level={2} className="mb-4">
             Start with one workflow—expand when ready.
           </Heading>
-          <p className="font-body text-nexius-charcoal max-w-3xl mx-auto text-lg leading-relaxed">
+          <p className="font-body text-muted max-w-3xl mx-auto text-lg leading-relaxed">
             Activate leads + follow‑ups today. Add billing, inventory or analytics later with no rebuild. 
             Your data stays put; you just switch features on.
           </p>
@@ -494,14 +495,14 @@ function HomePage() {
       </Section>
 
       {/* Community / Resources Section */}
-      <Section background="gray" size="lg">
+      <Section background="surface" size="lg">
         <div className="grid md:grid-cols-2 gap-16">
           <div>
             <Heading level={2} className="mb-4">
               Learn and stay ahead.
             </Heading>
-            <p className="font-body text-nexius-charcoal text-lg leading-relaxed mb-8">
-              Join our events and newsletter for plain‑English updates on practical AI. No hype—just what helps you operate smarter.
+            <p className="font-body text-muted text-lg leading-relaxed mb-8">
+              Join our events and newsletter for plain‑english updates on practical AI. No hype—just what helps you operate smarter.
             </p>
             <Card variant="default">
               <Heading level={3} size="md" className="mb-4">
@@ -511,13 +512,13 @@ function HomePage() {
                 <input
                   type="email"
                   placeholder="Enter your email"
-                  className="flex-1 px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-nexius-teal focus:border-nexius-teal"
+                  className="flex-1 px-3 py-2 border border-surface rounded-lg focus:ring-2 focus:ring-primary focus:border-primary bg-background text-text"
                 />
                 <Button type="submit" variant="primary" size="sm">
                   Subscribe
                 </Button>
               </form>
-              <p className="text-sm text-gray-600 mt-2 font-body">
+              <p className="text-sm text-muted mt-2 font-body">
                 Weekly tips. Unsubscribe anytime.
               </p>
             </Card>
@@ -527,7 +528,7 @@ function HomePage() {
               <Heading level={3} size="md" className="mb-4">
                 Upcoming Event
               </Heading>
-              <p className="text-nexius-charcoal mb-4 font-body">
+              <p className="text-muted mb-4 font-body">
                 Next event: AI Ignite – 14 Aug. Reserve your seat.
               </p>
               <Button href="/ai-ignite" variant="primary" icon={ArrowRight}>
@@ -539,12 +540,12 @@ function HomePage() {
       </Section>
 
       {/* Final CTA Section */}
-      <Section background="navy" size="lg">
+      <Section background="background" size="lg">
         <div className="text-center">
           <Heading level={2} variant="white" className="mb-4">
             More customers shouldn't mean more work.
           </Heading>
-          <p className="font-body text-white/80 mb-8 max-w-2xl mx-auto leading-relaxed">
+          <p className="font-body text-muted mb-8 max-w-2xl mx-auto leading-relaxed">
             Let us show you the first 3 processes you can automate this month.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
@@ -568,51 +569,51 @@ function HomePage() {
       </Section>
 
       {/* Footer */}
-      <footer className="bg-gray-900 text-gray-400 py-12">
+      <footer className="bg-background text-muted py-12">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid md:grid-cols-4 gap-8">
             <div>
               <button
                 onClick={scrollToTop}
-                className="flex items-center text-white mb-4 group focus:outline-none"
+                className="flex items-center text-text mb-4 group focus:outline-none"
               >
                 <img
                   src="https://tunidbyclygzipvbfzee.supabase.co/storage/v1/object/public/website-images/m04h4fs8wns-1739784195705.png"
                   alt="NEXIUS Labs"
                   className="h-6 w-6 object-contain group-hover:opacity-90 transition-opacity"
                 />
-                <span className="ml-2 text-lg font-bold group-hover:text-nexius-teal transition-colors">NEXIUS Labs</span>
+                <span className="ml-2 text-lg font-bold group-hover:text-primary transition-colors">NEXIUS Labs</span>
               </button>
               <p className="text-sm font-body">
                 Build a 10x business without a 10x headcount.
               </p>
             </div>
             <div>
-              <h3 className="text-white font-semibold mb-4 font-heading">Solutions</h3>
+              <h3 className="text-text font-semibold mb-4 font-heading">Solutions</h3>
               <ul className="space-y-2 font-body">
-                <li><a href="#services" className="hover:text-white transition-colors">Services</a></li>
-                <li><Link to="/case-studies" className="hover:text-white transition-colors">Case Studies</Link></li>
-                <li><Link to="/blog" className="hover:text-white transition-colors">Blog</Link></li>
+                <li><a href="#services" className="hover:text-text transition-colors">Services</a></li>
+                <li><Link to="/case-studies" className="hover:text-text transition-colors">Case Studies</Link></li>
+                <li><Link to="/blog" className="hover:text-text transition-colors">Blog</Link></li>
               </ul>
             </div>
             <div>
-              <h3 className="text-white font-semibold mb-4 font-heading">Company</h3>
+              <h3 className="text-text font-semibold mb-4 font-heading">Company</h3>
               <ul className="space-y-2 font-body">
-                <li><Link to="/events" className="hover:text-white transition-colors">Events</Link></li>
-                <li><Link to="/ai-ignite" className="hover:text-white transition-colors">AI-Ignite</Link></li>
-                <li><a href="mailto:hello@nexiuslabs.com" className="hover:text-white transition-colors">Contact</a></li>
+                <li><Link to="/events" className="hover:text-text transition-colors">Events</Link></li>
+                <li><Link to="/ai-ignite" className="hover:text-text transition-colors">AI-Ignite</Link></li>
+                <li><a href="mailto:hello@nexiuslabs.com" className="hover:text-text transition-colors">Contact</a></li>
               </ul>
             </div>
             <div>
-              <h3 className="text-white font-semibold mb-4 font-heading">Legal</h3>
+              <h3 className="text-text font-semibold mb-4 font-heading">Legal</h3>
               <ul className="space-y-2 font-body">
-                <li><Link to="/privacy" className="hover:text-white transition-colors">Privacy Policy</Link></li>
-                <li><a href="#" className="hover:text-white transition-colors">Terms of Service</a></li>
-                <li><a href="#" className="hover:text-white transition-colors">Cookie Policy</a></li>
+                <li><Link to="/privacy" className="hover:text-text transition-colors">Privacy Policy</Link></li>
+                <li><a href="#" className="hover:text-text transition-colors">Terms of Service</a></li>
+                <li><a href="#" className="hover:text-text transition-colors">Cookie Policy</a></li>
               </ul>
             </div>
           </div>
-          <div className="border-t border-gray-800 mt-12 pt-8 text-sm text-center font-body">
+          <div className="border-t border-surface mt-12 pt-8 text-sm text-center font-body">
             © {new Date().getFullYear()} NEXIUS Labs. All rights reserved.
           </div>
         </div>
@@ -638,8 +639,8 @@ function App() {
 
   if (!authChecked) {
     return (
-      <div className="fixed inset-0 flex items-center justify-center bg-white">
-        <Loader2 className="w-8 h-8 text-nexius-teal animate-spin" />
+      <div className="fixed inset-0 flex items-center justify-center bg-background">
+        <Loader2 className="w-8 h-8 text-primary animate-spin" />
       </div>
     );
   }
@@ -670,3 +671,4 @@ function App() {
 }
 
 export default App;
+```

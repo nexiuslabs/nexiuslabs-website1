@@ -1,3 +1,4 @@
+```typescript
 import React, { useState } from 'react';
 import { FileText, Download, Loader2, Mail, CheckCircle } from 'lucide-react';
 import { generateInvoicePDF, sendInvoiceEmail, downloadInvoice } from '../lib/invoices';
@@ -71,7 +72,7 @@ export function InvoiceGenerator({
         <button
           onClick={handleGenerateInvoice}
           disabled={loading}
-          className="inline-flex items-center justify-center px-4 py-2 border border-transparent rounded-lg shadow-sm text-sm font-medium text-white bg-nexius-teal hover:bg-nexius-teal/90 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-nexius-teal disabled:opacity-50 disabled:cursor-not-allowed transition-colors"
+          className="inline-flex items-center justify-center px-4 py-2 border border-transparent rounded-lg shadow-sm text-sm font-medium text-white bg-primary hover:bg-primary-dark focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary disabled:opacity-50 disabled:cursor-not-allowed transition-colors"
         >
           {loading ? (
             <>
@@ -89,7 +90,7 @@ export function InvoiceGenerator({
         <button
           onClick={handleEmailInvoice}
           disabled={emailLoading}
-          className="inline-flex items-center justify-center px-4 py-2 border border-gray-300 rounded-lg shadow-sm text-sm font-medium text-gray-700 bg-white hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-nexius-teal disabled:opacity-50 disabled:cursor-not-allowed transition-colors"
+          className="inline-flex items-center justify-center px-4 py-2 border border-surface rounded-lg shadow-sm text-sm font-medium text-muted bg-surface hover:bg-surface focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary disabled:opacity-50 disabled:cursor-not-allowed transition-colors"
         >
           {emailLoading ? (
             <>
@@ -106,7 +107,7 @@ export function InvoiceGenerator({
       </div>
 
       {lastResult && (
-        <div className="flex items-center text-sm text-green-600 bg-green-50 px-3 py-2 rounded-lg">
+        <div className="flex items-center text-sm text-primary bg-primary/10 px-3 py-2 rounded-lg">
           <CheckCircle className="h-4 w-4 mr-2" />
           {lastResult.sentTo ? (
             <span>Invoice {lastResult.invoiceNumber} sent to {lastResult.sentTo}</span>
@@ -118,3 +119,4 @@ export function InvoiceGenerator({
     </div>
   );
 }
+```
