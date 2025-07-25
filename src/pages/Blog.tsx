@@ -75,7 +75,7 @@ export function Blog() {
               {articles.map((article) => (
                 <Link
                   key={article.id}
-                  to={`/blog/${article.slug}`}
+                  to={"/blog/" + article.slug}
                   className="group block"
                 >
                   <div className="bg-surface rounded-xl overflow-hidden border border-surface hover:border-primary/30 hover:shadow-lg transition-all">

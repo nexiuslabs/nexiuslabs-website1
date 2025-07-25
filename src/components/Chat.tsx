@@ -1,4 +1,3 @@
-```typescript
 import React, { useState, useEffect, useRef } from 'react';
 import { MessageCircle, Send, X, Minimize2, Maximize2 } from 'lucide-react';
 import { supabase } from '../lib/supabase';
@@ -61,14 +60,14 @@ export function Chat() {
 
       // Set up real-time subscription
       const channel = supabase
-        .channel(\`chat_${sessionId}`)
+        .channel(`chat_${sessionId}`)
         .on(
           'postgres_changes',
           {
             event: 'INSERT',
             schema: 'public', 
             table: 'chat_messages', 
-            filter: \`session_id=eq.${sessionId}` 
+            filter: `session_id=eq.${sessionId}` 
           },
           (payload) => {
             console.log('New message received:', payload);
@@ -152,11 +151,11 @@ export function Chat() {
       
       try {
         // Get AI response
-        const response = await fetch(\`${import.meta.env.VITE_SUPABASE_URL}/functions/v1/chat-ai`, {
+        const response = await fetch(`${import.meta.env.VITE_SUPABASE_URL}/functions/v1/chat-ai`, {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json',
-            'Authorization': \`Bearer ${import.meta.env.VITE_SUPABASE_ANON_KEY}`,
+            'Authorization': `Bearer ${import.meta.env.VITE_SUPABASE_ANON_KEY}`,
             'x-client-info': 'chat-widget'
           },
           body: JSON.stringify({
@@ -219,9 +218,7 @@ export function Chat() {
     <div className="fixed bottom-6 right-6 z-50">
       {isOpen ? (
         <div
-          className={\`bg-surface rounded-lg shadow-xl transition-all duration-300 ${
-            isMinimized ? 'h-14' : 'h-[500px]'
-          } w-[350px] flex flex-col`}
+          className={(isMinimized ? 'h-14' : 'h-[500px]') + ' bg-surface rounded-lg shadow-xl transition-all duration-300 w-[350px] flex flex-col'}
         >
           {/* Header */}
           <div className="px-4 py-3 bg-background text-white rounded-t-lg flex items-center justify-between">
@@ -259,12 +256,12 @@ export function Chat() {
                 {messages.map((msg, index) => (
                   <div
                     key={msg.id || index}
-                    className={\`flex ${
+                    className={`flex ${
                       msg.is_from_visitor ? 'justify-end' : 'justify-start'
                     }`}
                   >
                     <div
-                      className={\`max-w-[75%] rounded-lg px-4 py-2 ${
+                      className={`max-w-[75%] rounded-lg px-4 py-2 ${
                         msg.is_from_visitor
                           ? 'bg-primary text-white'
                           : 'bg-surface text-text'
@@ -321,4 +318,3 @@ export function Chat() {
     </div>
   );
 }
-```

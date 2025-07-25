@@ -93,8 +93,8 @@ export function EventForm({ onClose, onSave, event }: EventFormProps) {
       const { data: { user } } = await supabase.auth.getUser();
       if (!user) throw new Error('Not authenticated');
 
-      const startDateTime = new Date(\`${startDate}T${startTime}`);
-      const endDateTime = new Date(\`${endDate}T${endTime}`);
+      const startDateTime = new Date(startDate + "T" + startTime);
+      const endDateTime = new Date(endDate + "T" + endTime);
 
       const eventData = {
         title,

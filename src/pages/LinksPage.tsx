@@ -237,8 +237,8 @@ export function LinksPage() {
                   Connect on LinkedIn
                 </a>
                 <a
-                  href={\`data:text/vcard;charset=UTF-8,BEGIN:VCARD%0AVERSION:3.0%0AFN:${founder.name}%0ATITLE:${founder.title} at NEXIUS Labs%0ATEL:${founder.phone}%0AEMAIL:${founder.email}%0AURL:${founder.linkedin}%0AEND:VCARD`}
-                  download={\`${founder.name.replace(' ', '_')}.vcf`}
+                  href={"data:text/vcard;charset=UTF-8,BEGIN:VCARD%0AVERSION:3.0%0AFN:" + founder.name + "%0ATITLE:" + founder.title + " at NEXIUS Labs%0ATEL:" + founder.phone + "%0AEMAIL:" + founder.email + "%0AURL:" + founder.linkedin + "%0AEND:VCARD"}
+                  download={founder.name.replace(' ', '_') + ".vcf"}
                   className="inline-flex items-center justify-center px-4 py-2 mt-2 bg-surface/10 text-white rounded-lg hover:bg-surface/20 transition-colors"
                 >
                   <UserPlus className="h-5 w-5 mr-2" />

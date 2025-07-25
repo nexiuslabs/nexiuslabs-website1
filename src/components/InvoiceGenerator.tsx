@@ -27,7 +27,7 @@ export function InvoiceGenerator({
 
       // Create a filename with timestamp
       const timestamp = new Date().toISOString().slice(0, 10);
-      const filename = \`invoice-${type}-${timestamp}.pdf`;
+      const filename = "invoice-" + type + "-" + timestamp + ".pdf";
 
       // Download the PDF
       downloadInvoice(pdfBlob, filename);

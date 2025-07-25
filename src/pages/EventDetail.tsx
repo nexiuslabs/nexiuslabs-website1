@@ -96,8 +96,7 @@ export function EventDetail() {
               <span className={\`px-3 py-1 rounded-full text-sm font-medium ${
                 event.status === 'published'
                   ? 'bg-primary/20 text-primary'
-                  : 'bg-surface text-text'
-              }`}>
+                  : 'bg-surface text-text') + ' px-3 py-1 rounded-full text-sm font-medium'}>
                 {event.event_type.charAt(0).toUpperCase() + event.event_type.slice(1)}
               </span>
             </div>

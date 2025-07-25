@@ -28,7 +28,7 @@ export function EventsList({ events, onEventClick }: EventsListProps) {
     if (location.pathname === '/admin') {
       onEventClick?.(event);
     } else {
-      navigate(`/event/${event.slug}`);
+      navigate("/event/" + event.slug);
     }
   };
 

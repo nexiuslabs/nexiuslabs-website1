@@ -1,4 +1,3 @@
-```typescript
 import React, { useState } from 'react';
 import { ImageUpload } from '../components/ImageUpload';
 
@@ -23,17 +22,15 @@ export function UploadLogo() {
               <div className="flex gap-4 mb-6">
                 <button
                   onClick={() => setUploadType('melverick')}
-                  className={\`px-4 py-2 rounded-lg ${
-                    uploadType === 'melverick'
+                  className={(uploadType === 'melverick'
                       ? 'bg-primary text-white'
-                      : 'bg-surface text-text hover:bg-surface'
-                  } transition-colors`}
+                      : 'bg-surface text-text hover:bg-surface') + ' px-4 py-2 rounded-lg transition-colors'}
                 >
                   Melverick's Photo
                 </button>
                 <button
                   onClick={() => setUploadType('darryl')}
-                  className={\`px-4 py-2 rounded-lg ${
+                  className={`px-4 py-2 rounded-lg ${
                     uploadType === 'darryl'
                       ? 'bg-primary text-white'
                       : 'bg-surface text-text hover:bg-surface'
@@ -71,4 +68,3 @@ export function UploadLogo() {
     </div>
   );
 }
-```
