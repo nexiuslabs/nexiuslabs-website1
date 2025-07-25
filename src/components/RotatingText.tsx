@@ -203,7 +203,7 @@ const RotatingText = forwardRef<RotatingTextRef, RotatingTextProps>(
     return (
       <motion.span
         className={cn(
-          "flex flex-wrap whitespace-pre-wrap relative",
+          "inline-flex items-baseline whitespace-nowrap relative",
           mainClassName
         )}
         {...rest}
@@ -220,7 +220,7 @@ const RotatingText = forwardRef<RotatingTextRef, RotatingTextProps>(
             className={cn(
               splitBy === "lines"
                 ? "flex flex-col w-full"
-                : "flex flex-wrap whitespace-pre-wrap relative"
+                : "inline-flex items-baseline whitespace-nowrap relative"
             )}
             layout
             aria-hidden="true"
@@ -232,7 +232,7 @@ const RotatingText = forwardRef<RotatingTextRef, RotatingTextProps>(
               return (
                 <span
                   key={wordIndex}
-                  className={cn("inline-flex", splitLevelClassName)}
+                  className={cn("inline-flex items-baseline", splitLevelClassName)}
                 >
                   {wordObj.characters.map((char, charIndex) => (
                     <motion.span
@@ -256,7 +256,22 @@ const RotatingText = forwardRef<RotatingTextRef, RotatingTextProps>(
                     </motion.span>
                   ))}
                   {wordObj.needsSpace && (
-                    <span className="whitespace-pre"> </span>
+                    <motion.span 
+                      className="whitespace-pre"
+                      initial={initial}
+                      animate={animate}
+                      exit={exit}
+                      transition={{
+                        ...transition,
+                        delay: getStaggerDelay(
+                          previousCharsCount + wordObj.characters.length,
+                          array.reduce(
+                            (sum, word) => sum + word.characters.length,
+                            0
+                          )
+                        ),
+                      }}
+                    > </motion.span>
                   )}
                 </span>
               );
