@@ -1,3 +1,4 @@
+```typescript
 import React from 'react';
 import { MapPin, Users, ChevronRight, Calendar, Clock } from 'lucide-react';
 import { useLocation, useNavigate } from 'react-router-dom';
@@ -65,8 +66,7 @@ export function EventsList({ events, onEventClick }: EventsListProps) {
                       : event.status === 'draft'
                       ? 'bg-surface text-text'
                       : 'bg-red-500/20 text-red-500'
-                  }`}
-                >
+                  }`}>
                     {event.status.charAt(0).toUpperCase() + event.status.slice(1)}
                   </span>
                 </div>
@@ -86,8 +86,7 @@ export function EventsList({ events, onEventClick }: EventsListProps) {
                       : event.status === 'draft'
                       ? 'bg-surface text-text'
                       : 'bg-red-500/20 text-red-500'
-                  }`}
-                >
+                  }`}>
                     {event.status.charAt(0).toUpperCase() + event.status.slice(1)}
                   </span>
                   <ChevronRight className="h-5 w-5 text-muted ml-2" />
@@ -110,3 +109,4 @@ export function EventsList({ events, onEventClick }: EventsListProps) {
     </div>
   );
 }
+```
