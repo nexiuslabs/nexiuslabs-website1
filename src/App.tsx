@@ -43,7 +43,6 @@ import { Blog } from './pages/Blog';
 import { BlogPost } from './pages/BlogPost';
 import { LinksPage } from './pages/LinksPage';
 import { AIIgnite } from './pages/AIIgnite';
-import { BuildWithAI } from './pages/BuildWithAI';
 import { PrivacyPolicy } from './pages/PrivacyPolicy';
 import { Events } from './pages/Events';
 import { NotFound } from './pages/NotFound';
@@ -190,13 +189,10 @@ function Navigation() {
             {isMenuOpen ? <XIcon className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
           </button>
           <div className="hidden md:flex items-center space-x-8 relative">
-            <a href="/#services" className="font-body font-medium text-nexius-charcoal hover:text-nexius-navy transition-colors">Services</a>
-            <a href="/#benefits" className="font-body font-medium text-nexius-charcoal hover:text-nexius-navy transition-colors">Benefits</a>
             <Link to="/blog" className="font-body font-medium text-nexius-charcoal hover:text-nexius-navy transition-colors">Blog</Link>
             <Link to="/case-studies" className="font-body font-medium text-nexius-charcoal hover:text-nexius-navy transition-colors">Case Studies</Link>
             <Link to="/events" className="font-body font-medium text-nexius-charcoal hover:text-nexius-navy transition-colors">Events</Link>
             <Link to="/ai-ignite" className="font-body font-medium text-nexius-charcoal hover:text-nexius-navy transition-colors">AI-Ignite</Link>
-            <Link to="/build-with-ai" className="font-body font-medium text-nexius-charcoal hover:text-nexius-navy transition-colors">Build with AI</Link>
             <Button href="#assessment" variant="primary" size="sm">
               Let's Talk
             </Button>
@@ -205,20 +201,6 @@ function Navigation() {
         {/* Mobile menu */}
         <div className={`md:hidden ${isMenuOpen ? 'block' : 'hidden'}`}>
           <div className="px-2 pt-2 pb-3 space-y-1 border-t border-gray-200">
-            <a 
-              href="/#services" 
-              onClick={() => setIsMenuOpen(false)}
-              className="block px-3 py-2 rounded-md text-base font-medium text-nexius-charcoal hover:text-nexius-navy hover:bg-gray-50"
-            >
-              Services
-            </a>
-            <a 
-              href="/#benefits" 
-              onClick={() => setIsMenuOpen(false)}
-              className="block px-3 py-2 rounded-md text-base font-medium text-nexius-charcoal hover:text-nexius-navy hover:bg-gray-50"
-            >
-              Benefits
-            </a>
             <Link 
               to="/blog" 
               onClick={() => setIsMenuOpen(false)}
@@ -246,13 +228,6 @@ function Navigation() {
               className="block px-3 py-2 rounded-md text-base font-medium text-nexius-charcoal hover:text-nexius-navy hover:bg-gray-50"
             >
               AI-Ignite
-            </Link>
-            <Link 
-              to="/build-with-ai"
-              onClick={() => setIsMenuOpen(false)}
-              className="block px-3 py-2 rounded-md text-base font-medium text-nexius-charcoal hover:text-nexius-navy hover:bg-gray-50"
-            >
-              Build with AI
             </Link>
             <Button 
               href="#assessment"
@@ -682,7 +657,6 @@ function App() {
         <Route path="/upload" element={<UploadLogo />} />
         <Route path="/admin" element={<AdminPage />} />
         <Route path="/ai-ignite" element={<AIIgnite />} />
-        <Route path="/build-with-ai" element={<BuildWithAI />} />
         <Route path="/privacy" element={<PrivacyPolicy />} />
         <Route path="/event/:slug" element={<EventDetail />} />
         <Route path="/events" element={<Events />} />
