@@ -422,7 +422,7 @@ function HomePage() {
               <div className="flex items-center">
                 <img
                   src={testimonial.image}
-                  alt={\`${testimonial.author} - ${testimonial.title}`}
+                  alt={testimonial.author + ' - ' + testimonial.title}
                   className="h-12 w-12 rounded-full object-cover"
                   crossOrigin="anonymous"
                 />

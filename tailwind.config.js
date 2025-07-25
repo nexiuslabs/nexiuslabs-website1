@@ -1,8 +1,8 @@
 ```javascript
-const typography = require('@tailwindcss/typography');
+import typography from '@tailwindcss/typography';
 
 /** @type {import('tailwindcss').Config} */
-module.exports = {
+export default {
   content: [
     "./index.html",
     "./src/**/*.{js,ts,jsx,tsx}",
