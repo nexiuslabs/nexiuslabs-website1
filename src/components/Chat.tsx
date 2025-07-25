@@ -61,14 +61,14 @@ export function Chat() {
 
       // Set up real-time subscription
       const channel = supabase
-        .channel(`chat_${sessionId}`)
+        .channel(\`chat_${sessionId}`)
         .on(
           'postgres_changes',
           {
             event: 'INSERT',
             schema: 'public', 
             table: 'chat_messages', 
-            filter: \`session_id=eq.${sessionId}` 
+            filter: `session_id=eq.${sessionId}`
           },
           (payload) => {
             console.log('New message received:', payload);
@@ -81,7 +81,7 @@ export function Chat() {
               return prev;
             });
           }
-        ) 
+        )
         .subscribe();
 
       return () => {
