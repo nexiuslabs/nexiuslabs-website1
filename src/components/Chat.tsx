@@ -265,8 +265,8 @@ export function Chat() {
                     <div
                       className={`max-w-[75%] rounded-lg px-4 py-2 ${
                         msg.is_from_visitor
-                          ? 'bg-nexius-teal text-white' 
-                          : 'bg-nexius-dark-card text-nexius-dark-text'
+                          ? 'bg-nexius-teal text-white'
+                          : 'bg-nexius-dark-card text-nexius-dark-text border border-nexius-dark-border'
                       }`}
                     >
                       {msg.content}
@@ -275,7 +275,7 @@ export function Chat() {
                 ))}
                 {aiTyping && (
                   <div className="flex justify-start">
-                    <div className="bg-nexius-dark-card text-nexius-dark-text rounded-lg px-4 py-2">
+                    <div className="bg-nexius-dark-card text-nexius-dark-text rounded-lg px-4 py-2 border border-nexius-dark-border">
                       <div className="flex space-x-2">
                         <div className="w-2 h-2 bg-nexius-dark-text-muted rounded-full animate-bounce" style={{ animationDelay: '0ms' }}></div>
                         <div className="w-2 h-2 bg-nexius-dark-text-muted rounded-full animate-bounce" style={{ animationDelay: '150ms' }}></div>
