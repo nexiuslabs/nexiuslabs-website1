@@ -114,9 +114,7 @@ export default function Events() {
             </div>
           ) : (
             <div className="space-y-8">
-              <div className="grid gap-6">
-             <h2 className="text-2xl font-display font-bold text-white mb-4">
-              </div>
+              <EventsList events={events} />
             </div>
           )}
         </div>
