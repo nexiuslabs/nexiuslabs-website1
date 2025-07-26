@@ -37,11 +37,11 @@ export function EventsList({ events, onEventClick }: EventsListProps) {
         <div
           key={event.id}
           onClick={() => handleEventClick(event)}
-          className="bg-white rounded-lg shadow-sm border border-gray-200 p-4 hover:border-nexius-teal/30 hover:shadow-md transition-all cursor-pointer"
+          className="bg-nexius-dark-surface rounded-lg shadow-sm border border-nexius-dark-border p-4 hover:border-nexius-teal/50 hover:shadow-md transition-all cursor-pointer"
         >
           <div className="flex flex-col sm:flex-row items-start gap-4">
             {/* Event Image */}
-            <div className="w-full sm:w-24 h-48 sm:h-24 rounded-lg overflow-hidden bg-gray-100 flex-shrink-0">
+            <div className="w-full sm:w-24 h-48 sm:h-24 rounded-lg overflow-hidden bg-nexius-dark-card flex-shrink-0">
               {event.featured_image ? (
                 <img
                   src={event.featured_image}
@@ -49,8 +49,8 @@ export function EventsList({ events, onEventClick }: EventsListProps) {
                   className="w-full h-full object-cover"
                 />
               ) : (
-                <div className="w-full h-full bg-gray-200 flex items-center justify-center">
-                  <span className="text-gray-400 text-xs">No Image</span>
+                <div className="w-full h-full bg-nexius-dark-border flex items-center justify-center">
+                  <span className="text-nexius-dark-text-muted text-xs">No Image</span>
                 </div>
               )}
             </div>
@@ -72,8 +72,8 @@ export function EventsList({ events, onEventClick }: EventsListProps) {
               </div>
               <div className="flex flex-col sm:flex-row items-start justify-between gap-2 sm:gap-4">
                 <div>
-                  <h3 className="text-lg font-semibold text-gray-900 mb-1">{event.title}</h3>
-                  <div className="flex items-center text-sm text-gray-500 mb-2">
+                  <h3 className="text-lg font-semibold text-nexius-dark-text mb-1">{event.title}</h3>
+                  <div className="flex items-center text-sm text-nexius-dark-text-muted mb-2">
                     <MapPin className="h-4 w-4 mr-1" />
                     {event.location}
                   </div>
@@ -88,15 +88,15 @@ export function EventsList({ events, onEventClick }: EventsListProps) {
                   }`}>
                     {event.status.charAt(0).toUpperCase() + event.status.slice(1)}
                   </span>
-                  <ChevronRight className="h-5 w-5 text-gray-400 ml-2" />
+                  <ChevronRight className="h-5 w-5 text-nexius-dark-text-muted ml-2" />
                 </div>
               </div>
 
               <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-2 sm:gap-0">
-                <div className="text-sm text-gray-500">
+                <div className="text-sm text-nexius-dark-text-muted">
                   {formatDateTime(event.start_date)}
                 </div>
-                <div className="flex items-center text-sm text-gray-500">
+                <div className="flex items-center text-sm text-nexius-dark-text-muted">
                   <Users className="h-4 w-4 mr-1" />
                   <span>{event.capacity ? `${event.capacity} seats` : 'Unlimited'}</span>
                 </div>

@@ -120,14 +120,14 @@ export function ArticleEditor({ onSave, article, onCancel }: ArticleEditorProps)
         },
       }),
       TableRow,
-      TableCell,
+          <div className="border border-nexius-dark-border rounded-lg overflow-hidden">
       TableHeader,
-      Youtube.configure({
+            <div className="bg-nexius-dark-card border-b border-nexius-dark-border p-2 flex flex-wrap gap-1">
         HTMLAttributes: {
-          class: 'w-full aspect-video rounded-lg'
+              <div className="flex items-center border-r border-nexius-dark-border pr-2 mr-2">
         },
       }),
-    ],
+                  className="p-2 rounded hover:bg-nexius-dark-surface border border-nexius-dark-border bg-nexius-dark-surface text-nexius-dark-text"
     content: article?.content || '',
   });
 
@@ -138,7 +138,7 @@ export function ArticleEditor({ onSave, article, onCancel }: ArticleEditorProps)
       title,
       description,
       content: editor.getHTML(),
-      featuredImage,
+                  className="ml-2 p-2 rounded hover:bg-nexius-dark-surface border border-nexius-dark-border bg-nexius-dark-surface text-nexius-dark-text"
     });
   };
 
@@ -151,12 +151,12 @@ export function ArticleEditor({ onSave, article, onCancel }: ArticleEditorProps)
     if (url === null) return;
 
     if (url === '') {
-      editor.chain().focus().unsetLink().run();
+              <div className="flex items-center border-r border-nexius-dark-border pr-2 mr-2">
       return;
-    }
-
+                  <button className="p-2 rounded hover:bg-nexius-dark-surface text-nexius-dark-text">
+                    <FontIcon className="h-4 w-4" />
     editor.chain().focus().setLink({ href: url }).run();
-  };
+                  <div className="absolute top-full left-0 mt-1 bg-nexius-dark-surface border border-nexius-dark-border rounded-lg p-2 hidden group-hover:block shadow-lg z-50">
 
   const insertYoutubeVideo = () => {
     if (!editor || !youtubeUrl) return;
@@ -170,10 +170,10 @@ export function ArticleEditor({ onSave, article, onCancel }: ArticleEditorProps)
     setYoutubeUrl('');
     setShowYoutubeDialog(false);
   };
-
+                  <button className="p-2 rounded hover:bg-nexius-dark-surface text-nexius-dark-text">
   const insertTable = (rows: number, cols: number, withHeader: boolean, borderStyle: string) => {
     if (!editor) return;
-
+                  <div className="absolute top-full left-0 mt-1 bg-nexius-dark-surface border border-nexius-dark-border rounded-lg p-2 hidden group-hover:block shadow-lg z-50">
     const borderWidths = {
       thin: '1px',
       medium: '2px',
@@ -189,27 +189,27 @@ export function ArticleEditor({ onSave, article, onCancel }: ArticleEditorProps)
         class: 'border-collapse',
         style: `border: ${borderWidths} solid #e5e7eb;`
       }
-    }).run();
+              <div className="flex items-center border-r border-nexius-dark-border pr-2 mr-2">
 
     // Apply styles to cells
-    const style = `border: ${borderWidths} solid #e5e7eb; padding: 8px;`;
-    
+                  className={`p-2 rounded hover:bg-nexius-dark-surface text-nexius-dark-text ${
+                    editor.isActive('bold') ? 'bg-nexius-dark-surface' : ''
     // Update all cells with proper styling
     editor.state.doc.descendants((node, pos) => {
       if (node.type.name === 'tableCell' || node.type.name === 'tableHeader') {
         editor.chain().setNodeSelection(pos).updateAttributes(node.type.name, {
           style
         }).run();
-      }
-    });
+                  className={`p-2 rounded hover:bg-nexius-dark-surface text-nexius-dark-text ${
+                    editor.isActive('italic') ? 'bg-nexius-dark-surface' : ''
 
     // Ensure cursor is inside the first cell
     editor.chain().focus().run();
   };
 
   const handleFeaturedImageUpload = (imageUrl: string) => {
-    setFeaturedImage(imageUrl);
-    setShowImageUpload(false);
+                  className={`p-2 rounded hover:bg-nexius-dark-surface text-nexius-dark-text ${
+                    editor.isActive('underline') ? 'bg-nexius-dark-surface' : ''
   };
 
   return (
@@ -217,35 +217,35 @@ export function ArticleEditor({ onSave, article, onCancel }: ArticleEditorProps)
       <div className="flex items-center justify-between">
         <h2 className="text-xl font-semibold text-gray-900">
           {article ? 'Edit Article' : 'Create New Article'}
-        </h2>
-        <button
+              <div className="flex items-center border-r border-nexius-dark-border pr-2 mr-2">
+            <div className="bg-nexius-dark-surface p-4">
           onClick={onCancel}
-          className="inline-flex items-center px-3 py-2 border border-gray-300 shadow-sm text-sm font-medium rounded-md text-gray-700 bg-white hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-nexius-teal"
-        >
+                  className={`p-2 rounded hover:bg-nexius-dark-surface text-nexius-dark-text ${
+                    editor.isActive({ textAlign: 'left' }) ? 'bg-nexius-dark-surface' : ''
           <X className="h-4 w-4 mr-2" />
           Cancel
         </button>
       </div>
 
-      {/* Featured Image */}
-      <div className="space-y-4">
-        <div className="flex items-center justify-between">
+            <div className="bg-nexius-dark-surface rounded-lg p-6 max-w-md w-full border border-nexius-dark-border">
+              <h3 className="text-lg font-semibold mb-4 text-nexius-dark-text">Insert YouTube Video</h3>
+                    editor.isActive({ textAlign: 'center' }) ? 'bg-nexius-dark-surface' : ''
           <h2 className="text-lg font-semibold text-gray-900">Featured Image</h2>
           <button
             onClick={() => setShowImageUpload(true)}
             className="inline-flex items-center px-3 py-2 border border-gray-300 shadow-sm text-sm font-medium rounded-md text-gray-700 bg-white hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-nexius-teal"
-          >
+                className="w-full px-3 py-2 border border-nexius-dark-border bg-nexius-dark-card text-nexius-dark-text placeholder-nexius-dark-text-muted rounded-lg mb-4"
             <ImageIcon className="h-4 w-4 mr-2" />
-            {featuredImage ? 'Change Image' : 'Add Image'}
-          </button>
+                  className={`p-2 rounded hover:bg-nexius-dark-surface text-nexius-dark-text ${
+                    editor.isActive({ textAlign: 'right' }) ? 'bg-nexius-dark-surface' : ''
         </div>
-        
+                  className="px-4 py-2 text-nexius-dark-text-muted hover:bg-nexius-dark-card rounded-lg"
         {showImageUpload ? (
           <div className="bg-gray-50 p-4 rounded-lg">
             <ImageUpload onUploadComplete={handleFeaturedImageUpload} />
           </div>
-        ) : featuredImage && (
-          <div className="relative aspect-video rounded-lg overflow-hidden bg-gray-100">
+                  className={`p-2 rounded hover:bg-nexius-dark-surface text-nexius-dark-text ${
+                    editor.isActive({ textAlign: 'justify' }) ? 'bg-nexius-dark-surface' : ''
             <img
               src={featuredImage}
               alt="Featured"
@@ -253,27 +253,27 @@ export function ArticleEditor({ onSave, article, onCancel }: ArticleEditorProps)
             />
           </div>
         )}
-      </div>
+              <div className="flex items-center border-r border-nexius-dark-border pr-2 mr-2">
 
       {/* Title */}
-      <div>
-        <label htmlFor="title" className="block text-sm font-medium text-gray-700">
+                  className={`p-2 rounded hover:bg-nexius-dark-surface text-nexius-dark-text ${
+                    editor.isActive('paragraph') ? 'bg-nexius-dark-surface' : ''
           Title
         </label>
         <input
           type="text"
           id="title"
           value={title}
-          onChange={(e) => setTitle(e.target.value)}
-          className="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:ring-nexius-teal focus:border-nexius-teal sm:text-sm"
+                  className={`p-2 rounded hover:bg-nexius-dark-surface text-nexius-dark-text ${
+                    editor.isActive('heading', { level: 1 }) ? 'bg-nexius-dark-surface' : ''
           placeholder="Enter article title"
         />
       </div>
 
       {/* Description */}
       <div>
-        <label htmlFor="description" className="block text-sm font-medium text-gray-700">
-          Short Description
+                  className={`p-2 rounded hover:bg-nexius-dark-surface text-nexius-dark-text ${
+                    editor.isActive('heading', { level: 2 }) ? 'bg-nexius-dark-surface' : ''
         </label>
         <textarea
           id="description"
@@ -281,27 +281,27 @@ export function ArticleEditor({ onSave, article, onCancel }: ArticleEditorProps)
           onChange={(e) => setDescription(e.target.value)}
           rows={3}
           className="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:ring-nexius-teal focus:border-nexius-teal sm:text-sm"
-          placeholder="Enter a brief description"
+              <div className="flex items-center border-r border-nexius-dark-border pr-2 mr-2">
         />
       </div>
-
-      {/* Editor */}
+                  className={`p-2 rounded hover:bg-nexius-dark-surface text-nexius-dark-text ${
+                    editor.isActive('bulletList') ? 'bg-nexius-dark-surface' : ''
       {editor && (
         <div className="border border-gray-200 rounded-lg overflow-hidden">
           {/* Toolbar */}
           <div className="bg-white border-b border-gray-200 p-2 flex flex-wrap gap-1">
             {/* Text Style */}
             <div className="flex items-center border-r border-gray-200 pr-2 mr-2">
-              <select
-                onChange={(e) => editor?.chain().focus().setFontFamily(e.target.value).run()}
+                  className={`p-2 rounded hover:bg-nexius-dark-surface text-nexius-dark-text ${
+                    editor.isActive('orderedList') ? 'bg-nexius-dark-surface' : ''
                 className="p-2 rounded hover:bg-gray-100 border border-gray-300"
               >
                 <option value="">Font Family</option>
                 {FONT_FAMILIES.map((font) => (
                   <option key={font.value} value={font.value}>
                     {font.label}
-                  </option>
-                ))}
+                  className={`p-2 rounded hover:bg-nexius-dark-surface text-nexius-dark-text ${
+                    editor.isActive('blockquote') ? 'bg-nexius-dark-surface' : ''
               </select>
               <select
                 onChange={(e) => editor?.chain().focus().setFontSize(e.target.value).run()}
@@ -309,11 +309,11 @@ export function ArticleEditor({ onSave, article, onCancel }: ArticleEditorProps)
                 value={editor.getAttributes('textStyle').fontSize || ''}
               >
                 <option value="">Font Size</option>
-                {FONT_SIZES.map((size) => (
+              <div className="flex items-center border-r border-nexius-dark-border pr-2 mr-2">
                   <option key={size.value} value={size.value}>
                     {size.label}
-                  </option>
-                ))}
+                  className={`p-2 rounded hover:bg-nexius-dark-surface text-nexius-dark-text ${
+                    editor.isActive('link') ? 'bg-nexius-dark-surface' : ''
               </select>
             </div>
 
@@ -321,16 +321,16 @@ export function ArticleEditor({ onSave, article, onCancel }: ArticleEditorProps)
             <div className="flex items-center border-r border-gray-200 pr-2 mr-2">
               <div className="relative group">
                 <button className="p-2 rounded hover:bg-gray-100">
-                  <FontIcon className="h-4 w-4" />
+              <div className="flex items-center border-r border-nexius-dark-border pr-2 mr-2">
                 </button>
                 <div className="absolute top-full left-0 mt-1 bg-white border border-gray-200 rounded-lg p-2 hidden group-hover:block shadow-lg">
-                  <div className="grid grid-cols-7 gap-1">
+                  className="p-2 rounded hover:bg-nexius-dark-surface text-nexius-dark-text"
                     {COLORS.map((color) => (
                       <button
                         key={color}
                         onClick={() => editor?.chain().focus().setColor(color).run()}
                         className="w-6 h-6 rounded-full"
-                        style={{ backgroundColor: color }}
+                  className="p-2 rounded hover:bg-nexius-dark-surface text-nexius-dark-text"
                       />
                     ))}
                   </div>
@@ -341,14 +341,14 @@ export function ArticleEditor({ onSave, article, onCancel }: ArticleEditorProps)
                   <Highlighter className="h-4 w-4" />
                 </button>
                 <div className="absolute top-full left-0 mt-1 bg-white border border-gray-200 rounded-lg p-2 hidden group-hover:block shadow-lg">
-                  <div className="grid grid-cols-5 gap-1">
+                  className="p-2 rounded hover:bg-nexius-dark-surface text-nexius-dark-text disabled:opacity-50"
                     {HIGHLIGHT_COLORS.map((color) => (
                       <button
                         key={color}
                         onClick={() => editor?.chain().focus().toggleHighlight({ color }).run()}
                         className="w-6 h-6 rounded-full"
                         style={{ backgroundColor: color }}
-                      />
+                  className="p-2 rounded hover:bg-nexius-dark-surface text-nexius-dark-text disabled:opacity-50"
                     ))}
                   </div>
                 </div>

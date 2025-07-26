@@ -33,10 +33,10 @@ export function Auth() {
   };
 
   return (
-    <div className="min-h-screen bg-gray-50 flex items-center justify-center py-12 px-4 sm:px-6 lg:px-8">
+    <div className="min-h-screen bg-nexius-dark-bg flex items-center justify-center py-12 px-4 sm:px-6 lg:px-8">
       <div className="max-w-md w-full space-y-8">
         <div>
-          <h2 className="mt-6 text-center text-3xl font-display font-extrabold text-nexius-navy">
+          <h2 className="mt-6 text-center text-3xl font-display font-extrabold text-white">
             Sign in to your account
           </h2>
         </div>
@@ -53,7 +53,7 @@ export function Auth() {
                 required
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
-                className="appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-t-md focus:outline-none focus:ring-nexius-teal focus:border-nexius-teal focus:z-10 sm:text-sm"
+                className="appearance-none rounded-none relative block w-full px-3 py-2 border border-nexius-dark-border placeholder-nexius-dark-text-muted text-nexius-dark-text bg-nexius-dark-surface rounded-t-md focus:outline-none focus:ring-nexius-teal focus:border-nexius-teal focus:z-10 sm:text-sm"
                 placeholder="Email address"
               />
             </div>
@@ -68,7 +68,7 @@ export function Auth() {
                 required
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
-                className="appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-b-md focus:outline-none focus:ring-nexius-teal focus:border-nexius-teal focus:z-10 sm:text-sm"
+                className="appearance-none rounded-none relative block w-full px-3 py-2 border border-nexius-dark-border placeholder-nexius-dark-text-muted text-nexius-dark-text bg-nexius-dark-surface rounded-b-md focus:outline-none focus:ring-nexius-teal focus:border-nexius-teal focus:z-10 sm:text-sm"
                 placeholder="Password"
                 minLength={6}
               />

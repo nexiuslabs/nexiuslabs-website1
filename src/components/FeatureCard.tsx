@@ -4,7 +4,7 @@ import { Monitor, ArrowRight } from 'lucide-react';
 
 export function FeatureCard() {
   return (
-    <div className="bg-white rounded-xl overflow-hidden shadow-md">
+    <div className="bg-nexius-dark-surface rounded-xl overflow-hidden shadow-md border border-nexius-dark-border">
       {/* ——— HEADER ——— */}
       <div className="bg-[#00CABA] px-6 py-5 text-white">
         <div className="flex items-center justify-between">
@@ -22,7 +22,7 @@ export function FeatureCard() {
 
       {/* Body */}
       <div className="px-6 py-5">
-        <ul className="list-disc list-inside space-y-2 text-gray-800 mb-4">
+        <ul className="list-disc list-inside space-y-2 text-nexius-dark-text-muted mb-4">
           <li>Present your AI-powered solution to engaged business leaders</li>
           <li>Participate in lightning demo rounds with Q&A</li>
           <li>Offer exclusive event-only pilot programs or packages</li>

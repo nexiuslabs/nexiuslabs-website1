@@ -58,10 +58,10 @@ const EmptyState = ({ section, actionButton }: { section: typeof SECTIONS[0], ac
       <div className="absolute -inset-2 bg-nexius-teal/20 rounded-lg blur-lg opacity-50"></div>
       <section.Icon className="relative h-16 w-16 text-nexius-teal" />
     </div>
-    <h3 className="text-2xl font-display font-bold text-nexius-navy mb-3">
+    <h3 className="text-2xl font-display font-bold text-white mb-3">
       No {section.name} Yet
     </h3>
-    <p className="text-nexius-charcoal max-w-md mx-auto mb-8">
+    <p className="text-nexius-dark-text-muted max-w-md mx-auto mb-8">
       {section.description}
     </p>
     {actionButton}
@@ -505,12 +505,12 @@ export default function AdminPage() {
         return (
           <div>
             {showImageUpload ? (
-              <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-6">
+              <div className="bg-nexius-dark-surface rounded-lg shadow-sm border border-nexius-dark-border p-6">
                 <div className="flex justify-between items-center mb-6">
-                  <h2 className="text-xl font-semibold text-gray-900">Upload Image</h2>
+                  <h2 className="text-xl font-semibold text-nexius-dark-text">Upload Image</h2>
                   <button
                     onClick={() => setShowImageUpload(false)}
-                    className="text-gray-400 hover:text-gray-500"
+                    className="text-nexius-dark-text-muted hover:text-nexius-dark-text"
                   >
                     <X className="h-5 w-5" />
                   </button>
@@ -522,7 +522,7 @@ export default function AdminPage() {
             ) : (
               <div className="space-y-6">
                 <div className="mb-6 flex justify-between items-center">
-                  <h2 className="text-xl font-semibold text-gray-900">Images</h2>
+                  <h2 className="text-xl font-semibold text-nexius-dark-text">Images</h2>
                   <button
                     onClick={() => setShowImageUpload(true)}
                     className="inline-flex items-center px-4 py-2 border border-transparent rounded-lg shadow-sm text-sm font-medium text-white bg-nexius-teal hover:bg-nexius-teal/90 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-nexius-teal"
@@ -533,7 +533,7 @@ export default function AdminPage() {
                 </div>
                 
                 {editingImage && (
-                  <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-6 mb-6">
+                  <div className="bg-nexius-dark-surface rounded-lg shadow-sm border border-nexius-dark-border p-6 mb-6">
                     <ImageUpload
                       onUploadComplete={() => {}}
                       editMode={true}
@@ -558,23 +558,23 @@ export default function AdminPage() {
                           crossOrigin="anonymous"
                         />
                       </div>
-                      <div className="absolute inset-0 bg-black/50 opacity-0 group-hover:opacity-100 transition-opacity rounded-lg flex items-center justify-center gap-2">
+                      <div className="absolute inset-0 bg-black/70 opacity-0 group-hover:opacity-100 transition-opacity rounded-lg flex items-center justify-center gap-2">
                         <button
                           onClick={() => setEditingImage(image)}
-                          className="p-2 bg-white rounded-full text-nexius-teal hover:text-nexius-teal/90 hover:bg-white/90 transition-colors"
+                          className="p-2 bg-nexius-dark-surface rounded-full text-nexius-teal hover:text-nexius-teal/90 hover:bg-nexius-dark-card transition-colors"
                         >
                           <Edit2 className="h-5 w-5" />
                         </button>
                         <button
                           onClick={() => handleDeleteImage(image)}
-                          className="p-2 bg-white rounded-full text-red-600 hover:text-red-700 hover:bg-white/90 transition-colors"
+                          className="p-2 bg-nexius-dark-surface rounded-full text-red-500 hover:text-red-400 hover:bg-nexius-dark-card transition-colors"
                         >
                           <Trash2 className="h-5 w-5" />
                         </button>
                       </div>
                       <div className="mt-2">
-                        <h3 className="text-sm font-medium text-gray-900 truncate">{image.title}</h3>
-                        <p className="text-sm text-gray-500 truncate">{image.description || 'No description'}</p>
+                        <h3 className="text-sm font-medium text-nexius-dark-text truncate">{image.title}</h3>
+                        <p className="text-sm text-nexius-dark-text-muted truncate">{image.description || 'No description'}</p>
                       </div>
                     </div>
                   ))}
@@ -599,7 +599,7 @@ export default function AdminPage() {
         ) : (
           <div className="space-y-6">
             <div className="flex justify-between items-center mb-6">
-              <h2 className="text-xl font-semibold text-gray-900">Articles</h2>
+              <h2 className="text-xl font-semibold text-nexius-dark-text">Articles</h2>
               <button
                 onClick={handleCreateArticle}
                 className="inline-flex items-center px-4 py-2 border border-transparent rounded-lg shadow-sm text-sm font-medium text-white bg-nexius-teal hover:bg-nexius-teal/90 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-nexius-teal"
@@ -610,7 +610,7 @@ export default function AdminPage() {
             </div>
             <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
               {articles.map((article) => (
-                <div key={article.id} className="bg-white rounded-lg shadow-sm border border-gray-200 hover:border-nexius-teal/30 hover:shadow-lg transition-all">
+                <div key={article.id} className="bg-nexius-dark-surface rounded-lg shadow-sm border border-nexius-dark-border hover:border-nexius-teal/50 hover:shadow-lg transition-all">
                   {article.featured_image && (
                     <div className="aspect-video relative overflow-hidden rounded-t-lg">
                       <img
@@ -638,7 +638,7 @@ export default function AdminPage() {
                             setEditingArticle(article);
                             setIsCreatingArticle(true);
                           }}
-                          className="p-2 rounded-full text-gray-500 hover:text-gray-700 hover:bg-gray-100"
+                          className="p-2 rounded-full text-nexius-dark-text-muted hover:text-nexius-dark-text hover:bg-nexius-dark-card"
                         >
                           <Edit2 className="h-4 w-4" />
                         </button>
@@ -649,17 +649,17 @@ export default function AdminPage() {
                               loadArticles();
                             }
                           }}
-                          className="p-2 rounded-full text-red-500 hover:text-red-700 hover:bg-red-50"
+                          className="p-2 rounded-full text-red-500 hover:text-red-400 hover:bg-nexius-dark-card"
                         >
                           <Trash2 className="h-4 w-4" />
                         </button>
                       </div>
                     </div>
-                    <h3 className="text-lg font-semibold text-gray-900 mb-2">{article.title}</h3>
+                    <h3 className="text-lg font-semibold text-nexius-dark-text mb-2">{article.title}</h3>
                     {article.description && (
-                      <p className="text-gray-600 text-sm mb-4 line-clamp-2">{article.description}</p>
+                      <p className="text-nexius-dark-text-muted text-sm mb-4 line-clamp-2">{article.description}</p>
                     )}
-                    <div className="flex items-center justify-between text-sm text-gray-500">
+                    <div className="flex items-center justify-between text-sm text-nexius-dark-text-muted">
                       <span>{new Date(article.created_at).toLocaleDateString()}</span>
                       {article.status === 'draft' ? (
                         <button
@@ -677,7 +677,7 @@ export default function AdminPage() {
                             await unpublishArticle(article.id);
                             loadArticles();
                           }}
-                          className="text-gray-500 hover:text-gray-700 font-medium"
+                          className="text-nexius-dark-text-muted hover:text-nexius-dark-text font-medium"
                         >
                           <EyeOff className="h-4 w-4" />
                         </button>
@@ -724,7 +724,7 @@ export default function AdminPage() {
         ) : (
           <div className="space-y-6">
             <div className="flex justify-between items-center">
-              <h2 className="text-xl font-semibold text-gray-900">Events</h2>
+              <h2 className="text-xl font-semibold text-nexius-dark-text">Events</h2>
               <button
                 onClick={() => setIsCreatingEvent(true)}
                 className="inline-flex items-center px-4 py-2 border border-transparent rounded-lg shadow-sm text-sm font-medium text-white bg-nexius-teal hover:bg-nexius-teal/90 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-nexius-teal"
@@ -746,42 +746,42 @@ export default function AdminPage() {
         ) : (
           <div className="space-y-6">
             <div className="flex justify-between items-center">
-              <h2 className="text-xl font-semibold text-gray-900">Leads</h2>
+              <h2 className="text-xl font-semibold text-nexius-dark-text">Leads</h2>
             </div>
-            <div className="bg-white rounded-lg shadow overflow-hidden">
-              <table className="min-w-full divide-y divide-gray-200">
-                <thead className="bg-gray-50">
+            <div className="bg-nexius-dark-surface rounded-lg shadow overflow-hidden border border-nexius-dark-border">
+              <table className="min-w-full divide-y divide-nexius-dark-border">
+                <thead className="bg-nexius-dark-card">
                   <tr>
-                    <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                    <th className="px-6 py-3 text-left text-xs font-medium text-nexius-dark-text-muted uppercase tracking-wider">
                       Name
                     </th>
-                    <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                    <th className="px-6 py-3 text-left text-xs font-medium text-nexius-dark-text-muted uppercase tracking-wider">
                       Email
                     </th>
-                    <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                    <th className="px-6 py-3 text-left text-xs font-medium text-nexius-dark-text-muted uppercase tracking-wider">
                       Phone
                     </th>
-                    <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                    <th className="px-6 py-3 text-left text-xs font-medium text-nexius-dark-text-muted uppercase tracking-wider">
                       Status
                     </th>
-                    <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                    <th className="px-6 py-3 text-left text-xs font-medium text-nexius-dark-text-muted uppercase tracking-wider">
                       Date
                     </th>
                   </tr>
                 </thead>
-                <tbody className="bg-white divide-y divide-gray-200">
+                <tbody className="bg-nexius-dark-surface divide-y divide-nexius-dark-border">
                   {leads.map((lead) => (
-                    <tr key={lead.id} className="hover:bg-gray-50">
+                    <tr key={lead.id} className="hover:bg-nexius-dark-card">
                       <td className="px-6 py-4 whitespace-nowrap">
-                        <div className="text-sm font-medium text-gray-900">
+                        <div className="text-sm font-medium text-nexius-dark-text">
                           {lead.first_name} {lead.last_name}
                         </div>
                       </td>
                       <td className="px-6 py-4 whitespace-nowrap">
-                        <div className="text-sm text-gray-900">{lead.email}</div>
+                        <div className="text-sm text-nexius-dark-text">{lead.email}</div>
                       </td>
                       <td className="px-6 py-4 whitespace-nowrap">
-                        <div className="text-sm text-gray-900">{lead.phone || '-'}</div>
+                        <div className="text-sm text-nexius-dark-text">{lead.phone || '-'}</div>
                       </td>
                       <td className="px-6 py-4 whitespace-nowrap">
                         <span className={`px-2 inline-flex text-xs leading-5 font-semibold rounded-full ${
@@ -794,7 +794,7 @@ export default function AdminPage() {
                           {lead.status}
                         </span>
                       </td>
-                      <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+                      <td className="px-6 py-4 whitespace-nowrap text-sm text-nexius-dark-text-muted">
                         {new Date(lead.created_at).toLocaleDateString()}
                       </td>
                     </tr>
@@ -914,21 +914,21 @@ export default function AdminPage() {
         ) : (
           <div className="grid grid-cols-3 gap-6">
             {/* Desktop Chat Sessions List */}
-            <div className="col-span-1 bg-white rounded-lg shadow-sm border border-gray-200 overflow-hidden">
-              <div className="p-4 border-b border-gray-200">
-                <h3 className="text-lg font-semibold text-gray-900">Chat Sessions</h3>
+            <div className="col-span-1 bg-nexius-dark-surface rounded-lg shadow-sm border border-nexius-dark-border overflow-hidden">
+              <div className="p-4 border-b border-nexius-dark-border">
+                <h3 className="text-lg font-semibold text-nexius-dark-text">Chat Sessions</h3>
               </div>
-              <div className="divide-y divide-gray-200 max-h-[600px] overflow-y-auto">
+              <div className="divide-y divide-nexius-dark-border max-h-[600px] overflow-y-auto">
                 {chatSessions.map((session) => (
                   <button
                     key={`chat-session-${session.id}`}
                     onClick={() => handleSessionClick(session)}
-                    className={`w-full p-4 text-left hover:bg-gray-50 transition-colors ${
+                    className={`w-full p-4 text-left hover:bg-nexius-dark-card transition-colors ${
                       activeChatSession?.id === session.id ? 'bg-nexius-teal/10' : ''
                     }`}
                   >
                     <div className="flex items-center justify-between">
-                      <span className="font-medium text-gray-900">
+                      <span className="font-medium text-nexius-dark-text">
                         {session.visitor_name || 'Anonymous Visitor'}
                       </span>
                       <span className={`px-2 py-1 rounded-full text-xs ${
@@ -939,7 +939,7 @@ export default function AdminPage() {
                         {session.status}
                       </span>
                     </div>
-                    <p className="text-sm text-gray-500 mt-1">
+                    <p className="text-sm text-nexius-dark-text-muted mt-1">
                       {new Date(session.last_message_at).toLocaleString()}
                     </p>
                   </button>
@@ -948,11 +948,11 @@ export default function AdminPage() {
             </div>
 
             {/* Desktop Chat Messages */}
-            <div className="col-span-2 bg-white rounded-lg shadow-sm border border-gray-200 overflow-hidden">
+            <div className="col-span-2 bg-nexius-dark-surface rounded-lg shadow-sm border border-nexius-dark-border overflow-hidden">
               {activeChatSession ? (
                 <>
-                  <div className="p-4 border-b border-gray-200">
-                    <h3 className="text-lg font-semibold text-gray-900">
+                  <div className="p-4 border-b border-nexius-dark-border">
+                    <h3 className="text-lg font-semibold text-nexius-dark-text">
                       Chat with {activeChatSession.visitor_name || 'Anonymous Visitor'}
                     </h3>
                   </div>
@@ -968,7 +968,7 @@ export default function AdminPage() {
                           <div
                             className={`max-w-[75%] rounded-lg px-4 py-2 ${
                               message.is_from_visitor
-                                ? 'bg-gray-100 text-gray-900'
+                                ? 'bg-nexius-dark-card text-nexius-dark-text'
                                 : 'bg-nexius-teal text-white'
                             }`}
                           >
@@ -980,14 +980,14 @@ export default function AdminPage() {
                         </div>
                       ))}
                     </div>
-                    <form onSubmit={handleSendAdminMessage} className="p-4 border-t">
+                    <form onSubmit={handleSendAdminMessage} className="p-4 border-t border-nexius-dark-border">
                       <div className="flex gap-2">
                         <input
                           type="text"
                           value={newMessage}
                           onChange={(e) => setNewMessage(e.target.value)}
                           placeholder="Type your message..."
-                          className="flex-1 px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-nexius-teal focus:border-nexius-teal"
+                          className="flex-1 px-3 py-2 border border-nexius-dark-border bg-nexius-dark-card text-nexius-dark-text placeholder-nexius-dark-text-muted rounded-lg focus:ring-2 focus:ring-nexius-teal focus:border-nexius-teal"
                         />
                         <button
                           type="submit"
@@ -1001,7 +1001,7 @@ export default function AdminPage() {
                   </div>
                 </>
               ) : (
-                <div className="p-8 text-center text-gray-500">
+                <div className="p-8 text-center text-nexius-dark-text-muted">
                   Select a chat session to view messages
                 </div>
               )}
@@ -1019,9 +1019,9 @@ export default function AdminPage() {
   }
 
   return (
-    <div className="min-h-screen bg-gray-100">
+    <div className="min-h-screen bg-nexius-dark-bg">
       {/* Header */}
-      <header className="bg-white border-b border-gray-200 fixed w-full z-10">
+      <header className="bg-nexius-dark-surface border-b border-nexius-dark-border fixed w-full z-10">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex justify-between h-16">
             <div className="flex">
@@ -1031,7 +1031,7 @@ export default function AdminPage() {
                   alt="NEXIUS Labs"
                   className="h-8 w-8"
                 />
-                <span className="ml-2 text-xl font-bold text-gray-900">
+                <span className="ml-2 text-xl font-bold text-nexius-dark-text">
                   Admin Portal
                 </span>
               </div>
@@ -1039,7 +1039,7 @@ export default function AdminPage() {
             <div className="flex items-center">
               <button
                 onClick={handleLogout}
-                className="inline-flex items-center px-4 py-2 border border-transparent text-sm font-medium rounded-lg text-gray-500 hover:text-gray-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-nexius-teal"
+                className="inline-flex items-center px-4 py-2 border border-transparent text-sm font-medium rounded-lg text-nexius-dark-text-muted hover:text-nexius-dark-text focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-nexius-teal"
               >
                 <LogOut className="h-5 w-5 mr-2" />
                 Sign Out
@@ -1050,17 +1050,17 @@ export default function AdminPage() {
       </header>
 
       {/* Sidebar */}
-      <div className={`fixed inset-y-0 left-0 pt-16 block ${isNavCollapsed ? 'w-16' : 'w-64'} bg-white border-r border-gray-200 transition-all duration-300`}>
+      <div className={`fixed inset-y-0 left-0 pt-16 block ${isNavCollapsed ? 'w-16' : 'w-64'} bg-nexius-dark-surface border-r border-nexius-dark-border transition-all duration-300`}>
         <div className="h-full flex flex-col">
           <nav className="flex-1 px-2 py-4 space-y-1 relative">
             <button
               onClick={() => setIsNavCollapsed(!isNavCollapsed)}
-              className="absolute -right-3 top-2 bg-white border border-gray-200 rounded-full p-1 hover:bg-gray-50 transition-colors z-10"
+              className="absolute -right-3 top-2 bg-nexius-dark-surface border border-nexius-dark-border rounded-full p-1 hover:bg-nexius-dark-card transition-colors z-10"
             >
               {isNavCollapsed ? (
-                <ChevronRight className="h-4 w-4 text-gray-500" />
+                <ChevronRight className="h-4 w-4 text-nexius-dark-text-muted" />
               ) : (
-                <ChevronLeft className="h-4 w-4 text-gray-500" />
+                <ChevronLeft className="h-4 w-4 text-nexius-dark-text-muted" />
               )}
             </button>
             {SECTIONS.map((section) => {
@@ -1072,7 +1072,7 @@ export default function AdminPage() {
                   className={`w-full flex items-center ${isNavCollapsed ? 'px-3' : 'px-4'} py-3 text-sm font-medium rounded-lg ${
                     activeSection === section.id
                       ? 'bg-nexius-teal/10 text-nexius-teal'
-                      : 'text-gray-600 hover:bg-gray-50 hover:text-gray-900'
+                      : 'text-nexius-dark-text-muted hover:bg-nexius-dark-card hover:text-nexius-dark-text'
                   } transition-colors`}
                   title={section.name}
                 >
@@ -1084,10 +1084,10 @@ export default function AdminPage() {
               );
             })}
           </nav>
-          <div className="p-4 border-t border-gray-200">
+          <div className="p-4 border-t border-nexius-dark-border">
             <button
               onClick={handleLogout}
-              className={`w-full flex items-center ${isNavCollapsed ? 'px-3 justify-center' : 'px-4'} py-3 text-sm font-medium text-gray-600 hover:bg-gray-50 hover:text-gray-900 rounded-lg transition-colors`}
+              className={`w-full flex items-center ${isNavCollapsed ? 'px-3 justify-center' : 'px-4'} py-3 text-sm font-medium text-nexius-dark-text-muted hover:bg-nexius-dark-card hover:text-nexius-dark-text rounded-lg transition-colors`}
               title="Logout"
             >
               <LogOut className="h-5 w-5 mr-3" />
@@ -1103,7 +1103,7 @@ export default function AdminPage() {
       <main className={`${isNavCollapsed ? 'pl-16' : 'pl-64'} pt-16 transition-all duration-300`}>
         <div className="max-w-7xl mx-auto py-6 sm:px-6 lg:px-8">
           <div className="px-4 sm:px-0">
-            <h1 className="text-2xl font-semibold text-gray-900 mb-6">
+            <h1 className="text-2xl font-semibold text-nexius-dark-text mb-6">
               {SECTIONS.find((s) => s.id === activeSection)?.name}
             </h1>
             {renderContent()}

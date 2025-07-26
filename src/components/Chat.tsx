@@ -220,7 +220,7 @@ export function Chat() {
         <div
           className={`bg-white rounded-lg shadow-xl transition-all duration-300 ${
             isMinimized ? 'h-14' : 'h-[500px]'
-          } w-[350px] flex flex-col`}
+          } w-[350px] flex flex-col bg-nexius-dark-surface border border-nexius-dark-border`}
         >
           {/* Header */}
           <div className="px-4 py-3 bg-nexius-navy text-white rounded-t-lg flex items-center justify-between">
@@ -265,8 +265,8 @@ export function Chat() {
                     <div
                       className={`max-w-[75%] rounded-lg px-4 py-2 ${
                         msg.is_from_visitor
-                          ? 'bg-nexius-teal text-white'
-                          : 'bg-gray-100 text-gray-900'
+                          ? 'bg-nexius-teal text-white' 
+                          : 'bg-nexius-dark-card text-nexius-dark-text'
                       }`}
                     >
                       {msg.content}
@@ -275,11 +275,11 @@ export function Chat() {
                 ))}
                 {aiTyping && (
                   <div className="flex justify-start">
-                    <div className="bg-gray-100 text-gray-900 rounded-lg px-4 py-2">
+                    <div className="bg-nexius-dark-card text-nexius-dark-text rounded-lg px-4 py-2">
                       <div className="flex space-x-2">
-                        <div className="w-2 h-2 bg-gray-400 rounded-full animate-bounce" style={{ animationDelay: '0ms' }}></div>
-                        <div className="w-2 h-2 bg-gray-400 rounded-full animate-bounce" style={{ animationDelay: '150ms' }}></div>
-                        <div className="w-2 h-2 bg-gray-400 rounded-full animate-bounce" style={{ animationDelay: '300ms' }}></div>
+                        <div className="w-2 h-2 bg-nexius-dark-text-muted rounded-full animate-bounce" style={{ animationDelay: '0ms' }}></div>
+                        <div className="w-2 h-2 bg-nexius-dark-text-muted rounded-full animate-bounce" style={{ animationDelay: '150ms' }}></div>
+                        <div className="w-2 h-2 bg-nexius-dark-text-muted rounded-full animate-bounce" style={{ animationDelay: '300ms' }}></div>
                       </div>
                     </div>
                   </div>
@@ -288,14 +288,14 @@ export function Chat() {
               </div>
 
               {/* Input */}
-              <form onSubmit={handleSendMessage} className="p-4 border-t">
+              <form onSubmit={handleSendMessage} className="p-4 border-t border-nexius-dark-border">
                 <div className="flex gap-2">
                   <input
                     type="text"
                     value={message}
                     onChange={(e) => setMessage(e.target.value)}
                     placeholder="Type your message..."
-                    className="flex-1 px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-nexius-teal focus:border-nexius-teal"
+                    className="flex-1 px-3 py-2 border border-nexius-dark-border bg-nexius-dark-card text-nexius-dark-text placeholder-nexius-dark-text-muted rounded-lg focus:ring-2 focus:ring-nexius-teal focus:border-nexius-teal"
                   />
                   <button
                     type="submit"

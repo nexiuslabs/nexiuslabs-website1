@@ -24,7 +24,7 @@ export function AIIgnite() {
   const [showContactForm, setShowContactForm] = useState(false);
 
   return (
-    <div className="min-h-screen bg-white">
+    <div className="min-h-screen bg-nexius-dark-bg">
       {/* Hero Section */}
       <section className="relative pt-32 pb-24 bg-gradient-to-b from-nexius-navy to-nexius-navy/95">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
@@ -56,47 +56,47 @@ export function AIIgnite() {
       </section>
 
       {/* Why Collaborate Section */}
-      <section className="py-24 bg-white">
+      <section className="py-24 bg-nexius-dark-bg">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <h2 className="text-3xl md:text-4xl font-display font-bold text-nexius-navy text-center mb-6">
+          <h2 className="text-3xl md:text-4xl font-display font-bold text-white text-center mb-6">
             Objectives of AI Ignite
           </h2>
-          <p className="text-center text-nexius-charcoal mb-16 max-w-3xl mx-auto">
+          <p className="text-center text-nexius-dark-text-muted mb-16 max-w-3xl mx-auto">
             We're on a mission to bridge the gap between AI innovation and business results, creating a
             community where technology and strategy converge.
           </p>
 
           <div className="grid md:grid-cols-3 gap-8">
-            <div className="p-8 bg-white rounded-xl border border-nexius-gray hover:border-nexius-teal/30 hover:shadow-lg transition-all">
+            <div className="p-8 bg-nexius-dark-surface rounded-xl border border-nexius-dark-border hover:border-nexius-teal/50 hover:shadow-lg transition-all">
               <Book className="h-12 w-12 text-nexius-teal mb-6" />
-              <h3 className="text-xl font-bold text-nexius-navy mb-4">
+              <h3 className="text-xl font-bold text-white mb-4">
                 Educate & Empower Business Leaders
               </h3>
-              <ul className="space-y-4 text-nexius-charcoal">
+              <ul className="space-y-4 text-nexius-dark-text-muted">
                 <li>• Provide executives and entrepreneurs with actionable insights on AI implementation.</li>
                 <li>• Showcase real-world use cases and success stories that demonstrate AI's business value.</li>
                 <li>• Offer hands-on opportunities to assess AI solutions and their ROI potential.</li>
               </ul>
             </div>
 
-            <div className="p-8 bg-white rounded-xl border border-nexius-gray hover:border-nexius-teal/30 hover:shadow-lg transition-all">
+            <div className="p-8 bg-nexius-dark-surface rounded-xl border border-nexius-dark-border hover:border-nexius-teal/50 hover:shadow-lg transition-all">
               <LinkIcon className="h-12 w-12 text-nexius-teal mb-6" />
-              <h3 className="text-xl font-bold text-nexius-navy mb-4">
+              <h3 className="text-xl font-bold text-white mb-4">
                 Connect AI Innovators with High-Growth Enterprises
               </h3>
-              <ul className="space-y-4 text-nexius-charcoal">
+              <ul className="space-y-4 text-nexius-dark-text-muted">
                 <li>• Facilitate structured networking between AI vendors, service providers, and decision-makers.</li>
                 <li>• Create opportunities for AI startups and established solution providers to present live demos and case studies.</li>
                 <li>• Encourage partnerships and pilot projects between businesses and AI solution providers.</li>
               </ul>
             </div>
 
-            <div className="p-8 bg-white rounded-xl border border-nexius-gray hover:border-nexius-teal/30 hover:shadow-lg transition-all">
+            <div className="p-8 bg-nexius-dark-surface rounded-xl border border-nexius-dark-border hover:border-nexius-teal/50 hover:shadow-lg transition-all">
               <Users2 className="h-12 w-12 text-nexius-teal mb-6" />
-              <h3 className="text-xl font-bold text-nexius-navy mb-4">
+              <h3 className="text-xl font-bold text-white mb-4">
                 Foster a Community of AI-Driven Business Transformation
               </h3>
-              <ul className="space-y-4 text-nexius-charcoal">
+              <ul className="space-y-4 text-nexius-dark-text-muted">
                 <li>• Build an ongoing knowledge-sharing ecosystem through content, discussions, and follow-ups.</li>
                 <li>• Maintain an exclusive network where businesses can stay updated on AI trends, tools, and best practices.</li>
                 <li>• Encourage long-term collaborations and strategic alliances among attendees.</li>
@@ -106,53 +106,53 @@ export function AIIgnite() {
         </div>
       </section>
 
-      <section className="py-24 bg-white">
+     <section className="py-24 bg-nexius-dark-bg">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <h2 className="text-3xl md:text-4xl font-display font-bold text-nexius-navy text-center mb-6">
+         <h2 className="text-3xl md:text-4xl font-display font-bold text-white text-center mb-6">
             Why Collaborate with AI Ignite?
           </h2>
-          <p className="text-center text-nexius-charcoal mb-16 max-w-3xl mx-auto">
+         <p className="text-center text-nexius-dark-text-muted mb-16 max-w-3xl mx-auto">
             We welcome collaborations that align with our mission of driving AI-powered business growth.
             Join us to make AI Ignite a catalyst for real-world AI implementation!
           </p>
 
           <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
-            <div className="p-6 bg-white rounded-xl border border-nexius-gray hover:border-nexius-teal/30 hover:shadow-lg transition-all">
+           <div className="p-6 bg-nexius-dark-surface rounded-xl border border-nexius-dark-border hover:border-nexius-teal/50 hover:shadow-lg transition-all">
               <Target className="h-12 w-12 text-nexius-teal mb-4" />
-              <h3 className="text-xl font-semibold text-nexius-navy mb-2">
+             <h3 className="text-xl font-semibold text-white mb-2">
                 Access a High-Intent Audience
               </h3>
-              <p className="text-nexius-charcoal">
+             <p className="text-nexius-dark-text-muted">
                 Engage with business leaders actively seeking AI adoption strategies.
               </p>
             </div>
 
-            <div className="p-6 bg-white rounded-xl border border-nexius-gray hover:border-nexius-teal/30 hover:shadow-lg transition-all">
+           <div className="p-6 bg-nexius-dark-surface rounded-xl border border-nexius-dark-border hover:border-nexius-teal/50 hover:shadow-lg transition-all">
               <Lightbulb className="h-12 w-12 text-nexius-teal mb-4" />
-              <h3 className="text-xl font-semibold text-nexius-navy mb-2">
+             <h3 className="text-xl font-semibold text-white mb-2">
                 Showcase Thought Leadership
               </h3>
-              <p className="text-nexius-charcoal">
+             <p className="text-nexius-dark-text-muted">
                 Position your brand or expertise as a trusted AI transformation partner.
               </p>
             </div>
 
-            <div className="p-6 bg-white rounded-xl border border-nexius-gray hover:border-nexius-teal/30 hover:shadow-lg transition-all">
+           <div className="p-6 bg-nexius-dark-surface rounded-xl border border-nexius-dark-border hover:border-nexius-teal/50 hover:shadow-lg transition-all">
               <BarChart className="h-12 w-12 text-nexius-teal mb-4" />
-              <h3 className="text-xl font-semibold text-nexius-navy mb-2">
+             <h3 className="text-xl font-semibold text-white mb-2">
                 Generate Meaningful Business Leads
               </h3>
-              <p className="text-nexius-charcoal">
+             <p className="text-nexius-dark-text-muted">
                 Connect directly with decision-makers in a structured, results-driven setting.
               </p>
             </div>
 
-            <div className="p-6 bg-white rounded-xl border border-nexius-gray hover:border-nexius-teal/30 hover:shadow-lg transition-all">
+           <div className="p-6 bg-nexius-dark-surface rounded-xl border border-nexius-dark-border hover:border-nexius-teal/50 hover:shadow-lg transition-all">
               <Users className="h-12 w-12 text-nexius-teal mb-4" />
-              <h3 className="text-xl font-semibold text-nexius-navy mb-2">
+             <h3 className="text-xl font-semibold text-white mb-2">
                 Long-Term Engagement
               </h3>
-              <p className="text-nexius-charcoal">
+             <p className="text-nexius-dark-text-muted">
                 Become part of a growing network that extends beyond a single event.
               </p>
             </div>
@@ -161,12 +161,12 @@ export function AIIgnite() {
       </section>
 
       {/* Ways to Collaborate Section */}
-      <section id="collaborate" className="py-24 bg-nexius-gray">
+      <section id="collaborate" className="py-24 bg-nexius-dark-surface">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <h2 className="text-3xl md:text-4xl font-display font-bold text-nexius-navy text-center mb-6">
+          <h2 className="text-3xl md:text-4xl font-display font-bold text-white text-center mb-6">
             Ways to Collaborate with AI Ignite
           </h2>
-          <p className="text-center text-nexius-charcoal mb-16 max-w-3xl mx-auto">
+          <p className="text-center text-nexius-dark-text-muted mb-16 max-w-3xl mx-auto">
             Join our ecosystem of AI innovation and business transformation. We offer multiple ways to
             engage, share expertise, and connect with decision-makers.
           </p>
@@ -174,7 +174,7 @@ export function AIIgnite() {
           <div className="grid md:grid-cols-2 gap-8">
             <FeatureCard />
 
-            <div className="bg-white rounded-xl overflow-hidden shadow-md">
+            <div className="bg-nexius-dark-surface rounded-xl overflow-hidden shadow-md border border-nexius-dark-border">
               {/* Header */}
               <div className="bg-nexius-navy px-6 py-5 text-white">
                 <div className="flex items-center justify-between">
@@ -192,7 +192,7 @@ export function AIIgnite() {
 
               {/* Body */}
               <div className="px-6 py-5">
-                <ul className="list-disc list-inside space-y-2 text-gray-800 mb-4">
+                <ul className="list-disc list-inside space-y-2 text-nexius-dark-text-muted mb-4">
                   <li>Contribute to discussions on AI adoption and industry trends</li>
                   <li>Share case studies and success frameworks</li>
                   <li>Position yourself as a trusted advisor for business leaders</li>
@@ -207,7 +207,7 @@ export function AIIgnite() {
               </div>
             </div>
 
-            <div className="bg-white rounded-xl overflow-hidden shadow-md">
+            <div className="bg-nexius-dark-surface rounded-xl overflow-hidden shadow-md border border-nexius-dark-border">
               {/* Header */}
               <div className="bg-[#FF6B2C] px-6 py-5 text-white">
                 <div className="flex items-center justify-between">
@@ -225,7 +225,7 @@ export function AIIgnite() {
 
               {/* Body */}
               <div className="px-6 py-5">
-                <ul className="list-disc list-inside space-y-2 text-gray-800 mb-4">
+                <ul className="list-disc list-inside space-y-2 text-nexius-dark-text-muted mb-4">
                   <li>Gain brand visibility among top decision-makers investing in AI</li>
                   <li>Sponsor exclusive networking lounges or breakout sessions</li>
                   <li>Co-create industry-specific AI adoption playbooks</li>
@@ -240,7 +240,7 @@ export function AIIgnite() {
               </div>
             </div>
 
-            <div className="bg-white rounded-xl overflow-hidden shadow-md">
+            <div className="bg-nexius-dark-surface rounded-xl overflow-hidden shadow-md border border-nexius-dark-border">
               {/* Header */}
               <div className="bg-[#FF4D79] px-6 py-5 text-white">
                 <div className="flex items-center justify-between">
@@ -258,7 +258,7 @@ export function AIIgnite() {
 
               {/* Body */}
               <div className="px-6 py-5">
-                <ul className="list-disc list-inside space-y-2 text-gray-800 mb-4">
+                <ul className="list-disc list-inside space-y-2 text-nexius-dark-text-muted mb-4">
                   <li>Co-host workshops or webinars for our executive community</li>
                   <li>Provide industry research or exclusive insights</li>
                   <li>Support outreach by inviting leaders and students to participate</li>
@@ -281,7 +281,7 @@ export function AIIgnite() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid md:grid-cols-2 gap-16">
             <div>
-              <h2 className="text-3xl font-display font-bold text-white mb-6">
+              <h2 className="text-3xl font-display font-bold text-nexius-dark-text mb-6">
                 Contact Information
               </h2>
               <div className="mb-8">
@@ -304,11 +304,11 @@ export function AIIgnite() {
               </div>
             </div>
 
-            <div className="bg-white rounded-xl p-8">
-              <h3 className="text-2xl font-display font-bold text-nexius-navy mb-6">
+            <div className="bg-nexius-dark-surface rounded-xl p-8 border border-nexius-dark-border">
+              <h3 className="text-2xl font-display font-bold text-white mb-6">
                 Get in Touch
               </h3>
-              <p className="text-nexius-charcoal mb-8">
+              <p className="text-nexius-dark-text-muted mb-8">
                 For partnership opportunities or event collaboration inquiries, please reach out to us. Let's create impactful AI events together!
               </p>
               <form className="space-y-6" onSubmit={async (e) => {
@@ -350,60 +350,60 @@ export function AIIgnite() {
               }}>
                 <div className="grid grid-cols-2 gap-4">
                   <div>
-                    <label className="block text-sm font-medium text-gray-700 mb-1">
+                    <label className="block text-sm font-medium text-nexius-dark-text mb-1">
                       First Name *
                     </label>
                     <input
                       type="text"
                       name="firstName"
                       required
-                      className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-nexius-teal focus:border-nexius-teal"
+                      className="w-full px-3 py-2 border border-nexius-dark-border bg-nexius-dark-card text-nexius-dark-text placeholder-nexius-dark-text-muted rounded-lg focus:ring-2 focus:ring-nexius-teal focus:border-nexius-teal"
                     />
                   </div>
                   <div>
-                    <label className="block text-sm font-medium text-gray-700 mb-1">
+                    <label className="block text-sm font-medium text-nexius-dark-text mb-1">
                       Last Name
                     </label>
                     <input
                       type="text"
                       name="lastName"
-                      className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-nexius-teal focus:border-nexius-teal"
+                      className="w-full px-3 py-2 border border-nexius-dark-border bg-nexius-dark-card text-nexius-dark-text placeholder-nexius-dark-text-muted rounded-lg focus:ring-2 focus:ring-nexius-teal focus:border-nexius-teal"
                     />
                   </div>
                 </div>
 
                 <div>
-                  <label className="block text-sm font-medium text-gray-700 mb-1">
+                  <label className="block text-sm font-medium text-nexius-dark-text mb-1">
                     Email *
                   </label>
                   <input
                     type="email"
                     name="email"
                     required
-                    className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-nexius-teal focus:border-nexius-teal"
+                    className="w-full px-3 py-2 border border-nexius-dark-border bg-nexius-dark-card text-nexius-dark-text placeholder-nexius-dark-text-muted rounded-lg focus:ring-2 focus:ring-nexius-teal focus:border-nexius-teal"
                   />
                 </div>
 
                 <div>
-                  <label className="block text-sm font-medium text-gray-700 mb-1">
+                  <label className="block text-sm font-medium text-nexius-dark-text mb-1">
                     Company *
                   </label>
                   <input
                     type="text"
                     name="company"
                     required
-                    className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-nexius-teal focus:border-nexius-teal"
+                    className="w-full px-3 py-2 border border-nexius-dark-border bg-nexius-dark-card text-nexius-dark-text placeholder-nexius-dark-text-muted rounded-lg focus:ring-2 focus:ring-nexius-teal focus:border-nexius-teal"
                   />
                 </div>
 
                 <div>
-                  <label className="block text-sm font-medium text-gray-700 mb-1">
+                  <label className="block text-sm font-medium text-nexius-dark-text mb-1">
                     How would you like to collaborate?
                   </label>
                   <textarea
                     rows={4}
                     name="message"
-                    className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-nexius-teal focus:border-nexius-teal"
+                    className="w-full px-3 py-2 border border-nexius-dark-border bg-nexius-dark-card text-nexius-dark-text placeholder-nexius-dark-text-muted rounded-lg focus:ring-2 focus:ring-nexius-teal focus:border-nexius-teal"
                   ></textarea>
                 </div>
 
@@ -422,13 +422,13 @@ export function AIIgnite() {
       <ContactForm isOpen={showContactForm} onClose={() => setShowContactForm(false)} />
 
       {/* Footer */}
-      <footer className="bg-gray-900 text-gray-400 py-12">
+     <footer className="bg-nexius-dark-surface text-nexius-dark-text-muted py-12">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid md:grid-cols-4 gap-8">
             <div>
               <button
                 onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
-                className="flex items-center text-white mb-4 group focus:outline-none"
+                className="flex items-center text-nexius-dark-text mb-4 group focus:outline-none"
               >
                 <img
                   src="https://tunidbyclygzipvbfzee.supabase.co/storage/v1/object/public/website-images/m04h4fs8wns-1739784195705.png"
@@ -442,7 +442,7 @@ export function AIIgnite() {
               </p>
             </div>
             <div>
-              <h3 className="text-white font-semibold mb-4">Product</h3>
+             <h3 className="text-nexius-dark-text font-semibold mb-4">Product</h3>
               <ul className="space-y-2">
                 <li><a href="#services" className="hover:text-white transition-colors">Services</a></li>
                 <li><a href="#benefits" className="hover:text-white transition-colors">Benefits</a></li>
@@ -450,7 +450,7 @@ export function AIIgnite() {
               </ul>
             </div>
             <div>
-              <h3 className="text-white font-semibold mb-4">Company</h3>
+             <h3 className="text-nexius-dark-text font-semibold mb-4">Company</h3>
               <ul className="space-y-2">
                 <li><a href="#" className="hover:text-white transition-colors">About Us</a></li>
                 <li><a href="#" className="hover:text-white transition-colors">Contact</a></li>
@@ -458,7 +458,7 @@ export function AIIgnite() {
               </ul>
             </div>
             <div>
-              <h3 className="text-white font-semibold mb-4">Legal</h3>
+             <h3 className="text-nexius-dark-text font-semibold mb-4">Legal</h3>
               <ul className="space-y-2">
                 <li><Link to="/privacy" className="hover:text-white transition-colors">Privacy Policy</Link></li>
                 <li><a href="#" className="hover:text-white transition-colors">Terms of Service</a></li>
@@ -466,7 +466,7 @@ export function AIIgnite() {
               </ul>
             </div>
           </div>
-          <div className="border-t border-gray-800 mt-12 pt-8 text-sm text-center">
+         <div className="border-t border-nexius-dark-border mt-12 pt-8 text-sm text-center">
             © {new Date().getFullYear()} NEXIUS Labs. All rights reserved.
           </div>
         </div>

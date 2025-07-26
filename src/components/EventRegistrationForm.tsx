@@ -118,7 +118,7 @@ export function EventRegistrationForm({ event, isOpen, onClose }: EventRegistrat
 
   return (
     <div className="fixed inset-0 bg-black/50 backdrop-blur-sm z-50 flex items-center justify-center p-4 overflow-y-auto">
-      <div className="bg-white rounded-xl shadow-xl max-w-lg w-full max-h-[90vh] overflow-y-auto">
+      <div className="bg-nexius-dark-surface rounded-xl shadow-xl max-w-lg w-full max-h-[90vh] overflow-y-auto border border-nexius-dark-border">
         <div className="p-6">
           <div className="flex justify-between items-center mb-6">
             <h2 className="text-2xl font-display font-bold text-nexius-navy">
@@ -129,7 +129,7 @@ export function EventRegistrationForm({ event, isOpen, onClose }: EventRegistrat
             </h2>
             <button
               onClick={onClose}
-              className="text-gray-400 hover:text-gray-600 transition-colors"
+              className="text-nexius-dark-text-muted hover:text-nexius-dark-text transition-colors"
             >
               <X className="h-6 w-6" />
             </button>
@@ -138,18 +138,18 @@ export function EventRegistrationForm({ event, isOpen, onClose }: EventRegistrat
           <form onSubmit={handleSubmit} className="space-y-6">
             {/* Full Name */}
             <div>
-              <label htmlFor="fullName" className="block text-sm font-medium text-gray-700 mb-1">
+              <label htmlFor="fullName" className="block text-sm font-medium text-nexius-dark-text mb-1">
                 Full Name *
               </label>
               <div className="relative">
-                <User className="absolute left-3 top-1/2 -translate-y-1/2 h-5 w-5 text-gray-400" />
+                <User className="absolute left-3 top-1/2 -translate-y-1/2 h-5 w-5 text-nexius-dark-text-muted" />
                 <input
                   type="text"
                   id="fullName"
                   required
                   value={formData.fullName}
                   onChange={(e) => setFormData(prev => ({ ...prev, fullName: e.target.value }))}
-                  className="pl-10 pr-3 py-2 w-full border border-gray-300 rounded-lg focus:ring-2 focus:ring-nexius-teal focus:border-nexius-teal"
+                  className="pl-10 pr-3 py-2 w-full border border-nexius-dark-border bg-nexius-dark-card text-nexius-dark-text placeholder-nexius-dark-text-muted rounded-lg focus:ring-2 focus:ring-nexius-teal focus:border-nexius-teal"
                   placeholder="Enter your full name"
                 />
               </div>
@@ -157,18 +157,18 @@ export function EventRegistrationForm({ event, isOpen, onClose }: EventRegistrat
 
             {/* Email */}
             <div>
-              <label htmlFor="email" className="block text-sm font-medium text-gray-700 mb-1">
+              <label htmlFor="email" className="block text-sm font-medium text-nexius-dark-text mb-1">
                 Email Address *
               </label>
               <div className="relative">
-                <Mail className="absolute left-3 top-1/2 -translate-y-1/2 h-5 w-5 text-gray-400" />
+                <Mail className="absolute left-3 top-1/2 -translate-y-1/2 h-5 w-5 text-nexius-dark-text-muted" />
                 <input
                   type="email"
                   id="email"
                   required
                   value={formData.email}
                   onChange={(e) => setFormData(prev => ({ ...prev, email: e.target.value }))}
-                  className="pl-10 pr-3 py-2 w-full border border-gray-300 rounded-lg focus:ring-2 focus:ring-nexius-teal focus:border-nexius-teal"
+                  className="pl-10 pr-3 py-2 w-full border border-nexius-dark-border bg-nexius-dark-card text-nexius-dark-text placeholder-nexius-dark-text-muted rounded-lg focus:ring-2 focus:ring-nexius-teal focus:border-nexius-teal"
                   placeholder="Enter your email"
                 />
               </div>
@@ -176,17 +176,17 @@ export function EventRegistrationForm({ event, isOpen, onClose }: EventRegistrat
 
             {/* Phone */}
             <div>
-              <label htmlFor="phone" className="block text-sm font-medium text-gray-700 mb-1">
+              <label htmlFor="phone" className="block text-sm font-medium text-nexius-dark-text mb-1">
                 Phone Number
               </label>
               <div className="relative">
-                <Phone className="absolute left-3 top-1/2 -translate-y-1/2 h-5 w-5 text-gray-400" />
+                <Phone className="absolute left-3 top-1/2 -translate-y-1/2 h-5 w-5 text-nexius-dark-text-muted" />
                 <input
                   type="tel"
                   id="phone"
                   value={formData.phone}
                   onChange={(e) => setFormData(prev => ({ ...prev, phone: e.target.value }))}
-                  className="pl-10 pr-3 py-2 w-full border border-gray-300 rounded-lg focus:ring-2 focus:ring-nexius-teal focus:border-nexius-teal"
+                  className="pl-10 pr-3 py-2 w-full border border-nexius-dark-border bg-nexius-dark-card text-nexius-dark-text placeholder-nexius-dark-text-muted rounded-lg focus:ring-2 focus:ring-nexius-teal focus:border-nexius-teal"
                   placeholder="Enter your phone number"
                 />
               </div>
@@ -194,7 +194,7 @@ export function EventRegistrationForm({ event, isOpen, onClose }: EventRegistrat
 
             {/* Company */}
             <div>
-              <label htmlFor="company" className="block text-sm font-medium text-gray-700 mb-1">
+              <label htmlFor="company" className="block text-sm font-medium text-nexius-dark-text mb-1">
                 Company/School
               </label>
               <input
@@ -202,14 +202,14 @@ export function EventRegistrationForm({ event, isOpen, onClose }: EventRegistrat
                 id="company"
                 value={formData.company}
                 onChange={(e) => setFormData(prev => ({ ...prev, company: e.target.value }))}
-                className="px-3 py-2 w-full border border-gray-300 rounded-lg focus:ring-2 focus:ring-nexius-teal focus:border-nexius-teal"
+                className="px-3 py-2 w-full border border-nexius-dark-border bg-nexius-dark-card text-nexius-dark-text placeholder-nexius-dark-text-muted rounded-lg focus:ring-2 focus:ring-nexius-teal focus:border-nexius-teal"
                 placeholder="Enter your company or school name"
               />
             </div>
 
             {/* Job Title */}
             <div>
-              <label htmlFor="jobTitle" className="block text-sm font-medium text-gray-700 mb-1">
+              <label htmlFor="jobTitle" className="block text-sm font-medium text-nexius-dark-text mb-1">
                 Job Title
               </label>
               <input
@@ -217,24 +217,24 @@ export function EventRegistrationForm({ event, isOpen, onClose }: EventRegistrat
                 id="jobTitle"
                 value={formData.jobTitle}
                 onChange={(e) => setFormData(prev => ({ ...prev, jobTitle: e.target.value }))}
-                className="px-3 py-2 w-full border border-gray-300 rounded-lg focus:ring-2 focus:ring-nexius-teal focus:border-nexius-teal"
+                className="px-3 py-2 w-full border border-nexius-dark-border bg-nexius-dark-card text-nexius-dark-text placeholder-nexius-dark-text-muted rounded-lg focus:ring-2 focus:ring-nexius-teal focus:border-nexius-teal"
                 placeholder="Enter your job title"
               />
             </div>
 
             {/* LinkedIn */}
             <div>
-              <label htmlFor="linkedIn" className="block text-sm font-medium text-gray-700 mb-1">
+              <label htmlFor="linkedIn" className="block text-sm font-medium text-nexius-dark-text mb-1">
                 LinkedIn Profile
               </label>
               <div className="relative">
-                <LinkIcon className="absolute left-3 top-1/2 -translate-y-1/2 h-5 w-5 text-gray-400" />
+                <LinkIcon className="absolute left-3 top-1/2 -translate-y-1/2 h-5 w-5 text-nexius-dark-text-muted" />
                 <input
                   type="url"
                   id="linkedIn"
                   value={formData.linkedIn}
                   onChange={(e) => setFormData(prev => ({ ...prev, linkedIn: e.target.value }))}
-                  className="pl-10 pr-3 py-2 w-full border border-gray-300 rounded-lg focus:ring-2 focus:ring-nexius-teal focus:border-nexius-teal"
+                  className="pl-10 pr-3 py-2 w-full border border-nexius-dark-border bg-nexius-dark-card text-nexius-dark-text placeholder-nexius-dark-text-muted rounded-lg focus:ring-2 focus:ring-nexius-teal focus:border-nexius-teal"
                   placeholder="Enter your LinkedIn profile URL"
                 />
               </div>

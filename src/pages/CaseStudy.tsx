@@ -193,9 +193,9 @@ export function CaseStudy() {
 
   if (!study) {
     return (
-      <div className="min-h-screen bg-gray-50 py-32">
+      <div className="min-h-screen bg-nexius-dark-bg py-32">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <h1 className="text-2xl font-bold text-gray-900">Case Study Not Found</h1>
+          <h1 className="text-2xl font-bold text-white">Case Study Not Found</h1>
           <Link to="/" className="text-nexius-teal hover:text-nexius-teal/90 mt-4 inline-block">
             Return Home
           </Link>
@@ -205,7 +205,7 @@ export function CaseStudy() {
   }
 
   return (
-    <div className="min-h-screen bg-white">
+    <div className="min-h-screen bg-nexius-dark-bg">
       {/* Hero Section */}
       <div className="relative h-[60vh] min-h-[400px] bg-nexius-navy">
         <div className="absolute inset-0">
@@ -246,31 +246,31 @@ export function CaseStudy() {
           <div className="lg:col-span-2">
             {/* Challenge */}
             <section className="mb-16">
-              <h2 className="text-2xl font-display font-bold text-nexius-navy mb-4">
+              <h2 className="text-2xl font-display font-bold text-white mb-4">
                 The Challenge
               </h2>
-              <p className="text-nexius-charcoal leading-relaxed">
+              <p className="text-nexius-dark-text-muted leading-relaxed">
                 {study.fullContent.challenge}
               </p>
             </section>
 
             {/* Solution */}
             <section className="mb-16">
-              <h2 className="text-2xl font-display font-bold text-nexius-navy mb-4">
+              <h2 className="text-2xl font-display font-bold text-white mb-4">
                 Our Solution
               </h2>
-              <p className="text-nexius-charcoal leading-relaxed mb-8">
+              <p className="text-nexius-dark-text-muted leading-relaxed mb-8">
                 {study.fullContent.solution}
               </p>
               
-              <h3 className="text-xl font-display font-bold text-nexius-navy mb-4">
+              <h3 className="text-xl font-display font-bold text-white mb-4">
                 Implementation Process
               </h3>
               <ul className="space-y-4">
                 {study.fullContent.implementation.map((step, index) => (
                   <li key={index} className="flex items-start">
                     <CheckCircle2 className="h-6 w-6 text-nexius-teal shrink-0 mt-0.5 mr-3" />
-                    <span className="text-nexius-charcoal">{step}</span>
+                    <span className="text-nexius-dark-text-muted">{step}</span>
                   </li>
                 ))}
               </ul>
@@ -278,22 +278,22 @@ export function CaseStudy() {
 
             {/* Results */}
             <section className="mb-16">
-              <h2 className="text-2xl font-display font-bold text-nexius-navy mb-8">
+              <h2 className="text-2xl font-display font-bold text-white mb-8">
                 The Results
               </h2>
               <div className="grid sm:grid-cols-2 gap-6">
                 {study.fullContent.results.map((result, index) => (
                   <div
                     key={index}
-                    className="bg-white rounded-xl p-6 border border-nexius-gray hover:border-nexius-teal/30 transition-colors"
+                    className="bg-nexius-dark-card rounded-xl p-6 border border-nexius-dark-border hover:border-nexius-teal/50 transition-colors"
                   >
                     <div className="text-3xl font-display font-bold text-nexius-teal mb-2">
                       {result.metric}
                     </div>
-                    <div className="font-semibold text-nexius-navy mb-2">
+                    <div className="font-semibold text-white mb-2">
                       {result.value}
                     </div>
-                    <p className="text-sm text-nexius-charcoal">
+                    <p className="text-sm text-nexius-dark-text-muted">
                       {result.description}
                     </p>
                   </div>
@@ -322,41 +322,41 @@ export function CaseStudy() {
           {/* Sidebar */}
           <div className="lg:col-span-1">
             <div className="sticky top-24">
-              <div className="bg-nexius-gray rounded-xl p-6 mb-8">
-                <h3 className="text-lg font-display font-bold text-nexius-navy mb-4">
+              <div className="bg-nexius-dark-surface rounded-xl p-6 mb-8 border border-nexius-dark-border">
+                <h3 className="text-lg font-display font-bold text-white mb-4">
                   Key Metrics
                 </h3>
                 <div className="space-y-4">
                   <div className="flex items-center gap-3">
                     <TrendingUp className="h-5 w-5 text-nexius-teal" />
-                    <span className="text-nexius-charcoal">
+                    <span className="text-nexius-dark-text-muted">
                       {study.impact}
                     </span>
                   </div>
                   <div className="flex items-center gap-3">
                     <Users className="h-5 w-5 text-nexius-teal" />
-                    <span className="text-nexius-charcoal">
+                    <span className="text-nexius-dark-text-muted">
                       {study.industry} Industry
                     </span>
                   </div>
                   <div className="flex items-center gap-3">
                     <Target className="h-5 w-5 text-nexius-teal" />
-                    <span className="text-nexius-charcoal">
+                    <span className="text-nexius-dark-text-muted">
                       3-Month Implementation
                     </span>
                   </div>
                 </div>
               </div>
 
-              <div className="bg-nexius-gray rounded-xl p-6">
-                <h3 className="text-lg font-display font-bold text-nexius-navy mb-4">
+              <div className="bg-nexius-dark-surface rounded-xl p-6 border border-nexius-dark-border">
+                <h3 className="text-lg font-display font-bold text-white mb-4">
                   Next Steps
                 </h3>
                 <ul className="space-y-3">
                   {study.fullContent.nextSteps.map((step, index) => (
                     <li key={index} className="flex items-start">
                       <ArrowRight className="h-5 w-5 text-nexius-teal shrink-0 mt-0.5 mr-2" />
-                      <span className="text-sm text-nexius-charcoal">{step}</span>
+                      <span className="text-sm text-nexius-dark-text-muted">{step}</span>
                     </li>
                   ))}
                 </ul>

@@ -48,7 +48,7 @@ export function BlogPost() {
 
   if (loading) {
     return (
-      <div className="min-h-screen bg-white flex items-center justify-center">
+      <div className="min-h-screen bg-nexius-dark-bg flex items-center justify-center">
         <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-nexius-teal"></div>
       </div>
     );
@@ -59,7 +59,7 @@ export function BlogPost() {
   }
 
   return (
-    <div className="min-h-screen bg-white">
+    <div className="min-h-screen bg-nexius-dark-bg">
       {/* Hero Section */}
       <div className="relative h-[60vh] min-h-[400px] bg-nexius-navy">
         {article.featured_image && (
@@ -107,7 +107,7 @@ export function BlogPost() {
 
       {/* Content */}
       <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
-        <article className="prose prose-lg max-w-none">
+        <article className="prose prose-lg max-w-none text-nexius-dark-text">
           <div dangerouslySetInnerHTML={{ __html: article.content }} />
         </article>
       </div>

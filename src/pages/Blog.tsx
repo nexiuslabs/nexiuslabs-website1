@@ -38,7 +38,7 @@ export function Blog() {
   };
 
   return (
-    <div className="min-h-screen bg-white">
+    <div className="min-h-screen bg-nexius-dark-bg">
       {/* Hero Section */}
       <section className="relative pt-32 pb-24 bg-gradient-to-b from-nexius-navy to-nexius-navy/95">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -62,10 +62,10 @@ export function Blog() {
             </div>
           ) : articles.length === 0 ? (
             <div className="text-center py-16">
-              <h2 className="text-2xl font-display font-bold text-nexius-navy mb-4">
+              <h2 className="text-2xl font-display font-bold text-white mb-4">
                 No Articles Yet
               </h2>
-              <p className="text-nexius-charcoal">
+              <p className="text-nexius-dark-text-muted">
                 Check back soon for our latest insights and updates.
               </p>
             </div>
@@ -77,7 +77,7 @@ export function Blog() {
                   to={`/blog/${article.slug}`}
                   className="group block"
                 >
-                  <div className="bg-white rounded-xl overflow-hidden border border-nexius-gray hover:border-nexius-teal/30 hover:shadow-lg transition-all">
+                  <div className="bg-nexius-dark-surface rounded-xl overflow-hidden border border-nexius-dark-border hover:border-nexius-teal/50 hover:shadow-lg transition-all">
                     {article.featured_image && (
                       <div className="aspect-video relative overflow-hidden">
                         <img
@@ -89,7 +89,7 @@ export function Blog() {
                       </div>
                     )}
                     <div className="p-6">
-                      <div className="flex items-center gap-4 text-sm text-nexius-charcoal/80 mb-3">
+                      <div className="flex items-center gap-4 text-sm text-nexius-dark-text-muted mb-3">
                         <div className="flex items-center">
                           <Calendar className="h-4 w-4 mr-1" />
                           {formatDate(article.published_at || article.created_at)}
@@ -99,11 +99,11 @@ export function Blog() {
                           Author
                         </div>
                       </div>
-                      <h3 className="text-xl font-display font-bold text-nexius-navy mb-3 group-hover:text-nexius-teal transition-colors">
+                      <h3 className="text-xl font-display font-bold text-white mb-3 group-hover:text-nexius-teal transition-colors">
                         {article.title}
                       </h3>
                       {article.description && (
-                        <p className="text-nexius-charcoal mb-4 line-clamp-3">
+                        <p className="text-nexius-dark-text-muted mb-4 line-clamp-3">
                           {article.description}
                         </p>
                       )}

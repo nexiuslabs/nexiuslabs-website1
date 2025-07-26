@@ -31,7 +31,7 @@ const caseStudies = [
 
 export function CaseStudies() {
   return (
-    <div className="min-h-screen bg-white">
+    <div className="min-h-screen bg-nexius-dark-bg">
       {/* Hero Section */}
       <section className="relative pt-32 pb-24 bg-gradient-to-b from-nexius-navy to-nexius-navy/95">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -47,23 +47,23 @@ export function CaseStudies() {
       </section>
 
       {/* Stats Section */}
-      <section className="py-16 bg-nexius-gray">
+      <section className="py-16 bg-nexius-dark-surface">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid md:grid-cols-3 gap-8">
-            <div className="bg-white p-8 rounded-xl border border-nexius-gray">
+            <div className="bg-nexius-dark-card p-8 rounded-xl border border-nexius-dark-border">
               <TrendingUp className="h-12 w-12 text-nexius-teal mb-4" />
-              <div className="text-3xl font-display font-bold text-nexius-navy mb-2">45%</div>
-              <div className="text-nexius-charcoal">Average Efficiency Gain</div>
+              <div className="text-3xl font-display font-bold text-white mb-2">45%</div>
+              <div className="text-nexius-dark-text-muted">Average Efficiency Gain</div>
             </div>
-            <div className="bg-white p-8 rounded-xl border border-nexius-gray">
+            <div className="bg-nexius-dark-card p-8 rounded-xl border border-nexius-dark-border">
               <Users className="h-12 w-12 text-nexius-teal mb-4" />
-              <div className="text-3xl font-display font-bold text-nexius-navy mb-2">100+</div>
-              <div className="text-nexius-charcoal">Businesses Transformed</div>
+              <div className="text-3xl font-display font-bold text-white mb-2">100+</div>
+              <div className="text-nexius-dark-text-muted">Businesses Transformed</div>
             </div>
-            <div className="bg-white p-8 rounded-xl border border-nexius-gray">
+            <div className="bg-nexius-dark-card p-8 rounded-xl border border-nexius-dark-border">
               <Target className="h-12 w-12 text-nexius-teal mb-4" />
-              <div className="text-3xl font-display font-bold text-nexius-navy mb-2">3x</div>
-              <div className="text-nexius-charcoal">Average ROI</div>
+              <div className="text-3xl font-display font-bold text-white mb-2">3x</div>
+              <div className="text-nexius-dark-text-muted">Average ROI</div>
             </div>
           </div>
         </div>
@@ -79,7 +79,7 @@ export function CaseStudies() {
                 to={`/case-study/${study.id}`}
                 className="group block"
               >
-                <div className="bg-white rounded-xl overflow-hidden border border-nexius-gray hover:border-nexius-teal/30 hover:shadow-lg transition-all">
+                <div className="bg-nexius-dark-surface rounded-xl overflow-hidden border border-nexius-dark-border hover:border-nexius-teal/50 hover:shadow-lg transition-all">
                   <div className="aspect-video relative overflow-hidden">
                     <img
                       src={study.image}
@@ -99,10 +99,10 @@ export function CaseStudies() {
                     </div>
                   </div>
                   <div className="p-6">
-                    <h3 className="text-xl font-display font-bold text-nexius-navy mb-3 group-hover:text-nexius-teal transition-colors">
+                    <h3 className="text-xl font-display font-bold text-white mb-3 group-hover:text-nexius-teal transition-colors">
                       {study.title}
                     </h3>
-                    <p className="text-nexius-charcoal mb-4">
+                    <p className="text-nexius-dark-text-muted mb-4">
                       {study.description}
                     </p>
                     <div className="flex items-center text-nexius-teal font-medium">

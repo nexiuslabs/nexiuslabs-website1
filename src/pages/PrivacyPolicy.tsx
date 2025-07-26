@@ -4,7 +4,7 @@ import { ArrowLeft } from 'lucide-react';
 
 export function PrivacyPolicy() {
   return (
-    <div className="min-h-screen bg-white">
+    <div className="min-h-screen bg-nexius-dark-bg">
       {/* Header */}
       <div className="bg-nexius-navy py-16">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -26,7 +26,7 @@ export function PrivacyPolicy() {
 
       {/* Content */}
       <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
-        <div className="prose max-w-none">
+        <div className="prose max-w-none text-nexius-dark-text">
           <p>
             At <strong>Nexius Labs Pte Ltd</strong> ("we", "our", "us"), we respect your privacy and are committed to protecting the personal information you share with us. This Privacy Policy explains how we collect, use, disclose, and protect your information when you visit our website at <a href="http://www.nexiuslabs.com">www.nexiuslabs.com</a> (the "Site").
           </p>

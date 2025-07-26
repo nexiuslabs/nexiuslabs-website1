@@ -176,7 +176,7 @@ function Navigation({ onContactClick }: { onContactClick: () => void }) {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
   return (
-    <nav className="fixed w-full bg-white/80 backdrop-blur-md z-50 border-b border-gray-100">
+    <nav className="fixed w-full bg-nexius-dark-surface/90 backdrop-blur-md z-50 border-b border-nexius-dark-border">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between h-16">
           <Link 
@@ -188,19 +188,19 @@ function Navigation({ onContactClick }: { onContactClick: () => void }) {
               alt="NEXIUS Labs"
               className="h-8 w-8 object-contain group-hover:opacity-90 transition-opacity"
             />
-            <span className="ml-3 text-xl font-display font-extrabold text-nexius-navy tracking-tight uppercase group-hover:text-nexius-teal transition-colors">NEXIUS Labs</span>
+            <span className="ml-3 text-xl font-display font-extrabold text-white tracking-tight uppercase group-hover:text-nexius-teal transition-colors">NEXIUS Labs</span>
           </Link>
           {/* Mobile menu button */}
-          <button onClick={() => setIsMenuOpen(!isMenuOpen)} className="md:hidden p-2 rounded-lg hover:bg-gray-100">
+          <button onClick={() => setIsMenuOpen(!isMenuOpen)} className="md:hidden p-2 rounded-lg hover:bg-nexius-dark-card text-nexius-dark-text">
             {isMenuOpen ? <XIcon className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
           </button>
           <div className="hidden md:flex items-center space-x-8 relative">
-            <a href="/#services" className="font-body font-medium text-nexius-charcoal hover:text-nexius-navy transition-colors">Services</a>
-            <a href="/#benefits" className="font-body font-medium text-nexius-charcoal hover:text-nexius-navy transition-colors">Benefits</a>
-            <Link to="/blog" className="font-body font-medium text-nexius-charcoal hover:text-nexius-navy transition-colors">Blog</Link>
-            <Link to="/case-studies" className="font-body font-medium text-nexius-charcoal hover:text-nexius-navy transition-colors">Case Studies</Link>
-            <Link to="/events" className="font-body font-medium text-nexius-charcoal hover:text-nexius-navy transition-colors">Events</Link>
-            <Link to="/ai-ignite" className="font-body font-medium text-nexius-charcoal hover:text-nexius-navy transition-colors">AI-Ignite</Link>
+            <a href="/#services" className="font-body font-medium text-nexius-dark-text-muted hover:text-white transition-colors">Services</a>
+            <a href="/#benefits" className="font-body font-medium text-nexius-dark-text-muted hover:text-white transition-colors">Benefits</a>
+            <Link to="/blog" className="font-body font-medium text-nexius-dark-text-muted hover:text-white transition-colors">Blog</Link>
+            <Link to="/case-studies" className="font-body font-medium text-nexius-dark-text-muted hover:text-white transition-colors">Case Studies</Link>
+            <Link to="/events" className="font-body font-medium text-nexius-dark-text-muted hover:text-white transition-colors">Events</Link>
+            <Link to="/ai-ignite" className="font-body font-medium text-nexius-dark-text-muted hover:text-white transition-colors">AI-Ignite</Link>
             <button 
               onClick={onContactClick}
               data-contact="true"
@@ -212,46 +212,46 @@ function Navigation({ onContactClick }: { onContactClick: () => void }) {
         </div>
         {/* Mobile menu */}
         <div className={`md:hidden ${isMenuOpen ? 'block' : 'hidden'}`}>
-          <div className="px-2 pt-2 pb-3 space-y-1 border-t border-gray-200">
+          <div className="px-2 pt-2 pb-3 space-y-1 border-t border-nexius-dark-border">
             <a 
               href="/#services" 
               onClick={() => setIsMenuOpen(false)}
-              className="block px-3 py-2 rounded-md text-base font-medium text-nexius-charcoal hover:text-nexius-navy hover:bg-gray-50"
+              className="block px-3 py-2 rounded-md text-base font-medium text-nexius-dark-text-muted hover:text-white hover:bg-nexius-dark-card"
             >
               Services
             </a>
             <a 
               href="/#benefits" 
               onClick={() => setIsMenuOpen(false)}
-              className="block px-3 py-2 rounded-md text-base font-medium text-nexius-charcoal hover:text-nexius-navy hover:bg-gray-50"
+              className="block px-3 py-2 rounded-md text-base font-medium text-nexius-dark-text-muted hover:text-white hover:bg-nexius-dark-card"
             >
               Benefits
             </a>
             <Link 
               to="/blog" 
               onClick={() => setIsMenuOpen(false)}
-              className="block px-3 py-2 rounded-md text-base font-medium text-nexius-charcoal hover:text-nexius-navy hover:bg-gray-50"
+              className="block px-3 py-2 rounded-md text-base font-medium text-nexius-dark-text-muted hover:text-white hover:bg-nexius-dark-card"
             >
               Blog
             </Link>
             <Link 
               to="/case-studies" 
               onClick={() => setIsMenuOpen(false)}
-              className="block px-3 py-2 rounded-md text-base font-medium text-nexius-charcoal hover:text-nexius-navy hover:bg-gray-50"
+              className="block px-3 py-2 rounded-md text-base font-medium text-nexius-dark-text-muted hover:text-white hover:bg-nexius-dark-card"
             >
               Case Studies
             </Link>
             <Link 
               to="/events" 
               onClick={() => setIsMenuOpen(false)}
-              className="block px-3 py-2 rounded-md text-base font-medium text-nexius-charcoal hover:text-nexius-navy hover:bg-gray-50"
+              className="block px-3 py-2 rounded-md text-base font-medium text-nexius-dark-text-muted hover:text-white hover:bg-nexius-dark-card"
             >
               Events
             </Link>
             <Link 
               to="/ai-ignite"
               onClick={() => setIsMenuOpen(false)}
-              className="block px-3 py-2 rounded-md text-base font-medium text-nexius-charcoal hover:text-nexius-navy hover:bg-gray-50"
+              className="block px-3 py-2 rounded-md text-base font-medium text-nexius-dark-text-muted hover:text-white hover:bg-nexius-dark-card"
             >
               AI-Ignite
             </Link>
@@ -280,7 +280,7 @@ function HomePage() {
   };
 
   return (
-    <div className="min-h-screen bg-white">
+    <div className="min-h-screen bg-nexius-dark-bg">
       {/* Hero Section */}
       <section className="relative pt-32 pb-24 bg-gradient-to-b from-nexius-navy to-nexius-navy/95">
         <HeroAnimation />
@@ -320,22 +320,22 @@ function HomePage() {
       <section id="services" className="py-24">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-16">
-            <h2 className="text-3xl font-display font-bold text-nexius-navy mb-4 tracking-tight">
+            <h2 className="text-3xl font-display font-bold text-white mb-4 tracking-tight">
               BUSINESSES STRUGGLE TO ADOPT AI
             </h2>
-            <p className="font-body text-nexius-charcoal max-w-2xl mx-auto leading-relaxed">
+            <p className="font-body text-nexius-dark-text-muted max-w-2xl mx-auto leading-relaxed">
               Nexius simplifies AI adoption with tailored automation, expert consulting, and no-code solutions - helping businesses unlock efficiency, reduce costs, and scale seamlessly.
             </p>
           </div>
           <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
             {features.map((feature) => (
-              <div key={feature.title} className="group p-6 bg-white rounded-xl border border-nexius-gray hover:border-nexius-teal/30 hover:shadow-lg transition-all">
+              <div key={feature.title} className="group p-6 bg-nexius-dark-card rounded-xl border border-nexius-dark-border hover:border-nexius-teal/50 hover:shadow-lg transition-all">
                 <div className="relative inline-block">
                   <div className="absolute -inset-2 bg-nexius-teal/20 rounded-lg blur opacity-0 group-hover:opacity-100 transition-opacity"></div>
                   <feature.icon className="relative h-12 w-12 text-nexius-teal mb-4" />
                 </div>
-                <h3 className="text-xl font-semibold text-nexius-navy mb-2">{feature.title}</h3>
-                <p className="text-nexius-charcoal">{feature.description}</p>
+                <h3 className="text-xl font-semibold text-white mb-2">{feature.title}</h3>
+                <p className="text-nexius-dark-text-muted">{feature.description}</p>
               </div>
             ))}
           </div>
@@ -343,13 +343,13 @@ function HomePage() {
       </section>
 
       {/* Benefits Section */}
-      <section id="benefits" className="py-24 bg-nexius-gray">
+      <section id="benefits" className="py-24 bg-nexius-dark-surface">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-16">
-            <h2 className="text-3xl font-display font-bold text-nexius-navy mb-4 tracking-tight">
+            <h2 className="text-3xl font-display font-bold text-white mb-4 tracking-tight">
               HOW AI CAN HELP YOUR BUSINESS?
             </h2>
-            <p className="font-body text-nexius-charcoal max-w-2xl mx-auto leading-relaxed">
+            <p className="font-body text-nexius-dark-text-muted max-w-2xl mx-auto leading-relaxed">
               Discover the transformative power of AI and how it can revolutionize your business operations,
               boost efficiency, and drive sustainable growth.
             </p>
@@ -358,8 +358,8 @@ function HomePage() {
             {benefits.map((benefit) => (
               <div key={benefit.title} className="benefit-card">
                 <benefit.icon className="benefit-icon" />
-                <h3 className="text-lg font-semibold text-nexius-navy mb-2">{benefit.title}</h3>
-                <p className="text-sm text-nexius-charcoal">{benefit.description}</p>
+                <h3 className="text-lg font-semibold text-white mb-2">{benefit.title}</h3>
+                <p className="text-sm text-nexius-dark-text-muted">{benefit.description}</p>
               </div>
             ))}
           </div>
@@ -370,23 +370,23 @@ function HomePage() {
       <section className="py-24">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-16">
-            <h2 className="text-3xl font-display font-bold text-nexius-navy mb-4 tracking-tight">
+            <h2 className="text-3xl font-display font-bold text-white mb-4 tracking-tight">
               AI SOLUTIONS IN ACTION
             </h2>
-            <p className="font-body text-nexius-charcoal max-w-2xl mx-auto leading-relaxed">
+            <p className="font-body text-nexius-dark-text-muted max-w-2xl mx-auto leading-relaxed">
               Explore how our AI solutions are transforming different aspects of business operations
               and delivering measurable results.
             </p>
           </div>
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
             {useCases.map((useCase) => (
-              <div key={useCase.title} className="group p-6 bg-white rounded-xl border border-nexius-gray hover:border-nexius-teal/30 hover:shadow-lg transition-all">
+              <div key={useCase.title} className="group p-6 bg-nexius-dark-card rounded-xl border border-nexius-dark-border hover:border-nexius-teal/50 hover:shadow-lg transition-all">
                 <div className="relative inline-block">
                   <div className="absolute -inset-2 bg-nexius-teal/20 rounded-lg blur opacity-0 group-hover:opacity-100 transition-opacity"></div>
                   <useCase.icon className="relative h-12 w-12 text-nexius-teal mb-4" />
                 </div>
-                <h3 className="text-xl font-semibold text-nexius-navy mb-2">{useCase.title}</h3>
-                <p className="text-nexius-charcoal mb-4">{useCase.description}</p>
+                <h3 className="text-xl font-semibold text-white mb-2">{useCase.title}</h3>
+                <p className="text-nexius-dark-text-muted mb-4">{useCase.description}</p>
                 <div className="inline-flex items-center px-3 py-1 rounded-full text-sm font-medium bg-nexius-teal/10 text-nexius-teal">
                   {useCase.metrics}
                 </div>
@@ -397,21 +397,21 @@ function HomePage() {
       </section>
 
       {/* Testimonials Section */}
-      <section id="testimonials" className="py-24 bg-nexius-gray">
+      <section id="testimonials" className="py-24 bg-nexius-dark-surface">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-16">
-            <h2 className="text-3xl font-display font-bold text-nexius-navy mb-4 tracking-tight">
+            <h2 className="text-3xl font-display font-bold text-white mb-4 tracking-tight">
               Visionary Leaders Trust Nexius
             </h2>
-            <p className="font-body text-nexius-charcoal max-w-2xl mx-auto leading-relaxed">
+            <p className="font-body text-nexius-dark-text-muted max-w-2xl mx-auto leading-relaxed">
               Join forward-thinking executives who've transformed their decision-making
               process with NEXIUS Labs' intelligent insights.
             </p>
           </div>
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
             {testimonials.map((testimonial) => (
-              <div key={testimonial.author} className="p-8 bg-white rounded-xl border border-nexius-gray hover:border-nexius-teal/30 transition-colors">
-                <p className="text-nexius-charcoal mb-6 text-lg italic">"{testimonial.quote}"</p>
+              <div key={testimonial.author} className="p-8 bg-nexius-dark-card rounded-xl border border-nexius-dark-border hover:border-nexius-teal/50 transition-colors">
+                <p className="text-nexius-dark-text mb-6 text-lg italic">"{testimonial.quote}"</p>
                 <div className="flex items-center">
                   <img
                     src={testimonial.image}
@@ -420,8 +420,8 @@ function HomePage() {
                     crossOrigin="anonymous"
                   />
                   <div className="ml-4">
-                    <h4 className="text-nexius-navy font-semibold">{testimonial.author}</h4>
-                    <p className="text-nexius-charcoal">
+                    <h4 className="text-white font-semibold">{testimonial.author}</h4>
+                    <p className="text-nexius-dark-text-muted">
                       {testimonial.title}, {testimonial.company}
                     </p>
                   </div>
@@ -454,13 +454,13 @@ function HomePage() {
       </section>
 
       {/* Footer */}
-      <footer className="bg-gray-900 text-gray-400 py-12">
+      <footer className="bg-nexius-dark-surface text-nexius-dark-text-muted py-12">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid md:grid-cols-4 gap-8">
             <div>
               <button
                 onClick={scrollToTop}
-                className="flex items-center text-white mb-4 group focus:outline-none"
+                className="flex items-center text-nexius-dark-text mb-4 group focus:outline-none"
               >
                 <img
                   src="https://tunidbyclygzipvbfzee.supabase.co/storage/v1/object/public/website-images/m04h4fs8wns-1739784195705.png"
@@ -474,7 +474,7 @@ function HomePage() {
               </p>
             </div>
             <div>
-              <h3 className="text-white font-semibold mb-4">Product</h3>
+              <h3 className="text-nexius-dark-text font-semibold mb-4">Product</h3>
               <ul className="space-y-2">
                 <li><a href="#services" className="hover:text-white transition-colors">Services</a></li>
                 <li><a href="#benefits" className="hover:text-white transition-colors">Benefits</a></li>
@@ -482,7 +482,7 @@ function HomePage() {
               </ul>
             </div>
             <div>
-              <h3 className="text-white font-semibold mb-4">Company</h3>
+              <h3 className="text-nexius-dark-text font-semibold mb-4">Company</h3>
               <ul className="space-y-2">
                 <li><a href="#" className="hover:text-white transition-colors">About Us</a></li>
                 <li><a href="#" className="hover:text-white transition-colors">Contact</a></li>
@@ -490,7 +490,7 @@ function HomePage() {
               </ul>
             </div>
             <div>
-              <h3 className="text-white font-semibold mb-4">Legal</h3>
+              <h3 className="text-nexius-dark-text font-semibold mb-4">Legal</h3>
               <ul className="space-y-2">
                 <li><Link to="/privacy" className="hover:text-white transition-colors">Privacy Policy</Link></li>
                 <li><a href="#" className="hover:text-white transition-colors">Terms of Service</a></li>
@@ -498,7 +498,7 @@ function HomePage() {
               </ul>
             </div>
           </div>
-          <div className="border-t border-gray-800 mt-12 pt-8 text-sm text-center">
+          <div className="border-t border-nexius-dark-border mt-12 pt-8 text-sm text-center">
             © {new Date().getFullYear()} NEXIUS Labs. All rights reserved.
           </div>
         </div>
@@ -526,7 +526,7 @@ export default function App() {
 
   if (!authChecked) {
     return (
-      <div className="fixed inset-0 flex items-center justify-center bg-white">
+      <div className="fixed inset-0 flex items-center justify-center bg-nexius-dark-bg">
         <Loader2 className="w-8 h-8 text-nexius-teal animate-spin" />
       </div>
     );

@@ -49,7 +49,7 @@ export default function Events() {
   };
 
   return (
-    <div className="min-h-screen bg-white">
+    <div className="min-h-screen bg-nexius-dark-bg">
       {/* Hero Section */}
       <section className="relative pt-32 pb-24 bg-gradient-to-b from-nexius-navy to-nexius-navy/95">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -68,13 +68,13 @@ export default function Events() {
       <section className="py-24">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex justify-center mb-8">
-            <div className="inline-flex rounded-lg border border-gray-200 p-1">
+            <div className="inline-flex rounded-lg border border-nexius-dark-border p-1 bg-nexius-dark-surface">
               <button
                 onClick={() => setFilter('upcoming')}
                 className={`px-4 py-2 rounded-md text-sm font-medium transition-colors ${
                   filter === 'upcoming'
                     ? 'bg-nexius-teal text-white'
-                    : 'text-gray-500 hover:text-gray-700'
+                    : 'text-nexius-dark-text-muted hover:text-nexius-dark-text'
                 }`}
               >
                 Upcoming
@@ -84,7 +84,7 @@ export default function Events() {
                 className={`px-4 py-2 rounded-md text-sm font-medium transition-colors ${
                   filter === 'past'
                     ? 'bg-nexius-teal text-white'
-                    : 'text-gray-500 hover:text-gray-700'
+                    : 'text-nexius-dark-text-muted hover:text-nexius-dark-text'
                 }`}
               >
                 Past
@@ -103,10 +103,10 @@ export default function Events() {
           ) : events.length === 0 ? (
             <div className="text-center py-16">
               <Calendar className="h-16 w-16 text-nexius-teal mx-auto mb-6" />
-              <h2 className="text-2xl font-display font-bold text-nexius-navy mb-4">
+              <h2 className="text-2xl font-display font-bold text-white mb-4">
                 No {filter === 'upcoming' ? 'Upcoming' : 'Past'} Events
               </h2>
-              <p className="text-nexius-charcoal max-w-md mx-auto mb-6">
+             <p className="text-nexius-dark-text-muted max-w-md mx-auto mb-6">
                 {filter === 'upcoming' 
                   ? 'Check back soon for our upcoming events and workshops.'
                   : 'No past events to display at this time.'}
@@ -115,7 +115,7 @@ export default function Events() {
           ) : (
             <div className="space-y-8">
               <div className="grid gap-6">
-                <EventsList events={events} />
+             <h2 className="text-2xl font-display font-bold text-white mb-4">
               </div>
             </div>
           )}

@@ -52,7 +52,7 @@ export function EventDetail() {
 
   if (loading) {
     return (
-      <div className="min-h-screen bg-white flex items-center justify-center">
+      <div className="min-h-screen bg-nexius-dark-bg flex items-center justify-center">
         <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-nexius-teal"></div>
       </div>
     );
@@ -60,9 +60,9 @@ export function EventDetail() {
 
   if (error || !event) {
     return (
-      <div className="min-h-screen bg-white py-32 px-4">
+      <div className="min-h-screen bg-nexius-dark-bg py-32 px-4">
         <div className="max-w-3xl mx-auto text-center">
-          <h1 className="text-2xl font-display font-bold text-nexius-navy mb-4">
+          <h1 className="text-2xl font-display font-bold text-white mb-4">
             Event Not Found
           </h1>
           <Link
@@ -78,7 +78,7 @@ export function EventDetail() {
   }
 
   return (
-    <div className="min-h-screen bg-white">
+    <div className="min-h-screen bg-nexius-dark-bg">
       {/* Hero Section */}
       <div className="relative bg-nexius-navy py-16">
         <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-full">
@@ -115,7 +115,7 @@ export function EventDetail() {
             {/* Featured Image */}
             <div className="space-y-8">
               {event.featured_image && (
-                <div className="relative aspect-[16/9] rounded-xl overflow-hidden bg-gray-100">
+                <div className="relative aspect-[16/9] rounded-xl overflow-hidden bg-nexius-dark-card">
                   <img
                     src={event.featured_image}
                     alt={event.title}
@@ -125,13 +125,13 @@ export function EventDetail() {
               )}
 
               {event.description && (
-                <div className="prose max-w-none mb-8">
-                  <p className="text-lg text-nexius-charcoal leading-relaxed">{event.description}</p>
+                <div className="prose max-w-none mb-8 text-nexius-dark-text">
+                  <p className="text-lg text-nexius-dark-text-muted leading-relaxed">{event.description}</p>
                 </div>
               )}
 
               {event.content && (
-                <div className="prose max-w-none">
+                <div className="prose max-w-none text-nexius-dark-text">
                   <div dangerouslySetInnerHTML={{ __html: event.content }} />
                 </div>
               )}
@@ -140,17 +140,17 @@ export function EventDetail() {
 
           {/* Sidebar */}
           <div className="lg:col-span-1 order-1 lg:order-2">
-            <div className="sticky top-24 bg-nexius-gray rounded-xl p-4 md:p-6 space-y-6">
+            <div className="sticky top-24 bg-nexius-dark-surface rounded-xl p-4 md:p-6 space-y-6 border border-nexius-dark-border">
               <div>
-                <h3 className="text-lg font-display font-bold text-nexius-navy mb-4">
+                <h3 className="text-lg font-display font-bold text-white mb-4">
                   Event Details
                 </h3>
                 <div className="space-y-4">
                   <div className="flex items-start gap-3">
                     <Calendar className="h-5 w-5 text-nexius-teal shrink-0 mt-1" />
                     <div className="flex-1 min-w-0">
-                      <div className="font-medium text-nexius-navy">Date & Time</div>
-                      <div className="text-nexius-charcoal break-words">
+                      <div className="font-medium text-white">Date & Time</div>
+                      <div className="text-nexius-dark-text-muted break-words">
                         {formatDateTime(event.start_date)}
                         {' - '}
                         {formatDateTime(event.end_date)}
@@ -161,14 +161,14 @@ export function EventDetail() {
                   <div className="flex items-start gap-3">
                     <MapPin className="h-5 w-5 text-nexius-teal shrink-0 mt-1" />
                     <div className="flex-1 min-w-0">
-                      <div className="font-medium text-nexius-navy">Location</div>
-                      <div className="text-nexius-charcoal break-words">{event.location}</div>
+                      <div className="font-medium text-white">Location</div>
+                      <div className="text-nexius-dark-text-muted break-words">{event.location}</div>
                     </div>
                   </div>
                 </div>
               </div>
 
-              <div className="pt-6 border-t border-gray-200">
+              <div className="pt-6 border-t border-nexius-dark-border">
                 <button
                   onClick={() => setShowRegistration(true)}
                   className="block w-full bg-nexius-teal text-white text-center px-6 py-3 rounded-lg hover:bg-nexius-teal/90 transition-colors font-display font-semibold tracking-wide uppercase text-sm"
