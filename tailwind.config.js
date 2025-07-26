@@ -14,6 +14,7 @@ export default {
         'nexius-dark-surface': '#1A1F2E',
         'nexius-dark-card': '#242938',
         'nexius-dark-border': '#2A2F3E',
+        'nexius-dark-border-light': '#3C4252',
         'nexius-dark-text': '#E5E7EB',
         'nexius-dark-text-muted': '#9CA3AF',
       },
