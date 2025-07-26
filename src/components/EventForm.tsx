@@ -288,12 +288,12 @@ export function EventForm({ onClose, onSave, event }: EventFormProps) {
             Description (Rich Text)
           </label>
           <div className="border border-gray-300 rounded-lg overflow-hidden">
-            <div className="bg-white border-b border-gray-200 p-2 flex flex-wrap gap-1">
+            <div className="bg-nexius-dark-card border-b border-nexius-dark-border p-2 flex flex-wrap gap-1">
               <button
                 type="button"
                 onClick={() => descriptionEditor?.chain().focus().toggleBold().run()}
-                className={`p-2 rounded hover:bg-gray-100 ${
-                  descriptionEditor?.isActive('bold') ? 'bg-gray-100' : ''
+                className={`p-2 rounded hover:bg-nexius-dark-surface text-nexius-dark-text ${
+                  descriptionEditor?.isActive('bold') ? 'bg-nexius-dark-surface' : ''
                 }`}
               >
                 Bold
@@ -301,8 +301,8 @@ export function EventForm({ onClose, onSave, event }: EventFormProps) {
               <button
                 type="button"
                 onClick={() => descriptionEditor?.chain().focus().toggleItalic().run()}
-                className={`p-2 rounded hover:bg-gray-100 ${
-                  descriptionEditor?.isActive('italic') ? 'bg-gray-100' : ''
+                className={`p-2 rounded hover:bg-nexius-dark-surface text-nexius-dark-text ${
+                  descriptionEditor?.isActive('italic') ? 'bg-nexius-dark-surface' : ''
                 }`}
               >
                 Italic
@@ -310,8 +310,8 @@ export function EventForm({ onClose, onSave, event }: EventFormProps) {
               <button
                 type="button"
                 onClick={() => descriptionEditor?.chain().focus().toggleUnderline().run()}
-                className={`p-2 rounded hover:bg-gray-100 ${
-                  descriptionEditor?.isActive('underline') ? 'bg-gray-100' : ''
+                className={`p-2 rounded hover:bg-nexius-dark-surface text-nexius-dark-text ${
+                  descriptionEditor?.isActive('underline') ? 'bg-nexius-dark-surface' : ''
                 }`}
               >
                 Underline
@@ -319,8 +319,8 @@ export function EventForm({ onClose, onSave, event }: EventFormProps) {
               <button
                 type="button"
                 onClick={() => descriptionEditor?.chain().focus().toggleBulletList().run()}
-                className={`p-2 rounded hover:bg-gray-100 ${
-                  descriptionEditor?.isActive('bulletList') ? 'bg-gray-100' : ''
+                className={`p-2 rounded hover:bg-nexius-dark-surface text-nexius-dark-text ${
+                  descriptionEditor?.isActive('bulletList') ? 'bg-nexius-dark-surface' : ''
                 }`}
               >
                 Bullet List
@@ -339,12 +339,12 @@ export function EventForm({ onClose, onSave, event }: EventFormProps) {
             Content (Rich Text)
           </label>
           <div className="border border-gray-300 rounded-lg overflow-hidden">
-            <div className="bg-white border-b border-gray-200 p-2 flex flex-wrap gap-1">
+            <div className="bg-nexius-dark-card border-b border-nexius-dark-border p-2 flex flex-wrap gap-1">
               <button
                 type="button"
                 onClick={() => editor?.chain().focus().toggleBold().run()}
-                className={`p-2 rounded hover:bg-gray-100 ${
-                  editor?.isActive('bold') ? 'bg-gray-100' : ''
+                className={`p-2 rounded hover:bg-nexius-dark-surface text-nexius-dark-text ${
+                  editor?.isActive('bold') ? 'bg-nexius-dark-surface' : ''
                 }`}
               >
                 Bold
@@ -352,8 +352,8 @@ export function EventForm({ onClose, onSave, event }: EventFormProps) {
               <button
                 type="button"
                 onClick={() => editor?.chain().focus().toggleItalic().run()}
-                className={`p-2 rounded hover:bg-gray-100 ${
-                  editor?.isActive('italic') ? 'bg-gray-100' : ''
+                className={`p-2 rounded hover:bg-nexius-dark-surface text-nexius-dark-text ${
+                  editor?.isActive('italic') ? 'bg-nexius-dark-surface' : ''
                 }`}
               >
                 Italic
@@ -361,8 +361,8 @@ export function EventForm({ onClose, onSave, event }: EventFormProps) {
               <button
                 type="button"
                 onClick={() => editor?.chain().focus().toggleUnderline().run()}
-                className={`p-2 rounded hover:bg-gray-100 ${
-                  editor?.isActive('underline') ? 'bg-gray-100' : ''
+                className={`p-2 rounded hover:bg-nexius-dark-surface text-nexius-dark-text ${
+                  editor?.isActive('underline') ? 'bg-nexius-dark-surface' : ''
                 }`}
               >
                 Underline
@@ -370,8 +370,8 @@ export function EventForm({ onClose, onSave, event }: EventFormProps) {
               <button
                 type="button"
                 onClick={() => editor?.chain().focus().toggleHeading({ level: 2 }).run()}
-                className={`p-2 rounded hover:bg-gray-100 ${
-                  editor?.isActive('heading', { level: 2 }) ? 'bg-gray-100' : ''
+                className={`p-2 rounded hover:bg-nexius-dark-surface text-nexius-dark-text ${
+                  editor?.isActive('heading', { level: 2 }) ? 'bg-nexius-dark-surface' : ''
                 }`}
               >
                 H2
@@ -379,8 +379,8 @@ export function EventForm({ onClose, onSave, event }: EventFormProps) {
               <button
                 type="button"
                 onClick={() => editor?.chain().focus().toggleBulletList().run()}
-                className={`p-2 rounded hover:bg-gray-100 ${
-                  editor?.isActive('bulletList') ? 'bg-gray-100' : ''
+                className={`p-2 rounded hover:bg-nexius-dark-surface text-nexius-dark-text ${
+                  editor?.isActive('bulletList') ? 'bg-nexius-dark-surface' : ''
                 }`}
               >
                 Bullet List
@@ -400,11 +400,11 @@ export function EventForm({ onClose, onSave, event }: EventFormProps) {
           <div className="flex items-center justify-between py-3 border-b border-gray-200">
             <div className="flex items-center">
               {status === 'published' ? (
-                <Eye className="h-5 w-5 text-gray-400 mr-2" />
+                <Eye className="h-5 w-5 text-nexius-dark-text-muted mr-2" />
               ) : (
-                <EyeOff className="h-5 w-5 text-gray-400 mr-2" />
+                <EyeOff className="h-5 w-5 text-nexius-dark-text-muted mr-2" />
               )}
-              <span className="text-gray-700">Status</span>
+              <span className="text-nexius-dark-text">Status</span>
             </div>
             <button
               type="button"
@@ -412,7 +412,7 @@ export function EventForm({ onClose, onSave, event }: EventFormProps) {
               className={`px-3 py-1 rounded-full text-sm font-medium transition-colors ${
                 status === 'published'
                   ? 'bg-green-100 text-green-800 hover:bg-green-200'
-                  : 'bg-gray-100 text-gray-800 hover:bg-gray-200'
+                  : 'bg-nexius-dark-card text-nexius-dark-text hover:bg-nexius-dark-border'
               }`}
             >
               {status === 'published' ? 'Published' : 'Draft'}
@@ -421,8 +421,8 @@ export function EventForm({ onClose, onSave, event }: EventFormProps) {
 
           <div className="flex items-center justify-between py-3 border-b border-gray-200">
             <div className="flex items-center">
-              <Shield className="h-5 w-5 text-gray-400 mr-2" />
-              <span className="text-gray-700">Require Approval</span>
+              <Shield className="h-5 w-5 text-nexius-dark-text-muted mr-2" />
+              <span className="text-nexius-dark-text">Require Approval</span>
             </div>
             <div className="relative inline-block w-10 mr-2 align-middle select-none">
               <input
@@ -433,15 +433,15 @@ export function EventForm({ onClose, onSave, event }: EventFormProps) {
               />
               <label
                 htmlFor="toggle"
-                className="toggle-label block overflow-hidden h-6 rounded-full bg-gray-300 cursor-pointer"
+                className="toggle-label block overflow-hidden h-6 rounded-full bg-nexius-dark-border cursor-pointer"
               />
             </div>
           </div>
 
           <div className="flex items-center justify-between py-3 border-b border-gray-200">
             <div className="flex items-center">
-              <Users className="h-5 w-5 text-gray-400 mr-2" />
-              <span className="text-gray-700">Event Capacity</span>
+              <Users className="h-5 w-5 text-nexius-dark-text-muted mr-2" />
+              <span className="text-nexius-dark-text">Event Capacity</span>
             </div>
             <div className="flex items-center gap-2">
               <input
@@ -450,19 +450,19 @@ export function EventForm({ onClose, onSave, event }: EventFormProps) {
                 value={capacity === null ? '' : capacity}
                 onChange={(e) => setCapacity(e.target.value ? parseInt(e.target.value) : null)}
                 placeholder="Unlimited"
-                className="w-24 px-3 py-1 border border-gray-300 rounded-lg focus:ring-2 focus:ring-nexius-teal focus:border-nexius-teal text-right"
+                className="w-24 px-3 py-1 border border-nexius-dark-border bg-nexius-dark-card text-nexius-dark-text rounded-lg focus:ring-2 focus:ring-nexius-teal focus:border-nexius-teal text-right"
               />
-              <span className="text-gray-500 text-sm">seats</span>
+              <span className="text-nexius-dark-text-muted text-sm">seats</span>
             </div>
           </div>
           
           <div className="flex items-center justify-between py-3 border-b border-gray-200">
             <div className="flex items-center">
-              <Ticket className="h-5 w-5 text-gray-400 mr-2" />
-              <span className="text-gray-700">Ticket Price</span>
+              <Ticket className="h-5 w-5 text-nexius-dark-text-muted mr-2" />
+              <span className="text-nexius-dark-text">Ticket Price</span>
             </div>
             <div className="flex items-center gap-2">
-              <span className="text-gray-500">$</span>
+              <span className="text-nexius-dark-text-muted">$</span>
               <input
                 type="number"
                 min="0"
@@ -470,7 +470,7 @@ export function EventForm({ onClose, onSave, event }: EventFormProps) {
                 value={ticketPrice === null ? '' : ticketPrice}
                 onChange={(e) => setTicketPrice(e.target.value ? parseFloat(e.target.value) : null)}
                 placeholder="Free"
-                className="w-24 px-3 py-1 border border-gray-300 rounded-lg focus:ring-2 focus:ring-nexius-teal focus:border-nexius-teal text-right"
+                className="w-24 px-3 py-1 border border-nexius-dark-border bg-nexius-dark-card text-nexius-dark-text rounded-lg focus:ring-2 focus:ring-nexius-teal focus:border-nexius-teal text-right"
               />
             </div>
           </div>
@@ -481,7 +481,7 @@ export function EventForm({ onClose, onSave, event }: EventFormProps) {
           <button
             type="button"
             onClick={onClose}
-            className="px-4 py-2 text-gray-700 hover:bg-gray-100 rounded-lg transition-colors"
+            className="px-4 py-2 text-nexius-dark-text-muted hover:bg-nexius-dark-card rounded-lg transition-colors"
           >
             Cancel
           </button>
