@@ -263,8 +263,8 @@ function HomePage() {
       <section className="relative h-screen snap-start flex items-center justify-center bg-gradient-to-b from-nexius-navy to-nexius-navy/95">
         <div className="absolute inset-0">
           <DotGrid
-            dotSize={8}
-            gap={20}
+            dotSize={5}
+            gap={15}
             baseColor="#00CABA"
             activeColor="#ffffff"
             proximity={120}
