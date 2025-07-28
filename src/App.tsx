@@ -265,8 +265,8 @@ function HomePage() {
           <DotGrid
             dotSize={5}
             gap={15}
-            baseColor="#00CABA"
-            activeColor="#ffffff"
+            baseColor="#0F1419"
+            activeColor="#00CABA"
             proximity={120}
             shockRadius={250}
             shockStrength={5}
