@@ -281,9 +281,9 @@ function HomePage() {
   };
 
   return (
-    <div className="min-h-screen bg-nexius-dark-bg">
+    <div className="min-h-screen bg-nexius-dark-bg overflow-y-scroll snap-y snap-mandatory scroll-pt-16">
       {/* Hero Section */}
-      <section className="relative pt-32 pb-24 bg-gradient-to-b from-nexius-navy to-nexius-navy/95">
+      <section className="relative min-h-screen snap-start flex items-center bg-gradient-to-b from-nexius-navy to-nexius-navy/95">
         <HeroAnimation />
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center">
@@ -338,7 +338,7 @@ function HomePage() {
       </section>
 
       {/* Who We Are Section */}
-      <section className="py-16 bg-nexius-dark-surface">
+      <section className="min-h-screen snap-start flex items-center py-16 bg-nexius-dark-surface">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-16">
             <h2 className="text-4xl font-display font-bold text-white mb-6 tracking-tight">
@@ -359,7 +359,7 @@ function HomePage() {
       </section>
 
       {/* What We Can Help You Build Section */}
-      <section className="py-16">
+      <section className="min-h-screen snap-start flex items-center py-16">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-16">
             <h2 className="text-4xl font-display font-bold text-white mb-6 tracking-tight">
@@ -425,7 +425,7 @@ function HomePage() {
       </section>
 
       {/* What We Are Building Section */}
-      <section className="py-16 bg-nexius-dark-surface">
+      <section className="min-h-screen snap-start flex items-center py-16 bg-nexius-dark-surface">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-16">
             <h2 className="text-4xl font-display font-bold text-white mb-6 tracking-tight">
@@ -482,7 +482,7 @@ function HomePage() {
       </section>
 
       {/* Academy Section */}
-      <section className="py-16">
+      <section className="min-h-screen snap-start flex items-center py-16">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-16">
             <h2 className="text-4xl font-display font-bold text-white mb-6 tracking-tight">
@@ -504,7 +504,7 @@ function HomePage() {
       </section>
 
       {/* CTA Section */}
-      <section className="py-24 bg-nexius-navy">
+      <section className="min-h-screen snap-start flex items-center py-24 bg-nexius-navy">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <h2 className="text-3xl font-display font-bold text-white mb-4 tracking-tight">
             More customers shouldn't mean more work.
