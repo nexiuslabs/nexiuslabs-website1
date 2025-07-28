@@ -182,8 +182,8 @@ function Navigation({ onContactClick }: { onContactClick: () => void }) {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between h-16">
           <Link 
-             baseColor="#1D2A4D"
-            className="flex items-center focus:outline-none group"
+             baseColor="#0F1419"
+             activeColor="#00CABA"
           >
             <img
               src="https://tunidbyclygzipvbfzee.supabase.co/storage/v1/object/public/website-images/m04h4fs8wns-1739784195705.png"
