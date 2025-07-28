@@ -290,8 +290,8 @@ function HomePage() {
             <h1 className="relative text-5xl font-display font-extrabold text-white mb-6 tracking-tight">
               More customers ≠ more{' '}
               <RotatingText
-                texts={['admin work', 'headcount', 'costs', 'chaos', 'spreadsheets', 'late nights']}
-                mainClassName="px-2 sm:px-2 md:px-3 bg-nexius-teal text-white overflow-hidden py-0.5 sm:py-1 md:py-2 justify-center rounded-lg inline-flex"
+                texts={['manual tasks', 'staffing costs', 'costs', 'chaos', 'spreadsheets', 'late nights']}
+                mainClassName="px-2 sm:px-2 md:px-3 bg-nexius-teal text-white overflow-hidden py-0.5 sm:py-1 md:py-2 justify-center rounded-lg inline-flex min-w-[13ch]"
                 staggerFrom="last"
                 initial={{ y: "100%" }}
                 animate={{ y: 0 }}
@@ -299,32 +299,42 @@ function HomePage() {
                 staggerDuration={0.025}
                 splitLevelClassName="overflow-hidden pb-0.5 sm:pb-1 md:pb-1"
                 transition={{ type: "spring", damping: 30, stiffness: 400 }}
-                rotationInterval={2000}
+                rotationInterval={2500}
               />
             </h1>
             <p className="relative text-xl font-body text-white/80 mb-8 max-w-3xl mx-auto leading-relaxed">
               We get you more customers and quietly take care of the extra workload they create.
             </p>
-            <div className="relative flex justify-center gap-4">
-              <button 
-                onClick={() => {
-                  const contactButton = document.querySelector('button[data-contact="true"]');
-                  if (contactButton instanceof HTMLButtonElement) {
-                    contactButton.click();
-                  }
-                }}
-                className="bg-nexius-teal text-white px-6 py-3 rounded-lg hover:bg-nexius-teal/90 transition-colors flex items-center group font-display font-semibold tracking-wide uppercase text-sm"
+            <div className="relative flex flex-col items-center gap-4">
+              <div className="flex justify-center gap-4">
+                <button 
+                  onClick={() => {
+                    const contactButton = document.querySelector('button[data-contact="true"]');
+                    if (contactButton instanceof HTMLButtonElement) {
+                      contactButton.click();
+                    }
+                  }}
+                  className="bg-nexius-teal text-white px-6 py-3 rounded-lg hover:bg-nexius-teal/90 transition-colors flex items-center group font-display font-semibold tracking-wide uppercase text-sm"
+                >
+                  Get My 15‑Minute Assessment <ArrowRight className="ml-2 h-5 w-5 group-hover:translate-x-1 transition-transform" />
+                </button>
+                <button 
+                  onClick={() => {
+                    window.open('https://academy.nexiuslabs.com', '_blank');
+                  }}
+                  className="bg-transparent border-2 border-white text-white px-6 py-3 rounded-lg hover:bg-white/10 transition-colors flex items-center group font-display font-semibold tracking-wide uppercase text-sm"
+                >
+                  Visit Our Academy <ArrowRight className="ml-2 h-5 w-5 group-hover:translate-x-1 transition-transform" />
+                </button>
+              </div>
+              <a
+                href="https://academy.nexiuslabs.com"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center text-nexius-teal hover:text-nexius-teal/90 font-medium transition-colors"
               >
-                Get My 15‑Minute Assessment <ArrowRight className="ml-2 h-5 w-5 group-hover:translate-x-1 transition-transform" />
-              </button>
-              <button 
-                onClick={() => {
-                  window.open('https://academy.nexiuslabs.com', '_blank');
-                }}
-                className="bg-transparent border-2 border-white text-white px-6 py-3 rounded-lg hover:bg-white/10 transition-colors flex items-center group font-display font-semibold tracking-wide uppercase text-sm"
-              >
-                Visit Our Academy <ArrowRight className="ml-2 h-5 w-5 group-hover:translate-x-1 transition-transform" />
-              </button>
+                Huat Up Your Skills <ArrowRight className="ml-2 h-4 w-4" />
+              </a>
             </div>
             <div className="relative mt-8">
               <p className="text-white/60 text-sm">
