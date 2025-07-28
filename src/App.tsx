@@ -284,7 +284,7 @@ function HomePage() {
   return (
     <div className="min-h-screen bg-nexius-dark-bg overflow-y-scroll snap-y snap-mandatory scroll-pt-16">
       {/* Hero Section */}
-      <section className="relative min-h-screen snap-start flex flex-col justify-end pb-16 bg-gradient-to-b from-nexius-navy to-nexius-navy/95">
+      <section className="relative min-h-screen snap-start flex items-center justify-center bg-gradient-to-b from-nexius-navy to-nexius-navy/95">
         <HeroAnimation />
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center">
