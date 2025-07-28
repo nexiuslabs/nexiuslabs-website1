@@ -26,6 +26,7 @@ import {
   Database,
   Lightbulb,
   MessageCircle,
+  ChevronDown,
 } from 'lucide-react';
 import { HeroAnimation } from './components/HeroAnimation';
 import { ContactForm } from './components/ContactForm';
@@ -283,7 +284,7 @@ function HomePage() {
   return (
     <div className="min-h-screen bg-nexius-dark-bg overflow-y-scroll snap-y snap-mandatory scroll-pt-16">
       {/* Hero Section */}
-      <section className="relative min-h-screen snap-start flex items-center bg-gradient-to-b from-nexius-navy to-nexius-navy/95">
+      <section className="relative min-h-screen snap-start flex flex-col justify-end pb-16 bg-gradient-to-b from-nexius-navy to-nexius-navy/95">
         <HeroAnimation />
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center">
@@ -331,9 +332,11 @@ function HomePage() {
                 Average 45% efficiency boost • Used by founders and lean teams
               </p>
             </div>
-            <div className="relative mt-16">
-            </div>
           </div>
+        </div>
+        {/* Scroll Down Indicator */}
+        <div className="absolute bottom-4 left-1/2 -translate-x-1/2 animate-bounce text-white/80">
+          <ChevronDown className="h-6 w-6" />
         </div>
       </section>
 
