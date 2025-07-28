@@ -13,8 +13,14 @@ if (!openaiApiKey) {
   throw new Error('OpenAI API key not configured');
 }
 
+// Trim whitespace and validate API key format
+const trimmedApiKey = openaiApiKey.trim();
+if (!trimmedApiKey.startsWith('sk-') || trimmedApiKey.length < 20) {
+  throw new Error('Invalid OpenAI API key format. Key should start with "sk-" and be properly formatted.');
+}
+
 const openai = new OpenAI({
-  apiKey: openaiApiKey,
+  apiKey: trimmedApiKey,
 });
 
 Deno.serve(async (req) => {
