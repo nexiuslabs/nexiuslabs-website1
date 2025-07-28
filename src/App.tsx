@@ -29,6 +29,7 @@ import {
 } from 'lucide-react';
 import { HeroAnimation } from './components/HeroAnimation';
 import { ContactForm } from './components/ContactForm';
+import RotatingText from './components/RotatingText';
 import { CaseStudy } from './pages/CaseStudy';
 import { CaseStudies } from './pages/CaseStudies';
 import { UploadLogo } from './pages/UploadLogo';
