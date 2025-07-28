@@ -28,7 +28,7 @@ import {
   MessageCircle,
   ChevronDown,
 } from 'lucide-react';
-import { HeroAnimation } from './components/HeroAnimation';
+import DotGrid from './components/DotGrid';
 import { ContactForm } from './components/ContactForm';
 import RotatingText from './components/RotatingText';
 import { CaseStudy } from './pages/CaseStudy';
@@ -261,7 +261,19 @@ function HomePage() {
     <div className="h-screen bg-nexius-dark-bg overflow-y-auto snap-y snap-mandatory scroll-pt-16">
       {/* Hero Section */}
       <section className="relative h-screen snap-start flex items-center justify-center bg-gradient-to-b from-nexius-navy to-nexius-navy/95">
-        <HeroAnimation />
+        <div className="absolute inset-0">
+          <DotGrid
+            dotSize={8}
+            gap={20}
+            baseColor="#00CABA"
+            activeColor="#ffffff"
+            proximity={120}
+            shockRadius={250}
+            shockStrength={5}
+            resistance={750}
+            returnDuration={1.5}
+          />
+        </div>
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center">
             <h1 className="relative text-5xl font-display font-extrabold text-white mb-6 tracking-tight">
