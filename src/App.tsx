@@ -260,7 +260,7 @@ function HomePage() {
   return (
     <div className="h-screen bg-nexius-dark-bg overflow-y-auto snap-y snap-mandatory scroll-pt-16">
       {/* Hero Section */}
-      <section className="relative h-screen snap-start flex items-center justify-center bg-gradient-to-b from-nexius-navy to-nexius-navy/95">
+      <section className="relative min-h-screen snap-start flex items-center justify-center bg-gradient-to-b from-nexius-navy to-nexius-navy/95">
         <div className="absolute inset-0">
           <DotGrid
             dotSize={5}
@@ -329,7 +329,7 @@ function HomePage() {
       </section>
 
       {/* Who We Are Section */}
-      <section className="h-screen snap-start flex items-center py-16 bg-nexius-dark-surface">
+      <section className="min-h-screen snap-start flex items-center py-16 bg-nexius-dark-surface">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-16">
             <h2 className="text-4xl font-display font-bold text-white mb-6 tracking-tight">
@@ -350,7 +350,7 @@ function HomePage() {
       </section>
 
       {/* What We Can Help You Build Section */}
-      <section className="h-screen snap-start flex items-center py-16">
+      <section className="snap-start flex items-center py-24">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-16">
             <h2 className="text-4xl font-display font-bold text-white mb-6 tracking-tight">
@@ -416,7 +416,7 @@ function HomePage() {
       </section>
 
       {/* What We Are Building Section */}
-      <section className="h-screen snap-start flex items-center py-16 bg-nexius-dark-surface">
+      <section className="snap-start flex items-center py-24 bg-nexius-dark-surface">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-16">
             <h2 className="text-4xl font-display font-bold text-white mb-6 tracking-tight">
@@ -473,7 +473,7 @@ function HomePage() {
       </section>
 
       {/* Academy Section */}
-      <section className="h-screen snap-start flex items-center py-16">
+      <section className="snap-start flex items-center py-24">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-16">
             <h2 className="text-4xl font-display font-bold text-white mb-6 tracking-tight">
@@ -495,7 +495,7 @@ function HomePage() {
       </section>
 
       {/* CTA Section */}
-      <section className="h-screen snap-start flex items-center py-24 bg-nexius-navy">
+      <section className="snap-start flex items-center py-24 bg-nexius-navy">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <h2 className="text-3xl font-display font-bold text-white mb-4 tracking-tight">
             More customers shouldn't mean more work.
