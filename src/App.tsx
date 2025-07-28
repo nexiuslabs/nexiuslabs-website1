@@ -283,15 +283,15 @@ function HomePage() {
   return (
     <div className="min-h-screen bg-nexius-dark-bg overflow-y-scroll snap-y snap-mandatory scroll-pt-16">
       {/* Hero Section */}
-      <section className="relative min-h-screen snap-start flex items-center bg-gradient-to-b from-nexius-navy to-nexius-navy/95">
+      <section className="relative min-h-screen snap-start flex items-center bg-gradient-to-b from-nexius-navy to-nexius-navy/95 px-4 md:px-16 lg:px-32">
         <HeroAnimation />
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center">
+        <div className="max-w-lg mx-auto md:mx-0">
+          <div className="text-center md:text-left">
             <h1 className="relative text-5xl font-display font-extrabold text-white mb-6 tracking-tight">
               More customers ≠ more{' '}
               <RotatingText
-                texts={['admin work', 'headcount', 'costs', 'chaos', 'spreadsheets', 'late nights']}
-                mainClassName="px-2 sm:px-2 md:px-3 bg-nexius-teal text-white overflow-hidden py-0.5 sm:py-1 md:py-2 justify-center rounded-lg inline-flex"
+                texts={['manual tasks', 'staffing costs', 'costs', 'chaos', 'spreadsheets', 'late nights']}
+                mainClassName="px-2 sm:px-2 md:px-3 bg-nexius-teal text-white overflow-hidden py-0.5 sm:py-1 md:py-2 justify-center rounded-lg inline-flex min-w-[13ch]"
                 staggerFrom="last"
                 initial={{ y: "100%" }}
                 animate={{ y: 0 }}
@@ -299,13 +299,13 @@ function HomePage() {
                 staggerDuration={0.025}
                 splitLevelClassName="overflow-hidden pb-0.5 sm:pb-1 md:pb-1"
                 transition={{ type: "spring", damping: 30, stiffness: 400 }}
-                rotationInterval={2000}
+                rotationInterval={2500}
               />
             </h1>
-            <p className="relative text-xl font-body text-white/80 mb-8 max-w-3xl mx-auto leading-relaxed">
+            <p className="relative text-xl font-body text-white/80 mb-8 max-w-3xl leading-relaxed">
               We get you more customers and quietly take care of the extra workload they create.
             </p>
-            <div className="relative flex justify-center gap-4">
+            <div className="relative flex flex-wrap justify-center md:justify-start gap-4">
               <button 
                 onClick={() => {
                   const contactButton = document.querySelector('button[data-contact="true"]');
@@ -325,6 +325,14 @@ function HomePage() {
               >
                 Visit Our Academy <ArrowRight className="ml-2 h-5 w-5 group-hover:translate-x-1 transition-transform" />
               </button>
+              <a
+                href="https://academy.nexiuslabs.com"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-white/80 hover:text-white transition-colors text-sm font-medium flex items-center group"
+              >
+                Huat Up Your Skills <ArrowRight className="ml-1 h-4 w-4 group-hover:translate-x-1 transition-transform" />
+              </a>
             </div>
             <div className="relative mt-8">
               <p className="text-white/60 text-sm">
