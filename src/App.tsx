@@ -287,10 +287,22 @@ function HomePage() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center">
             <h1 className="relative text-5xl font-display font-extrabold text-white mb-6 tracking-tight">
-              AI Automation & Business Process Optimization for Growth
+              More customers ≠ more{' '}
+              <RotatingText
+                texts={['admin work', 'headcount', 'costs', 'chaos', 'spreadsheets', 'late nights']}
+                mainClassName="px-2 sm:px-2 md:px-3 bg-nexius-teal text-white overflow-hidden py-0.5 sm:py-1 md:py-2 justify-center rounded-lg inline-flex"
+                staggerFrom="last"
+                initial={{ y: "100%" }}
+                animate={{ y: 0 }}
+                exit={{ y: "-120%" }}
+                staggerDuration={0.025}
+                splitLevelClassName="overflow-hidden pb-0.5 sm:pb-1 md:pb-1"
+                transition={{ type: "spring", damping: 30, stiffness: 400 }}
+                rotationInterval={2000}
+              />
             </h1>
             <p className="relative text-xl font-body text-white/80 mb-8 max-w-3xl mx-auto leading-relaxed">
-              At Nexius Labs, we turn AI into a powerful growth engine for businesses—automating operations, streamlining workflows, and maximizing efficiency.
+              We get you more customers and quietly take care of the extra workload they create.
             </p>
             <div className="relative flex justify-center gap-4">
               <button 
@@ -302,8 +314,24 @@ function HomePage() {
                 }}
                 className="bg-nexius-teal text-white px-6 py-3 rounded-lg hover:bg-nexius-teal/90 transition-colors flex items-center group font-display font-semibold tracking-wide uppercase text-sm"
               >
-                Let's Talk <ArrowRight className="ml-2 h-5 w-5 group-hover:translate-x-1 transition-transform" />
+                Get My 15‑Minute Assessment <ArrowRight className="ml-2 h-5 w-5 group-hover:translate-x-1 transition-transform" />
               </button>
+              <button 
+                onClick={() => {
+                  const useCasesSection = document.getElementById('use-cases');
+                  if (useCasesSection) {
+                    useCasesSection.scrollIntoView({ behavior: 'smooth' });
+                  }
+                }}
+                className="bg-transparent border-2 border-white text-white px-6 py-3 rounded-lg hover:bg-white/10 transition-colors flex items-center group font-display font-semibold tracking-wide uppercase text-sm"
+              >
+                See What It Automates <ArrowRight className="ml-2 h-5 w-5 group-hover:translate-x-1 transition-transform" />
+              </button>
+            </div>
+            <div className="relative mt-8">
+              <p className="text-white/60 text-sm">
+                Average 45% efficiency boost • Used by founders and lean teams
+              </p>
             </div>
             <div className="relative mt-16">
               <img
@@ -367,7 +395,7 @@ function HomePage() {
       </section>
 
       {/* Use Cases Section */}
-      <section className="py-24">
+      <section id="use-cases" className="py-24">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-16">
             <h2 className="text-3xl font-display font-bold text-white mb-4 tracking-tight">
