@@ -5,6 +5,50 @@ import OpenAI from 'npm:openai@4.28.0';
 const LLAMA_INDEX_PIPELINE_URL = Deno.env.get('LLAMA_INDEX_PIPELINE_URL');
 const LLAMA_INDEX_API_KEY = Deno.env.get('LLAMA_INDEX_API_KEY');
 
+// Function to retrieve context from LlamaIndex
+async function retrieveContextFromLlamaIndex(query: string): Promise<{
+  answer?: string;
+  sourceNodes?: Array<{ text: string; metadata?: any }>;
+}> {
+  try {
+    if (!LLAMA_INDEX_PIPELINE_URL || !LLAMA_INDEX_API_KEY) {
+      console.warn('LlamaIndex configuration missing, skipping retrieval');
+      return {};
+    }
+
+    console.log('Querying LlamaIndex with:', query);
+    
+    const response = await fetch(LLAMA_INDEX_PIPELINE_URL, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        'x-api-key': LLAMA_INDEX_API_KEY,
+      },
+      body: JSON.stringify({
+        query: query,
+        topK: 3,
+      }),
+    });
+
+    if (!response.ok) {
+      const errorText = await response.text();
+      console.error('LlamaIndex API error:', response.status, errorText);
+      return {};
+    }
+
+    const result = await response.json();
+    console.log('LlamaIndex response received');
+    
+    return {
+      answer: result.answer || result.response,
+      sourceNodes: result.sourceNodes || result.sources || [],
+    };
+  } catch (error) {
+    console.error('Error retrieving from LlamaIndex:', error);
+    return {};
+  }
+}
+
 const corsHeaders = {
   'Access-Control-Allow-Origin': '*',
   'Access-Control-Allow-Headers': 'authorization, x-client-info, apikey, content-type',
@@ -65,6 +109,28 @@ Deno.serve(async (req) => {
 
     console.log('Processing chat message for session:', sessionId);
 
+    // Retrieve relevant context from LlamaIndex
+    console.log('Retrieving context from LlamaIndex...');
+    const { answer: llamaAnswer, sourceNodes } = await retrieveContextFromLlamaIndex(message);
+    
+    // Prepare context information
+    let contextInfo = '';
+    if (llamaAnswer || (sourceNodes && sourceNodes.length > 0)) {
+      contextInfo = '\n\nRelevant information from our knowledge base:\n';
+      
+      if (llamaAnswer) {
+        contextInfo += `Knowledge base response: ${llamaAnswer}\n`;
+      }
+      
+      if (sourceNodes && sourceNodes.length > 0) {
+        contextInfo += '\nRelevant context sources:\n';
+        sourceNodes.forEach((node, index) => {
+          contextInfo += `${index + 1}. ${node.text.substring(0, 200)}...\n`;
+        });
+      }
+      
+      contextInfo += '\nPlease use this information to provide accurate answers about Nexius Labs services and capabilities.';
+    }
     // Get previous messages for context
     const { data: previousMessages, error: messagesError } = await supabaseClient
       .from('chat_messages')
@@ -82,14 +148,14 @@ Deno.serve(async (req) => {
     const messages = [
       {
         role: 'system',
-        content: `You are Nexius Labs’ website concierge.
+        content: `You are Nexius Labs' website concierge.
 Nexius Labs builds:
 (1) Customised sales acquisition (find the right customers with limited time/resources).
 (2) Open-source AI-enhanced stacks (scale without expensive/dumb software).
 (3) Natural-language operations (talk to AI agents; they understand & execute changes).
 
 Goals per chat: diagnose pains → map to (1)/(2)/(3) → propose a concrete next step → collect contact & consent → schedule if fit.
-Never oversell; be specific and scrappy. Keep answers < 120 words unless asked for detail.`
+Never oversell; be specific and scrappy. Keep answers < 120 words unless asked for detail.${contextInfo}`
       },
       ...(previousMessages?.map(msg => ({
         role: msg.is_from_visitor ? 'user' : 'assistant',
