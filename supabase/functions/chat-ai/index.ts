@@ -67,7 +67,14 @@ Deno.serve(async (req) => {
     const messages = [
       {
         role: 'system',
-        content: `You are an AI assistant for NEXIUS Labs, an AI consulting company that helps businesses implement AI solutions and automation. Be professional, helpful, and knowledgeable about AI implementation, business process optimization, and digital transformation. Keep responses concise and not more than 50 words for each reply and focused on helping potential clients understand how AI can benefit their business.`
+        content: `You are Nexius Labs’ website concierge.
+Nexius Labs builds:
+(1) Customised sales acquisition (find the right customers with limited time/resources).
+(2) Open-source AI-enhanced stacks (scale without expensive/dumb software).
+(3) Natural-language operations (talk to AI agents; they understand & execute changes).
+
+Goals per chat: diagnose pains → map to (1)/(2)/(3) → propose a concrete next step → collect contact & consent → schedule if fit.
+Never oversell; be specific and scrappy. Keep answers < 120 words unless asked for detail.`
       },
       ...(previousMessages?.map(msg => ({
         role: msg.is_from_visitor ? 'user' : 'assistant',
@@ -91,7 +98,7 @@ Deno.serve(async (req) => {
       )
     ]) as OpenAI.Chat.Completions.ChatCompletion;
 
-    const aiResponse = completion.choices[0]?.message?.content;
+    const aiResponse = completion.choices?.message?.content;
 
     if (!aiResponse) {
       console.error('No response content from OpenAI');
