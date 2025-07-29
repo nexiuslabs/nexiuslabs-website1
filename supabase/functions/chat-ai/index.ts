@@ -1,6 +1,10 @@
 import { createClient } from 'https://esm.sh/@supabase/supabase-js@2.39.7';
 import OpenAI from 'npm:openai@4.28.0';
 
+// Environment variable validation
+const LLAMA_INDEX_PIPELINE_URL = Deno.env.get('LLAMA_INDEX_PIPELINE_URL');
+const LLAMA_INDEX_API_KEY = Deno.env.get('LLAMA_INDEX_API_KEY');
+
 const corsHeaders = {
   'Access-Control-Allow-Origin': '*',
   'Access-Control-Allow-Headers': 'authorization, x-client-info, apikey, content-type',
@@ -28,6 +32,17 @@ Deno.serve(async (req) => {
     if (!openaiApiKey) {
       console.error('OpenAI API key not found in environment variables');
       throw new Error('OpenAI API key not configured');
+    }
+
+    // Validate LlamaIndex configuration
+    if (!LLAMA_INDEX_PIPELINE_URL) {
+      console.error('LlamaIndex Pipeline URL not found in environment variables');
+      throw new Error('LlamaIndex Pipeline URL not configured');
+    }
+
+    if (!LLAMA_INDEX_API_KEY) {
+      console.error('LlamaIndex API key not found in environment variables');
+      throw new Error('LlamaIndex API key not configured');
     }
 
     const trimmedApiKey = openaiApiKey.trim();
