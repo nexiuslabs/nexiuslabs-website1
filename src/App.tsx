@@ -260,7 +260,7 @@ function HomePage() {
   };
 
   return (
-    <div className="h-screen bg-nexius-dark-bg overflow-y-auto snap-y snap-mandatory scroll-pt-16">
+    <div className="h-[calc(100vh-4rem)] mt-16 bg-nexius-dark-bg overflow-y-auto snap-y snap-mandatory scroll-pt-16">
       {/* Hero Section */}
       <section className="relative min-h-screen snap-start flex items-center justify-center bg-gradient-to-b from-nexius-navy to-nexius-navy/95">
         <div className="absolute inset-0">
