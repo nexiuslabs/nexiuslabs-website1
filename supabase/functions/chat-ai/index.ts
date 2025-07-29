@@ -78,17 +78,6 @@ Deno.serve(async (req) => {
       throw new Error('OpenAI API key not configured');
     }
 
-    // Validate LlamaIndex configuration
-    if (!LLAMA_INDEX_PIPELINE_URL) {
-      console.error('LlamaIndex Pipeline URL not found in environment variables');
-      throw new Error('LlamaIndex Pipeline URL not configured');
-    }
-
-    if (!LLAMA_INDEX_API_KEY) {
-      console.error('LlamaIndex API key not found in environment variables');
-      throw new Error('LlamaIndex API key not configured');
-    }
-
     const trimmedApiKey = openaiApiKey.trim();
     if (!trimmedApiKey.startsWith('sk-') || trimmedApiKey.length < 20) {
       console.error('Invalid OpenAI API key format');
