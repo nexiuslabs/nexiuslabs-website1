@@ -366,12 +366,10 @@ function HomePage() {
                 <div className="absolute -inset-2 bg-nexius-teal/20 rounded-lg blur opacity-0 group-hover:opacity-100 transition-opacity"></div>
                 <Bot className="relative h-12 w-12 text-nexius-teal mb-6" />
               </div>
-              <h3 className="text-xl font-display font-bold text-white mb-4">AI Sales Assistant</h3>
-              <p className="text-nexius-dark-text-muted mb-6">Captures & follows up on leads.</p>
+              <h3 className="text-xl font-display font-bold text-white mb-4">Customised Sales Acquisition</h3>
+              <p className="text-nexius-dark-text-muted mb-6">Find the right customers with limited time/resources.</p>
               <a
-                href="https://sales.nexiuslabs.com"
-                target="_blank"
-                rel="noopener noreferrer"
+                href="#"
                 className="inline-flex items-center text-nexius-teal hover:text-nexius-teal/90 font-medium"
               >
                 Explore <ArrowRight className="ml-2 h-4 w-4" />
@@ -383,12 +381,10 @@ function HomePage() {
                 <div className="absolute -inset-2 bg-nexius-teal/20 rounded-lg blur opacity-0 group-hover:opacity-100 transition-opacity"></div>
                 <DollarSign className="relative h-12 w-12 text-nexius-teal mb-6" />
               </div>
-              <h3 className="text-xl font-display font-bold text-white mb-4">Smart Billing</h3>
-              <p className="text-nexius-dark-text-muted mb-6">Generates invoices & reconciles payments.</p>
+              <h3 className="text-xl font-display font-bold text-white mb-4">Open-Source AI-Enhanced Stacks</h3>
+              <p className="text-nexius-dark-text-muted mb-6">Scale without expensive/dumb software.</p>
               <a
-                href="https://billing.nexiuslabs.com"
-                target="_blank"
-                rel="noopener noreferrer"
+                href="#"
                 className="inline-flex items-center text-nexius-teal hover:text-nexius-teal/90 font-medium"
               >
                 Explore <ArrowRight className="ml-2 h-4 w-4" />
@@ -400,12 +396,10 @@ function HomePage() {
                 <div className="absolute -inset-2 bg-nexius-teal/20 rounded-lg blur opacity-0 group-hover:opacity-100 transition-opacity"></div>
                 <Settings className="relative h-12 w-12 text-nexius-teal mb-6" />
               </div>
-              <h3 className="text-xl font-display font-bold text-white mb-4">Ops Organizer</h3>
-              <p className="text-nexius-dark-text-muted mb-6">Logs activities & creates basic reports.</p>
+              <h3 className="text-xl font-display font-bold text-white mb-4">Natural-Language Operations</h3>
+              <p className="text-nexius-dark-text-muted mb-6">Talk to AI agents; they understand & execute change.</p>
               <a
-                href="https://ops.nexiuslabs.com"
-                target="_blank"
-                rel="noopener noreferrer"
+                href="#"
                 className="inline-flex items-center text-nexius-teal hover:text-nexius-teal/90 font-medium"
               >
                 Explore <ArrowRight className="ml-2 h-4 w-4" />
