@@ -8,42 +8,60 @@ const corsHeaders = {
   'Access-Control-Max-Age': '86400',
 };
 
-const openaiApiKey = Deno.env.get('OPENAI_API_KEY');
-if (!openaiApiKey) {
-  throw new Error('OpenAI API key not configured');
-}
-
-// Trim whitespace and validate API key format
-const trimmedApiKey = openaiApiKey.trim();
-if (!trimmedApiKey.startsWith('sk-') || trimmedApiKey.length < 20) {
-  throw new Error('Invalid OpenAI API key format. Key should start with "sk-" and be properly formatted.');
-}
-
-const openai = new OpenAI({
-  apiKey: trimmedApiKey,
-});
-
 Deno.serve(async (req) => {
   if (req.method === 'OPTIONS') {
     return new Response(null, { status: 204, headers: corsHeaders });
   }
 
-  try {
-    const { message, sessionId, visitorId } = await req.json();
+  let supabaseClient;
+  let openai;
 
-    // Create Supabase client
-    const supabaseClient = createClient(
+  try {
+    // Initialize Supabase client
+    supabaseClient = createClient(
       Deno.env.get('SUPABASE_URL') ?? '',
       Deno.env.get('SUPABASE_ANON_KEY') ?? ''
     );
 
+    // Validate and initialize OpenAI
+    const openaiApiKey = Deno.env.get('OPENAI_API_KEY');
+    if (!openaiApiKey) {
+      console.error('OpenAI API key not found in environment variables');
+      throw new Error('OpenAI API key not configured');
+    }
+
+    const trimmedApiKey = openaiApiKey.trim();
+    if (!trimmedApiKey.startsWith('sk-') || trimmedApiKey.length < 20) {
+      console.error('Invalid OpenAI API key format');
+      throw new Error('Invalid OpenAI API key format');
+    }
+
+    openai = new OpenAI({
+      apiKey: trimmedApiKey,
+    });
+
+    // Parse request body
+    const requestBody = await req.json();
+    const { message, sessionId, visitorId } = requestBody;
+
+    if (!message || !sessionId || !visitorId) {
+      throw new Error('Missing required parameters: message, sessionId, or visitorId');
+    }
+
+    console.log('Processing chat message for session:', sessionId);
+
     // Get previous messages for context
-    const { data: previousMessages } = await supabaseClient
+    const { data: previousMessages, error: messagesError } = await supabaseClient
       .from('chat_messages')
       .select('content, is_from_visitor')
       .eq('session_id', sessionId)
       .order('created_at', { ascending: true })
       .limit(10);
+
+    if (messagesError) {
+      console.error('Error fetching previous messages:', messagesError);
+      throw new Error('Failed to fetch conversation history');
+    }
 
     // Format messages for OpenAI
     const messages = [
@@ -58,19 +76,29 @@ Deno.serve(async (req) => {
       { role: 'user', content: message }
     ];
 
-    // Get AI response
-    const completion = await openai.chat.completions.create({
-      model: 'gpt-3.5-turbo',
-      messages: messages as any,
-      temperature: 0.7,
-      max_tokens: 500
-    });
+    console.log('Sending request to OpenAI with', messages.length, 'messages');
 
-    const aiResponse = completion.choices[0].message?.content;
+    // Get AI response with timeout
+    const completion = await Promise.race([
+      openai.chat.completions.create({
+        model: 'gpt-3.5-turbo',
+        messages: messages as any,
+        temperature: 0.7,
+        max_tokens: 500
+      }),
+      new Promise((_, reject) => 
+        setTimeout(() => reject(new Error('OpenAI request timeout')), 30000)
+      )
+    ]) as OpenAI.Chat.Completions.ChatCompletion;
+
+    const aiResponse = completion.choices[0]?.message?.content;
 
     if (!aiResponse) {
-      throw new Error('No response from OpenAI');
+      console.error('No response content from OpenAI');
+      throw new Error('No response from AI service');
     }
+
+    console.log('Received response from OpenAI, saving to database');
 
     // Save AI response to database
     const { data: savedMessage, error: saveError } = await supabaseClient
@@ -85,22 +113,45 @@ Deno.serve(async (req) => {
       .select()
       .single();
 
-    if (saveError) throw saveError;
+    if (saveError) {
+      console.error('Error saving message to database:', saveError);
+      throw new Error('Failed to save AI response');
+    }
+
+    console.log('Successfully processed chat message');
 
     return new Response(
-      JSON.stringify({ message: savedMessage }),
+      JSON.stringify({ 
+        message: savedMessage,
+        success: true 
+      }),
       {
         headers: { ...corsHeaders, 'Content-Type': 'application/json' },
         status: 200,
       }
     );
+
   } catch (error) {
-    console.error('Error:', error);
+    console.error('Chat AI Error:', error);
+    
+    // Determine appropriate error status
+    let status = 500;
+    if (error.message.includes('API key')) {
+      status = 401;
+    } else if (error.message.includes('timeout')) {
+      status = 408;
+    } else if (error.message.includes('Missing required parameters')) {
+      status = 400;
+    }
+
     return new Response(
-      JSON.stringify({ error: error.message }),
+      JSON.stringify({ 
+        error: error.message || 'Internal server error',
+        success: false 
+      }),
       {
         headers: { ...corsHeaders, 'Content-Type': 'application/json' },
-        status: 500,
+        status: status,
       }
     );
   }
