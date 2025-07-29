@@ -98,11 +98,41 @@ Never oversell; be specific and scrappy. Keep answers < 120 words unless asked f
       )
     ]) as OpenAI.Chat.Completions.ChatCompletion;
 
-    const aiResponse = completion.choices?.message?.content;
+    const aiResponse = completion.choices?.[0]?.message?.content;
 
     if (!aiResponse) {
       console.error('No response content from OpenAI');
-      throw new Error('No response from AI service');
+      // Provide a fallback message instead of throwing an error
+      const fallbackMessage = "I'm having trouble processing your message right now. Could you please try rephrasing your question? I'm here to help you with Nexius Labs services.";
+      
+      // Save fallback response to database
+      const { data: savedMessage, error: saveError } = await supabaseClient
+        .from('chat_messages')
+        .insert({
+          session_id: sessionId,
+          visitor_id: visitorId,
+          content: fallbackMessage,
+          is_from_visitor: false,
+          read: false
+        })
+        .select()
+        .single();
+
+      if (saveError) {
+        console.error('Error saving fallback message to database:', saveError);
+        throw new Error('Failed to save AI response');
+      }
+
+      return new Response(
+        JSON.stringify({ 
+          message: savedMessage,
+          success: true 
+        }),
+        {
+          headers: { ...corsHeaders, 'Content-Type': 'application/json' },
+          status: 200,
+        }
+      );
     }
 
     console.log('Received response from OpenAI, saving to database');
