@@ -193,6 +193,7 @@ function Navigation({ onContactClick }: { onContactClick: () => void }) {
               className="h-8 w-8 object-contain group-hover:opacity-90 transition-opacity"
             />
             <span className="ml-3 text-xl font-display font-extrabold text-white tracking-tight uppercase group-hover:text-nexius-teal transition-colors">NEXIUS Labs</span>
+            <span className="ml-3 text-xl font-display font-extrabold text-white tracking-tight uppercase group-hover:text-nexius-teal transition-colors leading-8 flex items-center">NEXIUS Labs</span>
           </Link>
           {/* Mobile menu button */}
           <button onClick={() => setIsMenuOpen(!isMenuOpen)} className="md:hidden p-2 rounded-lg hover:bg-nexius-dark-card text-nexius-dark-text">
