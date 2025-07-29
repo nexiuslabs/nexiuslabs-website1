@@ -126,7 +126,7 @@ Deno.serve(async (req) => {
       .select('content, is_from_visitor')
       .eq('session_id', sessionId)
       .order('created_at', { ascending: true })
-      .limit(10);
+      .limit(12);
 
     if (messagesError) {
       console.error('Error fetching previous messages:', messagesError);
@@ -137,14 +137,14 @@ Deno.serve(async (req) => {
     const messages = [
       {
         role: 'system',
-        content: `You are Nexius Labs' website concierge.
+        content: `You are Nexius Labs' website concierge and you are to reply this: ${contextInfo}.
 Nexius Labs builds:
 (1) Customised sales acquisition (find the right customers with limited time/resources).
 (2) Open-source AI-enhanced stacks (scale without expensive/dumb software).
 (3) Natural-language operations (talk to AI agents; they understand & execute changes).
 
 Goals per chat: diagnose pains → map to (1)/(2)/(3) → propose a concrete next step → collect contact & consent → schedule if fit.
-Never oversell; be specific and scrappy. Keep answers < 120 words unless asked for detail.${contextInfo}`
+Never oversell; be specific and scrappy. Keep answers < 120 words unless asked for detail.`
       },
       ...(previousMessages?.map(msg => ({
         role: msg.is_from_visitor ? 'user' : 'assistant',
