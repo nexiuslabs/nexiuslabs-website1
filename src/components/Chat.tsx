@@ -4,8 +4,12 @@ import { supabase } from '../lib/supabase';
 import { createChatSession, sendChatMessage, getChatMessages } from '../lib/chats';
 import type { ChatMessage } from '../types/database';
 
-export function Chat() {
-  const [isOpen, setIsOpen] = useState(false);
+interface ChatProps {
+  isOpen: boolean;
+  setIsOpen: (isOpen: boolean) => void;
+}
+
+export function Chat({ isOpen, setIsOpen }: ChatProps) {
   const [isMinimized, setIsMinimized] = useState(false);
   const [message, setMessage] = useState('');
   const [messages, setMessages] = useState<ChatMessage[]>([]);

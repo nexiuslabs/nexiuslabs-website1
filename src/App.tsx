@@ -27,6 +27,8 @@ import {
   Lightbulb,
   MessageCircle,
   ChevronDown,
+  Target,
+  MessageSquare,
 } from 'lucide-react';
 import DotGrid from './components/DotGrid';
 import { ContactForm } from './components/ContactForm';
@@ -594,7 +596,7 @@ export default function App() {
       <ContactForm isOpen={isContactFormOpen} onClose={() => setIsContactFormOpen(false)} />
 
       <Routes>
-        <Route path="/" element={<HomePage />} />
+        <Route path="/" element={<HomePage onOpenChat={() => setIsChatOpen(true)} />} />
         <Route path="/case-studies" element={<CaseStudies />} />
         <Route path="/case-study/:id" element={<CaseStudy />} />
         <Route path="/blog" element={<Blog />} />
@@ -609,7 +611,7 @@ export default function App() {
         <Route path="*" element={<NotFound />} />
       </Routes>
 
-      <Chat />
+      <Chat isOpen={isChatOpen} setIsOpen={setIsChatOpen} />
     </>
   );
 }
