@@ -569,6 +569,7 @@ import { useLocation } from 'react-router-dom';
 export default function App() {
   const [isContactFormOpen, setIsContactFormOpen] = useState(false);
   const [authChecked, setAuthChecked] = useState(false);
+  const [isChatOpen, setIsChatOpen] = useState(false);
   const location = useLocation();
 
   const shouldShowNav = location.pathname !== '/links';
@@ -596,7 +597,7 @@ export default function App() {
       <ContactForm isOpen={isContactFormOpen} onClose={() => setIsContactFormOpen(false)} />
 
       <Routes>
-        <Route path="/" element={<HomePage onOpenChat={() => setIsChatOpen(true)} />} />
+        <Route path="/" element={<HomePage />} />
         <Route path="/case-studies" element={<CaseStudies />} />
         <Route path="/case-study/:id" element={<CaseStudy />} />
         <Route path="/blog" element={<Blog />} />
