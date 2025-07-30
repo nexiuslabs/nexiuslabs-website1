@@ -38,7 +38,7 @@ async function retrieveContextFromLlamaIndex(query: string): Promise<{
       headers: {
         'Content-Type': 'application/json',
         'Authorization': `Bearer ${LLAMA_INDEX_API_KEY}`,
-        'x-api-key': LLAMA_INDEX_API_KEY,  // Some APIs use this header
+       
       },
       body: JSON.stringify(requestBody),
     });
