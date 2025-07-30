@@ -7,16 +7,22 @@ async function retrieveContextFromLlamaIndex(query: string): Promise<{
   sourceNodes?: Array<{ text: string; metadata?: any }>;
 }> {
   try {
+    console.log('🔗 LlamaIndex Retrieval Start');
+    
     // Get environment variables at runtime to ensure they're fresh
     const LLAMA_INDEX_PIPELINE_URL = Deno.env.get('LLAMA_INDEX_PIPELINE_URL');
     const LLAMA_INDEX_API_KEY = Deno.env.get('LLAMA_INDEX_API_KEY');
     
     if (!LLAMA_INDEX_PIPELINE_URL || !LLAMA_INDEX_API_KEY) {
-      // LlamaIndex not configured - return empty context silently
+      console.log('⚠️ LlamaIndex environment variables not configured');
+      console.log('- LLAMA_INDEX_PIPELINE_URL:', LLAMA_INDEX_PIPELINE_URL ? 'SET' : 'MISSING');
+      console.log('- LLAMA_INDEX_API_KEY:', LLAMA_INDEX_API_KEY ? 'SET' : 'MISSING');
       return {};
     }
 
-    console.log('Querying LlamaIndex for:', query.substring(0, 100) + '...');
+    console.log('✅ LlamaIndex configuration found');
+    console.log('- Pipeline URL:', LLAMA_INDEX_PIPELINE_URL.substring(0, 50) + '...');
+    console.log('- API Key:', LLAMA_INDEX_API_KEY.substring(0, 10) + '...');
     
     const requestBody = {
       query: query,
@@ -25,7 +31,7 @@ async function retrieveContextFromLlamaIndex(query: string): Promise<{
       include_metadata: true
     };
     
-    console.log('LlamaIndex request body:', JSON.stringify(requestBody));
+    console.log('📤 LlamaIndex Request:', JSON.stringify(requestBody, null, 2));
     
     const response = await fetch(LLAMA_INDEX_PIPELINE_URL, {
       method: 'POST',
@@ -39,42 +45,61 @@ async function retrieveContextFromLlamaIndex(query: string): Promise<{
 
     if (!response.ok) {
       const errorText = await response.text();
-      console.error(`LlamaIndex API error (${response.status}):`, errorText);
+      console.error(`❌ LlamaIndex API error (${response.status}):`, errorText);
+      console.error('- Response headers:', Object.fromEntries(response.headers.entries()));
       return {};
     }
 
     const result = await response.json();
-    console.log('Raw LlamaIndex response:', JSON.stringify(result, null, 2));
+    console.log('📥 Raw LlamaIndex Response:');
+    console.log('- Response type:', typeof result);
+    console.log('- Response keys:', Object.keys(result));
+    console.log('- Full response:', JSON.stringify(result, null, 2));
     
     // Check for various possible response formats
     const answer = result.answer || result.response || result.text || result.message;
     const sourceNodes = result.sourceNodes || result.sources || result.nodes || result.documents || result.chunks || [];
     
-    console.log('Parsed answer:', answer ? 'Present' : 'Not found');
-    console.log('Parsed source nodes count:', Array.isArray(sourceNodes) ? sourceNodes.length : 0);
+    console.log('🔍 Parsing Results:');
+    console.log('- Answer found:', answer ? 'YES' : 'NO');
+    console.log('- Source nodes count:', Array.isArray(sourceNodes) ? sourceNodes.length : 0);
     
     if (answer || (Array.isArray(sourceNodes) && sourceNodes.length > 0)) {
-      console.log('Successfully retrieved context from LlamaIndex');
-      console.log('Answer length:', answer ? answer.length : 0);
-      console.log('Source nodes details:', sourceNodes.map((node, i) => 
-        `Node ${i + 1}: ${typeof node === 'string' ? node.substring(0, 50) : (node.text || node.content || 'Unknown format').substring(0, 50)}...`
-      ));
+      console.log('✅ Successfully retrieved context from LlamaIndex');
+      if (answer) {
+        console.log('- Answer length:', answer.length);
+        console.log('- Answer preview:', answer.substring(0, 200) + '...');
+      }
+      if (Array.isArray(sourceNodes) && sourceNodes.length > 0) {
+        console.log('- Source nodes preview:', sourceNodes.map((node, i) => {
+          const nodeText = typeof node === 'string' ? node : (node.text || node.content || 'Unknown format');
+          return `Node ${i + 1}: ${nodeText.substring(0, 50)}...`;
+        }));
+      }
       
       return {
         answer,
         sourceNodes: Array.isArray(sourceNodes) ? sourceNodes : [],
       };
     } else {
-      console.log('No relevant context found in LlamaIndex');
-      console.log('Response structure analysis:');
+      console.log('⚠️ No relevant context found in LlamaIndex');
+      console.log('📊 Response structure analysis:');
       console.log('- Keys in response:', Object.keys(result));
       console.log('- Response type:', typeof result);
       console.log('- Is array?', Array.isArray(result));
+      
+      // Try to find any text content in unexpected places
+      const allTextContent = JSON.stringify(result).match(/"text":\s*"([^"]+)"/g);
+      if (allTextContent) {
+        console.log('- Found text fields:', allTextContent.slice(0, 3));
+      }
     }
     
     return {};
   } catch (error) {
-    console.error('LlamaIndex connection error:', error.message);
+    console.error('❌ LlamaIndex connection error:', error.message);
+    console.error('- Error type:', error.constructor.name);
+    console.error('- Stack trace:', error.stack);
     return {};
   }
 }
@@ -129,7 +154,24 @@ Deno.serve(async (req) => {
     console.log('Processing chat message for session:', sessionId);
 
     // Retrieve relevant context from LlamaIndex
+    console.log('🔍 Querying LlamaIndex with message:', message.substring(0, 100) + '...');
     const { answer: llamaAnswer, sourceNodes } = await retrieveContextFromLlamaIndex(message);
+    
+    // Log LlamaIndex results in detail
+    console.log('📊 LlamaIndex Results:');
+    console.log('- Answer received:', llamaAnswer ? 'YES' : 'NO');
+    if (llamaAnswer) {
+      console.log('- Answer length:', llamaAnswer.length);
+      console.log('- Answer preview:', llamaAnswer.substring(0, 200) + '...');
+    }
+    console.log('- Source nodes received:', sourceNodes ? sourceNodes.length : 0);
+    if (sourceNodes && sourceNodes.length > 0) {
+      console.log('- Source nodes details:');
+      sourceNodes.forEach((node, i) => {
+        const nodeText = typeof node === 'string' ? node : (node.text || node.content || JSON.stringify(node));
+        console.log(`  Node ${i + 1}: ${nodeText.substring(0, 100)}...`);
+      });
+    }
     
     // Prepare context information
     let contextInfo = '';
@@ -150,6 +192,16 @@ Deno.serve(async (req) => {
       
       contextInfo += '\n\nIMPORTANT: Use this context information to provide accurate, specific answers about Nexius Labs services and capabilities.';
     }
+    
+    // Log the constructed context info
+    console.log('🧠 Context Info Construction:');
+    console.log('- Context info length:', contextInfo.length);
+    if (contextInfo.length > 0) {
+      console.log('- Context info preview:', contextInfo.substring(0, 300) + '...');
+    } else {
+      console.log('- No context info constructed (LlamaIndex returned no relevant data)');
+    }
+
     // Get previous messages for context
     const { data: previousMessages, error: messagesError } = await supabaseClient
       .from('chat_messages')
@@ -167,7 +219,7 @@ Deno.serve(async (req) => {
     const messages = [
       {
         role: 'system',
-        content: `You are Nexius Labs' website concierge and you are to reply this: ${contextInfo}.
+        content: `You are Nexius Labs' website concierge.${contextInfo}
 Nexius Labs builds:
 (1) Customised sales acquisition (find the right customers with limited time/resources).
 (2) Open-source AI-enhanced stacks (scale without expensive/dumb software).
@@ -182,6 +234,13 @@ Never oversell; be specific and scrappy. Keep answers < 120 words unless asked f
       })) || []),
       { role: 'user', content: message }
     ];
+
+    // Log the final system message sent to OpenAI
+    console.log('🤖 OpenAI Request Details:');
+    console.log('- Total messages in conversation:', messages.length);
+    console.log('- System message length:', messages[0].content.length);
+    console.log('- System message preview:', messages[0].content.substring(0, 500) + '...');
+    console.log('- User message:', message);
 
     console.log('Sending request to OpenAI with', messages.length, 'messages');
 
