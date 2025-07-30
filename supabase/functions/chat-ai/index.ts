@@ -54,15 +54,34 @@ async function retrieveContextFromLlamaIndex(query: string): Promise<{
     console.log('📥 Raw LlamaIndex Response:');
     console.log('- Response type:', typeof result);
     console.log('- Response keys:', Object.keys(result));
-    console.log('- Full response:', JSON.stringify(result, null, 2));
+    
+    // Log the complete raw result for debugging
+    console.log('🔍 COMPLETE RAW RESULT FROM LLAMAINDEX:');
+    console.log(JSON.stringify(result, null, 2));
+    
+    // Log specific checks for common field names
+    console.log('🔍 FIELD-BY-FIELD ANALYSIS:');
+    console.log('- result.answer:', result.answer);
+    console.log('- result.response:', result.response);
+    console.log('- result.text:', result.text);
+    console.log('- result.message:', result.message);
+    console.log('- result.sourceNodes:', result.sourceNodes);
+    console.log('- result.sources:', result.sources);
+    console.log('- result.nodes:', result.nodes);
+    console.log('- result.documents:', result.documents);
+    console.log('- result.chunks:', result.chunks);
     
     // Check for various possible response formats
     const answer = result.answer || result.response || result.text || result.message;
     const sourceNodes = result.sourceNodes || result.sources || result.nodes || result.documents || result.chunks || [];
     
-    console.log('🔍 Parsing Results:');
+    console.log('🔍 EXTRACTED VALUES:');
     console.log('- Answer found:', answer ? 'YES' : 'NO');
+    console.log('- Answer type:', typeof answer);
+    console.log('- Answer value:', answer);
     console.log('- Source nodes count:', Array.isArray(sourceNodes) ? sourceNodes.length : 0);
+    console.log('- Source nodes type:', typeof sourceNodes);
+    console.log('- Source nodes value:', sourceNodes);
     
     if (answer || (Array.isArray(sourceNodes) && sourceNodes.length > 0)) {
       console.log('✅ Successfully retrieved context from LlamaIndex');
@@ -76,6 +95,10 @@ async function retrieveContextFromLlamaIndex(query: string): Promise<{
           return `Node ${i + 1}: ${nodeText.substring(0, 50)}...`;
         }));
       }
+      
+      console.log('🎯 RETURNING FROM LLAMAINDEX FUNCTION:');
+      console.log('- Final answer:', answer);
+      console.log('- Final sourceNodes:', sourceNodes);
       
       return {
         answer,
@@ -157,19 +180,25 @@ Deno.serve(async (req) => {
     console.log('🔍 Querying LlamaIndex with message:', message.substring(0, 100) + '...');
     const { answer: llamaAnswer, sourceNodes } = await retrieveContextFromLlamaIndex(message);
     
-    // Log LlamaIndex results in detail
-    console.log('📊 LlamaIndex Results:');
+    // Log what we actually received from LlamaIndex function
+    console.log('📊 RECEIVED FROM LLAMAINDEX FUNCTION:');
     console.log('- Answer received:', llamaAnswer ? 'YES' : 'NO');
+    console.log('- Answer type:', typeof llamaAnswer);
+    console.log('- Answer length:', llamaAnswer ? llamaAnswer.length : 'N/A');
+    console.log('- Answer content:', llamaAnswer || 'NULL/UNDEFINED');
     if (llamaAnswer) {
-      console.log('- Answer length:', llamaAnswer.length);
       console.log('- Answer preview:', llamaAnswer.substring(0, 200) + '...');
     }
     console.log('- Source nodes received:', sourceNodes ? sourceNodes.length : 0);
+    console.log('- Source nodes type:', typeof sourceNodes);
+    console.log('- Source nodes is array:', Array.isArray(sourceNodes));
     if (sourceNodes && sourceNodes.length > 0) {
       console.log('- Source nodes details:');
       sourceNodes.forEach((node, i) => {
         const nodeText = typeof node === 'string' ? node : (node.text || node.content || JSON.stringify(node));
         console.log(`  Node ${i + 1}: ${nodeText.substring(0, 100)}...`);
+        console.log(`  Node ${i + 1} type:`, typeof node);
+        console.log(`  Node ${i + 1} keys:`, typeof node === 'object' ? Object.keys(node) : 'N/A');
       });
     }
     
@@ -193,13 +222,22 @@ Deno.serve(async (req) => {
       contextInfo += '\n\nIMPORTANT: Use this context information to provide accurate, specific answers about Nexius Labs services and capabilities.';
     }
     
-    // Log the constructed context info
-    console.log('🧠 Context Info Construction:');
+    // Log the constructed context info in detail
+    console.log('🧠 CONTEXT INFO CONSTRUCTION ANALYSIS:');
     console.log('- Context info length:', contextInfo.length);
+    console.log('- Context info is empty:', contextInfo === '');
+    console.log('- Context info is whitespace only:', contextInfo.trim() === '');
     if (contextInfo.length > 0) {
       console.log('- Context info preview:', contextInfo.substring(0, 300) + '...');
+      console.log('- FULL CONTEXT INFO:');
+      console.log(contextInfo);
     } else {
       console.log('- No context info constructed (LlamaIndex returned no relevant data)');
+      console.log('- Checking individual conditions:');
+      console.log('  - llamaAnswer exists:', !!llamaAnswer);
+      console.log('  - sourceNodes exists:', !!sourceNodes);
+      console.log('  - sourceNodes is array:', Array.isArray(sourceNodes));
+      console.log('  - sourceNodes length > 0:', sourceNodes && sourceNodes.length > 0);
     }
 
     // Get previous messages for context
@@ -235,12 +273,16 @@ Never oversell; be specific and scrappy. Keep answers < 120 words unless asked f
       { role: 'user', content: message }
     ];
 
-    // Log the final system message sent to OpenAI
-    console.log('🤖 OpenAI Request Details:');
+    // Log the final system message sent to OpenAI in detail
+    console.log('🤖 OPENAI REQUEST CONSTRUCTION:');
     console.log('- Total messages in conversation:', messages.length);
     console.log('- System message length:', messages[0].content.length);
-    console.log('- System message preview:', messages[0].content.substring(0, 500) + '...');
+    console.log('- System message contains contextInfo:', messages[0].content.includes('Relevant information from our knowledge base'));
+    console.log('- COMPLETE SYSTEM MESSAGE:');
+    console.log(messages[0].content);
+    console.log('- User message length:', message.length);
     console.log('- User message:', message);
+    console.log('- Previous messages count:', messages.length - 2); // Excluding system and current user message
 
     console.log('Sending request to OpenAI with', messages.length, 'messages');
 
