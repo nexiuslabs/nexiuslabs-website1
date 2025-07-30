@@ -16,7 +16,16 @@ async function retrieveContextFromLlamaIndex(query: string): Promise<{
       return {};
     }
 
-    console.log('Querying LlamaIndex for relevant context...');
+    console.log('Querying LlamaIndex for:', query.substring(0, 100) + '...');
+    
+    const requestBody = {
+      query: query,
+      topK: 5,
+      stream: false,
+      include_metadata: true
+    };
+    
+    console.log('LlamaIndex request body:', JSON.stringify(requestBody));
     
     const response = await fetch(LLAMA_INDEX_PIPELINE_URL, {
       method: 'POST',
@@ -25,11 +34,7 @@ async function retrieveContextFromLlamaIndex(query: string): Promise<{
         'Authorization': `Bearer ${LLAMA_INDEX_API_KEY}`,
         'x-api-key': LLAMA_INDEX_API_KEY,  // Some APIs use this header
       },
-      body: JSON.stringify({
-        query,
-        topK: 3,
-        stream: false,
-      }),
+      body: JSON.stringify(requestBody),
     });
 
     if (!response.ok) {
@@ -39,17 +44,35 @@ async function retrieveContextFromLlamaIndex(query: string): Promise<{
     }
 
     const result = await response.json();
+    console.log('Raw LlamaIndex response:', JSON.stringify(result, null, 2));
     
-    if (result.answer || result.response || (result.sourceNodes && result.sourceNodes.length > 0)) {
+    // Check for various possible response formats
+    const answer = result.answer || result.response || result.text || result.message;
+    const sourceNodes = result.sourceNodes || result.sources || result.nodes || result.documents || result.chunks || [];
+    
+    console.log('Parsed answer:', answer ? 'Present' : 'Not found');
+    console.log('Parsed source nodes count:', Array.isArray(sourceNodes) ? sourceNodes.length : 0);
+    
+    if (answer || (Array.isArray(sourceNodes) && sourceNodes.length > 0)) {
       console.log('Successfully retrieved context from LlamaIndex');
+      console.log('Answer length:', answer ? answer.length : 0);
+      console.log('Source nodes details:', sourceNodes.map((node, i) => 
+        `Node ${i + 1}: ${typeof node === 'string' ? node.substring(0, 50) : (node.text || node.content || 'Unknown format').substring(0, 50)}...`
+      ));
+      
+      return {
+        answer,
+        sourceNodes: Array.isArray(sourceNodes) ? sourceNodes : [],
+      };
     } else {
       console.log('No relevant context found in LlamaIndex');
+      console.log('Response structure analysis:');
+      console.log('- Keys in response:', Object.keys(result));
+      console.log('- Response type:', typeof result);
+      console.log('- Is array?', Array.isArray(result));
     }
     
-    return {
-      answer: result.answer || result.response,
-      sourceNodes: result.sourceNodes || result.sources || result.nodes || [],
-    };
+    return {};
   } catch (error) {
     console.error('LlamaIndex connection error:', error.message);
     return {};
