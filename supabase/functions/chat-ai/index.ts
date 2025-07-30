@@ -12,11 +12,11 @@ async function retrieveContextFromLlamaIndex(query: string): Promise<{
 }> {
   try {
     if (!LLAMA_INDEX_PIPELINE_URL || !LLAMA_INDEX_API_KEY) {
-      console.warn('LlamaIndex configuration missing, skipping retrieval');
+      // LlamaIndex not configured - this is expected and not an error
       return {};
     }
 
-    console.log('Querying LlamaIndex with:', query);
+    console.log('Retrieving context from LlamaIndex for query');
     
     const response = await fetch(LLAMA_INDEX_PIPELINE_URL, {
       method: 'POST',
@@ -32,19 +32,19 @@ async function retrieveContextFromLlamaIndex(query: string): Promise<{
 
     if (!response.ok) {
       const errorText = await response.text();
-      console.error('LlamaIndex API error:', response.status, errorText);
+      console.error('LlamaIndex API request failed:', response.status, errorText);
       return {};
     }
 
     const result = await response.json();
-    console.log('LlamaIndex response received');
+    console.log('Successfully retrieved context from LlamaIndex');
     
     return {
       answer: result.answer || result.response,
       sourceNodes: result.sourceNodes || result.sources || [],
     };
   } catch (error) {
-    console.error('Error retrieving from LlamaIndex:', error);
+    console.error('LlamaIndex retrieval error:', error);
     return {};
   }
 }
