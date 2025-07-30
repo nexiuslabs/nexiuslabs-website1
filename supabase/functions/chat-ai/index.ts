@@ -1,50 +1,57 @@
 import { createClient } from 'https://esm.sh/@supabase/supabase-js@2.39.7';
 import OpenAI from 'npm:openai@4.28.0';
 
-// Environment variable validation
-const LLAMA_INDEX_PIPELINE_URL = Deno.env.get('LLAMA_INDEX_PIPELINE_URL');
-const LLAMA_INDEX_API_KEY = Deno.env.get('LLAMA_INDEX_API_KEY');
-
 // Function to retrieve context from LlamaIndex
 async function retrieveContextFromLlamaIndex(query: string): Promise<{
   answer?: string;
   sourceNodes?: Array<{ text: string; metadata?: any }>;
 }> {
   try {
+    // Get environment variables at runtime to ensure they're fresh
+    const LLAMA_INDEX_PIPELINE_URL = Deno.env.get('LLAMA_INDEX_PIPELINE_URL');
+    const LLAMA_INDEX_API_KEY = Deno.env.get('LLAMA_INDEX_API_KEY');
+    
     if (!LLAMA_INDEX_PIPELINE_URL || !LLAMA_INDEX_API_KEY) {
-      // LlamaIndex not configured - this is expected and not an error
+      // LlamaIndex not configured - return empty context silently
       return {};
     }
 
-    console.log('Retrieving context from LlamaIndex for query');
+    console.log('Querying LlamaIndex for relevant context...');
     
     const response = await fetch(LLAMA_INDEX_PIPELINE_URL, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
-        'x-api-key': LLAMA_INDEX_API_KEY,
+        'Authorization': `Bearer ${LLAMA_INDEX_API_KEY}`,
+        'x-api-key': LLAMA_INDEX_API_KEY,  // Some APIs use this header
       },
       body: JSON.stringify({
-        query: query,
+        query,
         topK: 3,
+        stream: false,
       }),
     });
 
     if (!response.ok) {
       const errorText = await response.text();
-      console.error('LlamaIndex API request failed:', response.status, errorText);
+      console.error(`LlamaIndex API error (${response.status}):`, errorText);
       return {};
     }
 
     const result = await response.json();
-    console.log('Successfully retrieved context from LlamaIndex');
+    
+    if (result.answer || result.response || (result.sourceNodes && result.sourceNodes.length > 0)) {
+      console.log('Successfully retrieved context from LlamaIndex');
+    } else {
+      console.log('No relevant context found in LlamaIndex');
+    }
     
     return {
       answer: result.answer || result.response,
-      sourceNodes: result.sourceNodes || result.sources || [],
+      sourceNodes: result.sourceNodes || result.sources || result.nodes || [],
     };
   } catch (error) {
-    console.error('LlamaIndex retrieval error:', error);
+    console.error('LlamaIndex connection error:', error.message);
     return {};
   }
 }
@@ -99,7 +106,6 @@ Deno.serve(async (req) => {
     console.log('Processing chat message for session:', sessionId);
 
     // Retrieve relevant context from LlamaIndex
-    console.log('Retrieving context from LlamaIndex...');
     const { answer: llamaAnswer, sourceNodes } = await retrieveContextFromLlamaIndex(message);
     
     // Prepare context information
@@ -114,11 +120,12 @@ Deno.serve(async (req) => {
       if (sourceNodes && sourceNodes.length > 0) {
         contextInfo += '\nRelevant context sources:\n';
         sourceNodes.forEach((node, index) => {
-          contextInfo += `${index + 1}. ${node.text.substring(0, 200)}...\n`;
+          const nodeText = typeof node === 'string' ? node : (node.text || JSON.stringify(node));
+          contextInfo += `${index + 1}. ${nodeText.substring(0, 200)}...\n`;
         });
       }
       
-      contextInfo += '\nPlease use this information to provide accurate answers about Nexius Labs services and capabilities.';
+      contextInfo += '\n\nIMPORTANT: Use this context information to provide accurate, specific answers about Nexius Labs services and capabilities.';
     }
     // Get previous messages for context
     const { data: previousMessages, error: messagesError } = await supabaseClient
