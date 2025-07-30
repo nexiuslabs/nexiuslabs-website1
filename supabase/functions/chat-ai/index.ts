@@ -73,7 +73,11 @@ async function retrieveContextFromLlamaIndex(query: string): Promise<{
     
     // Check for various possible response formats
     const answer = result.answer || result.response || result.text || result.message;
-    const sourceNodes = result.sourceNodes || result.sources || result.nodes || result.documents || result.chunks || [];
+    const sourceNodes = result.retrieval_nodes ? result.retrieval_nodes.map(item => ({
+      text: item.node.text,
+      metadata: item.node.extra_info,
+      score: item.score
+    })) : (result.sourceNodes || result.sources || result.nodes || result.documents || result.chunks || []);
     
     console.log('🔍 EXTRACTED VALUES:');
     console.log('- Answer found:', answer ? 'YES' : 'NO');
