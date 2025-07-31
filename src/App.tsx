@@ -188,7 +188,7 @@ function Navigation({ onContactClick }: { onContactClick: () => void }) {
             className="flex items-center group"
           >
             <img
-              src="https://tunidbyclygzipvbfzee.supabase.co/storage/v1/object/public/website-images/m04h4fs8wns-1739784195705.png"
+              src="https://tunidbyclygzipvbfzee.supabase.co/storage/v1/object/public/website-images//NexiusLabs_Logo-removebg-preview-removebg-preview.png"
               alt="NEXIUS Labs"
               className="h-8 w-8 object-contain group-hover:opacity-90 transition-opacity"
             />
