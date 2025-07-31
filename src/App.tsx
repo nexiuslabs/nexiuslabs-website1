@@ -338,7 +338,7 @@ function HomePage() {
               Who We Are
             </h2>
             <p className="font-body text-nexius-dark-text max-w-3xl mx-auto leading-relaxed text-lg mb-8">
-              At Nexius Labs, we don't chase the latest AI buzz—we apply it to real business headaches.
+              At Nexius Labs, we don't chase the latest AI buzz, we apply it to real business headaches.
               We're practitioners who've built and run lean teams ourselves, and now we package those workflows into turn‑key automations.
             </p>
             <a 
