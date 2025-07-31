@@ -372,7 +372,7 @@ function HomePage() {
               <p className="text-nexius-dark-text-muted mb-6">Find the right customers with limited time/resources.</p>
               <a
                 href="#"
-                className="inline-flex items-center text-nexius-teal hover:text-nexius-teal/90 font-medium"
+                className="hidden inline-flex items-center text-nexius-teal hover:text-nexius-teal/90 font-medium"
               >
                 Explore <ArrowRight className="ml-2 h-4 w-4" />
               </a>
@@ -387,7 +387,7 @@ function HomePage() {
               <p className="text-nexius-dark-text-muted mb-6">Scale without expensive/dumb software.</p>
               <a
                 href="#"
-                className="inline-flex items-center text-nexius-teal hover:text-nexius-teal/90 font-medium"
+                className="hidden inline-flex items-center text-nexius-teal hover:text-nexius-teal/90 font-medium"
               >
                 Explore <ArrowRight className="ml-2 h-4 w-4" />
               </a>
@@ -402,7 +402,7 @@ function HomePage() {
               <p className="text-nexius-dark-text-muted mb-6">Talk to AI agents; they understand & execute change.</p>
               <a
                 href="#"
-                className="inline-flex items-center text-nexius-teal hover:text-nexius-teal/90 font-medium"
+                className="hidden inline-flex items-center text-nexius-teal hover:text-nexius-teal/90 font-medium"
               >
                 Explore <ArrowRight className="ml-2 h-4 w-4" />
               </a>
