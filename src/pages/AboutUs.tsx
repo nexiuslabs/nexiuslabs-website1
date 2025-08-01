@@ -95,7 +95,7 @@ export function AboutUs() {
               <div className="flex flex-col md:flex-row gap-6">
                 <div className="md:w-32 flex-shrink-0">
                   <img
-                    src="https://tunidbyclygzipvbfzee.supabase.co/storage/v1/object/public/website-images/darryl-1740395556131.jpeg"
+                    src="https://tunidbyclygzipvbfzee.supabase.co/storage/v1/object/public/website-images//darryl%20portrait.jpeg"
                     alt="Darryl Wong"
                     className="w-32 h-32 rounded-full object-cover mx-auto md:mx-0"
                     crossOrigin="anonymous"
@@ -136,7 +136,7 @@ export function AboutUs() {
               <div className="flex flex-col md:flex-row gap-6">
                 <div className="md:w-32 flex-shrink-0">
                   <img
-                    src="https://tunidbyclygzipvbfzee.supabase.co/storage/v1/object/public/website-images/darryl-1740396262527.jpeg"
+                    src="https://tunidbyclygzipvbfzee.supabase.co/storage/v1/object/public/website-images//Melverick%20portrait.jpeg"
                     alt="Melverick Ng"
                     className="w-32 h-32 rounded-full object-cover mx-auto md:mx-0"
                     crossOrigin="anonymous"
