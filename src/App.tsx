@@ -269,7 +269,6 @@ function HomePage({ onExploreClick }: { onExploreClick: (message: string) => voi
   };
 
   return (
-    <div className="h-[calc(100vh-4rem)] mt-16 bg-nexius-dark-bg overflow-y-auto snap-y snap-mandatory scroll-pt-16">
     <div className="h-[calc(100vh-4rem)] mt-16 bg-nexius-dark-bg overflow-y-auto snap-y snap-mandatory scroll-pt-16 hide-scrollbar">
       {/* Hero Section */}
       <section className="relative min-h-[calc(100vh-4rem)] snap-start flex items-center justify-center bg-gradient-to-b from-nexius-navy to-nexius-navy/95">
@@ -429,7 +428,7 @@ function HomePage({ onExploreClick }: { onExploreClick: (message: string) => voi
               Introducing Nexius Agent
             </h2>
             <p className="font-body text-nexius-dark-text max-w-3xl mx-auto leading-relaxed text-lg mb-8">
-              Nexius Agent is your AI-powered business partner, designed to automate key operations and free up your time for strategic growth.
+              Run your business like the big boys—without the big-boy budget. Our AI pulls in new leads, follows them up, and keeps all the numbers tidy—so you grow while everyone else hires.
             </p>
           </div>
           <div className="max-w-4xl mx-auto">
@@ -439,7 +438,7 @@ function HomePage({ onExploreClick }: { onExploreClick: (message: string) => voi
                 Your AI-Powered Business Partner
               </h3>
               <p className="text-nexius-dark-text-muted mb-8">
-                Run your business like the big boys—without the big-boy budget. Our AI pulls in new leads, follows them up, and keeps all the numbers tidy—so you grow while everyone else hires.
+                Automate lead generation, manage finances, streamline HR, and more. Nexius Agent handles the admin, so you can focus on growth.
               </p>
               <Link
                 to="/agent"
@@ -447,6 +446,14 @@ function HomePage({ onExploreClick }: { onExploreClick: (message: string) => voi
               >
                 Learn More About Nexius Agent <ArrowRight className="ml-2 h-5 w-5" />
               </Link>
+            </div>
+            <div className="text-center mt-8">
+              <a
+                href="/agent"
+                className="inline-flex items-center text-nexius-teal hover:text-nexius-teal/90 font-medium"
+              >
+                Visit the Nexius Agent Page <ArrowRight className="ml-2 h-4 w-4" />
+              </a>
             </div>
           </div>
         </div>
@@ -549,9 +556,9 @@ function HomePage({ onExploreClick }: { onExploreClick: (message: string) => voi
   );
 }
 
+import { useLocation } from 'react-router-dom';
+
 export default function App() {
-                }
-  )
   const [isContactFormOpen, setIsContactFormOpen] = useState(false);
   const [authChecked, setAuthChecked] = useState(false);
   const [isChatOpen, setIsChatOpen] = useState(false);
