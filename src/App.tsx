@@ -558,6 +558,7 @@ export default function App() {
         <Route path="/events" element={<Events />} />
         <Route path="/links" element={<LinksPage />} />
         <Route path="/agent" element={<AgentPage />} />
+        <Route path="/aboutus" element={<AboutUs />} />
         <Route path="*" element={<NotFound />} />
       </Routes>
 
