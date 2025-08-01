@@ -534,7 +534,14 @@ export default function App() {
   if (!authChecked) {
     return (
       <div className="fixed inset-0 flex items-center justify-center bg-nexius-dark-bg">
-        <Loader2 className="w-8 h-8 text-nexius-teal animate-spin" />
+        <div className="relative flex w-64 animate-pulse gap-2 p-4">
+          <div className="h-12 w-12 rounded-full bg-nexius-dark-border"></div>
+          <div className="flex-1">
+            <div className="mb-1 h-5 w-3/5 rounded-lg bg-nexius-dark-border text-lg"></div>
+            <div className="h-5 w-[90%] rounded-lg bg-nexius-dark-border text-sm"></div>
+          </div>
+          <div className="absolute bottom-5 right-0 h-4 w-4 rounded-full bg-nexius-teal"></div>
+        </div>
       </div>
     );
   }
