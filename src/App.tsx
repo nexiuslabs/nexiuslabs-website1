@@ -308,14 +308,11 @@ function HomePage({ onExploreClick }: { onExploreClick: (message: string) => voi
             <div className="relative flex justify-center gap-4">
               <button 
                 onClick={() => {
-                  const contactButton = document.querySelector('button[data-contact="true"]');
-                  if (contactButton instanceof HTMLButtonElement) {
-                    contactButton.click();
-                  }
+                 onExploreClick("I'm interested in exploring your AI solutions. Can you tell me more about what you offer?");
                 }}
                 className="bg-nexius-teal text-white px-6 py-3 rounded-lg hover:bg-nexius-teal/90 transition-colors flex items-center group font-display font-semibold tracking-wide uppercase text-sm"
               >
-                Get My 15‑Minute Assessment <ArrowRight className="ml-2 h-5 w-5 group-hover:translate-x-1 transition-transform" />
+               Explore Our Solutions <ArrowRight className="ml-2 h-5 w-5 group-hover:translate-x-1 transition-transform" />
               </button>
               <button 
                 onClick={() => {
@@ -430,6 +427,12 @@ function HomePage({ onExploreClick }: { onExploreClick: (message: string) => voi
             <p className="font-body text-nexius-dark-text max-w-3xl mx-auto leading-relaxed text-lg mb-8">
               Nexius Agent is your AI-powered business partner, designed to automate key operations and free up your time for strategic growth.
             </p>
+           <Link 
+             to="/agent"
+             className="bg-nexius-teal text-white px-8 py-4 rounded-lg hover:bg-nexius-teal/90 transition-colors inline-flex items-center font-display font-semibold tracking-wide uppercase text-sm"
+           >
+             Learn More About Nexius Agent <ArrowRight className="ml-2 h-5 w-5" />
+           </Link>
           </div>
         </div>
       </section>
