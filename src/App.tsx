@@ -182,7 +182,7 @@ function Navigation({ onContactClick }: { onContactClick: () => void }) {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
   return (
-    <nav className="fixed top-0 w-full bg-nexius-dark-surface/90 backdrop-blur-md z-50 border-b border-nexius-dark-border">
+    <nav className="fixed top-0 w-full bg-transparent backdrop-blur-md z-50">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between h-16">
           <Link 
@@ -271,9 +271,9 @@ function HomePage({ onExploreClick }: { onExploreClick: (message: string) => voi
   };
 
   return (
-    <div className="h-[calc(100vh-4rem)] mt-16 bg-nexius-dark-bg overflow-y-auto snap-y snap-mandatory scroll-pt-16 hide-scrollbar">
+    <div className="h-screen bg-nexius-dark-bg overflow-y-auto snap-y snap-mandatory scroll-pt-16 hide-scrollbar">
       {/* Hero Section */}
-      <section className="relative min-h-[calc(100vh-4rem)] snap-start flex items-center justify-center bg-gradient-to-b from-nexius-navy to-nexius-navy/95">
+      <section className="relative min-h-screen snap-start flex items-center justify-center bg-gradient-to-b from-nexius-navy to-nexius-navy/95">
         <div className="absolute inset-0">
           <DotGrid
             dotSize={5}
@@ -339,7 +339,7 @@ function HomePage({ onExploreClick }: { onExploreClick: (message: string) => voi
       </section>
 
       {/* Who We Are Section */}
-      <section className="min-h-[calc(100vh-4rem)] snap-start flex items-center py-16 bg-nexius-dark-surface">
+      <section className="min-h-screen snap-start flex items-center py-16 bg-nexius-dark-surface">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-16">
             <h2 className="text-4xl font-display font-bold text-white mb-6 tracking-tight">
@@ -356,7 +356,7 @@ function HomePage({ onExploreClick }: { onExploreClick: (message: string) => voi
       </section>
 
       {/* What We Can Help You Build Section */}
-      <section className="min-h-[calc(100vh-4rem)] snap-start flex items-center py-24">
+      <section className="min-h-screen snap-start flex items-center py-24">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-16">
             <h2 className="text-4xl font-display font-bold text-white mb-6 tracking-tight">
@@ -416,7 +416,7 @@ function HomePage({ onExploreClick }: { onExploreClick: (message: string) => voi
       </section>
 
       {/* What We Are Building Section */}
-      <section className="min-h-[calc(100vh-4rem)] snap-start flex items-center py-24 bg-nexius-dark-surface">
+      <section className="min-h-screen snap-start flex items-center py-24 bg-nexius-dark-surface">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-16">
             <h2 className="text-4xl font-display font-bold text-white mb-6 tracking-tight">
@@ -436,7 +436,7 @@ function HomePage({ onExploreClick }: { onExploreClick: (message: string) => voi
       </section>
 
       {/* Academy Section */}
-      <section className="min-h-[calc(100vh-4rem)] snap-start flex items-center py-24">
+      <section className="min-h-screen snap-start flex items-center py-24">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-16">
             <h2 className="text-4xl font-display font-bold text-white mb-6 tracking-tight">
@@ -458,7 +458,7 @@ function HomePage({ onExploreClick }: { onExploreClick: (message: string) => voi
       </section>
 
       {/* Footer */}
-      <footer className="min-h-[calc(100vh-4rem)] snap-start bg-nexius-dark-surface text-nexius-dark-text-muted py-12">
+      <footer className="min-h-screen snap-start bg-nexius-dark-surface text-nexius-dark-text-muted py-12">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid md:grid-cols-4 gap-8">
             <div>
