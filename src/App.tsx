@@ -440,20 +440,19 @@ function HomePage({ onExploreClick }: { onExploreClick: (message: string) => voi
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-16">
             <h2 className="text-4xl font-display font-bold text-white mb-6 tracking-tight">
-      <footer className="snap-start bg-nexius-dark-surface text-nexius-dark-text-muted py-12">
-      {/* Who We Are Section */}
-      <section className="min-h-screen snap-start flex items-center py-16 bg-nexius-dark-surface">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-16">
-            <h2 className="text-4xl font-display font-bold text-white mb-6 tracking-tight">
-              Who We Are
+              NEXIUS Academy
             </h2>
-            <Link 
-              to="/aboutus" 
-              className="inline-flex items-center text-nexius-teal hover:text-nexius-teal/90 font-medium"
+            <p className="font-body text-nexius-dark-text max-w-3xl mx-auto leading-relaxed text-lg mb-8">
+              Learn how to leverage AI for your business with our comprehensive courses and resources.
+            </p>
+            <button 
+              onClick={() => {
+                window.open('https://academy.nexiuslabs.com', '_blank');
+              }}
+              className="bg-nexius-teal text-white px-8 py-4 rounded-lg hover:bg-nexius-teal/90 transition-colors inline-flex items-center font-display font-semibold tracking-wide uppercase text-sm"
             >
-              Learn more about our story <ArrowRight className="ml-2 h-4 w-4" />
-            </Link>
+              Visit Academy <ArrowRight className="ml-2 h-5 w-5" />
+            </button>
           </div>
         </div>
       </section>
@@ -510,8 +509,6 @@ function HomePage({ onExploreClick }: { onExploreClick: (message: string) => voi
 }
 
 export default function App() {
-                }
-  )
   const [isContactFormOpen, setIsContactFormOpen] = useState(false);
   const [authChecked, setAuthChecked] = useState(false);
   const [isChatOpen, setIsChatOpen] = useState(false);
