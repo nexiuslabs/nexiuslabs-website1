@@ -464,30 +464,6 @@ function HomePage({ onExploreClick }: { onExploreClick: (message: string) => voi
         </div>
       </section>
 
-      {/* CTA Section */}
-      <section className="min-h-[calc(100vh-4rem)] snap-start flex items-center py-24 bg-nexius-navy">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <h2 className="text-3xl font-display font-bold text-white mb-4 tracking-tight">
-            More customers shouldn't mean more work.
-          </h2>
-          <p className="font-body text-white/80 mb-8 max-w-2xl mx-auto leading-relaxed">
-            Let us show you the first 3 processes you can automate this month.
-          </p>
-          <button 
-            onClick={() => {
-              const contactButton = document.querySelector('button[data-contact="true"]');
-              if (contactButton instanceof HTMLButtonElement) {
-                contactButton.click();
-              }
-            }}
-            data-contact="true"
-            className="bg-nexius-teal text-white px-8 py-4 rounded-lg hover:bg-nexius-teal/90 transition-colors font-display font-semibold tracking-wide uppercase text-sm inline-flex items-center"
-          >
-            Get My 15‑Minute Assessment <ArrowRight className="ml-2 h-5 w-5" />
-          </button>
-        </div>
-      </section>
-
       {/* Footer */}
       <footer className="min-h-[calc(100vh-4rem)] snap-start bg-nexius-dark-surface text-nexius-dark-text-muted py-12">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
