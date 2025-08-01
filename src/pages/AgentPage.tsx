@@ -65,9 +65,9 @@ export function AgentPage() {
   };
 
   return (
-    <div className="min-h-screen bg-nexius-dark-bg">
+    <div className="h-screen bg-nexius-dark-bg overflow-y-auto snap-y snap-mandatory scroll-pt-16 hide-scrollbar">
       {/* Hero Section */}
-      <section className="relative min-h-screen flex items-center justify-center bg-gradient-to-b from-nexius-navy to-nexius-navy/95 mt-16">
+      <section className="relative min-h-screen snap-start flex items-center justify-center bg-gradient-to-b from-nexius-navy to-nexius-navy/95 mt-16">
         <div className="absolute inset-0">
           <DotGrid
             dotSize={5}
@@ -108,7 +108,7 @@ export function AgentPage() {
       </section>
 
       {/* Problem → Promise Section */}
-      <section className="py-24 bg-nexius-dark-surface">
+      <section className="min-h-screen snap-start flex items-center py-24 bg-nexius-dark-surface">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-16">
             <h2 className="text-4xl font-display font-bold text-white mb-6 tracking-tight">
@@ -127,7 +127,7 @@ export function AgentPage() {
       </section>
 
       {/* How It Helps Section */}
-      <section className="py-24 bg-nexius-dark-bg">
+      <section className="min-h-screen snap-start flex items-center py-24 bg-nexius-dark-bg">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-16">
             <h2 className="text-4xl font-display font-bold text-white mb-12 tracking-tight">
@@ -169,7 +169,7 @@ export function AgentPage() {
       </section>
 
       {/* Simple 3-Step Flow Section */}
-      <section className="py-24 bg-nexius-dark-surface">
+      <section className="min-h-screen snap-start flex items-center py-24 bg-nexius-dark-surface">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-16">
             <h2 className="text-4xl font-display font-bold text-white mb-12 tracking-tight">
@@ -211,7 +211,7 @@ export function AgentPage() {
       </section>
 
       {/* Modules Section */}
-      <section className="py-24 bg-nexius-dark-bg">
+      <section className="min-h-screen snap-start flex items-center py-24 bg-nexius-dark-bg">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-16">
             <h2 className="text-4xl font-display font-bold text-white mb-6 tracking-tight">
@@ -221,7 +221,7 @@ export function AgentPage() {
               From customer management to financial tracking—and many more modules coming soon to expand your business capabilities.
             </p>
           </div>
-          <div className="grid md:grid-cols-3 lg:grid-cols-4 gap-8">
+          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-8">
             {modules.map((module) => {
               const Icon = module.icon;
               return (
@@ -244,7 +244,7 @@ export function AgentPage() {
       </section>
 
       {/* Social Proof Section */}
-      <section className="py-24 bg-nexius-dark-bg">
+      <section className="min-h-screen snap-start flex items-center py-24 bg-nexius-dark-bg">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center">
             <blockquote className="max-w-4xl mx-auto">
@@ -262,7 +262,7 @@ export function AgentPage() {
       </section>
 
       {/* Why We're Different Section */}
-      <section className="py-24 bg-nexius-dark-surface">
+      <section className="min-h-screen snap-start flex items-center py-24 bg-nexius-dark-surface">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-16">
             <h2 className="text-4xl font-display font-bold text-white mb-6 tracking-tight">
@@ -276,7 +276,7 @@ export function AgentPage() {
       </section>
 
       {/* Early-Access Perks Section */}
-      <section className="py-24 bg-nexius-dark-bg">
+      <section className="min-h-screen snap-start flex items-center py-24 bg-nexius-dark-bg">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-16">
             <h2 className="text-4xl font-display font-bold text-white mb-12 tracking-tight">
@@ -324,7 +324,7 @@ export function AgentPage() {
       </section>
 
       {/* Join the Wait List Section */}
-      <section id="waitlist" className="py-24 bg-nexius-navy">
+      <section id="waitlist" className="min-h-screen snap-start flex items-center py-24 bg-nexius-navy">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <h2 className="text-4xl font-display font-bold text-white mb-6 tracking-tight">
             Join the Wait List
@@ -359,7 +359,7 @@ export function AgentPage() {
       </section>
 
       {/* Footer */}
-      <footer className="bg-nexius-dark-surface text-nexius-dark-text-muted py-12">
+      <footer className="snap-start bg-nexius-dark-surface text-nexius-dark-text-muted py-12">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-8">
             <button
