@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-import { CheckCircle, ArrowRight, Mail, Linkedin, Twitter, MessageCircle, Clock, Users, Send, Package, Calculator, ShoppingCart, UsersRound, LifeBuoy } from 'lucide-react';
 import { CheckCircle, ArrowRight, Mail, Linkedin, Twitter, MessageCircle, Clock, Users, Send, Package, Calculator, ShoppingCart, UsersRound, LifeBuoy, MoreHorizontal } from 'lucide-react';
 import DotGrid from '../components/DotGrid';
 import { ContactForm } from '../components/ContactForm';
