@@ -425,52 +425,34 @@ function HomePage({ onExploreClick }: { onExploreClick: (message: string) => voi
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-16">
             <h2 className="text-4xl font-display font-bold text-white mb-6 tracking-tight">
-              What We're Building Next
+              Introducing Nexius Agent
             </h2>
             <p className="font-body text-nexius-dark-text max-w-3xl mx-auto leading-relaxed text-lg mb-8">
-              Your first workflows are just the beginning. Here's our public roadmap of features in development—so you know exactly what's coming.
+              Run your business like the big boys—without the big-boy budget. Our AI pulls in new leads, follows them up, and keeps all the numbers tidy—so you grow while everyone else hires.
             </p>
           </div>
           <div className="max-w-4xl mx-auto">
-            <div className="space-y-6">
-              <div className="flex items-start gap-4 p-6 bg-nexius-dark-card rounded-xl border border-nexius-dark-border">
-                <div className="bg-nexius-teal/20 rounded-lg p-2">
-                  <TrendingUp className="h-6 w-6 text-nexius-teal" />
-                </div>
-                <div>
-                  <h3 className="text-lg font-display font-bold text-white mb-2">Q3 '25: Advanced lead scoring & segmentation</h3>
-                  <p className="text-nexius-dark-text-muted">Intelligent prioritization and automated lead qualification</p>
-                </div>
-              </div>
-              
-              <div className="flex items-start gap-4 p-6 bg-nexius-dark-card rounded-xl border border-nexius-dark-border">
-                <div className="bg-nexius-teal/20 rounded-lg p-2">
-                  <ShoppingCart className="h-6 w-6 text-nexius-teal" />
-                </div>
-                <div>
-                  <h3 className="text-lg font-display font-bold text-white mb-2">Q4 '25: Inventory & fulfillment automations</h3>
-                  <p className="text-nexius-dark-text-muted">Smart inventory management and order processing workflows</p>
-                </div>
-              </div>
-              
-              <div className="flex items-start gap-4 p-6 bg-nexius-dark-card rounded-xl border border-nexius-dark-border">
-                <div className="bg-nexius-teal/20 rounded-lg p-2">
-                  <LineChart className="h-6 w-6 text-nexius-teal" />
-                </div>
-                <div>
-                  <h3 className="text-lg font-display font-bold text-white mb-2">Q1 '26: AI‑driven analytics dashboard</h3>
-                  <p className="text-nexius-dark-text-muted">Comprehensive business intelligence with predictive insights</p>
-                </div>
-              </div>
+            <div className="p-8 bg-nexius-dark-card rounded-xl border border-nexius-dark-border hover:border-nexius-teal/50 hover:shadow-lg transition-all text-center">
+              <Bot className="h-16 w-16 text-nexius-teal mx-auto mb-6" />
+              <h3 className="text-2xl font-display font-bold text-white mb-4">
+                Your AI-Powered Business Partner
+              </h3>
+              <p className="text-nexius-dark-text-muted mb-8">
+                Automate lead generation, manage finances, streamline HR, and more. Nexius Agent handles the admin, so you can focus on growth.
+              </p>
+              <Link
+                to="/agent"
+                className="inline-flex items-center bg-nexius-teal text-white px-6 py-3 rounded-lg hover:bg-nexius-teal/90 transition-colors font-display font-semibold tracking-wide uppercase text-sm"
+              >
+                Learn More About Nexius Agent <ArrowRight className="ml-2 h-5 w-5" />
+              </Link>
             </div>
             <div className="text-center mt-8">
               <a
-                href="https://roadmap.nexiuslabs.com"
-                target="_blank"
-                rel="noopener noreferrer"
+                href="/agent"
                 className="inline-flex items-center text-nexius-teal hover:text-nexius-teal/90 font-medium"
               >
-                See the full product roadmap <ArrowRight className="ml-2 h-4 w-4" />
+                Visit the Nexius Agent Page <ArrowRight className="ml-2 h-4 w-4" />
               </a>
             </div>
           </div>
