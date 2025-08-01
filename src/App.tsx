@@ -270,8 +270,9 @@ function HomePage({ onExploreClick }: { onExploreClick: (message: string) => voi
 
   return (
     <div className="h-[calc(100vh-4rem)] mt-16 bg-nexius-dark-bg overflow-y-auto snap-y snap-mandatory scroll-pt-16">
+    <div className="h-[calc(100vh-4rem)] mt-16 bg-nexius-dark-bg overflow-y-auto snap-y snap-mandatory scroll-pt-16 hide-scrollbar">
       {/* Hero Section */}
-      <section className="relative min-h-screen snap-start flex items-center justify-center bg-gradient-to-b from-nexius-navy to-nexius-navy/95">
+      <section className="relative min-h-[calc(100vh-4rem)] snap-start flex items-center justify-center bg-gradient-to-b from-nexius-navy to-nexius-navy/95">
         <div className="absolute inset-0">
           <DotGrid
             dotSize={5}
@@ -340,7 +341,7 @@ function HomePage({ onExploreClick }: { onExploreClick: (message: string) => voi
       </section>
 
       {/* Who We Are Section */}
-      <section className="min-h-screen snap-start flex items-center py-16 bg-nexius-dark-surface">
+      <section className="min-h-[calc(100vh-4rem)] snap-start flex items-center py-16 bg-nexius-dark-surface">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-16">
             <h2 className="text-4xl font-display font-bold text-white mb-6 tracking-tight">
@@ -361,7 +362,7 @@ function HomePage({ onExploreClick }: { onExploreClick: (message: string) => voi
       </section>
 
       {/* What We Can Help You Build Section */}
-      <section className="snap-start flex items-center py-24">
+      <section className="min-h-[calc(100vh-4rem)] snap-start flex items-center py-24">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-16">
             <h2 className="text-4xl font-display font-bold text-white mb-6 tracking-tight">
@@ -421,7 +422,7 @@ function HomePage({ onExploreClick }: { onExploreClick: (message: string) => voi
       </section>
 
       {/* What We Are Building Section */}
-      <section className="snap-start flex items-center py-24 bg-nexius-dark-surface">
+      <section className="min-h-[calc(100vh-4rem)] snap-start flex items-center py-24 bg-nexius-dark-surface">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-16">
             <h2 className="text-4xl font-display font-bold text-white mb-6 tracking-tight">
@@ -460,7 +461,7 @@ function HomePage({ onExploreClick }: { onExploreClick: (message: string) => voi
       </section>
 
       {/* Academy Section */}
-      <section className="snap-start flex items-center py-24">
+      <section className="min-h-[calc(100vh-4rem)] snap-start flex items-center py-24">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-16">
             <h2 className="text-4xl font-display font-bold text-white mb-6 tracking-tight">
@@ -482,7 +483,7 @@ function HomePage({ onExploreClick }: { onExploreClick: (message: string) => voi
       </section>
 
       {/* CTA Section */}
-      <section className="snap-start flex items-center py-24 bg-nexius-navy">
+      <section className="min-h-[calc(100vh-4rem)] snap-start flex items-center py-24 bg-nexius-navy">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <h2 className="text-3xl font-display font-bold text-white mb-4 tracking-tight">
             More customers shouldn't mean more work.
@@ -506,7 +507,7 @@ function HomePage({ onExploreClick }: { onExploreClick: (message: string) => voi
       </section>
 
       {/* Footer */}
-      <footer className="snap-start bg-nexius-dark-surface text-nexius-dark-text-muted py-12">
+      <footer className="min-h-[calc(100vh-4rem)] snap-start bg-nexius-dark-surface text-nexius-dark-text-muted py-12">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid md:grid-cols-4 gap-8">
             <div>

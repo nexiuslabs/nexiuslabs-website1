@@ -129,6 +129,15 @@
   ::-webkit-scrollbar-thumb:hover {
     @apply bg-nexius-dark-border-light;
   }
+
+  /* Hide scrollbar for snap scroll container */
+  .hide-scrollbar {
+    -ms-overflow-style: none;  /* Internet Explorer 10+ */
+    scrollbar-width: none;  /* Firefox */
+  }
+  .hide-scrollbar::-webkit-scrollbar {
+    display: none;  /* Safari and Chrome */
+  }
 }
 
 @keyframes gradientBg {
