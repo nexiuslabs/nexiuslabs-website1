@@ -47,6 +47,7 @@ import { Events } from './pages/Events';
 import { NotFound } from './pages/NotFound';
 import { Chat } from './components/Chat';
 import { AgentPage } from './pages/AgentPage';
+import { AboutUs } from './pages/AboutUs';
 
 const features = [
   {
@@ -201,6 +202,7 @@ function Navigation({ onContactClick }: { onContactClick: () => void }) {
           </button>
           <div className="hidden md:flex items-center space-x-8 relative">
             <Link to="/blog" className="font-body font-medium text-nexius-dark-text-muted hover:text-white transition-colors">Blog</Link>
+            <Link to="/aboutus" className="font-body font-medium text-nexius-dark-text-muted hover:text-white transition-colors">About Us</Link>
             <Link to="/events" className="font-body font-medium text-nexius-dark-text-muted hover:text-white transition-colors">Events</Link>
             <Link to="/ai-ignite" className="font-body font-medium text-nexius-dark-text-muted hover:text-white transition-colors">AI-Ignite</Link>
             <Link to="/agent" className="font-body font-medium text-nexius-dark-text-muted hover:text-white transition-colors">Nexius Agent</Link>
@@ -343,16 +345,12 @@ function HomePage({ onExploreClick }: { onExploreClick: (message: string) => voi
             <h2 className="text-4xl font-display font-bold text-white mb-6 tracking-tight">
               Who We Are
             </h2>
-            <p className="font-body text-nexius-dark-text max-w-3xl mx-auto leading-relaxed text-lg mb-8">
-              At Nexius Labs, we don't chase the latest AI buzz, we apply it to real business headaches.
-              We're practitioners who've built and run lean teams ourselves, and now we package those workflows into turn‑key automations.
-            </p>
-            <a 
-              href="/about" 
+            <Link 
+              to="/aboutus" 
               className="inline-flex items-center text-nexius-teal hover:text-nexius-teal/90 font-medium"
             >
               Learn more about our story <ArrowRight className="ml-2 h-4 w-4" />
-            </a>
+            </Link>
           </div>
         </div>
       </section>
@@ -433,6 +431,13 @@ function HomePage({ onExploreClick }: { onExploreClick: (message: string) => voi
            >
              Learn More About Nexius Agent <ArrowRight className="ml-2 h-5 w-5" />
            </Link>
+            <Link 
+              to="/aboutus" 
+              onClick={() => setIsMenuOpen(false)}
+              className="block px-3 py-2 rounded-md text-base font-medium text-nexius-dark-text-muted hover:text-white hover:bg-nexius-dark-card"
+            >
+              About Us
+            </Link>
           </div>
         </div>
       </section>
@@ -512,7 +517,7 @@ function HomePage({ onExploreClick }: { onExploreClick: (message: string) => voi
             <div>
               <h3 className="text-nexius-dark-text font-semibold mb-4">Company</h3>
               <ul className="space-y-2">
-                <li><a href="#" className="hover:text-white transition-colors">About Us</a></li>
+                <li><Link to="/aboutus" className="hover:text-white transition-colors">About Us</Link></li>
                 <li><a href="#" className="hover:text-white transition-colors">Contact</a></li>
               </ul>
             </div>
