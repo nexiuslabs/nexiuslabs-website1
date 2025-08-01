@@ -13,6 +13,12 @@ export function AgentPage() {
     e.preventDefault();
     if (!waitlistEmail.trim()) return;
 
+    // Validate email format more strictly
+    const emailRegex = /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?(?:\.[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?)*$/;
+    if (!emailRegex.test(waitlistEmail.trim())) {
+      alert('Please enter a valid email address.');
+      return;
+    }
     try {
       setWaitlistLoading(true);
 
@@ -317,6 +323,8 @@ export function AgentPage() {
               className="flex items-center text-nexius-dark-text mb-4 group focus:outline-none mx-auto"
             >
               <img
+                pattern="[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?(?:\.[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?)*"
+                title="Please enter a valid email address"
                 src="https://tunidbyclygzipvbfzee.supabase.co/storage/v1/object/public/website-images//NexiusLabs_Logo-removebg-preview-removebg-preview.png"
                 alt="NEXIUS Labs"
                 className="h-6 w-6 object-contain group-hover:opacity-90 transition-opacity"
