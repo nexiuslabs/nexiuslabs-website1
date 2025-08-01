@@ -117,6 +117,17 @@ export function AboutUs() {
                       10 years as CPA-qualified auditor & founder of Daisy Consultants, guiding hundreds of Singapore companies through compliance and growth.
                     </p>
                   </div>
+                  <div className="mt-4">
+                    <a
+                      href="https://www.linkedin.com/in/darrylwongdq/"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="inline-flex items-center px-4 py-2 bg-nexius-teal text-white rounded-lg hover:bg-nexius-teal/90 transition-colors text-sm"
+                    >
+                      <Linkedin className="h-4 w-4 mr-2" />
+                      Connect on LinkedIn
+                    </a>
+                  </div>
                 </div>
               </div>
             </div>
@@ -146,6 +157,17 @@ export function AboutUs() {
                     <p className="text-nexius-dark-text-muted">
                       30 years moving companies off legacy systems; investor at Mezza Group, community builder at <strong>AI Ignite</strong>, adjunct mentor on innovation.
                     </p>
+                  </div>
+                  <div className="mt-4">
+                    <a
+                      href="https://www.linkedin.com/in/melverick/"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="inline-flex items-center px-4 py-2 bg-nexius-teal text-white rounded-lg hover:bg-nexius-teal/90 transition-colors text-sm"
+                    >
+                      <Linkedin className="h-4 w-4 mr-2" />
+                      Connect on LinkedIn
+                    </a>
                   </div>
                 </div>
               </div>
