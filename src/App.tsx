@@ -260,7 +260,7 @@ function Navigation({ onContactClick }: { onContactClick: () => void }) {
   );
 }
 
-function HomePage({ onExploreClick }: { onExploreClick: (open: boolean) => void }) {
+function HomePage({ onExploreClick }: { onExploreClick: (message: string) => void }) {
   const scrollToTop = () => {
     window.scrollTo({
       top: 0,
@@ -380,7 +380,7 @@ function HomePage({ onExploreClick }: { onExploreClick: (open: boolean) => void 
               <h3 className="text-xl font-display font-bold text-white mb-4">Customised Sales Acquisition</h3>
               <p className="text-nexius-dark-text-muted mb-6">Find the right customers with limited time/resources.</p>
               <a
-                onClick={(e) => { e.preventDefault(); onExploreClick(true); }}
+                onClick={(e) => { e.preventDefault(); onExploreClick("I'm interested in customised sales acquisition. Can you tell me more about how this works?"); }}
                 className="inline-flex items-center text-nexius-teal hover:text-nexius-teal/90 font-medium"
               >
                 Explore <ArrowRight className="ml-2 h-4 w-4" />
@@ -395,7 +395,7 @@ function HomePage({ onExploreClick }: { onExploreClick: (open: boolean) => void 
               <h3 className="text-xl font-display font-bold text-white mb-4">Open-Source AI-Enhanced Stacks</h3>
               <p className="text-nexius-dark-text-muted mb-6">Scale without expensive/dumb software.</p>
               <a
-                onClick={(e) => { e.preventDefault(); onExploreClick(true); }}
+                onClick={(e) => { e.preventDefault(); onExploreClick("Tell me more about open-source AI-enhanced stacks. How can this help my business scale?"); }}
                 className="inline-flex items-center text-nexius-teal hover:text-nexius-teal/90 font-medium"
               >
                 Explore <ArrowRight className="ml-2 h-4 w-4" />
@@ -410,7 +410,7 @@ function HomePage({ onExploreClick }: { onExploreClick: (open: boolean) => void 
               <h3 className="text-xl font-display font-bold text-white mb-4">Natural-Language Operations</h3>
               <p className="text-nexius-dark-text-muted mb-6">Talk to AI agents; they understand & execute change.</p>
               <a
-                onClick={(e) => { e.preventDefault(); onExploreClick(true); }}
+                onClick={(e) => { e.preventDefault(); onExploreClick("How can natural-language operations help my business? What does this look like in practice?"); }}
                 className="inline-flex items-center text-nexius-teal hover:text-nexius-teal/90 font-medium"
               >
                 Explore <ArrowRight className="ml-2 h-4 w-4" />
@@ -579,6 +579,7 @@ export default function App() {
   const [isContactFormOpen, setIsContactFormOpen] = useState(false);
   const [authChecked, setAuthChecked] = useState(false);
   const [isChatOpen, setIsChatOpen] = useState(false);
+  const [chatInitialMessage, setChatInitialMessage] = useState<string>('');
   const location = useLocation();
 
   const shouldShowNav = location.pathname !== '/links';
@@ -591,6 +592,11 @@ export default function App() {
       setAuthChecked(true);
     });
   }, []);
+
+  const handleExploreClick = (message: string) => {
+    setChatInitialMessage(message);
+    setIsChatOpen(true);
+  };
 
   if (!authChecked) {
     return (
@@ -606,7 +612,7 @@ export default function App() {
       <ContactForm isOpen={isContactFormOpen} onClose={() => setIsContactFormOpen(false)} />
 
       <Routes>
-        <Route path="/" element={<HomePage onExploreClick={setIsChatOpen} />} />
+        <Route path="/" element={<HomePage onExploreClick={handleExploreClick} />} />
         <Route path="/case-studies" element={<CaseStudies />} />
         <Route path="/case-study/:id" element={<CaseStudy />} />
         <Route path="/blog" element={<Blog />} />
@@ -622,7 +628,12 @@ export default function App() {
         <Route path="*" element={<NotFound />} />
       </Routes>
 
-      <Chat isOpen={isChatOpen} setIsOpen={setIsChatOpen} />
+      <Chat 
+        isOpen={isChatOpen} 
+        setIsOpen={setIsChatOpen}
+        initialMessage={chatInitialMessage}
+        onInitialMessageSent={() => setChatInitialMessage('')}
+      />
     </>
   );
 }

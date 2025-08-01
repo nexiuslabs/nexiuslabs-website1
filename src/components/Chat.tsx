@@ -7,9 +7,11 @@ import type { ChatMessage } from '../types/database';
 interface ChatProps {
   isOpen: boolean;
   setIsOpen: (isOpen: boolean) => void;
+  initialMessage?: string;
+  onInitialMessageSent?: () => void;
 }
 
-export function Chat({ isOpen, setIsOpen }: ChatProps) {
+export function Chat({ isOpen, setIsOpen, initialMessage, onInitialMessageSent }: ChatProps) {
   const [isMinimized, setIsMinimized] = useState(false);
   const [message, setMessage] = useState('');
   const [messages, setMessages] = useState<ChatMessage[]>([]);
@@ -19,6 +21,59 @@ export function Chat({ isOpen, setIsOpen }: ChatProps) {
   const messagesEndRef = useRef<HTMLDivElement>(null);
   const messageContainerRef = useRef<HTMLDivElement>(null);
   const [aiTyping, setAiTyping] = useState(false);
+
+  const sendAIRequest = async (userMessage: string, sessionId: string, visitorId: string) => {
+    setAiTyping(true);
+    
+    try {
+      // Get AI response
+      const response = await fetch(`${import.meta.env.VITE_SUPABASE_URL}/functions/v1/chat-ai`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'Authorization': `Bearer ${import.meta.env.VITE_SUPABASE_ANON_KEY}`,
+          'x-client-info': 'chat-widget'
+        },
+        body: JSON.stringify({
+          message: userMessage,
+          sessionId,
+          visitorId
+        }),
+      });
+
+      if (!response.ok) {
+        const errorData = await response.json();
+        throw new Error(errorData.error || 'Failed to get AI response');
+      }
+
+      const data = await response.json();
+      if (!data || !data.message) {
+        throw new Error('Invalid response from AI service');
+      }
+
+      // Message will be added via subscription
+    } catch (aiError) {
+      console.error('AI response error:', aiError);
+      
+      // Create fallback message if AI fails
+      const fallbackMessage = {
+        session_id: sessionId,
+        visitor_id: visitorId,
+        content: "I apologize, but I'm experiencing technical difficulties. A team member will assist you shortly.",
+        is_from_visitor: false,
+        user_id: null,
+        read: false
+      };
+      
+      try {
+        await sendChatMessage(fallbackMessage);
+      } catch (fallbackError) {
+        console.error('Error sending fallback message:', fallbackError);
+      }
+    } finally {
+      setAiTyping(false);
+    }
+  };
 
   const loadChatMessages = async (sessionId: string) => {
     if (!sessionId) return;
@@ -94,10 +149,41 @@ export function Chat({ isOpen, setIsOpen }: ChatProps) {
   }, [sessionId]);
 
   useEffect(() => {
-    if (isOpen && !sessionId) {
+    if (isOpen && !sessionId && visitorId) {
       initializeChat();
     }
   }, [isOpen, visitorId]);
+
+  // Handle initial message when chat is opened with a prefilled message
+  useEffect(() => {
+    const sendInitialMessage = async () => {
+      if (sessionId && initialMessage && onInitialMessageSent) {
+        try {
+          // Create visitor message
+          const newMessage = {
+            session_id: sessionId,
+            visitor_id: visitorId,
+            content: initialMessage,
+            is_from_visitor: true,
+            user_id: null,
+            read: false,
+          };
+
+          await sendChatMessage(newMessage);
+          
+          // Send AI request
+          await sendAIRequest(initialMessage, sessionId, visitorId);
+          
+          // Clear the initial message
+          onInitialMessageSent();
+        } catch (error) {
+          console.error('Error sending initial message:', error);
+        }
+      }
+    };
+
+    sendInitialMessage();
+  }, [sessionId, initialMessage, visitorId, onInitialMessageSent]);
 
   useEffect(() => {
     if (messages.length > 0) {
@@ -150,62 +236,13 @@ export function Chat({ isOpen, setIsOpen }: ChatProps) {
     try {
       const sentMessage = await sendChatMessage(newMessage);
       
-      // Show AI is typing
-      setAiTyping(true);
-      
-      try {
-        // Get AI response
-        const response = await fetch(`${import.meta.env.VITE_SUPABASE_URL}/functions/v1/chat-ai`, {
-          method: 'POST',
-          headers: {
-            'Content-Type': 'application/json',
-            'Authorization': `Bearer ${import.meta.env.VITE_SUPABASE_ANON_KEY}`,
-            'x-client-info': 'chat-widget'
-          },
-          body: JSON.stringify({
-            message: trimmedMessage,
-            sessionId,
-            visitorId
-          }),
-        });
-
-        if (!response.ok) {
-          const errorData = await response.json();
-          throw new Error(errorData.error || 'Failed to get AI response');
-        }
-
-        const data = await response.json();
-        if (!data || !data.message) {
-          throw new Error('Invalid response from AI service');
-        }
-
-        // Message will be added via subscription
-      } catch (aiError) {
-        console.error('AI response error:', aiError);
-        
-        // Create fallback message if AI fails
-        const fallbackMessage = {
-          session_id: sessionId,
-          visitor_id: visitorId,
-          content: "I apologize, but I'm experiencing technical difficulties. A team member will assist you shortly.",
-          is_from_visitor: false,
-          user_id: null,
-          read: false
-        };
-        
-        try {
-          await sendChatMessage(fallbackMessage);
-        } catch (fallbackError) {
-          console.error('Error sending fallback message:', fallbackError);
-        }
-      }
+      // Send AI request
+      await sendAIRequest(trimmedMessage, sessionId, visitorId);
 
     } catch (error) {
       console.error('Error sending message:', error);
       alert('Error sending message. Please try again.');
       setMessage(trimmedMessage);
-    } finally {
-      setAiTyping(false);
     }
   };
 
