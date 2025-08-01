@@ -431,23 +431,6 @@ function HomePage({ onExploreClick }: { onExploreClick: (message: string) => voi
               Nexius Agent is your AI-powered business partner, designed to automate key operations and free up your time for strategic growth.
             </p>
           </div>
-          <div className="max-w-4xl mx-auto">
-            <div className="p-8 bg-nexius-dark-card rounded-xl border border-nexius-dark-border hover:border-nexius-teal/50 hover:shadow-lg transition-all text-center">
-              <Bot className="h-16 w-16 text-nexius-teal mx-auto mb-6" />
-              <h3 className="text-2xl font-display font-bold text-white mb-4">
-                Your AI-Powered Business Partner
-              </h3>
-              <p className="text-nexius-dark-text-muted mb-8">
-                Run your business like the big boys—without the big-boy budget. Our AI pulls in new leads, follows them up, and keeps all the numbers tidy—so you grow while everyone else hires.
-              </p>
-              <Link
-                to="/agent"
-                className="inline-flex items-center bg-nexius-teal text-white px-6 py-3 rounded-lg hover:bg-nexius-teal/90 transition-colors font-display font-semibold tracking-wide uppercase text-sm"
-              >
-                Learn More About Nexius Agent <ArrowRight className="ml-2 h-5 w-5" />
-              </Link>
-            </div>
-          </div>
         </div>
       </section>
 
