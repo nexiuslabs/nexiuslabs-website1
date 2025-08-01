@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { CheckCircle, ArrowRight, Mail, Linkedin, Twitter, MessageCircle, Clock } from 'lucide-react';
+import { CheckCircle, ArrowRight, Mail, Linkedin, Twitter, MessageCircle, Clock, Users, Send, Package, Calculator, ShoppingCart, UsersRound, LifeBuoy } from 'lucide-react';
 import DotGrid from '../components/DotGrid';
 import { ContactForm } from '../components/ContactForm';
 import { supabase } from '../lib/supabase';
@@ -8,6 +8,16 @@ export function AgentPage() {
   const [showContactForm, setShowContactForm] = useState(false);
   const [waitlistEmail, setWaitlistEmail] = useState('');
   const [waitlistLoading, setWaitlistLoading] = useState(false);
+
+  const modules = [
+    { name: 'CRM', icon: Users, description: 'Customer relationship management' },
+    { name: 'Marketing', icon: Send, description: 'Campaign and lead generation' },
+    { name: 'Inventory', icon: Package, description: 'Stock and warehouse management' },
+    { name: 'Accounting', icon: Calculator, description: 'Financial tracking and reporting' },
+    { name: 'POS', icon: ShoppingCart, description: 'Point of sale systems' },
+    { name: 'HR', icon: UsersRound, description: 'Human resources management' },
+    { name: 'Helpdesk', icon: LifeBuoy, description: 'Customer support and ticketing' },
+  ];
 
   const handleWaitlistSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -195,6 +205,39 @@ export function AgentPage() {
                 while the system organises and reminds you what's next.
               </p>
             </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Modules Section */}
+      <section className="py-24 bg-nexius-dark-bg">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center mb-16">
+            <h2 className="text-4xl font-display font-bold text-white mb-6 tracking-tight">
+              Comprehensive Modules for Your Business
+            </h2>
+            <p className="font-body text-nexius-dark-text max-w-3xl mx-auto leading-relaxed text-lg">
+              From customer management to financial tracking—and many more modules coming soon to expand your business capabilities.
+            </p>
+          </div>
+          <div className="grid md:grid-cols-3 lg:grid-cols-4 gap-8">
+            {modules.map((module) => {
+              const Icon = module.icon;
+              return (
+                <div key={module.name} className="p-6 bg-nexius-dark-card rounded-xl border border-nexius-dark-border hover:border-nexius-teal/50 hover:shadow-lg transition-all group">
+                  <div className="relative inline-block mb-4">
+                    <div className="absolute -inset-2 bg-nexius-teal/20 rounded-lg blur opacity-0 group-hover:opacity-100 transition-opacity"></div>
+                    <Icon className="relative h-12 w-12 text-nexius-teal" />
+                  </div>
+                  <h3 className="text-lg font-display font-bold text-white mb-2">
+                    {module.name}
+                  </h3>
+                  <p className="text-nexius-dark-text-muted text-sm">
+                    {module.description}
+                  </p>
+                </div>
+              );
+            })}
           </div>
         </div>
       </section>
