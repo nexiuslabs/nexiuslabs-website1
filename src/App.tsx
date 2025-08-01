@@ -269,6 +269,7 @@ function HomePage({ onExploreClick }: { onExploreClick: (message: string) => voi
   };
 
   return (
+    <div className="h-[calc(100vh-4rem)] mt-16 bg-nexius-dark-bg overflow-y-auto snap-y snap-mandatory scroll-pt-16">
     <div className="h-[calc(100vh-4rem)] mt-16 bg-nexius-dark-bg overflow-y-auto snap-y snap-mandatory scroll-pt-16 hide-scrollbar">
       {/* Hero Section */}
       <section className="relative min-h-[calc(100vh-4rem)] snap-start flex items-center justify-center bg-gradient-to-b from-nexius-navy to-nexius-navy/95">
@@ -556,9 +557,9 @@ function HomePage({ onExploreClick }: { onExploreClick: (message: string) => voi
   );
 }
 
-import { useLocation } from 'react-router-dom';
-
 export default function App() {
+                }
+  )
   const [isContactFormOpen, setIsContactFormOpen] = useState(false);
   const [authChecked, setAuthChecked] = useState(false);
   const [isChatOpen, setIsChatOpen] = useState(false);
