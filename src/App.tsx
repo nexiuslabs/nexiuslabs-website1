@@ -459,6 +459,25 @@ function HomePage({ onExploreClick }: { onExploreClick: (message: string) => voi
 
       {/* Footer */}
       <footer className="snap-start bg-nexius-dark-surface text-nexius-dark-text-muted py-12">
+      {/* Who We Are Section */}
+      <section className="min-h-screen snap-start flex items-center py-16 bg-nexius-dark-surface">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center mb-16">
+            <h2 className="text-4xl font-display font-bold text-white mb-6 tracking-tight">
+              Who We Are
+            </h2>
+            <Link 
+              to="/aboutus" 
+              className="inline-flex items-center text-nexius-teal hover:text-nexius-teal/90 font-medium"
+            >
+              Learn more about our story <ArrowRight className="ml-2 h-4 w-4" />
+            </Link>
+          </div>
+        </div>
+      </section>
+
+      {/* Footer */}
+      <footer className="snap-start bg-nexius-dark-surface text-nexius-dark-text-muted py-12">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid md:grid-cols-4 gap-8">
             <div>
