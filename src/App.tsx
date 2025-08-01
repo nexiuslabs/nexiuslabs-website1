@@ -203,6 +203,7 @@ function Navigation({ onContactClick }: { onContactClick: () => void }) {
             <Link to="/blog" className="font-body font-medium text-nexius-dark-text-muted hover:text-white transition-colors">Blog</Link>
             <Link to="/events" className="font-body font-medium text-nexius-dark-text-muted hover:text-white transition-colors">Events</Link>
             <Link to="/ai-ignite" className="font-body font-medium text-nexius-dark-text-muted hover:text-white transition-colors">AI-Ignite</Link>
+            <Link to="/agent" className="font-body font-medium text-nexius-dark-text-muted hover:text-white transition-colors">Nexius Agent</Link>
             <button 
               onClick={onContactClick}
               data-contact="true"
@@ -235,6 +236,13 @@ function Navigation({ onContactClick }: { onContactClick: () => void }) {
               className="block px-3 py-2 rounded-md text-base font-medium text-nexius-dark-text-muted hover:text-white hover:bg-nexius-dark-card"
             >
               AI-Ignite
+            </Link>
+            <Link 
+              to="/agent"
+              onClick={() => setIsMenuOpen(false)}
+              className="block px-3 py-2 rounded-md text-base font-medium text-nexius-dark-text-muted hover:text-white hover:bg-nexius-dark-card"
+            >
+              Nexius Agent
             </Link>
             <button 
               onClick={() => {
