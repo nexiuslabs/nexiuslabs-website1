@@ -48,6 +48,7 @@ import { NotFound } from './pages/NotFound';
 import { Chat } from './components/Chat';
 import { AgentPage } from './pages/AgentPage';
 import { AboutUs } from './pages/AboutUs';
+import { AboutUs } from './pages/AboutUs';
 
 const features = [
   {
