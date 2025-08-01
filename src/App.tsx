@@ -558,6 +558,8 @@ function HomePage({ onExploreClick }: { onExploreClick: (message: string) => voi
 }
 
 export default function App() {
+                }
+  )
   const [isContactFormOpen, setIsContactFormOpen] = useState(false);
   const [authChecked, setAuthChecked] = useState(false);
   const [isChatOpen, setIsChatOpen] = useState(false);
