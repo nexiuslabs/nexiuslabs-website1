@@ -372,3 +372,5 @@ export function AgentPage() {
     </div>
   );
 }
+
+export { AgentPage }
