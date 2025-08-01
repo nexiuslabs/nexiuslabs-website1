@@ -559,6 +559,8 @@ function HomePage({ onExploreClick }: { onExploreClick: (message: string) => voi
 import { useLocation } from 'react-router-dom';
 
 export default function App() {
+                }
+  )
   const [isContactFormOpen, setIsContactFormOpen] = useState(false);
   const [authChecked, setAuthChecked] = useState(false);
   const [isChatOpen, setIsChatOpen] = useState(false);
