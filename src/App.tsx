@@ -458,7 +458,7 @@ function HomePage({ onExploreClick }: { onExploreClick: (message: string) => voi
       </section>
 
       {/* Footer */}
-      <footer className="min-h-screen snap-start bg-nexius-dark-surface text-nexius-dark-text-muted py-12">
+      <footer className="snap-start bg-nexius-dark-surface text-nexius-dark-text-muted py-12">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid md:grid-cols-4 gap-8">
             <div>
