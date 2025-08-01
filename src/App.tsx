@@ -260,7 +260,7 @@ function Navigation({ onContactClick }: { onContactClick: () => void }) {
   );
 }
 
-function HomePage() {
+function HomePage({ onExploreClick }: { onExploreClick: (open: boolean) => void }) {
   const scrollToTop = () => {
     window.scrollTo({
       top: 0,
@@ -380,7 +380,7 @@ function HomePage() {
               <h3 className="text-xl font-display font-bold text-white mb-4">Customised Sales Acquisition</h3>
               <p className="text-nexius-dark-text-muted mb-6">Find the right customers with limited time/resources.</p>
               <a
-                href="#"
+                onClick={(e) => { e.preventDefault(); onExploreClick(true); }}
                 className="inline-flex items-center text-nexius-teal hover:text-nexius-teal/90 font-medium"
               >
                 Explore <ArrowRight className="ml-2 h-4 w-4" />
@@ -395,7 +395,7 @@ function HomePage() {
               <h3 className="text-xl font-display font-bold text-white mb-4">Open-Source AI-Enhanced Stacks</h3>
               <p className="text-nexius-dark-text-muted mb-6">Scale without expensive/dumb software.</p>
               <a
-                href="#"
+                onClick={(e) => { e.preventDefault(); onExploreClick(true); }}
                 className="inline-flex items-center text-nexius-teal hover:text-nexius-teal/90 font-medium"
               >
                 Explore <ArrowRight className="ml-2 h-4 w-4" />
@@ -410,7 +410,7 @@ function HomePage() {
               <h3 className="text-xl font-display font-bold text-white mb-4">Natural-Language Operations</h3>
               <p className="text-nexius-dark-text-muted mb-6">Talk to AI agents; they understand & execute change.</p>
               <a
-                href="#"
+                onClick={(e) => { e.preventDefault(); onExploreClick(true); }}
                 className="inline-flex items-center text-nexius-teal hover:text-nexius-teal/90 font-medium"
               >
                 Explore <ArrowRight className="ml-2 h-4 w-4" />
@@ -606,7 +606,7 @@ export default function App() {
       <ContactForm isOpen={isContactFormOpen} onClose={() => setIsContactFormOpen(false)} />
 
       <Routes>
-        <Route path="/" element={<HomePage />} />
+        <Route path="/" element={<HomePage onExploreClick={setIsChatOpen} />} />
         <Route path="/case-studies" element={<CaseStudies />} />
         <Route path="/case-study/:id" element={<CaseStudy />} />
         <Route path="/blog" element={<Blog />} />
