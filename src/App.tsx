@@ -440,24 +440,6 @@ function HomePage({ onExploreClick }: { onExploreClick: (message: string) => voi
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-16">
             <h2 className="text-4xl font-display font-bold text-white mb-6 tracking-tight">
-              Level Up with Our Academy
-            </h2>
-            <p className="font-body text-nexius-dark-text max-w-3xl mx-auto leading-relaxed text-lg mb-8">
-              Hands‑on workshops, self‑paced courses and community events—everything from "AI for Solopreneurs" to "Building Custom Workflows."
-            </p>
-            <a
-              href="https://academy.nexiuslabs.com"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="bg-nexius-teal text-white px-8 py-4 rounded-lg hover:bg-nexius-teal/90 transition-colors inline-flex items-center font-display font-semibold tracking-wide uppercase text-sm"
-            >
-              Visit the Academy <ArrowRight className="ml-2 h-5 w-5" />
-            </a>
-          </div>
-        </div>
-      </section>
-
-      {/* Footer */}
       <footer className="snap-start bg-nexius-dark-surface text-nexius-dark-text-muted py-12">
       {/* Who We Are Section */}
       <section className="min-h-screen snap-start flex items-center py-16 bg-nexius-dark-surface">
