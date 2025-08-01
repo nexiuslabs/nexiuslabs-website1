@@ -11,13 +11,11 @@
     font-family: 'Inter', sans-serif;
     @apply bg-nexius-dark-bg text-nexius-dark-text;
     height: 100%;
-    overflow: hidden;
   }
   
   body {
     @apply bg-nexius-dark-bg text-nexius-dark-text;
     height: 100%;
-    overflow: hidden;
   }
   
   /* Prose Styles */
