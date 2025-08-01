@@ -46,6 +46,7 @@ import { PrivacyPolicy } from './pages/PrivacyPolicy';
 import { Events } from './pages/Events';
 import { NotFound } from './pages/NotFound';
 import { Chat } from './components/Chat';
+import { AgentPage } from './pages/AgentPage';
 
 const features = [
   {
@@ -609,6 +610,7 @@ export default function App() {
         <Route path="/event/:slug" element={<EventDetail />} />
         <Route path="/events" element={<Events />} />
         <Route path="/links" element={<LinksPage />} />
+        <Route path="/agent" element={<AgentPage />} />
         <Route path="*" element={<NotFound />} />
       </Routes>
 
