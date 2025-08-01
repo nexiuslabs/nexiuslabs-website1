@@ -447,6 +447,9 @@ function HomePage({ onExploreClick }: { onExploreClick: (message: string) => voi
             <h2 className="text-4xl font-display font-bold text-white mb-6 tracking-tight">
               Who We Are
             </h2>
+            <p className="font-body text-nexius-dark-text max-w-3xl mx-auto leading-relaxed text-lg mb-8">
+              Meet the founders behind NEXIUS Labs - experienced professionals who understand the challenges of scaling a business and are passionate about making AI accessible to everyone.
+            </p>
             <Link 
               to="/aboutus" 
               className="inline-flex items-center text-nexius-teal hover:text-nexius-teal/90 font-medium"
