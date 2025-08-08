@@ -202,22 +202,29 @@ function Navigation({ onContactClick }: { onContactClick: () => void }) {
             {isMenuOpen ? <XIcon className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
           </button>
           <div className="hidden md:flex items-center space-x-8 relative">
-            <Link to="/blog" className="font-body font-medium text-nexius-dark-text-muted hover:text-white transition-colors">Blog</Link>
-            <Link to="/aboutus" className="font-body font-medium text-nexius-dark-text-muted hover:text-white transition-colors">About Us</Link>
+            <Link to="/agent" className="font-body font-medium text-nexius-dark-text-muted hover:text-white transition-colors">AI Agent</Link>
+            <Link to="/ai-ignite" className="font-body font-medium text-nexius-dark-text-muted hover:text-white transition-colors">Community</Link>
             <Link to="/events" className="font-body font-medium text-nexius-dark-text-muted hover:text-white transition-colors">Events</Link>
-            <Link to="/ai-ignite" className="font-body font-medium text-nexius-dark-text-muted hover:text-white transition-colors">AI-Ignite</Link>
-            <Link to="/agent" className="font-body font-medium text-nexius-dark-text-muted hover:text-white transition-colors">Nexius Agent</Link>
+            <Link to="/blog" className="font-body font-medium text-nexius-dark-text-muted hover:text-white transition-colors">Happenings</Link>
+            <Link to="/aboutus" className="font-body font-medium text-nexius-dark-text-muted hover:text-white transition-colors">About Us</Link>
           </div>
         </div>
         {/* Mobile menu */}
         <div className={`md:hidden ${isMenuOpen ? 'block' : 'hidden'}`}>
           <div className="px-2 pt-2 pb-3 space-y-1 border-t border-nexius-dark-border">
             <Link 
-              to="/blog" 
+              to="/agent" 
               onClick={() => setIsMenuOpen(false)}
               className="block px-3 py-2 rounded-md text-base font-medium text-nexius-dark-text-muted hover:text-white hover:bg-nexius-dark-card"
             >
-              Blog
+              AI Agent
+            </Link>
+            <Link 
+              to="/ai-ignite"
+              onClick={() => setIsMenuOpen(false)}
+              className="block px-3 py-2 rounded-md text-base font-medium text-nexius-dark-text-muted hover:text-white hover:bg-nexius-dark-card"
+            >
+              Community
             </Link>
             <Link 
               to="/events" 
@@ -227,18 +234,18 @@ function Navigation({ onContactClick }: { onContactClick: () => void }) {
               Events
             </Link>
             <Link 
-              to="/ai-ignite"
+              to="/blog" 
               onClick={() => setIsMenuOpen(false)}
               className="block px-3 py-2 rounded-md text-base font-medium text-nexius-dark-text-muted hover:text-white hover:bg-nexius-dark-card"
             >
-              AI-Ignite
+              Happenings
             </Link>
             <Link 
-              to="/agent"
+              to="/aboutus"
               onClick={() => setIsMenuOpen(false)}
               className="block px-3 py-2 rounded-md text-base font-medium text-nexius-dark-text-muted hover:text-white hover:bg-nexius-dark-card"
             >
-              Nexius Agent
+              About Us
             </Link>
           </div>
         </div>
