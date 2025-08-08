@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { ArrowLeft, Mail, Linkedin, Users, Coffee } from 'lucide-react';
+import { Mail, Linkedin, Users, Coffee } from 'lucide-react';
 
 export function AboutUs() {
   const scrollToTop = () => {
@@ -15,13 +15,6 @@ export function AboutUs() {
       {/* Hero Section */}
       <section className="relative pt-32 pb-24 bg-gradient-to-b from-nexius-navy to-nexius-navy/95">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <Link 
-            to="/" 
-            className="inline-flex items-center text-white/80 hover:text-white transition-colors mb-8"
-          >
-            <ArrowLeft className="h-5 w-5 mr-2" />
-            Back to Home
-          </Link>
           <div className="text-center">
             <h1 className="text-4xl md:text-5xl font-display font-bold text-white mb-6 tracking-tight">
               About Nexius Labs
