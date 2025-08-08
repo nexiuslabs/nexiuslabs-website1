@@ -424,7 +424,7 @@ export function AIIgnite() {
       {/* Footer */}
      <footer className="bg-nexius-dark-surface text-nexius-dark-text-muted py-12">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid md:grid-cols-4 gap-8">
+          <div className="grid md:grid-cols-2 gap-8">
             <div>
               <button
                 onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
@@ -442,27 +442,10 @@ export function AIIgnite() {
               </p>
             </div>
             <div>
-             <h3 className="text-nexius-dark-text font-semibold mb-4">Product</h3>
-              <ul className="space-y-2">
-                <li><a href="#services" className="hover:text-white transition-colors">Services</a></li>
-                <li><a href="#benefits" className="hover:text-white transition-colors">Benefits</a></li>
-                <li><a href="#" className="hover:text-white transition-colors">Security</a></li>
-              </ul>
-            </div>
-            <div>
-             <h3 className="text-nexius-dark-text font-semibold mb-4">Company</h3>
-              <ul className="space-y-2">
-                <li><a href="#" className="hover:text-white transition-colors">About Us</a></li>
-                <li><a href="#" className="hover:text-white transition-colors">Contact</a></li>
-                <li><Link to="/case-studies" className="hover:text-white transition-colors">Case Studies</Link></li>
-              </ul>
-            </div>
-            <div>
              <h3 className="text-nexius-dark-text font-semibold mb-4">Legal</h3>
               <ul className="space-y-2">
                 <li><Link to="/privacy" className="hover:text-white transition-colors">Privacy Policy</Link></li>
                 <li><Link to="/terms" className="hover:text-white transition-colors">Terms of Service</Link></li>
-                <li><a href="#" className="hover:text-white transition-colors">Cookie Policy</a></li>
               </ul>
             </div>
           </div>

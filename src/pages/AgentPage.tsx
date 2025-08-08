@@ -361,7 +361,7 @@ export function AgentPage() {
       {/* Footer */}
       <footer className="snap-start bg-nexius-dark-surface text-nexius-dark-text-muted py-12">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-8">
+          <div className="flex flex-col items-center">
             <button
               onClick={scrollToTop}
               className="flex items-center text-nexius-dark-text mb-4 group focus:outline-none mx-auto"
@@ -402,14 +402,14 @@ export function AgentPage() {
                 <Mail className="h-5 w-5" />
               </button>
             </div>
-          </div>
-          
-          <div className="border-t border-nexius-dark-border pt-8 text-sm text-center space-y-2">
+            
             <div className="flex justify-center gap-6 text-xs">
               <Link to="/privacy" className="hover:text-nexius-teal transition-colors">Privacy Policy</Link>
               <Link to="/terms" className="hover:text-nexius-teal transition-colors">Terms of Service</Link>
             </div>
-            © {new Date().getFullYear()} NEXIUS Labs. All rights reserved.
+            <div className="mt-4 text-xs">
+              © {new Date().getFullYear()} NEXIUS Labs. All rights reserved.
+            </div>
           </div>
         </div>
       </footer>
