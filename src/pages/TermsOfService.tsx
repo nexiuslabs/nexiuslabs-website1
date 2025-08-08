@@ -28,7 +28,7 @@ export function TermsOfService() {
       <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
         <div className="prose max-w-none text-nexius-dark-text">
           <p>
-            Welcome to <strong>Nexius Labs Pte Ltd</strong> ("we", "our", "us"). These Terms of Service ("Terms") govern your use of our website at <a href="http://www.nexiuslabs.com">www.nexiuslabs.com</a> (the "Site") and the services we provide.
+            Welcome to <strong>Nexius Labs Pte Ltd</strong> ("we", "our", "us"). These Terms of Service ("Terms") govern your use of our website at <a href="http://www.nexiuslabs.com">www.nexiuslabs.com</a> (the \"Site") and the services we provide.
           </p>
 
           <p>
