@@ -308,10 +308,6 @@ function HomePage({ onExploreClick }: { onExploreClick: (message: string) => voi
               We get you more customers and quietly take care of the extra workload they create.
             </p>
             <div className="relative flex justify-center gap-4">
-              <button 
-                onClick={() => {
-                 onExploreClick("I'm interested in exploring your AI solutions. Can you tell me more about what you offer?");
-                }}
               <a 
                 href="#introducing-nexius-agent"
                 className="bg-nexius-teal text-white px-6 py-3 rounded-lg hover:bg-nexius-teal/90 transition-colors flex items-center group font-display font-semibold tracking-wide uppercase text-sm"
