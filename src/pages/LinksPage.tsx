@@ -138,7 +138,7 @@ export function LinksPage() {
         <div className="text-center">
           <a href="/" className="inline-flex items-center group">
             <img
-              src="https://tunidbyclygzipvbfzee.supabase.co/storage/v1/object/public/website-images/m04h4fs8wns-1739784195705.png"
+              src="https://tunidbyclygzipvbfzee.supabase.co/storage/v1/object/public/website-images/nexius_logo_no_text_transparent_bg.png"
               alt="NEXIUS Labs"
               className="relative h-12 w-12 object-contain group-hover:opacity-90 transition-opacity mb-3"
             />
