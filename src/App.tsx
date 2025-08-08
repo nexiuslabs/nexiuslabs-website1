@@ -181,6 +181,7 @@ const testimonials = [
 
 function Navigation({ onContactClick }: { onContactClick: () => void }) {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const location = useLocation();
 
   return (
     <nav className="fixed top-0 w-full bg-transparent backdrop-blur-md z-50">
@@ -202,11 +203,56 @@ function Navigation({ onContactClick }: { onContactClick: () => void }) {
             {isMenuOpen ? <XIcon className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
           </button>
           <div className="hidden md:flex items-center space-x-8 relative">
-            <Link to="/agent" className="font-body font-medium text-nexius-dark-text-muted hover:text-white transition-colors">AI Agent</Link>
-            <Link to="/ai-ignite" className="font-body font-medium text-nexius-dark-text-muted hover:text-white transition-colors">Community</Link>
-            <Link to="/events" className="font-body font-medium text-nexius-dark-text-muted hover:text-white transition-colors">Events</Link>
-            <Link to="/blog" className="font-body font-medium text-nexius-dark-text-muted hover:text-white transition-colors">Happenings</Link>
-            <Link to="/aboutus" className="font-body font-medium text-nexius-dark-text-muted hover:text-white transition-colors">About Us</Link>
+            <Link 
+              to="/agent" 
+              className={`font-body font-medium transition-colors ${
+                location.pathname === '/agent' 
+                  ? 'text-nexius-teal' 
+                  : 'text-nexius-dark-text-muted hover:text-white'
+              }`}
+            >
+              AI Agent
+            </Link>
+            <Link 
+              to="/ai-ignite" 
+              className={`font-body font-medium transition-colors ${
+                location.pathname === '/ai-ignite' 
+                  ? 'text-nexius-teal' 
+                  : 'text-nexius-dark-text-muted hover:text-white'
+              }`}
+            >
+              Community
+            </Link>
+            <Link 
+              to="/events" 
+              className={`font-body font-medium transition-colors ${
+                location.pathname.startsWith('/event') 
+                  ? 'text-nexius-teal' 
+                  : 'text-nexius-dark-text-muted hover:text-white'
+              }`}
+            >
+              Events
+            </Link>
+            <Link 
+              to="/blog" 
+              className={`font-body font-medium transition-colors ${
+                location.pathname.startsWith('/blog') 
+                  ? 'text-nexius-teal' 
+                  : 'text-nexius-dark-text-muted hover:text-white'
+              }`}
+            >
+              Happenings
+            </Link>
+            <Link 
+              to="/aboutus" 
+              className={`font-body font-medium transition-colors ${
+                location.pathname === '/aboutus' 
+                  ? 'text-nexius-teal' 
+                  : 'text-nexius-dark-text-muted hover:text-white'
+              }`}
+            >
+              About Us
+            </Link>
           </div>
         </div>
         {/* Mobile menu */}
