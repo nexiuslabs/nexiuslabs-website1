@@ -312,10 +312,12 @@ function HomePage({ onExploreClick }: { onExploreClick: (message: string) => voi
                 onClick={() => {
                  onExploreClick("I'm interested in exploring your AI solutions. Can you tell me more about what you offer?");
                 }}
+              <a 
+                href="#introducing-nexius-agent"
                 className="bg-nexius-teal text-white px-6 py-3 rounded-lg hover:bg-nexius-teal/90 transition-colors flex items-center group font-display font-semibold tracking-wide uppercase text-sm"
               >
                Explore Our Solutions <ArrowRight className="ml-2 h-5 w-5 group-hover:translate-x-1 transition-transform" />
-              </button>
+              </a>
               <button 
                 onClick={() => {
                   window.open('https://academy.nexiuslabs.com', '_blank');
@@ -339,7 +341,7 @@ function HomePage({ onExploreClick }: { onExploreClick: (message: string) => voi
       </section>
 
       {/* What We Are Building Section */}
-      <section className="min-h-screen snap-start flex items-center py-24 bg-nexius-dark-surface">
+      <section id="introducing-nexius-agent" className="min-h-screen snap-start flex items-center py-24 bg-nexius-dark-surface">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-16">
             <h2 className="text-4xl font-display font-bold text-white mb-6 tracking-tight">
