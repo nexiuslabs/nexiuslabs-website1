@@ -256,11 +256,11 @@ export function Chat({ isOpen, setIsOpen, initialMessage, onInitialMessageSent }
   };
 
   return (
-    <div className="fixed bottom-6 right-6 z-50">
+    <div className="fixed top-16 right-6 z-50">
       {isOpen ? (
         <div
           className={`bg-white rounded-lg shadow-xl transition-all duration-300 ${
-            isMinimized ? 'h-14' : 'h-[500px]'
+            isMinimized ? 'h-14' : 'h-[calc(100vh-88px)]'
           } w-[350px] flex flex-col bg-nexius-dark-surface border border-nexius-dark-border`}
         >
           {/* Header */}
