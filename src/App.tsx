@@ -517,6 +517,7 @@ function HomePage({ onExploreClick }: { onExploreClick: (message: string) => voi
         </div>
       </footer>
     </div>
+  )
   );
 }
 
