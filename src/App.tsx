@@ -190,7 +190,7 @@ function Navigation({ onContactClick }: { onContactClick: () => void }) {
             className="flex items-center group"
           >
             <img
-              src="https://tunidbyclygzipvbfzee.supabase.co/storage/v1/object/public/website-images//NexiusLabs_Logo-removebg-preview-removebg-preview.png"
+              src="https://tunidbyclygzipvbfzee.supabase.co/storage/v1/object/public/website-images/nexius_logo_no_text_transparent_bg.png"
               alt="NEXIUS Labs"
               className="h-8 w-8 object-contain group-hover:opacity-90 transition-opacity"
             />
@@ -299,7 +299,7 @@ function HomePage({ onExploreClick }: { onExploreClick: (message: string) => voi
                 animate={{ y: 0 }}
                 exit={{ y: "-120%" }}
                 staggerDuration={0.025}
-                splitLevelClassName="overflow-hidden pb-0.5 sm:pb-1 md:pb-1"
+                src="https://tunidbyclygzipvbfzee.supabase.co/storage/v1/object/public/website-images/nexius_logo_no_text_transparent_bg.png"
                 transition={{ type: "spring", damping: 30, stiffness: 400 }}
                 rotationInterval={2000}
               />
