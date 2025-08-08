@@ -404,7 +404,11 @@ export function AgentPage() {
             </div>
           </div>
           
-          <div className="border-t border-nexius-dark-border pt-8 text-sm text-center">
+          <div className="border-t border-nexius-dark-border pt-8 text-sm text-center space-y-2">
+            <div className="flex justify-center gap-6 text-xs">
+              <Link to="/privacy" className="hover:text-nexius-teal transition-colors">Privacy Policy</Link>
+              <Link to="/terms" className="hover:text-nexius-teal transition-colors">Terms of Service</Link>
+            </div>
             © {new Date().getFullYear()} NEXIUS Labs. All rights reserved.
           </div>
         </div>

@@ -44,6 +44,7 @@ import { LinksPage } from './pages/LinksPage';
 import { AIIgnite } from './pages/AIIgnite';
 import { PrivacyPolicy } from './pages/PrivacyPolicy';
 import { Events } from './pages/Events';
+import { TermsOfService } from './pages/TermsOfService';
 import { NotFound } from './pages/NotFound';
 import { Chat } from './components/Chat';
 import { AgentPage } from './pages/AgentPage';
@@ -495,7 +496,7 @@ function HomePage({ onExploreClick }: { onExploreClick: (message: string) => voi
               <h3 className="text-nexius-dark-text font-semibold mb-4">Legal</h3>
               <ul className="space-y-2">
                 <li><Link to="/privacy" className="hover:text-white transition-colors">Privacy Policy</Link></li>
-                <li><a href="#" className="hover:text-white transition-colors">Terms of Service</a></li>
+                <li><Link to="/terms" className="hover:text-white transition-colors">Terms of Service</Link></li>
                 <li><a href="#" className="hover:text-white transition-colors">Cookie Policy</a></li>
               </ul>
             </div>
@@ -567,6 +568,7 @@ export default function App() {
         <Route path="/links" element={<LinksPage />} />
         <Route path="/agent" element={<AgentPage />} />
         <Route path="/aboutus" element={<AboutUs />} />
+        <Route path="/terms" element={<TermsOfService />} />
         <Route path="*" element={<NotFound />} />
       </Routes>
 
