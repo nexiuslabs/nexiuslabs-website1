@@ -531,7 +531,7 @@ function HomePage({ onExploreClick }: { onExploreClick: (message: string) => voi
             </div>
           </div>
           <div className="border-t border-nexius-dark-border mt-12 pt-8 text-sm text-center">
-            © {new Date().getFullYear()} NEXIUS Labs. All rights reserved.
+            © {new Date().getFullYear()} Nexius Labs Pte Ltd. All rights reserved.
           </div>
         </div>
       </footer>
