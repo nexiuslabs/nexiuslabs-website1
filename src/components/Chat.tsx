@@ -21,6 +21,7 @@ export function Chat({ isOpen, setIsOpen, initialMessage, onInitialMessageSent }
   const messagesEndRef = useRef<HTMLDivElement>(null);
   const messageContainerRef = useRef<HTMLDivElement>(null);
   const [aiTyping, setAiTyping] = useState(false);
+  const [sendingMessage, setSendingMessage] = useState(false);
 
   const sendAIRequest = async (userMessage: string, sessionId: string, visitorId: string) => {
     setAiTyping(true);
@@ -222,6 +223,7 @@ export function Chat({ isOpen, setIsOpen, initialMessage, onInitialMessageSent }
 
     const trimmedMessage = message.trim();
     setMessage('');
+    setSendingMessage(true);
 
     // Create visitor message
     const newMessage = {
@@ -243,6 +245,8 @@ export function Chat({ isOpen, setIsOpen, initialMessage, onInitialMessageSent }
       console.error('Error sending message:', error);
       alert('Error sending message. Please try again.');
       setMessage(trimmedMessage);
+    } finally {
+      setSendingMessage(false);
     }
   };
 
@@ -296,6 +300,18 @@ export function Chat({ isOpen, setIsOpen, initialMessage, onInitialMessageSent }
                 ref={messageContainerRef}
                 className="flex-1 p-4 overflow-y-auto space-y-4"
               >
+                {loading && !sessionId && (
+                  <div className="flex items-center justify-center h-32">
+                    <div className="flex flex-col items-center gap-4">
+                      <div className="relative">
+                        <div className="w-8 h-8 border-4 border-nexius-teal/20 border-t-nexius-teal rounded-full animate-spin"></div>
+                        <div className="absolute inset-0 w-8 h-8 border-4 border-transparent border-r-nexius-teal/50 rounded-full animate-ping"></div>
+                      </div>
+                      <p className="text-nexius-dark-text-muted text-sm">Connecting...</p>
+                    </div>
+                  </div>
+                )}
+                
                 {messages.map((msg, index) => (
                   <div
                     key={msg.id || index}
@@ -314,13 +330,35 @@ export function Chat({ isOpen, setIsOpen, initialMessage, onInitialMessageSent }
                     </div>
                   </div>
                 ))}
+                
+                {sendingMessage && (
+                  <div className="flex justify-end">
+                    <div className="max-w-[75%] rounded-lg px-4 py-2 bg-nexius-teal/70 text-white">
+                      <div className="flex items-center gap-2">
+                        <span className="text-sm">Sending</span>
+                        <div className="flex space-x-1">
+                          <div className="w-1 h-1 bg-white rounded-full animate-bounce" style={{ animationDelay: '0ms' }}></div>
+                          <div className="w-1 h-1 bg-white rounded-full animate-bounce" style={{ animationDelay: '150ms' }}></div>
+                          <div className="w-1 h-1 bg-white rounded-full animate-bounce" style={{ animationDelay: '300ms' }}></div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                )}
+                
                 {aiTyping && (
                   <div className="flex justify-start">
-                    <div className="bg-nexius-dark-card text-nexius-dark-text rounded-lg px-4 py-2 border border-nexius-dark-border">
-                      <div className="flex space-x-2">
-                        <div className="w-2 h-2 bg-nexius-dark-text-muted rounded-full animate-bounce" style={{ animationDelay: '0ms' }}></div>
-                        <div className="w-2 h-2 bg-nexius-dark-text-muted rounded-full animate-bounce" style={{ animationDelay: '150ms' }}></div>
-                        <div className="w-2 h-2 bg-nexius-dark-text-muted rounded-full animate-bounce" style={{ animationDelay: '300ms' }}></div>
+                    <div className="bg-nexius-dark-card text-nexius-dark-text rounded-lg px-4 py-3 border border-nexius-dark-border">
+                      <div className="flex items-center gap-2">
+                        <div className="w-6 h-6 rounded-full bg-nexius-teal/20 flex items-center justify-center">
+                          <div className="w-2 h-2 bg-nexius-teal rounded-full animate-pulse"></div>
+                        </div>
+                        <span className="text-sm text-nexius-dark-text-muted mr-2">AI is thinking</span>
+                        <div className="flex space-x-1">
+                          <div className="w-2 h-2 bg-nexius-teal rounded-full animate-bounce" style={{ animationDelay: '0ms' }}></div>
+                          <div className="w-2 h-2 bg-nexius-teal rounded-full animate-bounce" style={{ animationDelay: '150ms' }}></div>
+                          <div className="w-2 h-2 bg-nexius-teal rounded-full animate-bounce" style={{ animationDelay: '300ms' }}></div>
+                        </div>
                       </div>
                     </div>
                   </div>
@@ -336,14 +374,19 @@ export function Chat({ isOpen, setIsOpen, initialMessage, onInitialMessageSent }
                     value={message}
                     onChange={(e) => setMessage(e.target.value)}
                     placeholder="Type your message..."
+                    disabled={sendingMessage || aiTyping}
                     className="flex-1 px-3 py-2 border border-nexius-dark-border bg-nexius-dark-card text-nexius-dark-text placeholder-nexius-dark-text-muted rounded-lg focus:ring-2 focus:ring-nexius-teal focus:border-nexius-teal"
                   />
                   <button
                     type="submit"
-                    disabled={!message.trim()}
+                    disabled={!message.trim() || sendingMessage || aiTyping}
                     className="px-4 py-2 bg-nexius-teal text-white rounded-lg hover:bg-nexius-teal/90 transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
                   >
-                    <Send className="h-5 w-5" />
+                    {sendingMessage ? (
+                      <div className="w-5 h-5 border-2 border-white/20 border-t-white rounded-full animate-spin"></div>
+                    ) : (
+                      <Send className="h-5 w-5" />
+                    )}
                   </button>
                 </div>
               </form>
