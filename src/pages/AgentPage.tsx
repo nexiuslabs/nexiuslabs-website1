@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { CheckCircle, ArrowRight, Mail, Linkedin, Twitter, MessageCircle, Clock, Users, Send, Package, Calculator, ShoppingCart, UsersRound, LifeBuoy, MoreHorizontal } from 'lucide-react';
-import DotGrid from '../components/DotGrid';
+import { HyperspeedBackground } from '../components/HyperspeedBackground';
 import { ContactForm } from '../components/ContactForm';
 import { supabase } from '../lib/supabase';
 
@@ -70,16 +70,11 @@ export function AgentPage() {
       {/* Hero Section */}
       <section className="relative min-h-screen snap-start flex items-center justify-center bg-gradient-to-b from-nexius-navy to-nexius-navy/95 mt-16">
         <div className="absolute inset-0">
-          <DotGrid
-            dotSize={5}
-            gap={15}
-            baseColor="#0F1419"
-            activeColor="#00CABA"
-            proximity={120}
-            shockRadius={250}
-            shockStrength={5}
-            resistance={750}
-            returnDuration={1.5}
+          <HyperspeedBackground
+            particleCount={600}
+            speed={0.025}
+            particleColor="#00CABA"
+            trailLength={0.05}
           />
         </div>
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
