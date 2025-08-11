@@ -31,6 +31,7 @@ import {
   MessageSquare,
 } from 'lucide-react';
 import DotGrid from './components/DotGrid';
+import { HyperspeedBackground } from './components/HyperspeedBackground';
 import { ContactForm } from './components/ContactForm';
 import RotatingText from './components/RotatingText';
 import { CaseStudy } from './pages/CaseStudy';
@@ -313,16 +314,11 @@ function HomePage({ onExploreClick }: { onExploreClick: (message: string) => voi
       {/* Hero Section */}
       <section className="relative min-h-screen snap-start flex items-center justify-center bg-gradient-to-b from-nexius-navy to-nexius-navy/95">
         <div className="absolute inset-0">
-          <DotGrid
-            dotSize={5}
-            gap={15}
-            baseColor="#0F1419"
-            activeColor="#00CABA"
-            proximity={120}
-            shockRadius={250}
-            shockStrength={5}
-            resistance={750}
-            returnDuration={1.5}
+          <HyperspeedBackground
+            particleCount={600}
+            speed={0.025}
+            particleColor="#00CABA"
+            trailLength={0.05}
           />
         </div>
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
