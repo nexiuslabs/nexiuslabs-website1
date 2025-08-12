@@ -304,8 +304,9 @@ export function Chat({ isOpen, setIsOpen, initialMessage, onInitialMessageSent }
                   <div className="flex items-center justify-center h-32">
                     <div className="flex flex-col items-center gap-4">
                       <div className="relative">
-                        <div className="w-8 h-8 border-4 border-nexius-teal/20 border-t-nexius-teal rounded-full animate-spin"></div>
-                        <div className="absolute inset-0 w-8 h-8 border-4 border-transparent border-r-nexius-teal/50 rounded-full animate-ping"></div>
+                        <div className="w-12 h-12 border-4 border-nexius-teal/20 border-t-nexius-teal rounded-full animate-spin"></div>
+                        <div className="absolute inset-0 w-12 h-12 border-4 border-transparent border-r-nexius-teal/30 rounded-full animate-ping"></div>
+                        <div className="absolute inset-2 w-8 h-8 border-2 border-nexius-teal/40 border-b-transparent rounded-full animate-spin" style={{ animationDirection: 'reverse', animationDuration: '1s' }}></div>
                       </div>
                       <p className="text-nexius-dark-text-muted text-sm">Connecting...</p>
                     </div>
@@ -333,13 +334,17 @@ export function Chat({ isOpen, setIsOpen, initialMessage, onInitialMessageSent }
                 
                 {sendingMessage && (
                   <div className="flex justify-end">
-                    <div className="max-w-[75%] rounded-lg px-4 py-2 bg-nexius-teal/70 text-white">
+                    <div className="max-w-[75%] rounded-lg px-4 py-3 bg-nexius-teal/70 text-white animate-pulse">
                       <div className="flex items-center gap-2">
-                        <span className="text-sm">Sending</span>
+                        <div className="relative">
+                          <div className="w-4 h-4 bg-white/20 rounded-full animate-pulse"></div>
+                          <div className="absolute inset-0 w-4 h-4 bg-white/40 rounded-full animate-ping"></div>
+                        </div>
+                        <span className="text-sm font-medium">Sending message</span>
                         <div className="flex space-x-1">
-                          <div className="w-1 h-1 bg-white rounded-full animate-bounce" style={{ animationDelay: '0ms' }}></div>
-                          <div className="w-1 h-1 bg-white rounded-full animate-bounce" style={{ animationDelay: '150ms' }}></div>
-                          <div className="w-1 h-1 bg-white rounded-full animate-bounce" style={{ animationDelay: '300ms' }}></div>
+                          <div className="w-1.5 h-1.5 bg-white rounded-full animate-bounce" style={{ animationDelay: '0ms' }}></div>
+                          <div className="w-1.5 h-1.5 bg-white rounded-full animate-bounce" style={{ animationDelay: '150ms' }}></div>
+                          <div className="w-1.5 h-1.5 bg-white rounded-full animate-bounce" style={{ animationDelay: '300ms' }}></div>
                         </div>
                       </div>
                     </div>
@@ -348,16 +353,17 @@ export function Chat({ isOpen, setIsOpen, initialMessage, onInitialMessageSent }
                 
                 {aiTyping && (
                   <div className="flex justify-start">
-                    <div className="bg-nexius-dark-card text-nexius-dark-text rounded-lg px-4 py-3 border border-nexius-dark-border">
+                    <div className="bg-nexius-dark-card text-nexius-dark-text rounded-lg px-4 py-3 border border-nexius-dark-border animate-pulse">
                       <div className="flex items-center gap-2">
-                        <div className="w-6 h-6 rounded-full bg-nexius-teal/20 flex items-center justify-center">
-                          <div className="w-2 h-2 bg-nexius-teal rounded-full animate-pulse"></div>
+                        <div className="w-8 h-8 rounded-full bg-nexius-teal/20 flex items-center justify-center relative">
+                          <div className="w-3 h-3 bg-nexius-teal rounded-full animate-pulse"></div>
+                          <div className="absolute inset-0 w-8 h-8 border-2 border-nexius-teal/30 rounded-full animate-spin"></div>
                         </div>
-                        <span className="text-sm text-nexius-dark-text-muted mr-2">AI is thinking</span>
+                        <span className="text-sm text-nexius-dark-text-muted mr-2 font-medium">AI is thinking</span>
                         <div className="flex space-x-1">
-                          <div className="w-2 h-2 bg-nexius-teal rounded-full animate-bounce" style={{ animationDelay: '0ms' }}></div>
-                          <div className="w-2 h-2 bg-nexius-teal rounded-full animate-bounce" style={{ animationDelay: '150ms' }}></div>
-                          <div className="w-2 h-2 bg-nexius-teal rounded-full animate-bounce" style={{ animationDelay: '300ms' }}></div>
+                          <div className="w-2 h-2 bg-nexius-teal rounded-full animate-bounce" style={{ animationDelay: '0ms', animationDuration: '1.2s' }}></div>
+                          <div className="w-2 h-2 bg-nexius-teal rounded-full animate-bounce" style={{ animationDelay: '200ms', animationDuration: '1.2s' }}></div>
+                          <div className="w-2 h-2 bg-nexius-teal rounded-full animate-bounce" style={{ animationDelay: '400ms', animationDuration: '1.2s' }}></div>
                         </div>
                       </div>
                     </div>
@@ -380,10 +386,15 @@ export function Chat({ isOpen, setIsOpen, initialMessage, onInitialMessageSent }
                   <button
                     type="submit"
                     disabled={!message.trim() || sendingMessage || aiTyping}
-                    className="px-4 py-2 bg-nexius-teal text-white rounded-lg hover:bg-nexius-teal/90 transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
+                    className="px-4 py-2 bg-nexius-teal text-white rounded-lg hover:bg-nexius-teal/90 transition-all duration-200 disabled:opacity-50 disabled:cursor-not-allowed relative overflow-hidden"
                   >
                     {sendingMessage ? (
-                      <div className="w-5 h-5 border-2 border-white/20 border-t-white rounded-full animate-spin"></div>
+                      <div className="flex items-center gap-2">
+                        <div className="w-4 h-4 border-2 border-white/20 border-t-white rounded-full animate-spin"></div>
+                        <div className="w-1 h-1 bg-white rounded-full animate-bounce" style={{ animationDelay: '0ms' }}></div>
+                        <div className="w-1 h-1 bg-white rounded-full animate-bounce" style={{ animationDelay: '100ms' }}></div>
+                        <div className="w-1 h-1 bg-white rounded-full animate-bounce" style={{ animationDelay: '200ms' }}></div>
+                      </div>
                     ) : (
                       <Send className="h-5 w-5" />
                     )}
