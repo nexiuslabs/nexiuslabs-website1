@@ -126,13 +126,15 @@ export function EventDetail() {
 
               {event.description && (
                 <div className="prose max-w-none mb-8 text-nexius-dark-text">
-                  <p className="text-lg text-nexius-dark-text-muted leading-relaxed">{event.description}</p>
+                 <div className="text-lg text-nexius-dark-text-muted leading-relaxed">
+                   {parse(event.description)}
+                 </div>
                 </div>
               )}
 
               {event.content && (
                 <div className="prose max-w-none text-nexius-dark-text">
-                  <div dangerouslySetInnerHTML={{ __html: event.content }} />
+                 {parse(event.content)}
                 </div>
               )}
             </div>
