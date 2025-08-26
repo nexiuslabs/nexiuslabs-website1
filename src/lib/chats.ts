@@ -1,5 +1,5 @@
 import { supabase } from './supabase';
-import type { ChatMessage, ChatSession } from '../types/database';
+import type { ChatMessage } from '../types/database';
 
 export async function getChatSessions(options?: {
   status?: 'active' | 'closed';
@@ -69,22 +69,25 @@ export async function createChatSession(data: {
 
     // Send notification to admins
     try {
-      await fetch(`${import.meta.env.VITE_SUPABASE_URL}/functions/v1/notify-new-chat`, {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-          'Authorization': `Bearer ${import.meta.env.VITE_SUPABASE_ANON_KEY}`,
-        },
-        body: JSON.stringify({ session }),
-      }).then(async (response) => {
-        if (!response.ok) {
-          const error = await response.json();
-          console.warn('Admin notification not sent:', error);
+      const response = await fetch(
+        `${import.meta.env.VITE_SUPABASE_URL}/functions/v1/notify-new-chat`,
+        {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+            'Authorization': `Bearer ${import.meta.env.VITE_SUPABASE_ANON_KEY}`,
+          },
+          body: JSON.stringify({ session }),
         }
-      });
+      );
+
+      if (!response.ok) {
+        const error = await response.json();
+        console.warn('Admin notification not sent:', error);
+      }
     } catch (notifyError) {
       // Silently handle notification errors to not disrupt chat experience
-      console.warn('Could not send admin notification');
+      console.warn('Could not send admin notification', notifyError);
     }
 
     return session;
