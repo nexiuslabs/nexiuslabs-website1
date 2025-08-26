@@ -16,6 +16,10 @@ Disallow: /*?gclid=*
 Disallow: /index.html
 Disallow: /index.php
 
+# Block private routes
+Disallow: /admin
+Disallow: /upload
+
 # Allow important files
 Allow: /sitemap.xml
 Allow: /robots.txt
