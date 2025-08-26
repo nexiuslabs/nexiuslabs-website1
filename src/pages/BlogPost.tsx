@@ -3,6 +3,7 @@ import { useParams, Link, useNavigate } from 'react-router-dom';
 import { supabase } from '../lib/supabase';
 import { ArrowLeft, Calendar, User, Clock } from 'lucide-react';
 import type { Article } from '../types/database';
+import { updateMetaTags, defaultMeta } from '../lib/metadata';
 
 export function BlogPost() {
   const { slug } = useParams<{ slug: string }>();
@@ -37,6 +38,17 @@ export function BlogPost() {
       setLoading(false);
     }
   };
+
+  useEffect(() => {
+    if (article) {
+      updateMetaTags({
+        title: article.title,
+        description: article.description || defaultMeta.description,
+        image: article.featured_image || defaultMeta.image,
+        url: `https://nexiuslabs.com/blog/${article.slug || slug}`,
+      });
+    }
+  }, [article, slug]);
 
   const formatDate = (date: string) => {
     return new Date(date).toLocaleDateString('en-US', {

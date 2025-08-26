@@ -5,6 +5,7 @@ import { supabase } from '../lib/supabase';
 import { Calendar, Clock, MapPin, Users, ArrowLeft } from 'lucide-react';
 import { EventRegistrationForm } from '../components/EventRegistrationForm';
 import type { Event } from '../types/database';
+import { updateMetaTags, defaultMeta } from '../lib/metadata';
 
 export function EventDetail() {
   const { slug } = useParams<{ slug: string }>();
@@ -37,6 +38,18 @@ export function EventDetail() {
       setLoading(false);
     }
   };
+
+  useEffect(() => {
+    if (event) {
+      updateMetaTags({
+        title: event.title,
+        description:
+          event.description?.replace(/<[^>]+>/g, '') || defaultMeta.description,
+        image: event.featured_image || defaultMeta.image,
+        url: `https://nexiuslabs.com/event/${event.slug || slug}`,
+      });
+    }
+  }, [event, slug]);
 
   const formatDateTime = (date: string) => {
     return new Date(date).toLocaleString('en-US', {
