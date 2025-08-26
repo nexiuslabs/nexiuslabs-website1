@@ -75,13 +75,34 @@ export function EventDetail() {
       </div>
     );
   }
+  const jsonLd = {
+    '@context': 'https://schema.org',
+    '@type': 'Event',
+    name: event.title,
+    startDate: event.start_date,
+    endDate: event.end_date,
+    location: {
+      '@type': 'Place',
+      name: event.location
+    },
+    image: event.featured_image,
+    organizer: {
+      '@type': 'Organization',
+      name: 'Nexius Labs'
+    }
+  };
 
   return (
-    <div className="min-h-screen bg-nexius-dark-bg">
-      {/* Hero Section */}
-      <div className="relative bg-nexius-navy py-16">
-        <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-full">
-          <Link 
+    <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+      />
+      <div className="min-h-screen bg-nexius-dark-bg">
+        {/* Hero Section */}
+        <div className="relative bg-nexius-navy py-16">
+          <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-full">
+            <Link
             to="/events" 
             className="inline-flex items-center text-white/80 hover:text-white pt-8 transition-colors"
           >
@@ -178,13 +199,14 @@ export function EventDetail() {
             </div>
           </div>
         </div>
-      </div>
-      
+        </div>
+
       <EventRegistrationForm
         event={event}
         isOpen={showRegistration}
         onClose={() => setShowRegistration(false)}
       />
-    </div>
+      </div>
+    </>
   );
 }

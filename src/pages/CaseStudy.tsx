@@ -203,14 +203,29 @@ export function CaseStudy() {
       </div>
     );
   }
+  const jsonLd = {
+    '@context': 'https://schema.org',
+    '@type': 'Article',
+    headline: study.title,
+    image: study.image,
+    author: {
+      '@type': 'Organization',
+      name: 'Nexius Labs'
+    }
+  };
 
   return (
-    <div className="min-h-screen bg-nexius-dark-bg">
-      {/* Hero Section */}
-      <div className="relative h-[60vh] min-h-[400px] bg-nexius-navy">
-        <div className="absolute inset-0">
-          <img
-            src={study.image}
+    <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+      />
+      <div className="min-h-screen bg-nexius-dark-bg">
+        {/* Hero Section */}
+        <div className="relative h-[60vh] min-h-[400px] bg-nexius-navy">
+          <div className="absolute inset-0">
+            <img
+              src={study.image}
             alt={study.title}
             className="w-full h-full object-cover opacity-20"
           />
@@ -366,5 +381,6 @@ export function CaseStudy() {
         </div>
       </div>
     </div>
+    </>
   );
 }
