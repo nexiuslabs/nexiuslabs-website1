@@ -15,3 +15,5 @@ Disallow: /index.php
 # Allow important files
 Allow: /sitemap.xml
 Allow: /robots.txt
+
+Sitemap: https://nexiuslabs.com/sitemap.xml
