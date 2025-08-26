@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Link, Routes, Route } from 'react-router-dom';
+import { Link, Routes, Route, useLocation } from 'react-router-dom';
 import { supabase } from './lib/supabase';
 import {
   Menu,
@@ -41,6 +41,7 @@ import { PrivacyPolicy } from './pages/PrivacyPolicy';
 import { Events } from './pages/Events';
 import { NotFound } from './pages/NotFound';
 import { Chat } from './components/Chat';
+import { Helmet } from 'react-helmet-async';
 
 const features = [
   {
@@ -271,6 +272,7 @@ function Navigation({ onContactClick }: { onContactClick: () => void }) {
 }
 
 function HomePage() {
+  const location = useLocation();
   const scrollToTop = () => {
     window.scrollTo({
       top: 0,
@@ -278,8 +280,31 @@ function HomePage() {
     });
   };
 
+  const canonicalUrl = `https://nexiuslabs.com${location.pathname}`;
+
   return (
-    <div className="min-h-screen bg-nexius-dark-bg">
+    <>
+      <Helmet>
+        <title>NEXIUS Labs | AI-Powered Executive Intelligence Platform</title>
+        <meta
+          name="description"
+          content="Nexius Labs specializes in AI-powered business automation, process optimization, and no-code solutions to help businesses scale efficiently."
+        />
+        <link rel="canonical" href={canonicalUrl} />
+        <meta property="og:title" content="NEXIUS Labs | AI-Powered Executive Intelligence Platform" />
+        <meta
+          property="og:description"
+          content="Nexius Labs specializes in AI-powered business automation, process optimization, and no-code solutions to help businesses scale efficiently."
+        />
+        <meta property="og:url" content={canonicalUrl} />
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:title" content="NEXIUS Labs | AI-Powered Executive Intelligence Platform" />
+        <meta
+          name="twitter:description"
+          content="Nexius Labs specializes in AI-powered business automation, process optimization, and no-code solutions to help businesses scale efficiently."
+        />
+      </Helmet>
+      <div className="min-h-screen bg-nexius-dark-bg">
       {/* Hero Section */}
       <section className="relative pt-32 pb-24 bg-gradient-to-b from-nexius-navy to-nexius-navy/95">
         <HeroAnimation />
@@ -531,9 +556,9 @@ function HomePage() {
         </div>
       </footer>
     </div>
+    </>
   );
 }
-import { useLocation } from 'react-router-dom';
 
 export default function App() {
   const [isContactFormOpen, setIsContactFormOpen] = useState(false);

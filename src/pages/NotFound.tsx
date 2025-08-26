@@ -1,12 +1,28 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 import { Home, ArrowLeft } from 'lucide-react';
+import { Helmet } from 'react-helmet-async';
 
 export function NotFound() {
+  const location = useLocation();
+  const canonicalUrl = `https://nexiuslabs.com${location.pathname}`;
+
   return (
-    <div className="min-h-screen bg-gradient-to-b from-nexius-navy to-nexius-navy/95 flex items-center justify-center px-4">
-      <div className="max-w-md w-full text-center">
-        <img
+    <>
+      <Helmet>
+        <title>Page Not Found | NEXIUS Labs</title>
+        <meta name="description" content="The page you are looking for does not exist." />
+        <link rel="canonical" href={canonicalUrl} />
+        <meta property="og:title" content="Page Not Found | NEXIUS Labs" />
+        <meta property="og:description" content="The page you are looking for does not exist." />
+        <meta property="og:url" content={canonicalUrl} />
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:title" content="Page Not Found | NEXIUS Labs" />
+        <meta name="twitter:description" content="The page you are looking for does not exist." />
+      </Helmet>
+      <div className="min-h-screen bg-gradient-to-b from-nexius-navy to-nexius-navy/95 flex items-center justify-center px-4">
+        <div className="max-w-md w-full text-center">
+          <img
           src="https://tunidbyclygzipvbfzee.supabase.co/storage/v1/object/public/website-images/m04h4fs8wns-1739784195705.png"
           alt="NEXIUS Labs"
           className="h-16 w-16 mx-auto mb-8"
@@ -34,5 +50,6 @@ export function NotFound() {
         </div>
       </div>
     </div>
+    </>
   );
 }

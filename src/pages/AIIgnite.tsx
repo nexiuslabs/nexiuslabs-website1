@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 import { supabase } from '../lib/supabase';
 import {
   Target,
@@ -15,12 +15,36 @@ import {
 } from 'lucide-react';
 import { ContactForm } from '../components/ContactForm';
 import { FeatureCard } from '../components/FeatureCard';
+import { Helmet } from 'react-helmet-async';
 
 export function AIIgnite() {
   const [showContactForm, setShowContactForm] = useState(false);
+  const location = useLocation();
+  const canonicalUrl = `https://nexiuslabs.com${location.pathname}`;
 
   return (
-    <div className="min-h-screen bg-nexius-dark-bg">
+    <>
+      <Helmet>
+        <title>AI Ignite | NEXIUS Labs</title>
+        <meta
+          name="description"
+          content="AI Ignite connects business leaders with AI innovators to drive real-world impact and growth."
+        />
+        <link rel="canonical" href={canonicalUrl} />
+        <meta property="og:title" content="AI Ignite | NEXIUS Labs" />
+        <meta
+          property="og:description"
+          content="AI Ignite connects business leaders with AI innovators to drive real-world impact and growth."
+        />
+        <meta property="og:url" content={canonicalUrl} />
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:title" content="AI Ignite | NEXIUS Labs" />
+        <meta
+          name="twitter:description"
+          content="AI Ignite connects business leaders with AI innovators to drive real-world impact and growth."
+        />
+      </Helmet>
+      <div className="min-h-screen bg-nexius-dark-bg">
       {/* Hero Section */}
       <section className="relative pt-32 pb-24 bg-gradient-to-b from-nexius-navy to-nexius-navy/95">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
@@ -468,5 +492,6 @@ export function AIIgnite() {
         </div>
       </footer>
     </div>
+    </>
   );
 }

@@ -1,16 +1,35 @@
 import React, { useState } from 'react';
 import { ImageUpload } from '../components/ImageUpload';
+import { useLocation } from 'react-router-dom';
+import { Helmet } from 'react-helmet-async';
 
 export function UploadLogo() {
   const [logoUrl, setLogoUrl] = useState<string | null>(null);
   const [uploadType, setUploadType] = useState<'melverick' | 'darryl'>('melverick');
+  const location = useLocation();
+  const canonicalUrl = `https://nexiuslabs.com${location.pathname}`;
 
   const handleUploadComplete = (imageUrl: string) => {
     setLogoUrl(imageUrl);
   };
 
   return (
-    <div className="min-h-screen bg-nexius-dark-bg py-32">
+    <>
+      <Helmet>
+        <title>Upload Co-founder Photos | NEXIUS Labs</title>
+        <meta
+          name="description"
+          content="Upload co-founder photos for NEXIUS Labs."
+        />
+        <link rel="canonical" href={canonicalUrl} />
+        <meta property="og:title" content="Upload Co-founder Photos | NEXIUS Labs" />
+        <meta property="og:description" content="Upload co-founder photos for NEXIUS Labs." />
+        <meta property="og:url" content={canonicalUrl} />
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:title" content="Upload Co-founder Photos | NEXIUS Labs" />
+        <meta name="twitter:description" content="Upload co-founder photos for NEXIUS Labs." />
+      </Helmet>
+      <div className="min-h-screen bg-nexius-dark-bg py-32">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="max-w-3xl mx-auto">
           <div className="bg-nexius-dark-surface rounded-lg shadow-sm p-8 border border-nexius-dark-border">
@@ -68,5 +87,6 @@ export function UploadLogo() {
         </div>
       </div>
     </div>
+    </>
   );
 }

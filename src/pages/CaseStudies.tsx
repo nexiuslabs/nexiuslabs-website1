@@ -1,6 +1,7 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 import { ArrowRight, TrendingUp, Users, Target, Clock } from 'lucide-react';
+import { Helmet } from 'react-helmet-async';
 
 const caseStudies = [
   {
@@ -30,8 +31,32 @@ const caseStudies = [
 ];
 
 export function CaseStudies() {
+  const location = useLocation();
+  const canonicalUrl = `https://nexiuslabs.com${location.pathname}`;
+
   return (
-    <div className="min-h-screen bg-nexius-dark-bg">
+    <>
+      <Helmet>
+        <title>Case Studies | NEXIUS Labs</title>
+        <meta
+          name="description"
+          content="Success stories of businesses transforming with our AI solutions"
+        />
+        <link rel="canonical" href={canonicalUrl} />
+        <meta property="og:title" content="Case Studies | NEXIUS Labs" />
+        <meta
+          property="og:description"
+          content="Success stories of businesses transforming with our AI solutions"
+        />
+        <meta property="og:url" content={canonicalUrl} />
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:title" content="Case Studies | NEXIUS Labs" />
+        <meta
+          name="twitter:description"
+          content="Success stories of businesses transforming with our AI solutions"
+        />
+      </Helmet>
+      <div className="min-h-screen bg-nexius-dark-bg">
       {/* Hero Section */}
       <section className="relative pt-32 pb-24 bg-gradient-to-b from-nexius-navy to-nexius-navy/95">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -136,5 +161,6 @@ export function CaseStudies() {
         </div>
       </section>
     </div>
+    </>
   );
 }

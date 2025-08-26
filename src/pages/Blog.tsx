@@ -1,12 +1,14 @@
 import React, { useState, useEffect } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 import { supabase } from '../lib/supabase';
 import { Clock, ArrowRight, Calendar, User } from 'lucide-react';
 import type { Article } from '../types/database';
+import { Helmet } from 'react-helmet-async';
 
 export function Blog() {
   const [articles, setArticles] = useState<Article[]>([]);
   const [loading, setLoading] = useState(true);
+  const location = useLocation();
 
   useEffect(() => {
     loadArticles();
@@ -37,8 +39,31 @@ export function Blog() {
     });
   };
 
+  const canonicalUrl = `https://nexiuslabs.com${location.pathname}`;
+
   return (
-    <div className="min-h-screen bg-nexius-dark-bg">
+    <>
+      <Helmet>
+        <title>Blog | NEXIUS Labs</title>
+        <meta
+          name="description"
+          content="Insights, tutorials, and updates from our team of AI experts"
+        />
+        <link rel="canonical" href={canonicalUrl} />
+        <meta property="og:title" content="Blog | NEXIUS Labs" />
+        <meta
+          property="og:description"
+          content="Insights, tutorials, and updates from our team of AI experts"
+        />
+        <meta property="og:url" content={canonicalUrl} />
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:title" content="Blog | NEXIUS Labs" />
+        <meta
+          name="twitter:description"
+          content="Insights, tutorials, and updates from our team of AI experts"
+        />
+      </Helmet>
+      <div className="min-h-screen bg-nexius-dark-bg">
       {/* Hero Section */}
       <section className="relative pt-32 pb-24 bg-gradient-to-b from-nexius-navy to-nexius-navy/95">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -140,5 +165,6 @@ export function Blog() {
         </div>
       </section>
     </div>
+    </>
   );
 }

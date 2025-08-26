@@ -1,6 +1,7 @@
 import React, { useEffect } from 'react';
-import { useParams, Link } from 'react-router-dom';
+import { useParams, Link, useLocation } from 'react-router-dom';
 import { ArrowLeft, CheckCircle2, TrendingUp, Users, Target, ArrowRight } from 'lucide-react';
+import { Helmet } from 'react-helmet-async';
 
 interface CaseStudyData {
   title: string;
@@ -184,6 +185,7 @@ const caseStudiesData: Record<string, CaseStudyData> = {
 
 export function CaseStudy() {
   const { id } = useParams<{ id: string }>();
+  const location = useLocation();
   const study = id ? caseStudiesData[id] : null;
 
   // Scroll to top when component mounts
@@ -203,9 +205,24 @@ export function CaseStudy() {
       </div>
     );
   }
+  const canonicalUrl = `https://nexiuslabs.com${location.pathname}`;
 
   return (
-    <div className="min-h-screen bg-nexius-dark-bg">
+    <>
+      <Helmet>
+        <title>{`${study.title} | NEXIUS Labs`}</title>
+        <meta name="description" content={study.description} />
+        <link rel="canonical" href={canonicalUrl} />
+        <meta property="og:title" content={study.title} />
+        <meta property="og:description" content={study.description} />
+        <meta property="og:url" content={canonicalUrl} />
+        <meta property="og:image" content={study.image} />
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:title" content={study.title} />
+        <meta name="twitter:description" content={study.description} />
+        <meta name="twitter:image" content={study.image} />
+      </Helmet>
+      <div className="min-h-screen bg-nexius-dark-bg">
       {/* Hero Section */}
       <div className="relative h-[60vh] min-h-[400px] bg-nexius-navy">
         <div className="absolute inset-0">
@@ -366,5 +383,6 @@ export function CaseStudy() {
         </div>
       </div>
     </div>
+    </>
   );
 }

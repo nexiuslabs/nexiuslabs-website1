@@ -3,12 +3,15 @@ import { supabase } from '../lib/supabase';
 import { EventsList } from '../components/EventsList';
 import { Clock, Calendar } from 'lucide-react';
 import type { Event } from '../types/database';
+import { useLocation } from 'react-router-dom';
+import { Helmet } from 'react-helmet-async';
 
 export default function Events() {
   const [events, setEvents] = useState<Event[]>([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
   const [filter, setFilter] = useState<'upcoming' | 'past'>('upcoming');
+  const location = useLocation();
 
   useEffect(() => {
     loadEvents();
@@ -48,8 +51,31 @@ export default function Events() {
     }
   };
 
+  const canonicalUrl = `https://nexiuslabs.com${location.pathname}`;
+
   return (
-    <div className="min-h-screen bg-nexius-dark-bg">
+    <>
+      <Helmet>
+        <title>Events | NEXIUS Labs</title>
+        <meta
+          name="description"
+          content="Join our workshops, webinars, and conferences focused on AI innovation and business transformation."
+        />
+        <link rel="canonical" href={canonicalUrl} />
+        <meta property="og:title" content="Events | NEXIUS Labs" />
+        <meta
+          property="og:description"
+          content="Join our workshops, webinars, and conferences focused on AI innovation and business transformation."
+        />
+        <meta property="og:url" content={canonicalUrl} />
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:title" content="Events | NEXIUS Labs" />
+        <meta
+          name="twitter:description"
+          content="Join our workshops, webinars, and conferences focused on AI innovation and business transformation."
+        />
+      </Helmet>
+      <div className="min-h-screen bg-nexius-dark-bg">
       {/* Hero Section */}
       <section className="relative pt-32 pb-24 bg-gradient-to-b from-nexius-navy to-nexius-navy/95">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -140,6 +166,7 @@ export default function Events() {
         </div>
       </section>
     </div>
+    </>
   );
 }
 

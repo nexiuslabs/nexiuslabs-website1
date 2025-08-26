@@ -1,6 +1,8 @@
 import React, { useEffect } from 'react';
 import { supabase } from '../lib/supabase';
 import { HeroAnimation } from '../components/HeroAnimation';
+import { useLocation } from 'react-router-dom';
+import { Helmet } from 'react-helmet-async';
 import {
   Globe,
   Mail,
@@ -96,6 +98,7 @@ const links: SocialLink[] = [
 ];
 
 export function LinksPage() {
+  const location = useLocation();
 
   useEffect(() => {
     // Load click counts from Supabase
@@ -129,9 +132,32 @@ export function LinksPage() {
     });
   };
 
+  const canonicalUrl = `https://nexiuslabs.com${location.pathname}`;
+
   return (
-    <div className="min-h-screen bg-gradient-to-b from-nexius-navy to-nexius-navy/95">
-      <HeroAnimation />
+    <>
+      <Helmet>
+        <title>Links | NEXIUS Labs</title>
+        <meta
+          name="description"
+          content="Quick links to connect with NEXIUS Labs online"
+        />
+        <link rel="canonical" href={canonicalUrl} />
+        <meta property="og:title" content="Links | NEXIUS Labs" />
+        <meta
+          property="og:description"
+          content="Quick links to connect with NEXIUS Labs online"
+        />
+        <meta property="og:url" content={canonicalUrl} />
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:title" content="Links | NEXIUS Labs" />
+        <meta
+          name="twitter:description"
+          content="Quick links to connect with NEXIUS Labs online"
+        />
+      </Helmet>
+      <div className="min-h-screen bg-gradient-to-b from-nexius-navy to-nexius-navy/95">
+        <HeroAnimation />
       {/* Header */}
       <header className="pt-12 px-4 sm:px-6 lg:px-8 flex justify-center">
         <div className="text-center">
@@ -255,5 +281,6 @@ export function LinksPage() {
         </p>
       </footer>
     </div>
+    </>
   );
 }

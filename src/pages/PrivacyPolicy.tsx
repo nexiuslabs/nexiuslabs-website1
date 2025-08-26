@@ -1,10 +1,26 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 import { ArrowLeft } from 'lucide-react';
+import { Helmet } from 'react-helmet-async';
 
 export function PrivacyPolicy() {
+  const location = useLocation();
+  const canonicalUrl = `https://nexiuslabs.com${location.pathname}`;
+
   return (
-    <div className="min-h-screen bg-nexius-dark-bg">
+    <>
+      <Helmet>
+        <title>Privacy Policy | NEXIUS Labs</title>
+        <meta name="description" content="Privacy policy for NEXIUS Labs." />
+        <link rel="canonical" href={canonicalUrl} />
+        <meta property="og:title" content="Privacy Policy | NEXIUS Labs" />
+        <meta property="og:description" content="Privacy policy for NEXIUS Labs." />
+        <meta property="og:url" content={canonicalUrl} />
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:title" content="Privacy Policy | NEXIUS Labs" />
+        <meta name="twitter:description" content="Privacy policy for NEXIUS Labs." />
+      </Helmet>
+      <div className="min-h-screen bg-nexius-dark-bg">
       {/* Header */}
       <div className="bg-nexius-navy py-16">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -162,5 +178,6 @@ export function PrivacyPolicy() {
         </div>
       </div>
     </div>
+    </>
   );
 }

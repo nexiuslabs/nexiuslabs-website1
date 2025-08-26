@@ -31,6 +31,8 @@ import {
 import { ImageUpload } from '../components/ImageUpload';
 import { ArticleEditor } from '../components/ArticleEditor';
 import type { Image, Article, Lead, ChatSession, ChatMessage } from '../types/database';
+import { useLocation } from 'react-router-dom';
+import { Helmet } from 'react-helmet-async';
 
 const SECTIONS = [
   { id: 'images', name: 'Images', Icon: ImageIcon, description: 'Upload and manage your website images.' },
@@ -60,6 +62,7 @@ const EmptyState = ({ section, actionButton }: { section: typeof SECTIONS[0], ac
 );
 
 export default function AdminPage() {
+  const location = useLocation();
   const [session, setSession] = useState(null);
   const [activeSection, setActiveSection] = useState('images');
   const [editingImage, setEditingImage] = useState<Image | null>(null);
@@ -1004,8 +1007,22 @@ export default function AdminPage() {
     return <Auth />;
   }
 
+  const canonicalUrl = `https://nexiuslabs.com${location.pathname}`;
+
   return (
-    <div className="min-h-screen bg-nexius-dark-bg">
+    <>
+      <Helmet>
+        <title>Admin | NEXIUS Labs</title>
+        <meta name="description" content="Admin dashboard for managing site content" />
+        <link rel="canonical" href={canonicalUrl} />
+        <meta property="og:title" content="Admin | NEXIUS Labs" />
+        <meta property="og:description" content="Admin dashboard for managing site content" />
+        <meta property="og:url" content={canonicalUrl} />
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:title" content="Admin | NEXIUS Labs" />
+        <meta name="twitter:description" content="Admin dashboard for managing site content" />
+      </Helmet>
+      <div className="min-h-screen bg-nexius-dark-bg">
       {/* Header */}
       <header className="bg-nexius-dark-surface border-b border-nexius-dark-border fixed w-full z-10">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -1097,6 +1114,7 @@ export default function AdminPage() {
         </div>
       </main>
     </div>
+    </>
   );
 }
 

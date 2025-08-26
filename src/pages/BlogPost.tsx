@@ -1,12 +1,14 @@
 import React, { useState, useEffect } from 'react';
-import { useParams, Link, useNavigate } from 'react-router-dom';
+import { useParams, Link, useNavigate, useLocation } from 'react-router-dom';
 import { supabase } from '../lib/supabase';
 import { ArrowLeft, Calendar, User, Clock } from 'lucide-react';
 import type { Article } from '../types/database';
+import { Helmet } from 'react-helmet-async';
 
 export function BlogPost() {
   const { slug } = useParams<{ slug: string }>();
   const navigate = useNavigate();
+  const location = useLocation();
   const [article, setArticle] = useState<Article | null>(null);
   const [loading, setLoading] = useState(true);
 
@@ -58,8 +60,34 @@ export function BlogPost() {
     return null;
   }
 
+  const canonicalUrl = `https://nexiuslabs.com${location.pathname}`;
+
   return (
-    <div className="min-h-screen bg-nexius-dark-bg">
+    <>
+      <Helmet>
+        <title>{`${article.title} | NEXIUS Labs`}</title>
+        {article.description && (
+          <meta name="description" content={article.description} />
+        )}
+        <link rel="canonical" href={canonicalUrl} />
+        <meta property="og:title" content={article.title} />
+        {article.description && (
+          <meta property="og:description" content={article.description} />
+        )}
+        <meta property="og:url" content={canonicalUrl} />
+        {article.featured_image && (
+          <meta property="og:image" content={article.featured_image} />
+        )}
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:title" content={article.title} />
+        {article.description && (
+          <meta name="twitter:description" content={article.description} />
+        )}
+        {article.featured_image && (
+          <meta name="twitter:image" content={article.featured_image} />
+        )}
+      </Helmet>
+      <div className="min-h-screen bg-nexius-dark-bg">
       {/* Hero Section */}
       <div className="relative h-[60vh] min-h-[400px] bg-nexius-navy">
         {article.featured_image && (
@@ -132,5 +160,6 @@ export function BlogPost() {
         </div>
       </section>
     </div>
+    </>
   );
 }

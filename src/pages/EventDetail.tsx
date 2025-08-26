@@ -1,12 +1,14 @@
 import React, { useState, useEffect } from 'react';
-import { useParams, Link } from 'react-router-dom';
+import { useParams, Link, useLocation } from 'react-router-dom';
 import { supabase } from '../lib/supabase';
 import { Calendar, MapPin, ArrowLeft } from 'lucide-react';
 import { EventRegistrationForm } from '../components/EventRegistrationForm';
 import type { Event } from '../types/database';
+import { Helmet } from 'react-helmet-async';
 
 export function EventDetail() {
   const { slug } = useParams<{ slug: string }>();
+  const location = useLocation();
   const [event, setEvent] = useState<Event | null>(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
@@ -75,9 +77,34 @@ export function EventDetail() {
       </div>
     );
   }
+  const canonicalUrl = `https://nexiuslabs.com${location.pathname}`;
 
   return (
-    <div className="min-h-screen bg-nexius-dark-bg">
+    <>
+      <Helmet>
+        <title>{`${event.title} | NEXIUS Labs`}</title>
+        {event.description && (
+          <meta name="description" content={event.description} />
+        )}
+        <link rel="canonical" href={canonicalUrl} />
+        <meta property="og:title" content={event.title} />
+        {event.description && (
+          <meta property="og:description" content={event.description} />
+        )}
+        <meta property="og:url" content={canonicalUrl} />
+        {event.featured_image && (
+          <meta property="og:image" content={event.featured_image} />
+        )}
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:title" content={event.title} />
+        {event.description && (
+          <meta name="twitter:description" content={event.description} />
+        )}
+        {event.featured_image && (
+          <meta name="twitter:image" content={event.featured_image} />
+        )}
+      </Helmet>
+      <div className="min-h-screen bg-nexius-dark-bg">
       {/* Hero Section */}
       <div className="relative bg-nexius-navy py-16">
         <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-full">
@@ -186,5 +213,6 @@ export function EventDetail() {
         onClose={() => setShowRegistration(false)}
       />
     </div>
+    </>
   );
 }
