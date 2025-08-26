@@ -178,7 +178,7 @@ function Navigation({ onContactClick }: { onContactClick: () => void }) {
     <nav className="fixed w-full bg-nexius-dark-surface/90 backdrop-blur-md z-50 border-b border-nexius-dark-border">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between h-16">
-          <Link 
+          <Link
             to="/"
             className="flex items-center focus:outline-none group"
           >
@@ -186,6 +186,8 @@ function Navigation({ onContactClick }: { onContactClick: () => void }) {
               src="https://tunidbyclygzipvbfzee.supabase.co/storage/v1/object/public/website-images/m04h4fs8wns-1739784195705.png"
               alt="NEXIUS Labs"
               className="h-8 w-8 object-contain group-hover:opacity-90 transition-opacity"
+              width={32}
+              height={32}
             />
             <span className="ml-3 text-xl font-display font-extrabold text-white tracking-tight uppercase group-hover:text-nexius-teal transition-colors">NEXIUS Labs</span>
           </Link>
@@ -337,6 +339,8 @@ function HomePage() {
                 src="/images/hero.png"
                 alt="AI Executive Intelligence"
                 className="rounded-xl shadow-2xl border border-white/10"
+                width={1456}
+                height={816}
               />
             </div>
           </div>
@@ -445,6 +449,10 @@ function HomePage() {
                     alt={testimonial.author}
                     className="h-12 w-12 rounded-full object-cover"
                     crossOrigin="anonymous"
+                    loading="lazy"
+                    decoding="async"
+                    width={48}
+                    height={48}
                   />
                   <div className="ml-4">
                     <h4 className="text-white font-semibold">{testimonial.author}</h4>
@@ -493,6 +501,10 @@ function HomePage() {
                   src="https://tunidbyclygzipvbfzee.supabase.co/storage/v1/object/public/website-images/m04h4fs8wns-1739784195705.png"
                   alt="NEXIUS Labs"
                   className="h-6 w-6 object-contain group-hover:opacity-90 transition-opacity"
+                  loading="lazy"
+                  decoding="async"
+                  width={24}
+                  height={24}
                 />
                 <span className="ml-2 text-lg font-bold group-hover:text-nexius-teal transition-colors">NEXIUS Labs</span>
               </button>

@@ -48,16 +48,20 @@ export function UploadLogo() {
                 <div className="mt-6">
                  <h2 className="text-lg font-semibold mb-2 text-nexius-dark-text">Preview:</h2>
                  <div className="p-4 bg-nexius-dark-card rounded-lg">
-                    <img
-                      src={logoUrl}
-                      alt={uploadType === 'melverick' ? 'Melverick Ng' : 'Darryl Wong'}
-                      className="h-32 w-32 object-cover rounded-full"
-                      crossOrigin="anonymous"
-                    />
-                  </div>
-                 <p className="mt-2 text-sm text-nexius-dark-text-muted">
-                    Photo uploaded successfully! You can now use this URL in your application:
-                  </p>
+                  <img
+                    src={logoUrl}
+                    alt={uploadType === 'melverick' ? 'Melverick Ng' : 'Darryl Wong'}
+                    className="h-32 w-32 object-cover rounded-full"
+                    crossOrigin="anonymous"
+                    loading="lazy"
+                    decoding="async"
+                    width={128}
+                    height={128}
+                  />
+                </div>
+                <p className="mt-2 text-sm text-nexius-dark-text-muted">
+                   Photo uploaded successfully! You can now use this URL in your application:
+                 </p>
                  <code className="mt-2 block p-2 bg-nexius-dark-card rounded text-sm font-mono break-all text-nexius-teal">
                     {logoUrl}
                   </code>

@@ -140,6 +140,8 @@ export function LinksPage() {
               src="https://tunidbyclygzipvbfzee.supabase.co/storage/v1/object/public/website-images/m04h4fs8wns-1739784195705.png"
               alt="NEXIUS Labs"
               className="relative h-12 w-12 object-contain group-hover:opacity-90 transition-opacity mb-3"
+              width={48}
+              height={48}
             />
             <h1 className="relative text-xl font-display font-bold text-white group-hover:text-nexius-teal transition-colors">
               NEXIUS Labs
@@ -155,6 +157,10 @@ export function LinksPage() {
             src="/images/hero.png"
             alt="NEXIUS Labs Cover"
             className="relative w-full h-[200px] object-cover rounded-xl shadow-2xl mb-8"
+            loading="lazy"
+            decoding="async"
+            width={1456}
+            height={816}
           />
           <p className="relative text-xl text-white/90 max-w-2xl mx-auto">
             Empowering businesses with AI-driven automation and intelligent insights
@@ -205,6 +211,10 @@ export function LinksPage() {
                 alt={founder.name}
                 className="w-32 h-32 rounded-full mx-auto mb-6 object-cover"
                 crossOrigin="anonymous"
+                loading="lazy"
+                decoding="async"
+                width={128}
+                height={128}
               />
               <h3 className="text-xl font-display font-bold text-white mb-2">
                 {founder.name}

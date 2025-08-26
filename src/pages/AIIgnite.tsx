@@ -430,6 +430,10 @@ export function AIIgnite() {
                   src="https://tunidbyclygzipvbfzee.supabase.co/storage/v1/object/public/website-images/m04h4fs8wns-1739784195705.png"
                   alt="NEXIUS Labs"
                   className="h-6 w-6 object-contain group-hover:opacity-90 transition-opacity"
+                  loading="lazy"
+                  decoding="async"
+                  width={24}
+                  height={24}
                 />
                 <span className="ml-2 text-lg font-bold group-hover:text-nexius-teal transition-colors">NEXIUS Labs</span>
               </button>

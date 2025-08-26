@@ -228,6 +228,8 @@ export function CaseStudy() {
               src={study.image}
             alt={study.title}
             className="w-full h-full object-cover opacity-20"
+            loading="lazy"
+            decoding="async"
           />
           <div className="absolute inset-0 bg-gradient-to-b from-nexius-navy/50 to-nexius-navy"></div>
         </div>

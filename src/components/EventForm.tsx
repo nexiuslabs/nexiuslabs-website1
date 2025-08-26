@@ -261,6 +261,8 @@ export function EventForm({ onClose, onSave, event }: EventFormProps) {
                 src={featuredImage}
                 alt="Featured"
                 className="w-full h-full object-cover"
+                loading="lazy"
+                decoding="async"
               />
               <button
                 type="button"
