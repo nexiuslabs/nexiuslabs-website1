@@ -4,6 +4,7 @@ import { supabase } from '../lib/supabase';
 import { Calendar, MapPin, ArrowLeft } from 'lucide-react';
 import { EventRegistrationForm } from '../components/EventRegistrationForm';
 import type { Event } from '../types/database';
+import { BASE_URL } from '../config';
 
 export function EventDetail() {
   const { slug } = useParams<{ slug: string }>();
@@ -15,6 +16,17 @@ export function EventDetail() {
   useEffect(() => {
     loadEvent();
   }, [slug]); // eslint-disable-line react-hooks/exhaustive-deps
+
+  useEffect(() => {
+    if (event) {
+      const canonical = document.querySelector("link[rel='canonical']") || document.createElement('link');
+      canonical.setAttribute('rel', 'canonical');
+      canonical.setAttribute('href', `${BASE_URL}/events/${event.slug}`);
+      if (!canonical.parentNode) {
+        document.head.appendChild(canonical);
+      }
+    }
+  }, [event]);
 
   const loadEvent = async () => {
     try {
@@ -75,10 +87,12 @@ export function EventDetail() {
       </div>
     );
   }
+  const canonicalUrl = `${BASE_URL}/events/${event.slug}`;
   const jsonLd = {
     '@context': 'https://schema.org',
     '@type': 'Event',
     name: event.title,
+    url: canonicalUrl,
     startDate: event.start_date,
     endDate: event.end_date,
     location: {

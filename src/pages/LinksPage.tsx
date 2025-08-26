@@ -1,6 +1,7 @@
 import React, { useEffect } from 'react';
 import { supabase } from '../lib/supabase';
 import { HeroAnimation } from '../components/HeroAnimation';
+import { BASE_URL } from '../config';
 import {
   Globe,
   Mail,
@@ -75,7 +76,7 @@ const links: SocialLink[] = [
   {
     id: '2',
     title: 'Visit Our Website',
-    url: 'https://nexiuslabs.com',
+    url: BASE_URL,
     type: 'external',
     icon: 'website',
   },
