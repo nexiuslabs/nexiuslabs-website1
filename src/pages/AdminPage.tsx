@@ -6,32 +6,23 @@ import { EventsList } from '../components/EventsList';
 import { getImages, deleteImageRecord } from '../lib/images';
 import { deleteImage } from '../lib/storage';
 import { createArticle, getArticles, updateArticle, deleteArticle, publishArticle, unpublishArticle } from '../lib/articles';
-import { getLeads, updateLeadStatus, deleteLead } from '../lib/leads';
-import { getChatSessions, getChatMessages, sendChatMessage, markMessagesAsRead, closeChatSession } from '../lib/chats';
+import { getLeads } from '../lib/leads';
+import { markMessagesAsRead } from '../lib/chats';
 import {
   Image as ImageIcon,
   FileText,
   BookOpen,
   Calendar,
-  Settings,
   LogOut,
   Plus,
   Trash2,
-  ChevronDown,
-  Search,
   Edit2,
   Eye,
   EyeOff,
   ShoppingCart,
   GraduationCap,
   UserCheck,
-  Mail,
-  Phone,
   MessageSquare,
-  Clock,
-  CheckCircle,
-  XCircle,
-  AlertCircle,
   Send,
   X,
   ChevronLeft,
@@ -79,19 +70,14 @@ export default function AdminPage() {
   const [chatSessions, setChatSessions] = useState<ChatSession[]>([]);
   const [activeChatSession, setActiveChatSession] = useState<ChatSession | null>(null);
   const [chatMessages, setChatMessages] = useState<ChatMessage[]>([]);
-  const [loadingChats, setLoadingChats] = useState(false);
+  const [, setLoadingChats] = useState(false);
   const [newMessage, setNewMessage] = useState('');
   const [loading, setLoading] = useState(true);
-  const [searchQuery, setSearchQuery] = useState('');
-  const [showMobileMenu, setShowMobileMenu] = useState(false);
   const [isCreatingArticle, setIsCreatingArticle] = useState(false);
   const [editingArticle, setEditingArticle] = useState<Article | null>(null);
   const [showImageUpload, setShowImageUpload] = useState(false);
 
   // State for modals
-  const [showAddProduct, setShowAddProduct] = useState(false);
-  const [showAddCourse, setShowAddCourse] = useState(false);
-  const [showAddCaseStudy, setShowAddCaseStudy] = useState(false);
   const [isCreatingEvent, setIsCreatingEvent] = useState(false);
   const [events, setEvents] = useState<Event[]>([]);
   const [editingEvent, setEditingEvent] = useState<Event | null>(null);
@@ -120,7 +106,7 @@ export default function AdminPage() {
     });
 
     return () => subscription.unsubscribe();
-  }, []);
+  }, []); // eslint-disable-line react-hooks/exhaustive-deps
 
   const loadData = async () => {
     try {
@@ -288,7 +274,7 @@ export default function AdminPage() {
     }
   };
 
-  const handleImageUpload = (imageUrl: string) => {
+  const handleImageUpload = () => {
     loadImages();
     setShowImageUpload(false);
   };

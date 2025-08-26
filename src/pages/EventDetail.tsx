@@ -1,8 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useParams, Link } from 'react-router-dom';
-import parse from 'html-react-parser';
 import { supabase } from '../lib/supabase';
-import { Calendar, Clock, MapPin, Users, ArrowLeft } from 'lucide-react';
+import { Calendar, MapPin, ArrowLeft } from 'lucide-react';
 import { EventRegistrationForm } from '../components/EventRegistrationForm';
 import type { Event } from '../types/database';
 
@@ -15,7 +14,7 @@ export function EventDetail() {
 
   useEffect(() => {
     loadEvent();
-  }, [slug]);
+  }, [slug]); // eslint-disable-line react-hooks/exhaustive-deps
 
   const loadEvent = async () => {
     try {

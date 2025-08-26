@@ -1,5 +1,4 @@
-import { PDFProcessor, TextChunk } from './pdfProcessor';
-import { supabase } from './supabase';
+import { TextChunk } from './pdfProcessor';
 
 export class LlamaIndexProcessor {
   private static readonly LLAMA_INDEX_ENDPOINT = 'https://api.cloud.llamaindex.ai/api/pipeline/9a7bd0d3-59ec-4b89-be9f-a6216f536cb7/retrieve';

@@ -11,7 +11,7 @@ export async function uploadImage(file: File) {
     const filePath = fileName;
 
     // Upload the file to Supabase storage with specific settings
-    const { data, error } = await supabase.storage
+    const { error } = await supabase.storage
       .from(BUCKET_NAME)
       .upload(filePath, file, {
         cacheControl: '3600',

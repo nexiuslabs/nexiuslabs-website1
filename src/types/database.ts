@@ -7,7 +7,7 @@ export interface Image {
   url: string;
   storage_path: string;
   user_id: string;
-  metadata: Record<string, any>;
+  metadata: Record<string, unknown>;
 }
 
 export interface Article {

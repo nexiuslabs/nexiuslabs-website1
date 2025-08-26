@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Calendar, Clock, MapPin, Globe, Users, Ticket, Shield, X, Image, Eye, EyeOff } from 'lucide-react';
+import { MapPin, Users, Ticket, Shield, X, Image, Eye, EyeOff } from 'lucide-react';
 import { useEditor, EditorContent } from '@tiptap/react';
 import StarterKit from '@tiptap/starter-kit';
 import Underline from '@tiptap/extension-underline';

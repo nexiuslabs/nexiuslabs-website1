@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useEffect } from 'react';
 import { supabase } from '../lib/supabase';
 import { HeroAnimation } from '../components/HeroAnimation';
 import {
@@ -96,7 +96,6 @@ const links: SocialLink[] = [
 ];
 
 export function LinksPage() {
-  const [clickCount, setClickCount] = useState<Record<string, number>>({});
 
   useEffect(() => {
     // Load click counts from Supabase

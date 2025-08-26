@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Link, Routes, Route } from 'react-router-dom';
 import { supabase } from './lib/supabase';
 import {
@@ -20,12 +20,10 @@ import {
   Bot,
   Clock,
   TrendingUp,
-  ShoppingCart,
   FileText,
   Settings,
   Database,
   Lightbulb,
-  MessageCircle,
 } from 'lucide-react';
 import { HeroAnimation } from './components/HeroAnimation';
 import { ContactForm } from './components/ContactForm';

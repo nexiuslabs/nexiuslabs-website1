@@ -32,7 +32,7 @@ serve(async (req) => {
       }
     });
 
-    let info = await transporter.sendMail({
+    const info = await transporter.sendMail({
       from: `"Your App" <${SMTP_USER}>`,
       to: to,
       subject: subject,

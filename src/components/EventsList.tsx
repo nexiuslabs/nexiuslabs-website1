@@ -1,5 +1,5 @@
 import React from 'react';
-import { MapPin, Users, ChevronRight, Calendar, Clock } from 'lucide-react';
+import { MapPin, Users, ChevronRight } from 'lucide-react';
 import { useLocation, useNavigate } from 'react-router-dom';
 import type { Event } from '../types/database';
 
