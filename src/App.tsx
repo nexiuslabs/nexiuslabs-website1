@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { Helmet } from 'react-helmet-async';
 import { Link, Routes, Route } from 'react-router-dom';
 import { supabase } from './lib/supabase';
 import {
@@ -280,6 +281,13 @@ function HomePage() {
 
   return (
     <div className="min-h-screen bg-nexius-dark-bg">
+      <Helmet>
+        <title>NEXIUS Labs - AI Automation & Consulting</title>
+        <meta
+          name="description"
+          content="NEXIUS Labs helps businesses scale with custom AI solutions, automation, and expert consulting."
+        />
+      </Helmet>
       {/* Hero Section */}
       <section className="relative pt-32 pb-24 bg-gradient-to-b from-nexius-navy to-nexius-navy/95">
         <HeroAnimation />

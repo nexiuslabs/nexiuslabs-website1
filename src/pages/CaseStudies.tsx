@@ -1,5 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import { Helmet } from 'react-helmet-async';
 import { ArrowRight, TrendingUp, Users, Target, Clock } from 'lucide-react';
 
 const caseStudies = [
@@ -32,6 +33,13 @@ const caseStudies = [
 export function CaseStudies() {
   return (
     <div className="min-h-screen bg-nexius-dark-bg">
+      <Helmet>
+        <title>Case Studies - NEXIUS Labs</title>
+        <meta
+          name="description"
+          content="Real-world examples of businesses transformed by NEXIUS Labs' AI solutions."
+        />
+      </Helmet>
       {/* Hero Section */}
       <section className="relative pt-32 pb-24 bg-gradient-to-b from-nexius-navy to-nexius-navy/95">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">

@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
+import { Helmet } from 'react-helmet-async';
 import { supabase } from '../lib/supabase';
 import { Clock, ArrowRight, Calendar, User } from 'lucide-react';
 import type { Article } from '../types/database';
@@ -39,6 +40,13 @@ export function Blog() {
 
   return (
     <div className="min-h-screen bg-nexius-dark-bg">
+      <Helmet>
+        <title>Blog - NEXIUS Labs</title>
+        <meta
+          name="description"
+          content="Insights, tutorials, and updates from the NEXIUS Labs team of AI experts."
+        />
+      </Helmet>
       {/* Hero Section */}
       <section className="relative pt-32 pb-24 bg-gradient-to-b from-nexius-navy to-nexius-navy/95">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
