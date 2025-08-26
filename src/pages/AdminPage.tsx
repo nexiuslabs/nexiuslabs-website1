@@ -88,6 +88,16 @@ export default function AdminPage() {
   const [editingArticle, setEditingArticle] = useState<Article | null>(null);
   const [showImageUpload, setShowImageUpload] = useState(false);
 
+  useEffect(() => {
+    const meta = document.createElement('meta');
+    meta.name = 'robots';
+    meta.content = 'noindex,nofollow';
+    document.head.appendChild(meta);
+    return () => {
+      document.head.removeChild(meta);
+    };
+  }, []);
+
   // State for modals
   const [showAddProduct, setShowAddProduct] = useState(false);
   const [showAddCourse, setShowAddCourse] = useState(false);

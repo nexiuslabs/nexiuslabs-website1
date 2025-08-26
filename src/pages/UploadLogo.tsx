@@ -1,9 +1,19 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { ImageUpload } from '../components/ImageUpload';
 
 export function UploadLogo() {
   const [logoUrl, setLogoUrl] = useState<string | null>(null);
   const [uploadType, setUploadType] = useState<'melverick' | 'darryl'>('melverick');
+
+  useEffect(() => {
+    const meta = document.createElement('meta');
+    meta.name = 'robots';
+    meta.content = 'noindex,nofollow';
+    document.head.appendChild(meta);
+    return () => {
+      document.head.removeChild(meta);
+    };
+  }, []);
 
   const handleUploadComplete = (imageUrl: string) => {
     setLogoUrl(imageUrl);
