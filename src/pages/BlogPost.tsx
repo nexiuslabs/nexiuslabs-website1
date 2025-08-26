@@ -3,12 +3,24 @@ import { useParams, Link, useNavigate } from 'react-router-dom';
 import { supabase } from '../lib/supabase';
 import { ArrowLeft, Calendar, User, Clock } from 'lucide-react';
 import type { Article } from '../types/database';
+import { BASE_URL } from '../config';
 
 export function BlogPost() {
   const { slug } = useParams<{ slug: string }>();
   const navigate = useNavigate();
   const [article, setArticle] = useState<Article | null>(null);
   const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    if (article) {
+      const canonical = document.querySelector("link[rel='canonical']") || document.createElement('link');
+      canonical.setAttribute('rel', 'canonical');
+      canonical.setAttribute('href', `${BASE_URL}/blog/${article.slug}`);
+      if (!canonical.parentNode) {
+        document.head.appendChild(canonical);
+      }
+    }
+  }, [article]);
 
   useEffect(() => {
     loadArticle();
@@ -57,10 +69,12 @@ export function BlogPost() {
   if (!article) {
     return null;
   }
+  const canonicalUrl = `${BASE_URL}/blog/${article.slug}`;
   const jsonLd = {
     '@context': 'https://schema.org',
     '@type': 'Article',
     headline: article.title,
+    url: canonicalUrl,
     datePublished: article.published_at || article.created_at,
     image: article.featured_image,
     author: {
