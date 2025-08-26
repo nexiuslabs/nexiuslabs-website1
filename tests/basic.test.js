@@ -1,6 +1,5 @@
-import test from 'node:test';
-import assert from 'node:assert/strict';
+import { test, expect } from 'vitest';
 
 test('basic arithmetic works', () => {
-  assert.strictEqual(1 + 1, 2);
+  expect(1 + 1).toBe(2);
 });
