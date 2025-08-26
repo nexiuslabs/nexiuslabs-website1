@@ -253,6 +253,8 @@ export function ArticleEditor({ onSave, article, onCancel }: ArticleEditorProps)
               src={featuredImage}
               alt="Featured"
               className="w-full h-full object-cover"
+              loading="lazy"
+              decoding="async"
             />
           </div>
         ) : null}

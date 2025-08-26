@@ -119,6 +119,8 @@ export function EventDetail() {
                     src={event.featured_image}
                     alt={event.title}
                     className="w-full h-full object-cover"
+                    loading="lazy"
+                    decoding="async"
                   />
                 </div>
               )}

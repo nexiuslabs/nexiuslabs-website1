@@ -542,6 +542,8 @@ export default function AdminPage() {
                           alt={image.title}
                           className="w-full h-full object-cover"
                           crossOrigin="anonymous"
+                          loading="lazy"
+                          decoding="async"
                         />
                       </div>
                       <div className="absolute inset-0 bg-black/70 opacity-0 group-hover:opacity-100 transition-opacity rounded-lg flex items-center justify-center gap-2">
@@ -603,6 +605,8 @@ export default function AdminPage() {
                         src={article.featured_image}
                         alt={article.title}
                         className="w-full h-full object-cover"
+                        loading="lazy"
+                        decoding="async"
                       />
                       <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent" />
                     </div>
@@ -1016,6 +1020,8 @@ export default function AdminPage() {
                   src="https://tunidbyclygzipvbfzee.supabase.co/storage/v1/object/public/website-images/m04h4fs8wns-1739784195705.png"
                   alt="NEXIUS Labs"
                   className="h-8 w-8"
+                  width={32}
+                  height={32}
                 />
                 <span className="ml-2 text-xl font-bold text-nexius-dark-text">
                   Admin Portal
