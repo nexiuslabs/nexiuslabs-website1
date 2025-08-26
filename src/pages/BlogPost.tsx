@@ -57,14 +57,30 @@ export function BlogPost() {
   if (!article) {
     return null;
   }
+  const jsonLd = {
+    '@context': 'https://schema.org',
+    '@type': 'Article',
+    headline: article.title,
+    datePublished: article.published_at || article.created_at,
+    image: article.featured_image,
+    author: {
+      '@type': 'Organization',
+      name: 'Nexius Labs'
+    }
+  };
 
   return (
-    <div className="min-h-screen bg-nexius-dark-bg">
-      {/* Hero Section */}
-      <div className="relative h-[60vh] min-h-[400px] bg-nexius-navy">
-        {article.featured_image && (
-          <div className="absolute inset-0">
-            <img
+    <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+      />
+      <div className="min-h-screen bg-nexius-dark-bg">
+        {/* Hero Section */}
+        <div className="relative h-[60vh] min-h-[400px] bg-nexius-navy">
+          {article.featured_image && (
+            <div className="absolute inset-0">
+              <img
               src={article.featured_image}
               alt={article.title}
               className="w-full h-full object-cover opacity-20"
@@ -132,5 +148,6 @@ export function BlogPost() {
         </div>
       </section>
     </div>
+    </>
   );
 }
