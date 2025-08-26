@@ -5,6 +5,7 @@ import { supabase } from '../lib/supabase';
 import { Calendar, Clock, MapPin, Users, ArrowLeft } from 'lucide-react';
 import { EventRegistrationForm } from '../components/EventRegistrationForm';
 import type { Event } from '../types/database';
+import { SEO } from '../components/SEO';
 
 export function EventDetail() {
   const { slug } = useParams<{ slug: string }>();
@@ -12,6 +13,7 @@ export function EventDetail() {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
   const [showRegistration, setShowRegistration] = useState(false);
+  const baseUrl = 'https://nexiuslabs.com';
 
   useEffect(() => {
     loadEvent();
@@ -77,8 +79,17 @@ export function EventDetail() {
     );
   }
 
+  const canonical = `${baseUrl}/event/${slug}`;
+
   return (
     <div className="min-h-screen bg-nexius-dark-bg">
+      <SEO
+        title={`${event.title} | NEXIUS Labs Event`}
+        description={event.description || ''}
+        canonical={canonical}
+        image={event.featured_image || undefined}
+        type="article"
+      />
       {/* Hero Section */}
       <div className="relative bg-nexius-navy py-16">
         <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-full">

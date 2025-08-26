@@ -1,10 +1,17 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { Home, ArrowLeft } from 'lucide-react';
+import { SEO } from '../components/SEO';
 
 export function NotFound() {
+  const baseUrl = 'https://nexiuslabs.com';
   return (
     <div className="min-h-screen bg-gradient-to-b from-nexius-navy to-nexius-navy/95 flex items-center justify-center px-4">
+      <SEO
+        title="Page Not Found | NEXIUS Labs"
+        description="The page you're looking for doesn't exist or has been moved."
+        canonical={`${baseUrl}/404`}
+      />
       <div className="max-w-md w-full text-center">
         <img
           src="https://tunidbyclygzipvbfzee.supabase.co/storage/v1/object/public/website-images/m04h4fs8wns-1739784195705.png"

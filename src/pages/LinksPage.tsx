@@ -15,6 +15,7 @@ import {
   Calendar, 
   UserPlus,
 } from 'lucide-react';
+import { SEO } from '../components/SEO';
 
 interface SocialLink {
   id: string;
@@ -97,6 +98,7 @@ const links: SocialLink[] = [
 
 export function LinksPage() {
   const [clickCount, setClickCount] = useState<Record<string, number>>({});
+  const baseUrl = 'https://nexiuslabs.com';
 
   useEffect(() => {
     // Load click counts from Supabase
@@ -132,6 +134,11 @@ export function LinksPage() {
 
   return (
     <div className="min-h-screen bg-gradient-to-b from-nexius-navy to-nexius-navy/95">
+      <SEO
+        title="NEXIUS Labs Links"
+        description="Connect with NEXIUS Labs and schedule a discovery call."
+        canonical={`${baseUrl}/links`}
+      />
       <HeroAnimation />
       {/* Header */}
       <header className="pt-12 px-4 sm:px-6 lg:px-8 flex justify-center">

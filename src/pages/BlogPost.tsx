@@ -3,12 +3,14 @@ import { useParams, Link, useNavigate } from 'react-router-dom';
 import { supabase } from '../lib/supabase';
 import { ArrowLeft, Calendar, User, Clock } from 'lucide-react';
 import type { Article } from '../types/database';
+import { SEO } from '../components/SEO';
 
 export function BlogPost() {
   const { slug } = useParams<{ slug: string }>();
   const navigate = useNavigate();
   const [article, setArticle] = useState<Article | null>(null);
   const [loading, setLoading] = useState(true);
+  const baseUrl = 'https://nexiuslabs.com';
 
   useEffect(() => {
     loadArticle();
@@ -57,9 +59,17 @@ export function BlogPost() {
   if (!article) {
     return null;
   }
+  const canonical = `${baseUrl}/blog/${slug}`;
 
   return (
     <div className="min-h-screen bg-nexius-dark-bg">
+      <SEO
+        title={`${article.title} | NEXIUS Labs`}
+        description={article.description || ''}
+        canonical={canonical}
+        image={article.featured_image || undefined}
+        type="article"
+      />
       {/* Hero Section */}
       <div className="relative h-[60vh] min-h-[400px] bg-nexius-navy">
         {article.featured_image && (

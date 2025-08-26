@@ -40,6 +40,7 @@ import {
 import { ImageUpload } from '../components/ImageUpload';
 import { ArticleEditor } from '../components/ArticleEditor';
 import type { Image, Article, Lead, ChatSession, ChatMessage } from '../types/database';
+import { SEO } from '../components/SEO';
 
 const SECTIONS = [
   { id: 'images', name: 'Images', Icon: ImageIcon, description: 'Upload and manage your website images.' },
@@ -1020,6 +1021,11 @@ export default function AdminPage() {
 
   return (
     <div className="min-h-screen bg-nexius-dark-bg">
+      <SEO
+        title="Admin Dashboard | NEXIUS Labs"
+        description="Administration panel for NEXIUS Labs."
+        canonical="https://nexiuslabs.com/admin"
+      />
       {/* Header */}
       <header className="bg-nexius-dark-surface border-b border-nexius-dark-border fixed w-full z-10">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">

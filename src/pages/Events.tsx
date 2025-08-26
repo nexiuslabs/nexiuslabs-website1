@@ -3,12 +3,14 @@ import { supabase } from '../lib/supabase';
 import { EventsList } from '../components/EventsList';
 import { Clock, Calendar, ArrowRight } from 'lucide-react';
 import type { Event } from '../types/database';
+import { SEO } from '../components/SEO';
 
 export default function Events() {
   const [events, setEvents] = useState<Event[]>([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
   const [filter, setFilter] = useState<'upcoming' | 'past'>('upcoming');
+  const baseUrl = 'https://nexiuslabs.com';
 
   useEffect(() => {
     loadEvents();
@@ -50,6 +52,11 @@ export default function Events() {
 
   return (
     <div className="min-h-screen bg-nexius-dark-bg">
+      <SEO
+        title="Events | NEXIUS Labs"
+        description="Join workshops, webinars, and conferences focused on AI innovation and business transformation."
+        canonical={`${baseUrl}/events`}
+      />
       {/* Hero Section */}
       <section className="relative pt-32 pb-24 bg-gradient-to-b from-nexius-navy to-nexius-navy/95">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">

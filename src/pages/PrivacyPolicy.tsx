@@ -1,10 +1,17 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { ArrowLeft } from 'lucide-react';
+import { SEO } from '../components/SEO';
 
 export function PrivacyPolicy() {
+  const baseUrl = 'https://nexiuslabs.com';
   return (
     <div className="min-h-screen bg-nexius-dark-bg">
+      <SEO
+        title="Privacy Policy | NEXIUS Labs"
+        description="Read the privacy practices of NEXIUS Labs."
+        canonical={`${baseUrl}/privacy`}
+      />
       {/* Header */}
       <div className="bg-nexius-navy py-16">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">

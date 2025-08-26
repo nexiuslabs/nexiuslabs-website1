@@ -19,12 +19,19 @@ import {
 } from 'lucide-react';
 import { ContactForm } from '../components/ContactForm';
 import { FeatureCard } from '../components/FeatureCard';
+import { SEO } from '../components/SEO';
 
 export function AIIgnite() {
   const [showContactForm, setShowContactForm] = useState(false);
+  const baseUrl = 'https://nexiuslabs.com';
 
   return (
     <div className="min-h-screen bg-nexius-dark-bg">
+      <SEO
+        title="AI Ignite – NEXIUS Labs"
+        description="Premier event series connecting business leaders with AI innovators to drive real-world impact and competitive advantage."
+        canonical={`${baseUrl}/ai-ignite`}
+      />
       {/* Hero Section */}
       <section className="relative pt-32 pb-24 bg-gradient-to-b from-nexius-navy to-nexius-navy/95">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">

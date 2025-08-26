@@ -1,6 +1,7 @@
 import React, { useEffect } from 'react';
 import { useParams, Link } from 'react-router-dom';
 import { ArrowLeft, CheckCircle2, TrendingUp, Users, Target, ArrowRight } from 'lucide-react';
+import { SEO } from '../components/SEO';
 
 interface CaseStudyData {
   title: string;
@@ -185,6 +186,7 @@ const caseStudiesData: Record<string, CaseStudyData> = {
 export function CaseStudy() {
   const { id } = useParams<{ id: string }>();
   const study = id ? caseStudiesData[id] : null;
+  const baseUrl = 'https://nexiuslabs.com';
 
   // Scroll to top when component mounts
   useEffect(() => {
@@ -203,9 +205,17 @@ export function CaseStudy() {
       </div>
     );
   }
+  const canonical = `${baseUrl}/case-study/${id}`;
 
   return (
     <div className="min-h-screen bg-nexius-dark-bg">
+      <SEO
+        title={`${study.title} | NEXIUS Labs Case Study`}
+        description={study.description}
+        canonical={canonical}
+        image={study.image}
+        type="article"
+      />
       {/* Hero Section */}
       <div className="relative h-[60vh] min-h-[400px] bg-nexius-navy">
         <div className="absolute inset-0">

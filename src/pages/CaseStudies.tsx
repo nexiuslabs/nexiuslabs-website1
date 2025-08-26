@@ -1,6 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { ArrowRight, TrendingUp, Users, Target, Clock } from 'lucide-react';
+import { SEO } from '../components/SEO';
 
 const caseStudies = [
   {
@@ -30,8 +31,14 @@ const caseStudies = [
 ];
 
 export function CaseStudies() {
+  const baseUrl = 'https://nexiuslabs.com';
   return (
     <div className="min-h-screen bg-nexius-dark-bg">
+      <SEO
+        title="AI Case Studies | NEXIUS Labs"
+        description="Discover how businesses leverage our AI solutions to achieve remarkable results."
+        canonical={`${baseUrl}/case-studies`}
+      />
       {/* Hero Section */}
       <section className="relative pt-32 pb-24 bg-gradient-to-b from-nexius-navy to-nexius-navy/95">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">

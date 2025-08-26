@@ -1,9 +1,11 @@
 import React, { useState } from 'react';
 import { ImageUpload } from '../components/ImageUpload';
+import { SEO } from '../components/SEO';
 
 export function UploadLogo() {
   const [logoUrl, setLogoUrl] = useState<string | null>(null);
   const [uploadType, setUploadType] = useState<'melverick' | 'darryl'>('melverick');
+  const baseUrl = 'https://nexiuslabs.com';
 
   const handleUploadComplete = (imageUrl: string) => {
     setLogoUrl(imageUrl);
@@ -11,6 +13,11 @@ export function UploadLogo() {
 
   return (
     <div className="min-h-screen bg-nexius-dark-bg py-32">
+      <SEO
+        title="Upload Co-founder Photos | NEXIUS Labs"
+        description="Upload images for Nexius Labs co-founders."
+        canonical={`${baseUrl}/upload`}
+      />
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="max-w-3xl mx-auto">
           <div className="bg-nexius-dark-surface rounded-lg shadow-sm p-8 border border-nexius-dark-border">

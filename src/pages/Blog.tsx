@@ -3,10 +3,12 @@ import { Link } from 'react-router-dom';
 import { supabase } from '../lib/supabase';
 import { Clock, ArrowRight, Calendar, User } from 'lucide-react';
 import type { Article } from '../types/database';
+import { SEO } from '../components/SEO';
 
 export function Blog() {
   const [articles, setArticles] = useState<Article[]>([]);
   const [loading, setLoading] = useState(true);
+  const baseUrl = 'https://nexiuslabs.com';
 
   useEffect(() => {
     loadArticles();
@@ -39,6 +41,11 @@ export function Blog() {
 
   return (
     <div className="min-h-screen bg-nexius-dark-bg">
+      <SEO
+        title="NEXIUS Labs Blog"
+        description="Insights, tutorials, and updates from our team of AI experts"
+        canonical={`${baseUrl}/blog`}
+      />
       {/* Hero Section */}
       <section className="relative pt-32 pb-24 bg-gradient-to-b from-nexius-navy to-nexius-navy/95">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
