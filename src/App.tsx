@@ -50,6 +50,7 @@ import { NotFound } from './pages/NotFound';
 import { Chat } from './components/Chat';
 import { AgentPage } from './pages/AgentPage';
 import { AboutUs } from './pages/AboutUs';
+import { MetadataManager } from './lib/metadata';
 
 const features = [
   {
@@ -575,6 +576,7 @@ export default function App() {
 
   return (
     <>
+      <MetadataManager />
       {shouldShowNav && <Navigation onContactClick={() => setIsContactFormOpen(true)} />}
       <ContactForm isOpen={isContactFormOpen} onClose={() => setIsContactFormOpen(false)} />
 
