@@ -41,6 +41,25 @@ export function Chat() {
     }
   };
 
+  const initializeChat = useCallback(async () => {
+    setLoading(true);
+    try {
+      const session = await createChatSession({
+        visitor_id: visitorId,
+      });
+
+      setSessionId(session.id);
+
+      // Fetch initial messages
+      const messages = await getChatMessages(session.id);
+      setMessages(messages);
+    } catch (error) {
+      console.error('Error initializing chat:', error);
+    } finally {
+      setLoading(false);
+    }
+  }, [visitorId]);
+
   useEffect(() => {
     // Generate a unique visitor ID if not exists
     const storedVisitorId = localStorage.getItem('visitorId');
@@ -100,25 +119,6 @@ export function Chat() {
       scrollToBottom();
     }
   }, [messages]);
-
-  const initializeChat = useCallback(async () => {
-    setLoading(true);
-    try {
-      const session = await createChatSession({
-        visitor_id: visitorId,
-      });
-      
-      setSessionId(session.id);
-      
-      // Fetch initial messages
-      const messages = await getChatMessages(session.id);
-      setMessages(messages);
-    } catch (error) {
-      console.error('Error initializing chat:', error);
-    } finally {
-      setLoading(false);
-    }
-  }, [visitorId]);
 
   const scrollToBottom = () => {
     if (messageContainerRef.current) {
