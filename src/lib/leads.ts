@@ -1,5 +1,4 @@
 import { supabase } from './supabase';
-import type { Lead } from '../types/database';
 
 export async function getLeads(options?: {
   status?: string;

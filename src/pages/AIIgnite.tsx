@@ -5,16 +5,12 @@ import {
   Target,
   Users,
   BarChart,
-  UserPlus,
-  Monitor,
   Lightbulb,
   Users2,
-  GraduationCap,
   Book,
   Link as LinkIcon,
   Building2,
   School,
-  Zap,
   ArrowRight
 } from 'lucide-react';
 import { ContactForm } from '../components/ContactForm';

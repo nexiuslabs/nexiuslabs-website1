@@ -5,14 +5,13 @@ export function Auth() {
   const [loading, setLoading] = useState(false);
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-  const [isSignUp, setIsSignUp] = useState(false);
 
   const handleAuth = async (e: React.FormEvent) => {
     e.preventDefault();
     try {
       setLoading(true);
 
-      const { data, error } = await supabase.auth.signInWithPassword({
+      const { error } = await supabase.auth.signInWithPassword({
         email,
         password,
       });
@@ -25,7 +24,7 @@ export function Auth() {
         }
         throw error;
       }
-    } catch (error: any) {
+    } catch (error: unknown) {
       console.error('Auth error:', error);
     } finally {
       setLoading(false);

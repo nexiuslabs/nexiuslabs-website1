@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { supabase } from '../lib/supabase';
 import { EventsList } from '../components/EventsList';
-import { Clock, Calendar, ArrowRight } from 'lucide-react';
+import { Clock, Calendar } from 'lucide-react';
 import type { Event } from '../types/database';
 
 export default function Events() {
@@ -12,7 +12,7 @@ export default function Events() {
 
   useEffect(() => {
     loadEvents();
-  }, [filter]);
+  }, [filter]); // eslint-disable-line react-hooks/exhaustive-deps
 
   const loadEvents = async () => {
     try {

@@ -17,7 +17,7 @@ const handleSupabaseError = (error: Error | AuthError) => {
   throw error;
 };
 
-const retryOperation = async (operation: () => Promise<any>, maxRetries = 3) => {
+const retryOperation = async (operation: () => Promise<unknown>, maxRetries = 3) => {
   for (let i = 0; i < maxRetries; i++) {
     try {
       return await operation();

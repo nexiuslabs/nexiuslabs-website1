@@ -1,4 +1,4 @@
-import React, { useState, useCallback, useRef, MouseEvent } from 'react';
+import React, { useState, useRef, MouseEvent } from 'react';
 import { X } from 'lucide-react';
 import { supabase } from '../lib/supabase';
 

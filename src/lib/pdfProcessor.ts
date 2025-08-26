@@ -23,7 +23,7 @@ export class PDFProcessor {
   static async pdfToText(pdfBuffer: ArrayBuffer): Promise<{
     text: string;
     numPages: number;
-    info: any;
+    info: unknown;
   }> {
     try {
       const data = await pdfParse(Buffer.from(pdfBuffer));
@@ -129,7 +129,7 @@ export class PDFProcessor {
 
       // Read and parse PDF
       const buffer = await file.arrayBuffer();
-      const { text, numPages } = await this.pdfToText(buffer);
+      const { text } = await this.pdfToText(buffer);
 
       if (!text.trim()) {
         throw new Error('No text content found in PDF');

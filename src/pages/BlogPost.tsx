@@ -12,7 +12,7 @@ export function BlogPost() {
 
   useEffect(() => {
     loadArticle();
-  }, [slug]);
+  }, [slug]); // eslint-disable-line react-hooks/exhaustive-deps
 
   const loadArticle = async () => {
     try {

@@ -54,7 +54,7 @@ serve(async (req) => {
     // Get AI response
     const completion = await openai.chat.completions.create({
       model: 'gpt-3.5-turbo',
-      messages: messages as any,
+      messages: messages as unknown,
       temperature: 0.7,
       max_tokens: 500
     });

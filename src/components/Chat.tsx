@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useState, useEffect, useRef, useCallback } from 'react';
 import { MessageCircle, Send, X, Minimize2, Maximize2 } from 'lucide-react';
 import { supabase } from '../lib/supabase';
 import { createChatSession, sendChatMessage, getChatMessages } from '../lib/chats';
@@ -11,7 +11,7 @@ export function Chat() {
   const [messages, setMessages] = useState<ChatMessage[]>([]);
   const [visitorId, setVisitorId] = useState<string>('');
   const [sessionId, setSessionId] = useState<string>('');
-  const [loading, setLoading] = useState(false);
+  const [, setLoading] = useState(false);
   const messagesEndRef = useRef<HTMLDivElement>(null);
   const messageContainerRef = useRef<HTMLDivElement>(null);
   const [aiTyping, setAiTyping] = useState(false);
@@ -93,7 +93,7 @@ export function Chat() {
     if (isOpen && !sessionId) {
       initializeChat();
     }
-  }, [isOpen, visitorId]);
+  }, [isOpen, sessionId, initializeChat]);
 
   useEffect(() => {
     if (messages.length > 0) {
@@ -101,7 +101,7 @@ export function Chat() {
     }
   }, [messages]);
 
-  const initializeChat = async () => {
+  const initializeChat = useCallback(async () => {
     setLoading(true);
     try {
       const session = await createChatSession({
@@ -118,7 +118,7 @@ export function Chat() {
     } finally {
       setLoading(false);
     }
-  };
+  }, [visitorId]);
 
   const scrollToBottom = () => {
     if (messageContainerRef.current) {
@@ -144,7 +144,7 @@ export function Chat() {
     };
 
     try {
-      const sentMessage = await sendChatMessage(newMessage);
+      await sendChatMessage(newMessage);
       
       // Show AI is typing
       setAiTyping(true);

@@ -1,5 +1,5 @@
 import { supabase } from './supabase';
-import type { ChatMessage, ChatSession } from '../types/database';
+import type { ChatMessage } from '../types/database';
 
 export async function getChatSessions(options?: {
   status?: 'active' | 'closed';
@@ -82,7 +82,7 @@ export async function createChatSession(data: {
           console.warn('Admin notification not sent:', error);
         }
       });
-    } catch (notifyError) {
+    } catch {
       // Silently handle notification errors to not disrupt chat experience
       console.warn('Could not send admin notification');
     }
