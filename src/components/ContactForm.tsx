@@ -97,6 +97,36 @@ export function ContactForm({ isOpen, onClose }: ContactFormProps) {
         // Continue with form submission even if email fails
       }
 
+      // Notify NEXIUS Labs of new lead
+      try {
+        const adminResponse = await fetch(`${import.meta.env.VITE_SUPABASE_URL}/functions/v1/send-email`, {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+            'Authorization': `Bearer ${import.meta.env.VITE_SUPABASE_ANON_KEY}`
+          },
+          body: JSON.stringify({
+            to: 'hello@nexiuslabs.com',
+            subject: 'A New Message From Nexius Labs Website',
+            text: `First Name: ${formData.firstName}\nLast Name: ${formData.lastName}\nPhone number: ${formData.phone}\nMessage: ${formData.message}`,
+            html: `
+              <table>
+                <tr><td><strong>First Name</strong></td><td>${formData.firstName}</td></tr>
+                <tr><td><strong>Last Name</strong></td><td>${formData.lastName}</td></tr>
+                <tr><td><strong>Phone number</strong></td><td>${formData.phone}</td></tr>
+                <tr><td><strong>Message</strong></td><td>${formData.message}</td></tr>
+              </table>
+            `
+          })
+        });
+
+        if (!adminResponse.ok) {
+          throw new Error('Failed to send notification email');
+        }
+      } catch (notifyError) {
+        console.error('Error sending notification email:', notifyError);
+      }
+
       alert('Thank you for your interest! We will be in touch shortly.');
       onClose();
       setFormData({
