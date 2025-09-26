@@ -1,6 +1,7 @@
 import React, { useEffect } from 'react';
 import { useParams, Link } from 'react-router-dom';
 import { ArrowLeft, CheckCircle2, TrendingUp, Users, Target, ArrowRight } from 'lucide-react';
+import { updateMetaTags, updateStructuredData, defaultMeta } from '../lib/metadata';
 
 interface CaseStudyData {
   title: string;
@@ -190,6 +191,66 @@ export function CaseStudy() {
   useEffect(() => {
     window.scrollTo(0, 0);
   }, []);
+
+  useEffect(() => {
+    const caseStudyUrl = id ? `https://nexiuslabs.com/case-study/${id}` : defaultMeta.url;
+
+    if (!study) {
+      updateMetaTags({
+        ...defaultMeta,
+        title: 'Case Study Not Found | NEXIUS Labs',
+        description: 'The case study you are looking for could not be found.',
+        url: caseStudyUrl,
+        keywords: defaultMeta.keywords,
+        type: 'website',
+      });
+      updateStructuredData('case-study-structured-data', null);
+      return;
+    }
+
+    updateMetaTags({
+      title: `${study.title} | Case Study | NEXIUS Labs`,
+      description: study.description,
+      image: study.image,
+      url: caseStudyUrl,
+      keywords: [
+        study.title,
+        study.industry,
+        'AI automation case study',
+        'NEXIUS Labs results'
+      ],
+      type: 'article',
+    });
+
+    updateStructuredData('case-study-structured-data', {
+      '@context': 'https://schema.org',
+      '@type': 'CaseStudy',
+      name: study.title,
+      description: study.description,
+      url: caseStudyUrl,
+      image: study.image,
+      inLanguage: 'en',
+      industry: study.industry,
+      provider: {
+        '@type': 'Organization',
+        name: 'NEXIUS Labs',
+        url: defaultMeta.url,
+      },
+      author: {
+        '@type': 'Organization',
+        name: 'NEXIUS Labs',
+        url: defaultMeta.url,
+      },
+      audience: {
+        '@type': 'Audience',
+        audienceType: 'Business Leaders',
+      },
+    });
+
+    return () => {
+      updateStructuredData('case-study-structured-data', null);
+    };
+  }, [id, study]);
 
   if (!study) {
     return (
