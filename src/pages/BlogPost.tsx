@@ -3,7 +3,7 @@ import { useParams, Link, useNavigate } from 'react-router-dom';
 import { supabase } from '../lib/supabase';
 import { ArrowLeft, Calendar, User, Clock } from 'lucide-react';
 import type { Article } from '../types/database';
-import { updateMetaTags, defaultMeta } from '../lib/metadata';
+import { updateMetaTags, updateStructuredData, defaultMeta } from '../lib/metadata';
 
 export function BlogPost() {
   const { slug } = useParams<{ slug: string }>();
@@ -40,14 +40,60 @@ export function BlogPost() {
   };
 
   useEffect(() => {
-    if (article) {
-      updateMetaTags({
-        title: article.title,
-        description: article.description || defaultMeta.description,
-        image: article.featured_image || defaultMeta.image,
-        url: `https://nexiuslabs.com/blog/${article.slug || slug}`,
-      });
+    if (!article) {
+      updateStructuredData('article-structured-data', null);
+      return;
     }
+
+    const articleUrl = `https://nexiuslabs.com/blog/${article.slug || slug}`;
+    const publishedDate = article.published_at || article.created_at;
+    const modifiedDate = article.updated_at || publishedDate;
+
+    updateMetaTags({
+      title: article.title,
+      description: article.description || defaultMeta.description,
+      image: article.featured_image || defaultMeta.image,
+      url: articleUrl,
+      keywords: [
+        article.title,
+        'NEXIUS Labs blog',
+        'AI automation insights',
+        'digital transformation strategies'
+      ],
+      type: 'article',
+    });
+
+    updateStructuredData('article-structured-data', {
+      '@context': 'https://schema.org',
+      '@type': 'BlogPosting',
+      headline: article.title,
+      image: article.featured_image || defaultMeta.image,
+      description: article.description || defaultMeta.description,
+      mainEntityOfPage: {
+        '@type': 'WebPage',
+        '@id': articleUrl,
+      },
+      datePublished: publishedDate,
+      dateModified: modifiedDate,
+      author: {
+        '@type': 'Organization',
+        name: 'NEXIUS Labs',
+        url: defaultMeta.url,
+      },
+      publisher: {
+        '@type': 'Organization',
+        name: 'NEXIUS Labs',
+        url: defaultMeta.url,
+        logo: {
+          '@type': 'ImageObject',
+          url: defaultMeta.image,
+        },
+      },
+    });
+
+    return () => {
+      updateStructuredData('article-structured-data', null);
+    };
   }, [article, slug]);
 
   const formatDate = (date: string) => {
