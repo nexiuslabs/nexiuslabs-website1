@@ -1,6 +1,6 @@
 import { serve } from 'https://deno.land/std@0.168.0/http/server.ts';
 import { createClient } from 'https://esm.sh/@supabase/supabase-js@2.39.7';
-import OpenAI from 'npm:openai@4.28.0';
+// OpenAI client removed: this function now proxies to OpenClaw chat completions.
 
 function extractEmail(text: string): string | null {
   const match = text.match(/[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}/i);
@@ -24,14 +24,11 @@ const corsHeaders = {
   'Access-Control-Allow-Headers': 'authorization, x-client-info, apikey, content-type',
 };
 
-const openaiApiKey = Deno.env.get('OPENAI_API_KEY');
-if (!openaiApiKey) {
-  throw new Error('OpenAI API key not configured');
+const openclawChatUrl = Deno.env.get('OPENCLAW_CHAT_URL');
+const openclawGatewayToken = Deno.env.get('OPENCLAW_GATEWAY_TOKEN');
+if (!openclawChatUrl || !openclawGatewayToken) {
+  throw new Error('OPENCLAW_CHAT_URL or OPENCLAW_GATEWAY_TOKEN not configured');
 }
-
-const openai = new OpenAI({
-  apiKey: openaiApiKey,
-});
 
 serve(async (req) => {
   if (req.method === 'OPTIONS') {
@@ -100,18 +97,34 @@ Rules:
       { role: 'user', content: message }
     ];
 
-    // Get AI response
-    const completion = await openai.chat.completions.create({
-      model: 'gpt-4o-mini',
-      messages: messages as unknown,
-      temperature: 0.4,
-      max_tokens: 450
+    // Get response from OpenClaw chat-completions endpoint (OpenAI-compatible)
+    const ocResp = await fetch(openclawChatUrl, {
+      method: 'POST',
+      headers: {
+        'Authorization': `Bearer ${openclawGatewayToken}`,
+        'Content-Type': 'application/json',
+        'x-openclaw-agent-id': 'main'
+      },
+      body: JSON.stringify({
+        model: 'openclaw:main',
+        user: `webchat:${visitorId}`,
+        messages,
+        stream: false,
+        temperature: 0.4,
+        max_tokens: 450
+      })
     });
 
-    const aiResponse = completion.choices[0].message?.content;
+    if (!ocResp.ok) {
+      const errText = await ocResp.text();
+      throw new Error(`OpenClaw chat error: ${ocResp.status} ${errText}`);
+    }
+
+    const ocJson = await ocResp.json();
+    const aiResponse = ocJson?.choices?.[0]?.message?.content;
 
     if (!aiResponse) {
-      throw new Error('No response from OpenAI');
+      throw new Error('No response from OpenClaw');
     }
 
     // Save AI response to database
