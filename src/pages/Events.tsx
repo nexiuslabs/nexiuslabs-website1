@@ -55,10 +55,10 @@ export default function Events() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center">
             <h1 className="text-4xl md:text-5xl font-display font-bold text-white mb-6 tracking-tight">
-              Upcoming Events
+              AI Training Events and Workshops in Singapore
             </h1>
             <p className="text-xl text-white/80 max-w-3xl mx-auto leading-relaxed">
-              Join us for workshops, webinars, and conferences focused on AI innovation and business transformation.
+              Join hands-on workshops, webinars, and events on AI business automation, agentic AI solutions, and practical implementation for SMEs.
             </p>
           </div>
         </div>
@@ -124,10 +124,10 @@ export default function Events() {
       <section className="py-24 bg-nexius-navy">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <h2 className="text-3xl font-display font-bold text-white mb-4">
-            Want to Learn More?
+            Want custom AI training for your team?
           </h2>
           <p className="text-white/80 mb-8 max-w-2xl mx-auto">
-            Schedule a discovery call to discuss how our AI solutions can help transform your business.
+            Book a free assessment to explore AI workflow automation and hands-on workshops tailored for your business.
           </p>
           <a 
             href="https://tidycal.com/melverick/discovery-call-via-zoom-30min"

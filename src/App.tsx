@@ -49,7 +49,7 @@ const features = [
     icon: Brain,
   },
   {
-    title: 'AI AI Workflow Automation for small businesses and SMEs',
+    title: 'AI Workflow Automation for Small Businesses and SMEs',
     description: 'Automate repetitive workflows across sales, operations, support, and back office with practical AI orchestration.',
     icon: Workflow,
   },
@@ -305,6 +305,45 @@ function HomePage() {
     }
   };
 
+  const homepageFaqJsonLd = {
+    '@context': 'https://schema.org',
+    '@type': 'FAQPage',
+    mainEntity: [
+      {
+        '@type': 'Question',
+        name: 'What is AI business automation for SMEs?',
+        acceptedAnswer: {
+          '@type': 'Answer',
+          text: 'AI business automation for SMEs uses agentic AI to handle repetitive tasks across ERP, CRM, finance, and operations — reducing manual work and letting small teams operate at enterprise speed without enterprise headcount.'
+        }
+      },
+      {
+        '@type': 'Question',
+        name: 'How can small businesses in Singapore start with AI automation?',
+        acceptedAnswer: {
+          '@type': 'Answer',
+          text: 'Start by identifying one high-friction workflow (e.g. invoicing, lead follow-up, or inventory updates). Deploy a focused AI agent on that process, measure time saved, then expand to adjacent workflows. Nexius Labs offers a free 15-minute assessment to help you identify the right starting point.'
+        }
+      },
+      {
+        '@type': 'Question',
+        name: 'What is agentic AI and how is it different from chatbots?',
+        acceptedAnswer: {
+          '@type': 'Answer',
+          text: 'Agentic AI goes beyond simple Q&A. Unlike chatbots that only respond to prompts, agentic AI systems can plan, execute multi-step workflows, use tools, and take actions autonomously — like processing invoices, updating CRM records, or generating reports without human intervention.'
+        }
+      },
+      {
+        '@type': 'Question',
+        name: 'Does Nexius Labs offer AI training and workshops?',
+        acceptedAnswer: {
+          '@type': 'Answer',
+          text: 'Yes. Nexius Academy runs hands-on AI training and workshops for business teams in Singapore, covering practical AI implementation, no-code automation, and agentic workflow design. Programs are tailored for non-technical teams and founders.'
+        }
+      }
+    ]
+  };
+
   return (
     <>
       <script
@@ -314,6 +353,10 @@ function HomePage() {
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(websiteJsonLd) }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(homepageFaqJsonLd) }}
       />
       <div className="min-h-screen bg-nexius-dark-bg">
       {/* Hero Section */}
@@ -370,13 +413,27 @@ function HomePage() {
                 Average 45% efficiency boost • Used by founders and lean teams
               </p>
             </div>
+            <div className="relative mt-6 bg-white/5 border border-white/10 rounded-xl p-6 max-w-xl mx-auto">
+              <p className="text-white font-semibold mb-2">📘 Free: AI Automation Playbook for SMEs</p>
+              <p className="text-white/60 text-sm mb-4">5 workflows you can automate this week — no coding required.</p>
+              <a
+                href="https://tidycal.com/melverick/discovery-call-via-zoom-30min"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center bg-nexius-teal text-white px-5 py-2.5 rounded-lg hover:bg-nexius-teal/90 transition-colors font-display font-semibold tracking-wide uppercase text-xs"
+              >
+                Get the Playbook <ArrowRight className="ml-2 h-4 w-4" />
+              </a>
+            </div>
             <div className="relative mt-16">
               <img
                 src="/images/hero.png"
-                alt="AI Executive Intelligence"
+                alt="AI business automation dashboard for SMEs — Nexius Labs"
                 className="rounded-xl shadow-2xl border border-white/10"
                 width={1456}
                 height={816}
+                loading="lazy"
+                decoding="async"
               />
             </div>
           </div>
@@ -545,7 +602,7 @@ function HomePage() {
                 <span className="ml-2 text-lg font-bold group-hover:text-nexius-teal transition-colors">NEXIUS Labs</span>
               </button>
               <p className="text-sm">
-                Empower Your Business With AI-Driven Automation
+                AI Business Automation for Small Businesses and SMEs in Singapore
               </p>
             </div>
             <div>

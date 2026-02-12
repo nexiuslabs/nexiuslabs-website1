@@ -98,7 +98,7 @@ export function Blog() {
                         </div>
                         <div className="flex items-center">
                           <User className="h-4 w-4 mr-1" />
-                          Author
+                          Melverick Ng
                         </div>
                       </div>
                       <h3 className="text-xl font-display font-bold text-white mb-3 group-hover:text-nexius-teal transition-colors">

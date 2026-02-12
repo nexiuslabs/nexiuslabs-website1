@@ -37,10 +37,10 @@ export function CaseStudies() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center">
             <h1 className="text-4xl md:text-5xl font-display font-bold text-white mb-6 tracking-tight">
-              Success Stories:<br />AI Transformation in Action
+              AI Business Automation Case Studies:<br />Results for SMEs
             </h1>
             <p className="text-xl text-white/80 max-w-3xl mx-auto leading-relaxed">
-              Discover how forward-thinking businesses are leveraging our AI solutions to transform their operations and achieve remarkable results.
+              See how small businesses and SMEs use agentic AI solutions to automate ERP, CRM, and finance workflows — with measurable efficiency gains.
             </p>
           </div>
         </div>
@@ -122,10 +122,10 @@ export function CaseStudies() {
       <section className="py-24 bg-nexius-navy">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <h2 className="text-3xl font-display font-bold text-white mb-4">
-            Ready to Write Your Success Story?
+            Ready for AI workflow automation that delivers results?
           </h2>
           <p className="text-white/80 mb-8 max-w-2xl mx-auto">
-            Join these forward-thinking businesses in transforming your operations with AI. Let's discuss how we can help you achieve similar results.
+            Join these businesses in adopting AI business automation. Book a free assessment and see what's possible for your team.
           </p>
           <a 
             href="https://tidycal.com/melverick/discovery-call-via-zoom-30min"

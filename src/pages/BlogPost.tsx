@@ -78,8 +78,14 @@ export function BlogPost() {
     datePublished: article.published_at || article.created_at,
     image: article.featured_image,
     author: {
-      '@type': 'Organization',
-      name: 'Nexius Labs'
+      '@type': 'Person',
+      name: 'Melverick Ng',
+      url: 'https://linkedin.com/in/melverick',
+      jobTitle: 'Founder & Director',
+      worksFor: {
+        '@type': 'Organization',
+        name: 'Nexius Labs'
+      }
     }
   };
 
@@ -149,7 +155,7 @@ export function BlogPost() {
               </div>
               <div className="flex items-center">
                 <User className="h-4 w-4 mr-1" />
-                Author
+                Melverick Ng
               </div>
             </div>
             <h1 className="text-4xl md:text-5xl font-display font-bold text-white max-w-4xl">
@@ -175,10 +181,10 @@ export function BlogPost() {
       <section className="py-24 bg-nexius-navy">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <h2 className="text-3xl font-display font-bold text-white mb-4">
-            Want to Learn More?
+            Want AI workflow automation for your business?
           </h2>
           <p className="text-white/80 mb-8 max-w-2xl mx-auto">
-            Schedule a discovery call to discuss how our AI solutions can help transform your business.
+            Schedule a free 15-minute assessment to explore AI business automation tailored for your team.
           </p>
           <a 
             href="https://tidycal.com/melverick/discovery-call-via-zoom-30min"
