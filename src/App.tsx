@@ -41,6 +41,7 @@ import { PrivacyPolicy } from './pages/PrivacyPolicy';
 import { Events } from './pages/Events';
 import { NotFound } from './pages/NotFound';
 import { Chat } from './components/Chat';
+import { PlaybookCapture } from './components/PlaybookCapture';
 
 const features = [
   {
@@ -273,6 +274,7 @@ function Navigation({ onContactClick }: { onContactClick: () => void }) {
 }
 
 function HomePage() {
+  const [showPlaybook, setShowPlaybook] = useState(false);
   const scrollToTop = () => {
     window.scrollTo({
       top: 0,
@@ -416,14 +418,12 @@ function HomePage() {
             <div className="relative mt-6 bg-white/5 border border-white/10 rounded-xl p-6 max-w-xl mx-auto">
               <p className="text-white font-semibold mb-2">📘 Free: AI Automation Playbook for SMEs</p>
               <p className="text-white/60 text-sm mb-4">5 workflows you can automate this week — no coding required.</p>
-              <a
-                href="https://tidycal.com/melverick/discovery-call-via-zoom-30min"
-                target="_blank"
-                rel="noopener noreferrer"
+              <button
+                onClick={() => setShowPlaybook(true)}
                 className="inline-flex items-center bg-nexius-teal text-white px-5 py-2.5 rounded-lg hover:bg-nexius-teal/90 transition-colors font-display font-semibold tracking-wide uppercase text-xs"
               >
                 Get the Playbook <ArrowRight className="ml-2 h-4 w-4" />
-              </a>
+              </button>
             </div>
             <div className="relative mt-16">
               <img
@@ -636,6 +636,7 @@ function HomePage() {
         </div>
       </footer>
       </div>
+      <PlaybookCapture isOpen={showPlaybook} onClose={() => setShowPlaybook(false)} />
     </>
   );
 }
