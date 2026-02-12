@@ -184,7 +184,7 @@ function Navigation({ onContactClick }: { onContactClick: () => void }) {
             className="flex items-center focus:outline-none group"
           >
             <img
-              src="https://tunidbyclygzipvbfzee.supabase.co/storage/v1/object/public/website-images/m04h4fs8wns-1739784195705.png"
+              src="https://tunidbyclygzipvbfzee.supabase.co/storage/v1/object/public/website-images/nexius_logo_no_text_transparent_bg.png"
               alt="NEXIUS Labs"
               className="h-8 w-8 object-contain group-hover:opacity-90 transition-opacity"
               width={32}
@@ -287,7 +287,7 @@ function HomePage() {
     '@type': 'Organization',
     name: 'NEXIUS Labs',
     url: 'https://nexiuslabs.com',
-    logo: 'https://tunidbyclygzipvbfzee.supabase.co/storage/v1/object/public/website-images/m04h4fs8wns-1739784195705.png',
+    logo: 'https://tunidbyclygzipvbfzee.supabase.co/storage/v1/object/public/website-images/nexius_logo_no_text_transparent_bg.png',
     sameAs: [
       'https://www.linkedin.com/company/nexius-labs',
       'https://www.linkedin.com/in/melverick'
@@ -591,7 +591,7 @@ function HomePage() {
                 className="flex items-center text-nexius-dark-text mb-4 group focus:outline-none"
               >
                 <img
-                  src="https://tunidbyclygzipvbfzee.supabase.co/storage/v1/object/public/website-images/m04h4fs8wns-1739784195705.png"
+                  src="https://tunidbyclygzipvbfzee.supabase.co/storage/v1/object/public/website-images/nexius_logo_no_text_transparent_bg.png"
                   alt="NEXIUS Labs"
                   className="h-6 w-6 object-contain group-hover:opacity-90 transition-opacity"
                   loading="lazy"
