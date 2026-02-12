@@ -657,19 +657,23 @@ export default function AdminPage() {
                             await publishArticle(article.id);
                             loadArticles();
                           }}
-                          className="text-nexius-teal hover:text-nexius-teal/90 font-medium"
+                          className="inline-flex items-center gap-1.5 px-3 py-1.5 bg-nexius-teal text-white text-xs font-semibold rounded-lg hover:bg-nexius-teal/90 transition-colors"
                         >
-                          <Eye className="h-4 w-4" />
+                          <Eye className="h-3.5 w-3.5" />
+                          Publish
                         </button>
                       ) : (
                         <button
                           onClick={async () => {
-                            await unpublishArticle(article.id);
-                            loadArticles();
+                            if (window.confirm('Unpublish this article? It will no longer be visible on the blog.')) {
+                              await unpublishArticle(article.id);
+                              loadArticles();
+                            }
                           }}
-                          className="text-nexius-dark-text-muted hover:text-nexius-dark-text font-medium"
+                          className="inline-flex items-center gap-1.5 px-3 py-1.5 bg-nexius-dark-card text-nexius-dark-text-muted text-xs font-semibold rounded-lg hover:bg-red-500/20 hover:text-red-400 transition-colors border border-nexius-dark-border"
                         >
-                          <EyeOff className="h-4 w-4" />
+                          <EyeOff className="h-3.5 w-3.5" />
+                          Unpublish
                         </button>
                       )}
                     </div>
