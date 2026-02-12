@@ -97,7 +97,7 @@ export function BlogPost() {
       },
       {
         '@type': 'Question',
-        name: 'How can SMEs start implementing agentic automation?',
+        name: 'How can small businesses and SMEs start implementing agentic automation?',
         acceptedAnswer: {
           '@type': 'Answer',
           text: 'Start with one high-friction workflow, define clear rules and exception handling, and measure cycle-time and error-rate improvements weekly.'

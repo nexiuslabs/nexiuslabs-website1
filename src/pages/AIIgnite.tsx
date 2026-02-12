@@ -25,11 +25,10 @@ export function AIIgnite() {
       <section className="relative pt-32 pb-24 bg-gradient-to-b from-nexius-navy to-nexius-navy/95">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <h1 className="text-5xl md:text-6xl font-display font-bold text-white mb-6 tracking-tight">
-            AI Ignite – Fueling Growth<br />for Forward-Thinking<br />Leaders
+            AI Training and Workshops for Business Teams Singapore
           </h1>
           <p className="text-xl text-white/80 max-w-3xl mx-auto mb-8">
-            Join a premier event series connecting business leaders with AI innovators to drive 
-            real-world impact and competitive advantage.
+            Join AI Ignite to learn practical AI business automation, agentic AI solutions, and implementation playbooks that drive real operational outcomes.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <a 

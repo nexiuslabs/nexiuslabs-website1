@@ -44,10 +44,10 @@ export function Blog() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center">
             <h1 className="text-4xl md:text-5xl font-display font-bold text-white mb-6 tracking-tight">
-              NEXIUS Labs Blog
+              AI Business Automation Blog for Small Businesses and SMEs
             </h1>
             <p className="text-xl text-white/80 max-w-3xl mx-auto leading-relaxed">
-              Insights, tutorials, and updates from our team of AI experts
+              Practical playbooks on agentic AI solutions, AI workflow automation, and ERP CRM automation for growth-focused teams.
             </p>
           </div>
         </div>
@@ -126,10 +126,10 @@ export function Blog() {
       <section className="py-24 bg-nexius-navy">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <h2 className="text-3xl font-display font-bold text-white mb-4">
-            Want to Learn More?
+            Want help implementing AI workflow automation?
           </h2>
           <p className="text-white/80 mb-8 max-w-2xl mx-auto">
-            Schedule a discovery call to discuss how our AI solutions can help transform your business.
+            Schedule a discovery call to discuss AI automation for SMEs in Singapore and custom AI workflow solutions for your business.
           </p>
           <a 
             href="https://tidycal.com/melverick/discovery-call-via-zoom-30min"

@@ -49,7 +49,7 @@ const features = [
     icon: Brain,
   },
   {
-    title: 'AI Workflow Automation for SMEs',
+    title: 'AI AI Workflow Automation for small businesses and SMEs',
     description: 'Automate repetitive workflows across sales, operations, support, and back office with practical AI orchestration.',
     icon: Workflow,
   },
@@ -290,7 +290,7 @@ function HomePage() {
       'https://www.linkedin.com/company/nexius-labs',
       'https://www.linkedin.com/in/melverick'
     ],
-    description: 'NEXIUS Labs delivers AI business automation for SMEs in Singapore across agentic ERP, CRM, finance, and operations workflows.'
+    description: 'NEXIUS Labs delivers AI business automation for small businesses and SMEs in Singapore across agentic ERP, CRM, finance, and operations workflows.'
   };
 
   const websiteJsonLd = {
@@ -391,7 +391,7 @@ function HomePage() {
               Agentic AI Solutions and AI Workflow Automation Services
             </h2>
             <p className="font-body text-nexius-dark-text-muted max-w-2xl mx-auto leading-relaxed">
-              From agentic ERP and CRM for small businesses to custom AI workflow solutions for businesses, Nexius delivers practical systems that improve speed, quality, and operating leverage.
+              From agentic ERP and CRM for small businesses to custom AI workflow solutions for businesses, Nexius delivers practical systems for AI business automation with measurable operating leverage.
             </p>
           </div>
           <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
@@ -414,11 +414,11 @@ function HomePage() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-16">
             <h2 className="text-3xl font-display font-bold text-white mb-4 tracking-tight">
-              HOW AI CAN HELP YOUR BUSINESS?
+              How AI Automation Helps Small Businesses and SMEs
             </h2>
             <p className="font-body text-nexius-dark-text-muted max-w-2xl mx-auto leading-relaxed">
-              Discover the transformative power of AI and how it can revolutionize your business operations,
-              boost efficiency, and drive sustainable growth.
+              Discover how AI workflow automation and ERP CRM automation can improve execution speed,
+              reduce manual handoffs, and drive sustainable growth.
             </p>
           </div>
           <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
@@ -438,11 +438,11 @@ function HomePage() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-16">
             <h2 className="text-3xl font-display font-bold text-white mb-4 tracking-tight">
-              AI SOLUTIONS IN ACTION
+              AI Automation for SMEs in Singapore: Solutions in Action
             </h2>
             <p className="font-body text-nexius-dark-text-muted max-w-2xl mx-auto leading-relaxed">
-              Explore how our AI solutions are transforming different aspects of business operations
-              and delivering measurable results.
+              Explore how our agentic AI solutions are transforming core business operations and
+              delivering measurable results for small businesses and SMEs.
             </p>
           </div>
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
@@ -507,11 +507,11 @@ function HomePage() {
       <section className="py-24 bg-nexius-navy">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <h2 className="text-3xl font-display font-bold text-white mb-4 tracking-tight">
-            Ready to adopt AI to grow your business?
+            Ready for AI business automation that actually ships?
           </h2>
           <p className="font-body text-white/80 mb-8 max-w-2xl mx-auto leading-relaxed">
-            Join industry leaders who are already leveraging NEXIUS Labs to illuminate opportunities
-            and drive unprecedented growth.
+            Work with Nexius to deploy AI workflow automation, agentic ERP and CRM for small businesses,
+            and finance automation that creates measurable outcomes.
           </p>
           <a 
             href="https://tidycal.com/melverick/discovery-call-via-zoom-30min"
