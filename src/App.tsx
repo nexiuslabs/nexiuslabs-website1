@@ -44,23 +44,23 @@ import { Chat } from './components/Chat';
 
 const features = [
   {
-    title: 'Custom AI Solutions',
-    description: 'Building AI-driven automation for business operations and accounting.',
+    title: 'Agentic ERP & CRM for Small Businesses',
+    description: 'Deploy agentic ERP and CRM automation that adapts to your processes and reduces manual admin work.',
     icon: Brain,
   },
   {
-    title: 'AI Consulting',
-    description: 'Helping businesses integrate AI tools for workflow optimization.',
-    icon: BarChart3,
-  },
-  {
-    title: 'Workflow Automation',
-    description: 'Developing no-code and AI-powered automation strategies for SMEs.',
+    title: 'AI Workflow Automation for SMEs',
+    description: 'Automate repetitive workflows across sales, operations, support, and back office with practical AI orchestration.',
     icon: Workflow,
   },
   {
-    title: 'AI Training & Workshops',
-    description: 'Educating business owners on the power of AI for growth.',
+    title: 'Automate Finance and Operations with AI Agents',
+    description: 'Improve invoice speed, handoff quality, and cash-flow visibility with controlled AI workflow automation.',
+    icon: BarChart3,
+  },
+  {
+    title: 'AI Training and Workshops for Business Teams in Singapore',
+    description: 'Hands-on programs to help teams adopt AI business automation and execute with confidence.',
     icon: Shield,
   },
 ];
@@ -290,7 +290,7 @@ function HomePage() {
       'https://www.linkedin.com/company/nexius-labs',
       'https://www.linkedin.com/in/melverick'
     ],
-    description: 'NEXIUS Labs helps SMEs automate operations using agentic AI workflows across CRM, ERP, and finance.'
+    description: 'NEXIUS Labs delivers AI business automation for SMEs in Singapore across agentic ERP, CRM, finance, and operations workflows.'
   };
 
   const websiteJsonLd = {
@@ -322,22 +322,24 @@ function HomePage() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center">
             <h1 className="relative text-5xl font-display font-extrabold text-white mb-6 tracking-tight">
-              More customers ≠ more{' '}
-              <RotatingText
-                texts={['admin work', 'headcount', 'costs', 'chaos', 'spreadsheets', 'late nights']}
-                mainClassName="px-2 sm:px-2 md:px-3 bg-nexius-teal text-white overflow-hidden py-0.5 sm:py-1 md:py-2 justify-center rounded-lg inline-flex"
-                staggerFrom="last"
-                initial={{ y: "100%" }}
-                animate={{ y: 0 }}
-                exit={{ y: "-120%" }}
-                staggerDuration={0.025}
-                splitLevelClassName="overflow-hidden pb-0.5 sm:pb-1 md:pb-1"
-                transition={{ type: "spring", damping: 30, stiffness: 400 }}
-                rotationInterval={2000}
-              />
+              <span className="block">AI Business Automation for SMEs</span>
+              <span className="block mt-2">More customers ≠ more{' '}
+                <RotatingText
+                  texts={['admin work', 'headcount', 'costs', 'chaos', 'spreadsheets', 'late nights']}
+                  mainClassName="px-2 sm:px-2 md:px-3 bg-nexius-teal text-white overflow-hidden py-0.5 sm:py-1 md:py-2 justify-center rounded-lg inline-flex"
+                  staggerFrom="last"
+                  initial={{ y: "100%" }}
+                  animate={{ y: 0 }}
+                  exit={{ y: "-120%" }}
+                  staggerDuration={0.025}
+                  splitLevelClassName="overflow-hidden pb-0.5 sm:pb-1 md:pb-1"
+                  transition={{ type: "spring", damping: 30, stiffness: 400 }}
+                  rotationInterval={2000}
+                />
+              </span>
             </h1>
             <p className="relative text-xl font-body text-white/80 mb-8 max-w-3xl mx-auto leading-relaxed">
-              We get you more customers and quietly take care of the extra workload they create.
+              Nexius Labs helps businesses implement AI automation for SMEs in Singapore across ERP, CRM, finance, and daily operations.
             </p>
             <div className="relative flex justify-center gap-4">
               <button 
@@ -386,10 +388,10 @@ function HomePage() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-16">
             <h2 className="text-3xl font-display font-bold text-white mb-4 tracking-tight">
-              BUSINESSES STRUGGLE TO ADOPT AI
+              Agentic AI Solutions and AI Workflow Automation Services
             </h2>
             <p className="font-body text-nexius-dark-text-muted max-w-2xl mx-auto leading-relaxed">
-              Nexius simplifies AI adoption with tailored automation, expert consulting, and no-code solutions - helping businesses unlock efficiency, reduce costs, and scale seamlessly.
+              From agentic ERP and CRM for small businesses to custom AI workflow solutions for businesses, Nexius delivers practical systems that improve speed, quality, and operating leverage.
             </p>
           </div>
           <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
