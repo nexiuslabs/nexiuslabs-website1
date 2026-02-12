@@ -78,14 +78,8 @@ export function BlogPost() {
     datePublished: article.published_at || article.created_at,
     image: article.featured_image,
     author: {
-      '@type': 'Person',
-      name: 'Melverick Ng',
-      url: 'https://linkedin.com/in/melverick',
-      jobTitle: 'Founder & Director',
-      worksFor: {
-        '@type': 'Organization',
-        name: 'Nexius Labs'
-      }
+      '@type': 'Organization',
+      name: 'Nexius Labs'
     }
   };
 
@@ -103,7 +97,7 @@ export function BlogPost() {
       },
       {
         '@type': 'Question',
-        name: 'How can small businesses and SMEs start implementing agentic automation?',
+        name: 'How can SMEs start implementing agentic automation?',
         acceptedAnswer: {
           '@type': 'Answer',
           text: 'Start with one high-friction workflow, define clear rules and exception handling, and measure cycle-time and error-rate improvements weekly.'
@@ -155,7 +149,7 @@ export function BlogPost() {
               </div>
               <div className="flex items-center">
                 <User className="h-4 w-4 mr-1" />
-                Melverick Ng
+                Author
               </div>
             </div>
             <h1 className="text-4xl md:text-5xl font-display font-bold text-white max-w-4xl">
@@ -181,13 +175,13 @@ export function BlogPost() {
       <section className="py-24 bg-nexius-navy">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <h2 className="text-3xl font-display font-bold text-white mb-4">
-            Want AI workflow automation for your business?
+            Want to Learn More?
           </h2>
           <p className="text-white/80 mb-8 max-w-2xl mx-auto">
-            Schedule a free 15-minute assessment to explore AI business automation tailored for your team.
+            Schedule a discovery call to discuss how our AI solutions can help transform your business.
           </p>
           <a 
-            href="https://outlook.office.com/bookwithme/user/1a3b3c1b65044d24b6cddcc6b42c8ecb%40nexiuslabs.com"
+            href="https://tidycal.com/melverick/discovery-call-via-zoom-30min"
             target="_blank"
             rel="noopener noreferrer"
             className="bg-nexius-teal text-white px-8 py-4 rounded-lg hover:bg-nexius-teal/90 transition-colors inline-flex items-center font-display font-semibold tracking-wide uppercase text-sm"

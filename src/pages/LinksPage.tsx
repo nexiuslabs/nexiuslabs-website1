@@ -69,7 +69,7 @@ const links: SocialLink[] = [
   {
     id: '1',
     title: 'Book a Discovery Call',
-    url: 'https://tidycal.com/melverick/discovery-call-via-zoom-30min',
+    url: 'https://outlook.office.com/bookwithme/user/1a3b3c1b65044d24b6cddcc6b42c8ecb%40nexiuslabs.com',
     type: 'calendar',
     icon: 'calendar',
   },
