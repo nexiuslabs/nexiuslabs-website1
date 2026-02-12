@@ -166,7 +166,7 @@ export function BlogPost() {
 
       {/* Content */}
       <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
-        <article className="prose prose-lg max-w-none text-nexius-dark-text">
+        <article className="prose prose-lg max-w-none text-white [&_h1]:text-white [&_h2]:text-white [&_h3]:text-white [&_h4]:text-white [&_p]:text-white/90 [&_li]:text-white/90 [&_strong]:text-white [&_a]:text-nexius-teal [&_blockquote]:text-white/80">
           <div dangerouslySetInnerHTML={{ __html: article.content }} />
         </article>
       </div>
