@@ -70,7 +70,7 @@ export function BlogPost() {
     return null;
   }
   const canonicalUrl = `${BASE_URL}/blog/${article.slug}`;
-  const jsonLd = {
+  const articleJsonLd = {
     '@context': 'https://schema.org',
     '@type': 'Article',
     headline: article.title,
@@ -83,11 +83,38 @@ export function BlogPost() {
     }
   };
 
+  const faqJsonLd = {
+    '@context': 'https://schema.org',
+    '@type': 'FAQPage',
+    mainEntity: [
+      {
+        '@type': 'Question',
+        name: `What is the main goal of ${article.title}?`,
+        acceptedAnswer: {
+          '@type': 'Answer',
+          text: article.description || 'This article explains practical AI automation approaches for SME operations and finance workflows.'
+        }
+      },
+      {
+        '@type': 'Question',
+        name: 'How can SMEs start implementing agentic automation?',
+        acceptedAnswer: {
+          '@type': 'Answer',
+          text: 'Start with one high-friction workflow, define clear rules and exception handling, and measure cycle-time and error-rate improvements weekly.'
+        }
+      }
+    ]
+  };
+
   return (
     <>
       <script
         type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(articleJsonLd) }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(faqJsonLd) }}
       />
       <div className="min-h-screen bg-nexius-dark-bg">
         {/* Hero Section */}

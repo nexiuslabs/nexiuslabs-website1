@@ -280,8 +280,42 @@ function HomePage() {
     });
   };
 
+  const organizationJsonLd = {
+    '@context': 'https://schema.org',
+    '@type': 'Organization',
+    name: 'NEXIUS Labs',
+    url: 'https://nexiuslabs.com',
+    logo: 'https://tunidbyclygzipvbfzee.supabase.co/storage/v1/object/public/website-images/m04h4fs8wns-1739784195705.png',
+    sameAs: [
+      'https://www.linkedin.com/company/nexius-labs',
+      'https://www.linkedin.com/in/melverick'
+    ],
+    description: 'NEXIUS Labs helps SMEs automate operations using agentic AI workflows across CRM, ERP, and finance.'
+  };
+
+  const websiteJsonLd = {
+    '@context': 'https://schema.org',
+    '@type': 'WebSite',
+    name: 'NEXIUS Labs',
+    url: 'https://nexiuslabs.com',
+    potentialAction: {
+      '@type': 'SearchAction',
+      target: 'https://nexiuslabs.com/blog?search={search_term_string}',
+      'query-input': 'required name=search_term_string'
+    }
+  };
+
   return (
-    <div className="min-h-screen bg-nexius-dark-bg">
+    <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(organizationJsonLd) }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(websiteJsonLd) }}
+      />
+      <div className="min-h-screen bg-nexius-dark-bg">
       {/* Hero Section */}
       <section className="relative pt-32 pb-24 bg-gradient-to-b from-nexius-navy to-nexius-navy/95">
         <HeroAnimation />
@@ -542,7 +576,8 @@ function HomePage() {
           </div>
         </div>
       </footer>
-    </div>
+      </div>
+    </>
   );
 }
 import { useLocation } from 'react-router-dom';
