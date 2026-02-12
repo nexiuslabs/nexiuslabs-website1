@@ -11,5 +11,9 @@
 # Redirect www to non-www
 https://www.nexiuslabs.com/* https://nexiuslabs.com/:splat 301!
 
+# Ensure static SEO files are served directly
+/sitemap.xml /sitemap.xml 200
+/robots.txt /robots.txt 200
+
 # Handle client-side routing
 /* /index.html 200

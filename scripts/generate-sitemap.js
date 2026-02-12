@@ -4,8 +4,8 @@ import path from 'path';
 import { fileURLToPath } from 'url';
 
 const SITE_URL = process.env.SITE_URL || 'https://nexiuslabs.com';
-const SUPABASE_URL = process.env.VITE_SUPABASE_URL;
-const SUPABASE_ANON_KEY = process.env.VITE_SUPABASE_ANON_KEY;
+const SUPABASE_URL = process.env.VITE_SUPABASE_URL || process.env.SUPABASE_URL;
+const SUPABASE_ANON_KEY = process.env.VITE_SUPABASE_ANON_KEY || process.env.SUPABASE_ANON_KEY;
 
 let supabase = null;
 if (SUPABASE_URL && SUPABASE_ANON_KEY) {
