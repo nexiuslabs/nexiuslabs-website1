@@ -1021,7 +1021,7 @@ export default function AdminPage() {
             <div className="flex">
               <div className="flex-shrink-0 flex items-center">
                 <img
-                  src="https://tunidbyclygzipvbfzee.supabase.co/storage/v1/object/public/website-images/nexius_logo_no_text_transparent_bg.png"
+                  src="https://tueprsmyrebrfwrdlagk.supabase.co/storage/v1/object/public/website-images/nexius_logo_no_text_transparent_bg.png"
                   alt="NEXIUS Labs"
                   className="h-8 w-8"
                   width={32}

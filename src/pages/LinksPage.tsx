@@ -50,7 +50,7 @@ const founders: Founder[] = [
   {
     name: 'Melverick Ng',
     title: 'Co-Founder',
-    image: 'https://tunidbyclygzipvbfzee.supabase.co/storage/v1/object/public/website-images/darryl-1740396262527.jpeg',
+    image: 'https://tueprsmyrebrfwrdlagk.supabase.co/storage/v1/object/public/website-images/darryl-1740396262527.jpeg',
     phone: '+65 8900-2130',
     email: 'melverick@nexiuslabs.com',
     linkedin: 'https://www.linkedin.com/in/melverick/',
@@ -58,7 +58,7 @@ const founders: Founder[] = [
   {
     name: 'Darryl Wong',
     title: 'Co-Founder',
-    image: 'https://tunidbyclygzipvbfzee.supabase.co/storage/v1/object/public/website-images/darryl-1740395556131.jpeg',
+    image: 'https://tueprsmyrebrfwrdlagk.supabase.co/storage/v1/object/public/website-images/darryl-1740395556131.jpeg',
     phone: '+65 8102-5863',
     email: 'darryl@nexiuslabs.com',
     linkedin: 'https://www.linkedin.com/in/darrylwongdq/',
@@ -138,7 +138,7 @@ export function LinksPage() {
         <div className="text-center">
           <a href="/" className="inline-flex items-center group">
             <img
-              src="https://tunidbyclygzipvbfzee.supabase.co/storage/v1/object/public/website-images/nexius_logo_no_text_transparent_bg.png"
+              src="https://tueprsmyrebrfwrdlagk.supabase.co/storage/v1/object/public/website-images/nexius_logo_no_text_transparent_bg.png"
               alt="NEXIUS Labs"
               className="relative h-12 w-12 object-contain group-hover:opacity-90 transition-opacity mb-3"
               width={48}

@@ -426,7 +426,7 @@ export function AIIgnite() {
                 className="flex items-center text-nexius-dark-text mb-4 group focus:outline-none"
               >
                 <img
-                  src="https://tunidbyclygzipvbfzee.supabase.co/storage/v1/object/public/website-images/nexius_logo_no_text_transparent_bg.png"
+                  src="https://tueprsmyrebrfwrdlagk.supabase.co/storage/v1/object/public/website-images/nexius_logo_no_text_transparent_bg.png"
                   alt="NEXIUS Labs"
                   className="h-6 w-6 object-contain group-hover:opacity-90 transition-opacity"
                   loading="lazy"
