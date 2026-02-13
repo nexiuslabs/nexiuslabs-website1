@@ -175,7 +175,6 @@ serve(async (req) => {
     aiResponse = aiResponse.replace(/\s*\[ESCALATE\]\s*/g, '').trim();
 
     if (shouldEscalate) {
-      aiResponse += '\n\nI\'m connecting you with a team member who can help you further. Please hold on — they\'ll join this chat shortly.';
       await supabaseClient.from('chat_sessions').update({ handoff_active: true }).eq('id', sessionId);
       await sendTelegramNotification(sessionId, message, 'main');
     }
