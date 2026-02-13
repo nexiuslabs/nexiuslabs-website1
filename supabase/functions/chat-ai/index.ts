@@ -106,22 +106,10 @@ serve(async (req) => {
       .single();
 
     if (session?.handoff_active) {
+      // Silently forward to Telegram — no repeat message to customer
       await sendTelegramNotification(sessionId, message, 'main');
-      const waitMsg = "Your message has been forwarded to our team. They'll respond shortly — please stay on this chat.";
-      const { data: savedMessage, error: saveError } = await supabaseClient
-        .from('chat_messages')
-        .insert({
-          session_id: sessionId,
-          visitor_id: visitorId,
-          content: waitMsg,
-          is_from_visitor: false,
-          read: false,
-        })
-        .select()
-        .single();
-      if (saveError) throw saveError;
       return new Response(
-        JSON.stringify({ message: savedMessage }),
+        JSON.stringify({ message: { id: 'handoff', content: '', is_from_visitor: false, session_id: sessionId }, handoff: true }),
         { headers: { ...corsHeaders, 'Content-Type': 'application/json' }, status: 200 }
       );
     }
