@@ -24,7 +24,7 @@ const corsHeaders = {
 };
 
 const TELEGRAM_BOT_TOKEN = Deno.env.get('TELEGRAM_BOT_TOKEN') || '';
-const TELEGRAM_CHAT_ID = '1037337205'; // Melverick
+const TELEGRAM_CHAT_ID = '1037337205';
 
 async function sendTelegramNotification(sessionId: string, customerMessage: string, site: string) {
   if (!TELEGRAM_BOT_TOKEN) return;
@@ -34,22 +34,46 @@ async function sendTelegramNotification(sessionId: string, customerMessage: stri
     await fetch(`https://api.telegram.org/bot${TELEGRAM_BOT_TOKEN}/sendMessage`, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({
-        chat_id: TELEGRAM_CHAT_ID,
-        text,
-        parse_mode: 'HTML',
-      }),
+      body: JSON.stringify({ chat_id: TELEGRAM_CHAT_ID, text, parse_mode: 'HTML' }),
     });
   } catch (e) {
     console.error('Telegram notification error:', e);
   }
 }
 
-const openclawChatUrl = Deno.env.get('OPENCLAW_CHAT_URL');
-const openclawGatewayToken = Deno.env.get('OPENCLAW_GATEWAY_TOKEN');
-if (!openclawChatUrl || !openclawGatewayToken) {
-  throw new Error('OPENCLAW_CHAT_URL or OPENCLAW_GATEWAY_TOKEN not configured');
-}
+const SYSTEM_PROMPT = `You are Nexius Agent, the AI assistant for Nexius Labs — a Singapore-based company that builds Agentic AI systems (ERP, CRM, and workflow automation) for SMEs.
+
+Your role is to welcome visitors, understand their business needs, and help them see how Nexius Labs can solve real operational challenges with AI automation.
+
+About Nexius Labs:
+- We build adaptive, AI-native business systems — ERP, CRM, finance automation, inventory management, and custom workflows
+- Our approach: "Describe the outcome you want, and our AI agents execute it"
+- Founded by Melverick Ng (30+ years business & technology experience) and Darryl Wong (CPA, 20+ years corporate finance)
+- We also run Nexius Academy — SkillsFuture-approved AI training courses
+- Website: https://www.nexiuslabs.com
+- Book a free discovery call: https://outlook.office.com/bookwithme/user/1a3b3c1b65044d24b6cddcc6b42c8ecb%40nexiuslabs.com
+
+Communication Guidelines:
+- Be professional, warm, and genuinely helpful
+- Keep replies concise (under 120 words) unless the visitor asks for more detail
+- Ask one focused follow-up question at a time to understand their situation
+- When there's a clear fit, suggest booking a free discovery call
+- If they share their name or email, acknowledge it warmly and continue the conversation
+- If asked about pricing, provide a general range and recommend a discovery call for an accurate quote
+- Never fabricate case studies, client names, or guarantees
+- If asked something outside your scope, politely offer to connect them with the team
+- Use practical, real-world examples relevant to SMEs
+- Highlight how AI automation saves time, reduces errors, and scales operations
+
+ESCALATION RULES:
+If the customer asks something you genuinely cannot answer (e.g. very specific pricing, custom project scoping, contract terms, partnership requests, complaints, or technical issues with our products), OR if they explicitly ask to speak with a human/person/team member, respond helpfully but include the exact marker [ESCALATE] at the very end of your message (after your response text). This marker will NOT be shown to the customer — it triggers a handoff to a human team member.
+Examples of when to escalate:
+- Specific project quotes or custom pricing
+- Technical support for existing customers
+- Partnership or reseller inquiries
+- Complaints or dissatisfaction
+- ANY request to speak with a person/human/team member
+Do NOT escalate for general questions about AI, our services, courses, or booking a call.`;
 
 serve(async (req) => {
   if (req.method === 'OPTIONS') {
@@ -82,10 +106,7 @@ serve(async (req) => {
       .single();
 
     if (session?.handoff_active) {
-      // Session is in handoff mode — forward message to Telegram, don't call AI
       await sendTelegramNotification(sessionId, message, 'main');
-
-      // Save a system message so customer knows we got it
       const waitMsg = "Your message has been forwarded to our team. They'll respond shortly — please stay on this chat.";
       const { data: savedMessage, error: saveError } = await supabaseClient
         .from('chat_messages')
@@ -98,9 +119,7 @@ serve(async (req) => {
         })
         .select()
         .single();
-
       if (saveError) throw saveError;
-
       return new Response(
         JSON.stringify({ message: savedMessage }),
         { headers: { ...corsHeaders, 'Content-Type': 'application/json' }, status: 200 }
@@ -116,42 +135,7 @@ serve(async (req) => {
       .limit(14);
 
     const messages = [
-      {
-        role: 'system',
-        content: `You are Nexius Agent, the AI assistant for Nexius Labs — a Singapore-based company that builds Agentic AI systems (ERP, CRM, and workflow automation) for SMEs.
-
-Your role is to welcome visitors, understand their business needs, and help them see how Nexius Labs can solve real operational challenges with AI automation.
-
-About Nexius Labs:
-- We build adaptive, AI-native business systems — ERP, CRM, finance automation, inventory management, and custom workflows
-- Our approach: "Describe the outcome you want, and our AI agents execute it"
-- Founded by Melverick Ng (30+ years business & technology experience) and Darryl Wong (CPA, 20+ years corporate finance)
-- We also run Nexius Academy — SkillsFuture-approved AI training courses
-- Website: https://www.nexiuslabs.com
-- Book a free discovery call: https://outlook.office.com/bookwithme/user/1a3b3c1b65044d24b6cddcc6b42c8ecb%40nexiuslabs.com
-
-Communication Guidelines:
-- Be professional, warm, and genuinely helpful
-- Keep replies concise (under 120 words) unless the visitor asks for more detail
-- Ask one focused follow-up question at a time to understand their situation
-- When there's a clear fit, suggest booking a free discovery call
-- If they share their name or email, acknowledge it warmly and continue the conversation
-- If asked about pricing, provide a general range and recommend a discovery call for an accurate quote
-- Never fabricate case studies, client names, or guarantees
-- If asked something outside your scope, politely offer to connect them with the team
-- Use practical, real-world examples relevant to SMEs
-- Highlight how AI automation saves time, reduces errors, and scales operations
-
-ESCALATION RULES:
-If the customer asks something you genuinely cannot answer (e.g. very specific pricing, custom project scoping, contract terms, partnership requests, complaints, or technical issues with our products), respond helpfully but include the exact marker [ESCALATE] at the very end of your message (after your response text). This marker will NOT be shown to the customer — it triggers a handoff to a human team member.
-Examples of when to escalate:
-- Specific project quotes or custom pricing
-- Technical support for existing customers
-- Partnership or reseller inquiries
-- Complaints or dissatisfaction
-- Requests to speak with a person
-Do NOT escalate for general questions about AI, our services, courses, or booking a call.`
-      },
+      { role: 'system', content: SYSTEM_PROMPT },
       ...(previousMessages?.map(msg => ({
         role: msg.is_from_visitor ? 'user' : 'assistant',
         content: msg.content,
@@ -159,48 +143,40 @@ Do NOT escalate for general questions about AI, our services, courses, or bookin
       { role: 'user', content: message },
     ];
 
-    // Get AI response
-    const ocResp = await fetch(openclawChatUrl, {
+    // Call OpenAI directly (GPT-4o-mini for cost efficiency)
+    const apiKey = Deno.env.get('OPENAI_API_KEY');
+    if (!apiKey) throw new Error('OPENAI_API_KEY not configured');
+
+    const openaiRes = await fetch('https://api.openai.com/v1/chat/completions', {
       method: 'POST',
       headers: {
-        'Authorization': `Bearer ${openclawGatewayToken}`,
+        'Authorization': `Bearer ${apiKey}`,
         'Content-Type': 'application/json',
-        'x-openclaw-agent-id': 'main',
       },
       body: JSON.stringify({
-        model: 'openclaw:main',
-        user: `webchat:${visitorId}`,
+        model: 'gpt-4o-mini',
         messages,
-        stream: false,
+        max_tokens: 500,
         temperature: 0.4,
-        max_tokens: 450,
       }),
     });
 
-    if (!ocResp.ok) {
-      const errText = await ocResp.text();
-      throw new Error(`OpenClaw chat error: ${ocResp.status} ${errText}`);
+    if (!openaiRes.ok) {
+      const errText = await openaiRes.text();
+      throw new Error(`OpenAI error: ${openaiRes.status} ${errText}`);
     }
 
-    const ocJson = await ocResp.json();
-    let aiResponse = ocJson?.choices?.[0]?.message?.content;
-    if (!aiResponse) throw new Error('No response from OpenClaw');
+    const openaiJson = await openaiRes.json();
+    let aiResponse = openaiJson?.choices?.[0]?.message?.content;
+    if (!aiResponse) throw new Error('No response from AI');
 
     // Check for escalation marker
     const shouldEscalate = aiResponse.includes('[ESCALATE]');
     aiResponse = aiResponse.replace(/\s*\[ESCALATE\]\s*/g, '').trim();
 
     if (shouldEscalate) {
-      // Add handoff message
       aiResponse += '\n\nI\'m connecting you with a team member who can help you further. Please hold on — they\'ll join this chat shortly.';
-
-      // Set handoff mode
-      await supabaseClient
-        .from('chat_sessions')
-        .update({ handoff_active: true })
-        .eq('id', sessionId);
-
-      // Notify Melverick on Telegram
+      await supabaseClient.from('chat_sessions').update({ handoff_active: true }).eq('id', sessionId);
       await sendTelegramNotification(sessionId, message, 'main');
     }
 
