@@ -1,6 +1,5 @@
 import { serve } from 'https://deno.land/std@0.168.0/http/server.ts';
 import { createClient } from 'https://esm.sh/@supabase/supabase-js@2.39.7';
-// OpenAI client removed: this function now proxies to OpenClaw chat completions.
 
 function extractEmail(text: string): string | null {
   const match = text.match(/[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}/i);
@@ -24,6 +23,27 @@ const corsHeaders = {
   'Access-Control-Allow-Headers': 'authorization, x-client-info, apikey, content-type',
 };
 
+const TELEGRAM_BOT_TOKEN = Deno.env.get('TELEGRAM_BOT_TOKEN') || '';
+const TELEGRAM_CHAT_ID = '1037337205'; // Melverick
+
+async function sendTelegramNotification(sessionId: string, customerMessage: string, site: string) {
+  if (!TELEGRAM_BOT_TOKEN) return;
+  const text = `🔔 *Customer needs help* (${site})\n\nSession: \`${sessionId}\`\nMessage: ${customerMessage.substring(0, 500)}\n\nReply with:\n\`/reply ${site}:${sessionId} Your message here\``;
+  try {
+    await fetch(`https://api.telegram.org/bot${TELEGRAM_BOT_TOKEN}/sendMessage`, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        chat_id: TELEGRAM_CHAT_ID,
+        text,
+        parse_mode: 'Markdown',
+      }),
+    });
+  } catch (e) {
+    console.error('Telegram notification error:', e);
+  }
+}
+
 const openclawChatUrl = Deno.env.get('OPENCLAW_CHAT_URL');
 const openclawGatewayToken = Deno.env.get('OPENCLAW_GATEWAY_TOKEN');
 if (!openclawChatUrl || !openclawGatewayToken) {
@@ -40,22 +60,50 @@ serve(async (req) => {
     const detectedEmail = extractEmail(message || '');
     const detectedName = extractName(message || '');
 
-    // Create Supabase client
     const supabaseClient = createClient(
       Deno.env.get('SUPABASE_URL') ?? '',
-      Deno.env.get('SUPABASE_ANON_KEY') ?? ''
+      Deno.env.get('SUPABASE_SERVICE_ROLE_KEY') ?? Deno.env.get('SUPABASE_ANON_KEY') ?? ''
     );
 
-    // Upsert captured visitor details when provided in chat
+    // Upsert captured visitor details
     if (detectedEmail || detectedName) {
       const patch: Record<string, string> = {};
       if (detectedEmail) patch.visitor_email = detectedEmail;
       if (detectedName) patch.visitor_name = detectedName;
+      await supabaseClient.from('chat_sessions').update(patch).eq('id', sessionId);
+    }
 
-      await supabaseClient
-        .from('chat_sessions')
-        .update(patch)
-        .eq('id', sessionId);
+    // Check if session is in human handoff mode
+    const { data: session } = await supabaseClient
+      .from('chat_sessions')
+      .select('handoff_active')
+      .eq('id', sessionId)
+      .single();
+
+    if (session?.handoff_active) {
+      // Session is in handoff mode — forward message to Telegram, don't call AI
+      await sendTelegramNotification(sessionId, message, 'main');
+
+      // Save a system message so customer knows we got it
+      const waitMsg = "Your message has been forwarded to our team. They'll respond shortly — please stay on this chat.";
+      const { data: savedMessage, error: saveError } = await supabaseClient
+        .from('chat_messages')
+        .insert({
+          session_id: sessionId,
+          visitor_id: visitorId,
+          content: waitMsg,
+          is_from_visitor: false,
+          read: false,
+        })
+        .select()
+        .single();
+
+      if (saveError) throw saveError;
+
+      return new Response(
+        JSON.stringify({ message: savedMessage }),
+        { headers: { ...corsHeaders, 'Content-Type': 'application/json' }, status: 200 }
+      );
     }
 
     // Get previous messages for context
@@ -66,7 +114,6 @@ serve(async (req) => {
       .order('created_at', { ascending: true })
       .limit(14);
 
-    // Format messages for OpenAI
     const messages = [
       {
         role: 'system',
@@ -77,7 +124,7 @@ Your role is to welcome visitors, understand their business needs, and help them
 About Nexius Labs:
 - We build adaptive, AI-native business systems — ERP, CRM, finance automation, inventory management, and custom workflows
 - Our approach: "Describe the outcome you want, and our AI agents execute it"
-- Founded by Melverick Ng (30+ years business & tech experience) and Darryl Wong (CPA, 20+ years corporate finance)
+- Founded by Melverick Ng (30+ years business & technology experience) and Darryl Wong (CPA, 20+ years corporate finance)
 - We also run Nexius Academy — SkillsFuture-approved AI training courses
 - Website: https://www.nexiuslabs.com
 - Book a free discovery call: https://outlook.office.com/bookwithme/user/1a3b3c1b65044d24b6cddcc6b42c8ecb%40nexiuslabs.com
@@ -92,22 +139,32 @@ Communication Guidelines:
 - Never fabricate case studies, client names, or guarantees
 - If asked something outside your scope, politely offer to connect them with the team
 - Use practical, real-world examples relevant to SMEs
-- Highlight how AI automation saves time, reduces errors, and scales operations`
+- Highlight how AI automation saves time, reduces errors, and scales operations
+
+ESCALATION RULES:
+If the customer asks something you genuinely cannot answer (e.g. very specific pricing, custom project scoping, contract terms, partnership requests, complaints, or technical issues with our products), respond helpfully but include the exact marker [ESCALATE] at the very end of your message (after your response text). This marker will NOT be shown to the customer — it triggers a handoff to a human team member.
+Examples of when to escalate:
+- Specific project quotes or custom pricing
+- Technical support for existing customers
+- Partnership or reseller inquiries
+- Complaints or dissatisfaction
+- Requests to speak with a person
+Do NOT escalate for general questions about AI, our services, courses, or booking a call.`
       },
       ...(previousMessages?.map(msg => ({
         role: msg.is_from_visitor ? 'user' : 'assistant',
-        content: msg.content
+        content: msg.content,
       })) || []),
-      { role: 'user', content: message }
+      { role: 'user', content: message },
     ];
 
-    // Get response from OpenClaw chat-completions endpoint (OpenAI-compatible)
+    // Get AI response
     const ocResp = await fetch(openclawChatUrl, {
       method: 'POST',
       headers: {
         'Authorization': `Bearer ${openclawGatewayToken}`,
         'Content-Type': 'application/json',
-        'x-openclaw-agent-id': 'main'
+        'x-openclaw-agent-id': 'main',
       },
       body: JSON.stringify({
         model: 'openclaw:main',
@@ -115,8 +172,8 @@ Communication Guidelines:
         messages,
         stream: false,
         temperature: 0.4,
-        max_tokens: 450
-      })
+        max_tokens: 450,
+      }),
     });
 
     if (!ocResp.ok) {
@@ -125,13 +182,28 @@ Communication Guidelines:
     }
 
     const ocJson = await ocResp.json();
-    const aiResponse = ocJson?.choices?.[0]?.message?.content;
+    let aiResponse = ocJson?.choices?.[0]?.message?.content;
+    if (!aiResponse) throw new Error('No response from OpenClaw');
 
-    if (!aiResponse) {
-      throw new Error('No response from OpenClaw');
+    // Check for escalation marker
+    const shouldEscalate = aiResponse.includes('[ESCALATE]');
+    aiResponse = aiResponse.replace(/\s*\[ESCALATE\]\s*/g, '').trim();
+
+    if (shouldEscalate) {
+      // Add handoff message
+      aiResponse += '\n\nI\'m connecting you with a team member who can help you further. Please hold on — they\'ll join this chat shortly.';
+
+      // Set handoff mode
+      await supabaseClient
+        .from('chat_sessions')
+        .update({ handoff_active: true })
+        .eq('id', sessionId);
+
+      // Notify Melverick on Telegram
+      await sendTelegramNotification(sessionId, message, 'main');
     }
 
-    // Save AI response to database
+    // Save AI response
     const { data: savedMessage, error: saveError } = await supabaseClient
       .from('chat_messages')
       .insert({
@@ -139,7 +211,7 @@ Communication Guidelines:
         visitor_id: visitorId,
         content: aiResponse,
         is_from_visitor: false,
-        read: false
+        read: false,
       })
       .select()
       .single();
@@ -153,19 +225,13 @@ Communication Guidelines:
 
     return new Response(
       JSON.stringify({ message: savedMessage }),
-      {
-        headers: { ...corsHeaders, 'Content-Type': 'application/json' },
-        status: 200,
-      }
+      { headers: { ...corsHeaders, 'Content-Type': 'application/json' }, status: 200 }
     );
   } catch (error) {
     console.error('Error:', error);
     return new Response(
       JSON.stringify({ error: error.message }),
-      {
-        headers: { ...corsHeaders, 'Content-Type': 'application/json' },
-        status: 500,
-      }
+      { headers: { ...corsHeaders, 'Content-Type': 'application/json' }, status: 500 }
     );
   }
 });
