@@ -226,7 +226,7 @@ export function Chat() {
           <div className="px-4 py-3 bg-nexius-navy text-white rounded-t-lg flex items-center justify-between">
             <div className="flex items-center gap-2">
               <MessageCircle className="h-5 w-5" />
-              <span className="font-medium">Nexius Agent</span>
+              <span className="font-medium">Wendy</span>
             </div>
             <div className="flex items-center gap-2">
               <button

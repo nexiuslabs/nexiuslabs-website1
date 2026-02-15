@@ -60,7 +60,7 @@ export async function createChatSession(data: {
       .insert({
         session_id: session.id,
         visitor_id: data.visitor_id,
-        content: "Welcome! Before we start — what’s your name?" ,
+        content: "Hello, I’m Wendy. Before we start — what’s your name?" ,
         is_from_visitor: false,
         read: true
       });
