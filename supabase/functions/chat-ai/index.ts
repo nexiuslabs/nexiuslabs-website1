@@ -138,32 +138,40 @@ serve(async (req) => {
       { role: 'user', content: message },
     ];
 
-    // Call OpenAI directly (GPT-4o-mini for cost efficiency)
-    const apiKey = Deno.env.get('OPENAI_API_KEY');
-    if (!apiKey) throw new Error('OPENAI_API_KEY not configured');
+    // Call OpenClaw Gateway (so the website chat uses the SAME Wendy as WhatsApp)
+    const gatewayUrlRaw = Deno.env.get('OPENCLAW_GATEWAY_URL') || '';
+    const gatewayToken = Deno.env.get('OPENCLAW_GATEWAY_TOKEN') || '';
+    if (!gatewayUrlRaw) throw new Error('OPENCLAW_GATEWAY_URL not configured');
+    if (!gatewayToken) throw new Error('OPENCLAW_GATEWAY_TOKEN not configured');
 
-    const openaiRes = await fetch('https://api.openai.com/v1/chat/completions', {
+    const gatewayUrl = gatewayUrlRaw.replace(/\/$/, '');
+
+    const ocRes = await fetch(`${gatewayUrl}/v1/chat/completions`, {
       method: 'POST',
       headers: {
-        'Authorization': `Bearer ${apiKey}`,
+        'Authorization': `Bearer ${gatewayToken}`,
         'Content-Type': 'application/json',
+        // Target the OpenClaw agent running the Wendy frontdesk workspace
+        'x-openclaw-agent-id': 'whatsapp-frontdesk',
       },
       body: JSON.stringify({
-        model: 'gpt-4o-mini',
+        model: 'openclaw',
+        // Stable per-visitor session, so the agent can maintain context across messages
+        user: `${site}:${sessionId}`,
         messages,
         max_tokens: 500,
         temperature: 0.4,
       }),
     });
 
-    if (!openaiRes.ok) {
-      const errText = await openaiRes.text();
-      throw new Error(`OpenAI error: ${openaiRes.status} ${errText}`);
+    if (!ocRes.ok) {
+      const errText = await ocRes.text();
+      throw new Error(`OpenClaw Gateway error: ${ocRes.status} ${errText}`);
     }
 
-    const openaiJson = await openaiRes.json();
-    let aiResponse = openaiJson?.choices?.[0]?.message?.content;
-    if (!aiResponse) throw new Error('No response from AI');
+    const ocJson = await ocRes.json();
+    let aiResponse = ocJson?.choices?.[0]?.message?.content;
+    if (!aiResponse) throw new Error('No response from OpenClaw');
 
     // Check for escalation marker
     const shouldEscalate = aiResponse.includes('[ESCALATE]');
