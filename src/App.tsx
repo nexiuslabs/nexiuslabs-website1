@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Link, Routes, Route } from 'react-router-dom';
+import { Link, Routes, Route, Navigate } from 'react-router-dom';
 import { supabase } from './lib/supabase';
 import {
   Menu,
@@ -42,6 +42,8 @@ import { Events } from './pages/Events';
 import { NotFound } from './pages/NotFound';
 import { Chat } from './components/Chat';
 import { PlaybookCapture } from './components/PlaybookCapture';
+import { PlaybookLanding } from './pages/PlaybookLanding';
+import { BookAssessment } from './pages/BookAssessment';
 
 const features = [
   {
@@ -675,6 +677,7 @@ export default function App() {
         <Route path="/" element={<HomePage />} />
         <Route path="/case-studies" element={<CaseStudies />} />
         <Route path="/case-study/:id" element={<CaseStudy />} />
+        <Route path="/case-study-agentic-erp-crm-mvp" element={<Navigate to="/case-study/agentic-erp-crm-mvp" replace />} />
         <Route path="/blog" element={<Blog />} />
         <Route path="/blog/:slug" element={<BlogPost />} />
         <Route path="/upload" element={<UploadLogo />} />
@@ -684,6 +687,8 @@ export default function App() {
         <Route path="/event/:slug" element={<EventDetail />} />
         <Route path="/events" element={<Events />} />
         <Route path="/links" element={<LinksPage />} />
+        <Route path="/playbook" element={<PlaybookLanding />} />
+        <Route path="/book-assessment" element={<BookAssessment />} />
         <Route path="*" element={<NotFound />} />
       </Routes>
 

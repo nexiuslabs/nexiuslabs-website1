@@ -20,6 +20,14 @@ const caseStudies = [
     image: 'https://images.unsplash.com/photo-1554224155-8d04cb21cd6c?auto=format&fit=crop&q=80&w=1600&h=900',
   },
   {
+    id: 'agentic-erp-crm-mvp',
+    title: 'Case Study: Building an Agentic ERP/CRM MVP for an SME (Nexius Labs)',
+    description: 'How Nexius Labs built a practical Agentic ERP/CRM operating MVP with approval-first controls and measurable delivery cadence.',
+    impact: '2x faster response cadence',
+    industry: 'SME Operations',
+    image: '/images/case-study-agentic-erp-crm.svg',
+  },
+  {
     id: 'ecommerce-growth',
     title: 'Scaling E-commerce: How AI Helped a Brand Increase Conversions by 35%',
     description: 'An online retailer leveraged our AI-powered customer insights and automation platform to optimize their sales funnel and personalize customer experiences.',

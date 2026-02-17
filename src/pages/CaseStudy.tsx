@@ -129,6 +129,57 @@ const caseStudiesData: Record<string, CaseStudyData> = {
       ]
     }
   },
+  'agentic-erp-crm-mvp': {
+    title: 'Case Study: Building an Agentic ERP/CRM MVP for an SME (Nexius Labs)',
+    description: 'How Nexius Labs designed and operated an Agentic ERP/CRM MVP to reduce manual work, improve follow-up consistency, and create a measurable execution cadence.',
+    impact: 'Faster response cycles + cleaner pipeline execution',
+    industry: 'SME Operations',
+    image: 'https://nexiuslabs.com/images/case-study-agentic-erp-crm.svg',
+    fullContent: {
+      challenge: 'SME workflows were fragmented across lead capture, inbox follow-up, CRM updates, and approvals. Teams were stuck in repetitive handoffs and inconsistent execution, creating delays and missed opportunities.',
+      solution: 'We built an Agentic ERP/CRM MVP focused on one operating workflow: multi-channel lead ingestion, qualification and readiness scoring, HubSpot sync, and approval-first outbound actions. The system keeps humans in control while agents handle repetitive execution.',
+      implementation: [
+        'Mapped real operational workflow from lead capture to follow-up',
+        'Implemented deterministic readiness gates and scoring',
+        'Connected lead sync from LinkedIn + HubSpot into a single state model',
+        'Added approval-first outbound controls and daily execution loops',
+        'Layered weekly KPI reporting for operational tuning'
+      ],
+      results: [
+        {
+          metric: '60%+',
+          value: 'Less Admin Overhead',
+          description: 'Reduced repetitive manual prospecting and follow-up tasks'
+        },
+        {
+          metric: '2x',
+          value: 'Faster Response Cadence',
+          description: 'Lead handling and follow-up cycles became materially faster'
+        },
+        {
+          metric: 'Higher',
+          value: 'Pipeline Visibility',
+          description: 'Clearer view of status progression, blockers, and next actions'
+        },
+        {
+          metric: 'Tighter',
+          value: 'Governance & Control',
+          description: 'Approval-first model reduced execution errors and ambiguity'
+        }
+      ],
+      testimonial: {
+        quote: 'This MVP proved we can run practical agentic operations today — start with one workflow, keep humans in control, and scale only what is stable.',
+        author: 'Nexius Labs Team',
+        title: 'Builder Notes'
+      },
+      nextSteps: [
+        'Expand from MVP workflow into adjacent finance/operations paths',
+        'Deepen CRM intelligence with better lead intent scoring',
+        'Increase automation coverage while preserving approval controls',
+        'Track closed-client outcomes against activity KPIs'
+      ]
+    }
+  },
   'ecommerce-growth': {
     title: 'Scaling E-commerce: How AI Helped a Brand Increase Conversions by 35%',
     description: 'An online retailer leveraged our AI-powered customer insights and automation platform to optimize their sales funnel and personalize customer experiences.',

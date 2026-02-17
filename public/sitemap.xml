@@ -2,26 +2,122 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
     <loc>https://nexiuslabs.com/</loc>
-    <lastmod>2025-08-26</lastmod>
+    <lastmod>2026-02-17</lastmod>
     <changefreq>weekly</changefreq>
     <priority>1.0</priority>
   </url>
   <url>
     <loc>https://nexiuslabs.com/blog</loc>
-    <lastmod>2025-08-26</lastmod>
+    <lastmod>2026-02-17</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://nexiuslabs.com/case-studies</loc>
-    <lastmod>2025-08-26</lastmod>
+    <lastmod>2026-02-17</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://nexiuslabs.com/events</loc>
-    <lastmod>2025-08-26</lastmod>
+    <lastmod>2026-02-17</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://nexiuslabs.com/blog/rag-vs-traditional-llms-whats-the-difference</loc>
+    <lastmod>2026-02-12</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://nexiuslabs.com/blog/future-of-software-ai-era</loc>
+    <lastmod>2026-02-12</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://nexiuslabs.com/blog/top-10-business-processes-to-automate-with-ai</loc>
+    <lastmod>2026-02-12</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://nexiuslabs.com/blog/the-rise-of-accessible-ai-low-code-tools-for-building-rag-and-multi-agent-systems</loc>
+    <lastmod>2026-02-12</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://nexiuslabs.com/blog/5_steps_Deploy_AI_Small_Businesses</loc>
+    <lastmod>2026-02-12</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://nexiuslabs.com/blog/ai-agents-vs-traditional-automation-in-modern-business</loc>
+    <lastmod>2026-02-12</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://nexiuslabs.com/blog/rag-is-revolutionizing-ai-accuracy-and-heres-what-you-need-to-know</loc>
+    <lastmod>2026-02-12</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://nexiuslabs.com/blog/the-power-of-collaboration-multi-agent-ai-in-action</loc>
+    <lastmod>2026-02-12</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://nexiuslabs.com/blog/the-rise-of-ai-agents-and-their-impact-on-business-automation</loc>
+    <lastmod>2026-02-12</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://nexiuslabs.com/blog/the-power-of-memory-in-ai-agents-for-better-business-outcomes</loc>
+    <lastmod>2026-02-12</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://nexiuslabs.com/blog/how-to-automate-sme-finance-workflows-with-ai-agents-20260212174730</loc>
+    <lastmod>2026-02-12</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://nexiuslabs.com/events/aicoding-to-build-apps-for-noncoders</loc>
+    <lastmod>2025-03-15</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://nexiuslabs.com/events/aihackathon</loc>
+    <lastmod>2025-03-15</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://nexiuslabs.com/events/ai-ignite-business-networking-night</loc>
+    <lastmod>2025-04-07</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://nexiuslabs.com/events/enterprise-transformation-catalysing-growth-with-ai-digitalisation</loc>
+    <lastmod>2025-08-12</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://nexiuslabs.com/events/launch-event-for-aignition-first-youth-ai-agent-hackathon-in-singapore</loc>
+    <lastmod>2025-08-12</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
   </url>
 </urlset>

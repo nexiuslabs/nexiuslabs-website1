@@ -1,0 +1,15 @@
+<svg width="1200" height="630" viewBox="0 0 1200 630" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1200" y2="630" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#0F172A"/>
+      <stop offset="1" stop-color="#115E59"/>
+    </linearGradient>
+  </defs>
+  <rect width="1200" height="630" fill="url(#bg)"/>
+  <rect x="72" y="72" width="1056" height="486" rx="24" fill="#111827" fill-opacity="0.68" stroke="#2DD4BF" stroke-opacity="0.5"/>
+  <text x="120" y="200" fill="#2DD4BF" font-family="Arial, sans-serif" font-size="34" font-weight="700">CASE STUDY</text>
+  <text x="120" y="280" fill="white" font-family="Arial, sans-serif" font-size="56" font-weight="800">Building an Agentic</text>
+  <text x="120" y="344" fill="white" font-family="Arial, sans-serif" font-size="56" font-weight="800">ERP/CRM MVP for an SME</text>
+  <text x="120" y="420" fill="#D1D5DB" font-family="Arial, sans-serif" font-size="34" font-weight="500">Execution cadence, pipeline visibility, governance</text>
+  <text x="120" y="500" fill="#D1D5DB" font-family="Arial, sans-serif" font-size="28">NEXIUS Labs</text>
+</svg>
