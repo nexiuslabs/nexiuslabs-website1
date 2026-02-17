@@ -1,7 +1,7 @@
 import React from 'react';
 import { Calendar, ArrowRight } from 'lucide-react';
 
-const BOOKING_URL = 'https://outlook.office.com/bookwithme/user/1a3b3c1b65044d24b6cddcc6b42c8ecb%40nexiuslabs.com';
+const BOOKING_URL = 'https://outlook.office.com/bookwithme/user/1a3b3c1b65044d24b6cddcc6b42c8ecb@nexiuslabs.com/meetingtype/zUldRkT1PkqTcoOZHMBl7w2?anonymous&ismsaljsauthenabled&ep=mLinkFromTile';
 
 export function BookAssessment() {
   return (

@@ -17,7 +17,8 @@ https://www.nexiuslabs.com/* https://nexiuslabs.com/:splat 301!
 
 # LinkedIn Featured landing wrappers
 /featured/playbook /featured-playbook.html 200
-/featured/booking /featured-booking.html 200
+# Booking: prefer jumping straight to /book-assessment (skip wrapper)
+/featured/booking /book-assessment 301!
 /featured/case-study-agentic-erp-crm-mvp /featured-case-study-agentic-erp-crm-mvp.html 200
 
 # Handle client-side routing

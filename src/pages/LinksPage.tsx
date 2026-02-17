@@ -69,7 +69,7 @@ const links: SocialLink[] = [
   {
     id: '1',
     title: 'Book a Discovery Call',
-    url: 'https://outlook.office.com/bookwithme/user/1a3b3c1b65044d24b6cddcc6b42c8ecb%40nexiuslabs.com',
+    url: 'https://outlook.office.com/bookwithme/user/1a3b3c1b65044d24b6cddcc6b42c8ecb@nexiuslabs.com/meetingtype/zUldRkT1PkqTcoOZHMBl7w2?anonymous&ismsaljsauthenabled&ep=mLinkFromTile',
     type: 'calendar',
     icon: 'calendar',
   },

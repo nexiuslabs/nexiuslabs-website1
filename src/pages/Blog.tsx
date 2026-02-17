@@ -132,7 +132,7 @@ export function Blog() {
             Schedule a discovery call to discuss AI automation for SMEs in Singapore and custom AI workflow solutions for your business.
           </p>
           <a 
-            href="https://outlook.office.com/bookwithme/user/1a3b3c1b65044d24b6cddcc6b42c8ecb%40nexiuslabs.com"
+            href="https://outlook.office.com/bookwithme/user/1a3b3c1b65044d24b6cddcc6b42c8ecb@nexiuslabs.com/meetingtype/zUldRkT1PkqTcoOZHMBl7w2?anonymous&ismsaljsauthenabled&ep=mLinkFromTile"
             target="_blank"
             rel="noopener noreferrer"
             className="bg-nexius-teal text-white px-8 py-4 rounded-lg hover:bg-nexius-teal/90 transition-colors inline-flex items-center font-display font-semibold tracking-wide uppercase text-sm"
