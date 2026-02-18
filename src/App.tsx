@@ -44,6 +44,9 @@ import { Chat } from './components/Chat';
 import { PlaybookCapture } from './components/PlaybookCapture';
 import { PlaybookLanding } from './pages/PlaybookLanding';
 import { BookAssessment } from './pages/BookAssessment';
+import { SolutionDaisyAccounting } from './pages/SolutionDaisyAccounting';
+import { SolutionCrmTouchpoints } from './pages/SolutionCrmTouchpoints';
+import { SolutionIcpEngine } from './pages/SolutionIcpEngine';
 
 const features = [
   {
@@ -75,7 +78,7 @@ const useCases = [
       'End-to-end bookkeeping workflows run by AI agents: capture source docs, categorize, reconcile, and prepare month-end packs with human review only when needed.',
     icon: BarChart3,
     metrics: 'Up to ~90% hands-off',
-    href: 'https://www.nexiuslabs.com/',
+    href: '/solutions/daisy-accounting',
   },
   {
     title: 'CRM Touchpoints Auto-Recording (Agentic CRM)',
@@ -83,7 +86,7 @@ const useCases = [
       'Every meaningful interaction becomes structured CRM memory—email, WhatsApp, LinkedIn—so follow-ups and pipeline hygiene stop depending on humans remembering.',
     icon: Database,
     metrics: 'No lost context',
-    href: 'https://nexiuslabs.com/featured/crm-playbook',
+    href: '/solutions/crm-touchpoints',
   },
   {
     title: 'ICP → Leads → Warm → Nurture (Growth Engine)',
@@ -91,7 +94,7 @@ const useCases = [
       'Define your ICP, find and enrich leads, then run warming + nurturing workflows and route positive signals into your pipeline—without spamming or burning accounts.',
     icon: Workflow,
     metrics: '10 qualified prospects/day',
-    href: 'https://nexiuslabs.com/downloads/linkedin-growth-playbook-combined.pdf',
+    href: '/solutions/icp-growth-engine',
   },
 ] as const;
 
@@ -494,14 +497,19 @@ function HomePage() {
           </div>
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
             {useCases.map((useCase) => {
-              const Wrapper: React.ElementType = (useCase as any).href ? 'a' : 'div';
-              const wrapperProps: any = (useCase as any).href
-                ? {
-                    href: (useCase as any).href,
-                    target: '_blank',
-                    rel: 'noopener noreferrer',
-                    'aria-label': `Open: ${useCase.title}`,
-                  }
+              const href = (useCase as any).href as string | undefined;
+              const isInternal = href && href.startsWith('/');
+
+              const Wrapper: React.ElementType = href ? (isInternal ? Link : 'a') : 'div';
+              const wrapperProps: any = href
+                ? isInternal
+                  ? { to: href, 'aria-label': `Open: ${useCase.title}` }
+                  : {
+                      href,
+                      target: '_blank',
+                      rel: 'noopener noreferrer',
+                      'aria-label': `Open: ${useCase.title}`,
+                    }
                 : {};
 
               return (
@@ -520,7 +528,7 @@ function HomePage() {
                     <div className="inline-flex items-center px-3 py-1 rounded-full text-sm font-medium bg-nexius-teal/10 text-nexius-teal">
                       {useCase.metrics}
                     </div>
-                    {(useCase as any).href ? (
+                    {href ? (
                       <span className="text-sm text-nexius-teal/80 group-hover:text-nexius-teal inline-flex items-center">
                         Learn more <ArrowRight className="ml-1 h-4 w-4" />
                       </span>
@@ -700,6 +708,12 @@ export default function App() {
         <Route path="/links" element={<LinksPage />} />
         <Route path="/playbook" element={<PlaybookLanding />} />
         <Route path="/book-assessment" element={<BookAssessment />} />
+
+        {/* Solutions */}
+        <Route path="/solutions/daisy-accounting" element={<SolutionDaisyAccounting />} />
+        <Route path="/solutions/crm-touchpoints" element={<SolutionCrmTouchpoints />} />
+        <Route path="/solutions/icp-growth-engine" element={<SolutionIcpEngine />} />
+
         <Route path="*" element={<NotFound />} />
       </Routes>
 
