@@ -803,6 +803,16 @@ export default function App() {
 
   const shouldShowNav = location.pathname !== '/links';
 
+  // Scroll restoration: React Router SPA keeps scroll position by default.
+  // Ensure route navigations (e.g., homepage → solution page) start at top.
+  useEffect(() => {
+    try {
+      window.scrollTo({ top: 0, left: 0, behavior: 'instant' as ScrollBehavior });
+    } catch {
+      window.scrollTo(0, 0);
+    }
+  }, [location.pathname]);
+
   useEffect(() => {
     supabase.auth.getSession().then(() => {
       setAuthChecked(true);
