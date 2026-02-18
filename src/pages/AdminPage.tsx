@@ -27,6 +27,7 @@ import {
   X,
   ChevronLeft,
   ChevronRight,
+  TrendingUp,
 } from 'lucide-react';
 import { ImageUpload } from '../components/ImageUpload';
 import { ArticleEditor } from '../components/ArticleEditor';
@@ -35,6 +36,7 @@ import type { Image, Article, Lead, ChatSession, ChatMessage } from '../types/da
 const SECTIONS = [
   { id: 'images', name: 'Images', Icon: ImageIcon, description: 'Upload and manage your website images.' },
   { id: 'articles', name: 'Articles', Icon: FileText, description: 'Create and manage your blog articles.' },
+  { id: 'analytics', name: 'Analytics', Icon: TrendingUp, description: 'View key growth and experiment metrics.' },
   { id: 'store', name: 'Store', Icon: ShoppingCart, description: 'Manage your products, categories, and orders.' },
   { id: 'courses', name: 'Courses', Icon: GraduationCap, description: 'Create and manage your online courses.' },
   { id: 'case-studies', name: 'Case Studies', Icon: BookOpen, description: 'Share your success stories and client results.' },
@@ -62,6 +64,12 @@ const EmptyState = ({ section, actionButton }: { section: typeof SECTIONS[0], ac
 export default function AdminPage() {
   const [session, setSession] = useState(null);
   const [activeSection, setActiveSection] = useState('images');
+
+  // Hero A/B stats
+  const [heroStatsDays, setHeroStatsDays] = useState(14);
+  const [heroStats, setHeroStats] = useState<any>(null);
+  const [heroStatsLoading, setHeroStatsLoading] = useState(false);
+  const [heroStatsError, setHeroStatsError] = useState<string | null>(null);
   const [editingImage, setEditingImage] = useState<Image | null>(null);
   const [isNavCollapsed, setIsNavCollapsed] = useState(false);
   const [images, setImages] = useState<Image[]>([]);
@@ -108,6 +116,21 @@ export default function AdminPage() {
     return () => subscription.unsubscribe();
   }, []); // eslint-disable-line react-hooks/exhaustive-deps
 
+  const loadHeroStats = async (days: number) => {
+    setHeroStatsLoading(true);
+    setHeroStatsError(null);
+    try {
+      const res = await fetch(`/.netlify/functions/hero-ab-stats?days=${encodeURIComponent(days)}`);
+      const json = await res.json();
+      if (!res.ok) throw new Error(json?.error || 'Failed to load hero A/B stats');
+      setHeroStats(json);
+    } catch (err: any) {
+      setHeroStatsError(err?.message || String(err));
+    } finally {
+      setHeroStatsLoading(false);
+    }
+  };
+
   const loadData = async () => {
     try {
       setLoading(true);
@@ -118,6 +141,8 @@ export default function AdminPage() {
         loadChatSessions(),
         loadEvents(),
       ]);
+      // Analytics is lightweight; load opportunistically
+      loadHeroStats(heroStatsDays);
     } finally {
       setLoading(false);
     }
@@ -376,6 +401,20 @@ export default function AdminPage() {
             <Plus className="h-5 w-5 mr-2" />
             Create Article
           </button>
+        );
+        break;
+
+      case 'analytics':
+        actionButton = (
+          <div className="space-y-3">
+            <p className="text-sm text-gray-500">Hero A/B/C stats will appear here once events start flowing.</p>
+            <button
+              onClick={() => loadHeroStats(heroStatsDays)}
+              className="inline-flex items-center px-4 py-2 border border-transparent rounded-lg shadow-sm text-sm font-medium text-white bg-nexius-teal hover:bg-nexius-teal/90 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-nexius-teal"
+            >
+              Refresh Hero Stats
+            </button>
+          </div>
         );
         break;
 
@@ -683,6 +722,99 @@ export default function AdminPage() {
             </div>
           </div>
         );
+
+      case 'analytics': {
+        return (
+          <div className="space-y-6">
+            <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3">
+              <div>
+                <h2 className="text-xl font-semibold text-nexius-dark-text">Analytics</h2>
+                <p className="text-sm text-nexius-dark-text-muted">Hero A/B/C experiment performance (views + CTA clicks)</p>
+              </div>
+
+              <div className="flex items-center gap-2">
+                <label className="text-sm text-nexius-dark-text-muted">Window</label>
+                <select
+                  value={heroStatsDays}
+                  onChange={(e) => {
+                    const v = Number(e.target.value);
+                    setHeroStatsDays(v);
+                    loadHeroStats(v);
+                  }}
+                  className="bg-nexius-dark-surface border border-nexius-dark-border text-nexius-dark-text rounded-lg px-3 py-2 text-sm"
+                >
+                  <option value={7}>Last 7 days</option>
+                  <option value={14}>Last 14 days</option>
+                  <option value={30}>Last 30 days</option>
+                </select>
+                <button
+                  onClick={() => loadHeroStats(heroStatsDays)}
+                  className="inline-flex items-center px-3 py-2 rounded-lg bg-nexius-teal text-white text-sm font-semibold hover:bg-nexius-teal/90"
+                >
+                  Refresh
+                </button>
+              </div>
+            </div>
+
+            {heroStatsError ? (
+              <div className="p-4 rounded-lg border border-red-500/30 bg-red-500/10 text-red-200 text-sm">
+                Failed to load hero stats: {heroStatsError}
+              </div>
+            ) : heroStatsLoading ? (
+              <div className="p-4 rounded-lg border border-nexius-dark-border bg-nexius-dark-surface text-nexius-dark-text-muted">
+                Loading…
+              </div>
+            ) : heroStats ? (
+              <div className="bg-nexius-dark-surface rounded-lg border border-nexius-dark-border overflow-hidden">
+                <div className="p-4 border-b border-nexius-dark-border text-sm text-nexius-dark-text-muted">
+                  Total rows: {heroStats?.totals?.rows ?? 0} • Views: {heroStats?.totals?.views ?? 0} • Clicks: {heroStats?.totals?.clicks ?? 0}
+                </div>
+
+                <div className="overflow-x-auto">
+                  <table className="min-w-full divide-y divide-nexius-dark-border">
+                    <thead className="bg-black/10">
+                      <tr>
+                        <th className="px-6 py-3 text-left text-xs font-medium text-nexius-dark-text-muted uppercase tracking-wider">Variant</th>
+                        <th className="px-6 py-3 text-left text-xs font-medium text-nexius-dark-text-muted uppercase tracking-wider">Views</th>
+                        <th className="px-6 py-3 text-left text-xs font-medium text-nexius-dark-text-muted uppercase tracking-wider">CTA Clicks</th>
+                        <th className="px-6 py-3 text-left text-xs font-medium text-nexius-dark-text-muted uppercase tracking-wider">CTR</th>
+                        <th className="px-6 py-3 text-left text-xs font-medium text-nexius-dark-text-muted uppercase tracking-wider">Clicks by CTA</th>
+                      </tr>
+                    </thead>
+                    <tbody className="divide-y divide-nexius-dark-border">
+                      {(heroStats?.variants || []).map((v: any) => (
+                        <tr key={v.variant} className="hover:bg-white/5">
+                          <td className="px-6 py-4 whitespace-nowrap text-sm text-nexius-dark-text font-semibold">{v.variant}</td>
+                          <td className="px-6 py-4 whitespace-nowrap text-sm text-nexius-dark-text">{v.views}</td>
+                          <td className="px-6 py-4 whitespace-nowrap text-sm text-nexius-dark-text">{v.clicks}</td>
+                          <td className="px-6 py-4 whitespace-nowrap text-sm text-nexius-dark-text">{(v.ctr * 100).toFixed(2)}%</td>
+                          <td className="px-6 py-4 text-sm text-nexius-dark-text-muted">
+                            {v.clicksByCta && Object.keys(v.clicksByCta).length ? (
+                              <div className="flex flex-wrap gap-2">
+                                {Object.entries(v.clicksByCta).map(([cta, n]: any) => (
+                                  <span key={cta} className="inline-flex items-center px-2 py-1 rounded-full text-xs bg-white/5 border border-nexius-dark-border">
+                                    {cta}: {n}
+                                  </span>
+                                ))}
+                              </div>
+                            ) : (
+                              <span>—</span>
+                            )}
+                          </td>
+                        </tr>
+                      ))}
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+            ) : (
+              <div className="p-4 rounded-lg border border-nexius-dark-border bg-nexius-dark-surface text-nexius-dark-text-muted">
+                No data yet.
+              </div>
+            )}
+          </div>
+        );
+      }
 
       case 'store':
         return renderEmptyState(section);
