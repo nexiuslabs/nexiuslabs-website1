@@ -143,25 +143,28 @@ const benefits = [
 
 const testimonials = [
   {
-    quote: "NEXIUS Labs' AI automation solution has transformed our operations. What used to take our team hours now happens in minutes, and with better accuracy. This has allowed us to focus on strategic initiatives and growth.",
-    author: "Vincent Sim",
-    title: "Operations Director",
-    company: "Serial Company",
-    image: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&q=80&w=150&h=150",
+    quote:
+      'We went from being constrained by manual bookkeeping throughput to a workflow where AI handles the repetitive work end-to-end. Our team now focuses on review, client communication, and growth.',
+    author: 'Kate Yap',
+    title: '',
+    company: 'DAISY Accounting',
+    image: 'https://tueprsmyrebrfwrdlagk.supabase.co/storage/v1/object/public/website-images//kate_yap.jpeg',
   },
   {
-    quote: "The AI solution from NEXIUS Labs has revolutionized our accounting processes. Our team now focuses on analysis and strategy instead of manual data entry.",
-    author: "Kate Yap",
-    title: "CFO",
-    company: "Daisy Accounting",
-    image: "https://tueprsmyrebrfwrdlagk.supabase.co/storage/v1/object/public/website-images//kate_yap.jpeg",
+    quote:
+      'We used to rely on manual updates and memory. Now our touchpoints are captured consistently, so follow-ups are smoother and we don’t lose context when the pace picks up.',
+    author: 'Hui Fang Lee',
+    title: 'Founder',
+    company: 'Ouch Pte Ltd',
+    image: '/images/testimonials/hui-fang-lee.jpg',
   },
   {
-    quote: "NEXIUS Labs' AI solution has transformed how we understand and serve our customers. The results have exceeded our expectations.",
-    author: "Michael Zhang",
-    title: "CEO",
-    company: "GreenCart",
-    image: "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?auto=format&fit=crop&q=80&w=150&h=150",
+    quote:
+      'The biggest difference is consistency. The system keeps the pipeline warm every day, and I only step in when someone signals interest. It’s a much cleaner way to grow without burning my network.',
+    author: 'Tze Sian Yeo',
+    title: 'Independent Financial Advisor',
+    company: '',
+    image: '/images/testimonials/tze-sian-yeo.jpg',
   },
 ];
 
