@@ -13,7 +13,7 @@ const getSupabaseClient = async () => {
   return mod.createClient(url, key, { auth: { persistSession: false } });
 };
 
-exports.handler = async (event) => {
+export const handler = async (event) => {
   try {
     if (event.httpMethod !== 'GET') {
       return { statusCode: 405, body: 'Method Not Allowed' };
