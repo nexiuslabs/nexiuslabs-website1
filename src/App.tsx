@@ -738,7 +738,8 @@ function HomePage() {
             Schedule A Call <Clock className="ml-2 h-5 w-5" />
           </a>
         </div>
-      </section>\r\n
+      </section>
+
       </div>
       <PlaybookCapture isOpen={showPlaybook} onClose={() => setShowPlaybook(false)} />
     </>

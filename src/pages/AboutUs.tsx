@@ -39,16 +39,8 @@ export function AboutUs() {
     <div className="min-h-screen bg-nexius-dark-bg">
       {/* Hero (layout inspired by the Dribbble reference: clean, spacious, preview-first) */}
       <div className="bg-nexius-navy">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-12 pb-10">
-          <Link
-            to="/"
-            className="inline-flex items-center text-white/80 hover:text-white transition-colors"
-          >
-            <ArrowLeft className="h-5 w-5 mr-2" />
-            Back to Home
-          </Link>
-
-          <div className="mt-8 grid lg:grid-cols-12 gap-10 items-start">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-20 pb-10">
+          <div className="grid lg:grid-cols-12 gap-10 items-start">
             <div className="lg:col-span-6">
               <div className="inline-flex items-center gap-2 text-xs uppercase tracking-widest text-white/70 bg-white/5 border border-white/10 rounded-full px-3 py-1">
                 <Sparkles className="h-4 w-4 text-nexius-teal" />

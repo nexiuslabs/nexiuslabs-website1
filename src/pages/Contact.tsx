@@ -42,16 +42,8 @@ export function Contact() {
     <div className="min-h-screen bg-nexius-dark-bg">
       {/* Banner (layout inspired by the provided reference) */}
       <div className="bg-nexius-navy">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
-          <Link
-            to="/"
-            className="inline-flex items-center text-white/80 hover:text-white transition-colors"
-          >
-            <ArrowLeft className="h-5 w-5 mr-2" />
-            Back to Home
-          </Link>
-
-          <div className="mt-8 rounded-3xl border border-white/10 bg-gradient-to-r from-nexius-teal/20 via-white/5 to-transparent px-6 py-10 md:px-10 md:py-12">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-20 pb-12">
+          <div className="rounded-3xl border border-white/10 bg-gradient-to-r from-nexius-teal/20 via-white/5 to-transparent px-6 py-10 md:px-10 md:py-12">
             <div className="inline-flex items-center gap-2 text-xs uppercase tracking-widest text-white/80 bg-white/5 border border-white/10 rounded-full px-3 py-1">
               <MessageSquare className="h-4 w-4 text-nexius-teal" />
               Write to us

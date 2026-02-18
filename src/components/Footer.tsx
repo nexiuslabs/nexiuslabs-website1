@@ -1,5 +1,14 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import { Facebook, Instagram, Linkedin, Twitter, Youtube } from 'lucide-react';
+
+const SOCIAL_LINKS = {
+  facebook: 'https://www.facebook.com/nexiuslabs',
+  instagram: 'https://www.instagram.com/nexiuslabs',
+  linkedin: 'https://www.linkedin.com/company/105886234/',
+  x: 'https://x.com/nexiuslabs',
+  youtube: 'https://www.youtube.com/@nexiuslabs',
+} as const;
 
 export function Footer() {
   const scrollToTop = () => {
@@ -30,9 +39,59 @@ export function Footer() {
               />
               <span className="ml-2 text-lg font-bold group-hover:text-nexius-teal transition-colors">NEXIUS Labs</span>
             </button>
+
             <p className="text-sm">
               AI Business Automation for Small Businesses and SMEs in Singapore
             </p>
+
+            {/* Social */}
+            <div className="mt-5 flex items-center gap-4">
+              <a
+                href={SOCIAL_LINKS.facebook}
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label="Nexius Labs on Facebook"
+                className="text-nexius-dark-text-muted hover:text-white transition-colors"
+              >
+                <Facebook className="h-5 w-5" />
+              </a>
+              <a
+                href={SOCIAL_LINKS.instagram}
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label="Nexius Labs on Instagram"
+                className="text-nexius-dark-text-muted hover:text-white transition-colors"
+              >
+                <Instagram className="h-5 w-5" />
+              </a>
+              <a
+                href={SOCIAL_LINKS.linkedin}
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label="Nexius Labs on LinkedIn"
+                className="text-nexius-dark-text-muted hover:text-white transition-colors"
+              >
+                <Linkedin className="h-5 w-5" />
+              </a>
+              <a
+                href={SOCIAL_LINKS.x}
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label="Nexius Labs on X"
+                className="text-nexius-dark-text-muted hover:text-white transition-colors"
+              >
+                <Twitter className="h-5 w-5" />
+              </a>
+              <a
+                href={SOCIAL_LINKS.youtube}
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label="Nexius Labs on YouTube"
+                className="text-nexius-dark-text-muted hover:text-white transition-colors"
+              >
+                <Youtube className="h-5 w-5" />
+              </a>
+            </div>
           </div>
 
           <div>
