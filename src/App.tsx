@@ -38,6 +38,10 @@ import { BlogPost } from './pages/BlogPost';
 import { LinksPage } from './pages/LinksPage';
 import { AIIgnite } from './pages/AIIgnite';
 import { PrivacyPolicy } from './pages/PrivacyPolicy';
+import { AboutUs } from './pages/AboutUs';
+import { Contact } from './pages/Contact';
+import { TermsOfService } from './pages/TermsOfService';
+import { CookiePolicy } from './pages/CookiePolicy';
 import { Events } from './pages/Events';
 import { NotFound } from './pages/NotFound';
 import { Chat } from './components/Chat';
@@ -764,14 +768,14 @@ function HomePage() {
               <ul className="space-y-2">
                 <li><a href="#services" className="hover:text-white transition-colors">Services</a></li>
                 <li><a href="#benefits" className="hover:text-white transition-colors">Benefits</a></li>
-                <li><a href="#" className="hover:text-white transition-colors">Security</a></li>
+                <li><Link to="/blog" className="hover:text-white transition-colors">Blog</Link></li>
               </ul>
             </div>
             <div>
               <h3 className="text-nexius-dark-text font-semibold mb-4">Company</h3>
               <ul className="space-y-2">
-                <li><a href="#" className="hover:text-white transition-colors">About Us</a></li>
-                <li><a href="#" className="hover:text-white transition-colors">Contact</a></li>
+                <li><Link to="/about" className="hover:text-white transition-colors">About Us</Link></li>
+                <li><Link to="/contact" className="hover:text-white transition-colors">Contact</Link></li>
                 <li><Link to="/case-studies" className="hover:text-white transition-colors">Case Studies</Link></li>
               </ul>
             </div>
@@ -779,8 +783,8 @@ function HomePage() {
               <h3 className="text-nexius-dark-text font-semibold mb-4">Legal</h3>
               <ul className="space-y-2">
                 <li><Link to="/privacy" className="hover:text-white transition-colors">Privacy Policy</Link></li>
-                <li><a href="#" className="hover:text-white transition-colors">Terms of Service</a></li>
-                <li><a href="#" className="hover:text-white transition-colors">Cookie Policy</a></li>
+                <li><Link to="/terms" className="hover:text-white transition-colors">Terms of Service</Link></li>
+                <li><Link to="/cookies" className="hover:text-white transition-colors">Cookie Policy</Link></li>
               </ul>
             </div>
           </div>
@@ -846,6 +850,10 @@ export default function App() {
         <Route path="/admin" element={<AdminPage />} />
         <Route path="/ai-ignite" element={<AIIgnite />} />
         <Route path="/privacy" element={<PrivacyPolicy />} />
+        <Route path="/about" element={<AboutUs />} />
+        <Route path="/contact" element={<Contact />} />
+        <Route path="/terms" element={<TermsOfService />} />
+        <Route path="/cookies" element={<CookiePolicy />} />
         <Route path="/event/:slug" element={<EventDetail />} />
         <Route path="/events" element={<Events />} />
         <Route path="/links" element={<LinksPage />} />
