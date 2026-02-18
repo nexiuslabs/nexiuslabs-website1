@@ -146,7 +146,7 @@ const testimonials = [
     quote:
       'We went from being constrained by manual bookkeeping throughput to a workflow where AI handles the repetitive work end-to-end. Our team now focuses on review, client communication, and growth.',
     author: 'Kate Yap',
-    title: '',
+    title: 'Co-Founder',
     company: 'DAISY Accounting',
     image: 'https://tueprsmyrebrfwrdlagk.supabase.co/storage/v1/object/public/website-images//kate_yap.jpeg',
   },
