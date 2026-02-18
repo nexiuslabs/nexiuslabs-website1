@@ -88,7 +88,7 @@ export function SolutionDaisyAccounting() {
 
       <section className="py-16">
         <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
-          <h2 className="text-2xl font-display font-bold tracking-tight">Testimonial (draft)</h2>
+          <h2 className="text-2xl font-display font-bold tracking-tight">Testimonial</h2>
           <div className="mt-6 p-8 bg-nexius-dark-card rounded-xl border border-nexius-dark-border">
             <p className="text-lg text-white leading-relaxed">
               “We went from being constrained by manual bookkeeping throughput to a workflow where AI handles the repetitive work end-to-end.
