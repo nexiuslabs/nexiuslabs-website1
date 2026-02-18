@@ -70,42 +70,30 @@ const features = [
 
 const useCases = [
   {
-    title: 'Document Processing',
-    description: 'Automate data extraction from invoices, receipts, and forms with AI-powered OCR.',
-    icon: FileText,
-    metrics: '60% faster processing',
+    title: '90% Hands-Off Accounting (DAISY Accounting)',
+    description:
+      'End-to-end bookkeeping workflows run by AI agents: capture source docs, categorize, reconcile, and prepare month-end packs with human review only when needed.',
+    icon: BarChart3,
+    metrics: 'Up to ~90% hands-off',
+    href: 'https://www.nexiuslabs.com/',
   },
   {
-    title: 'Financial Analysis',
-    description: 'AI-driven insights for better financial decision-making and forecasting.',
-    icon: TrendingUp,
-    metrics: '85% accuracy rate',
-  },
-  {
-    title: 'Customer Service',
-    description: 'Intelligent chatbots and automation for 24/7 customer support.',
-    icon: Users,
-    metrics: '3x faster response time',
-  },
-  {
-    title: 'Data Management',
-    description: 'Smart data organization and analysis for better business insights.',
+    title: 'CRM Touchpoints Auto-Recording (Agentic CRM)',
+    description:
+      'Every meaningful interaction becomes structured CRM memory—email, WhatsApp, LinkedIn—so follow-ups and pipeline hygiene stop depending on humans remembering.',
     icon: Database,
-    metrics: '50% less manual work',
+    metrics: 'No lost context',
+    href: 'https://nexiuslabs.com/featured/crm-playbook',
   },
   {
-    title: 'Process Automation',
-    description: 'Streamline repetitive tasks with intelligent workflow automation.',
-    icon: Settings,
-    metrics: '40% cost reduction',
+    title: 'ICP → Leads → Warm → Nurture (Growth Engine)',
+    description:
+      'Define your ICP, find and enrich leads, then run warming + nurturing workflows and route positive signals into your pipeline—without spamming or burning accounts.',
+    icon: Workflow,
+    metrics: '10 qualified prospects/day',
+    href: 'https://nexiuslabs.com/downloads/linkedin-growth-playbook-combined.pdf',
   },
-  {
-    title: 'Innovation Strategy',
-    description: 'AI-powered insights to drive product and service innovation.',
-    icon: Lightbulb,
-    metrics: '2x faster development',
-  },
-];
+] as const;
 
 const benefits = [
   {
@@ -505,19 +493,42 @@ function HomePage() {
             </p>
           </div>
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {useCases.map((useCase) => (
-              <div key={useCase.title} className="group p-6 bg-nexius-dark-card rounded-xl border border-nexius-dark-border hover:border-nexius-teal/50 hover:shadow-lg transition-all">
-                <div className="relative inline-block">
-                  <div className="absolute -inset-2 bg-nexius-teal/20 rounded-lg blur opacity-0 group-hover:opacity-100 transition-opacity"></div>
-                  <useCase.icon className="relative h-12 w-12 text-nexius-teal mb-4" />
-                </div>
-                <h3 className="text-xl font-semibold text-white mb-2">{useCase.title}</h3>
-                <p className="text-nexius-dark-text-muted mb-4">{useCase.description}</p>
-                <div className="inline-flex items-center px-3 py-1 rounded-full text-sm font-medium bg-nexius-teal/10 text-nexius-teal">
-                  {useCase.metrics}
-                </div>
-              </div>
-            ))}
+            {useCases.map((useCase) => {
+              const Wrapper: React.ElementType = (useCase as any).href ? 'a' : 'div';
+              const wrapperProps: any = (useCase as any).href
+                ? {
+                    href: (useCase as any).href,
+                    target: '_blank',
+                    rel: 'noopener noreferrer',
+                    'aria-label': `Open: ${useCase.title}`,
+                  }
+                : {};
+
+              return (
+                <Wrapper
+                  key={useCase.title}
+                  {...wrapperProps}
+                  className="group p-6 bg-nexius-dark-card rounded-xl border border-nexius-dark-border hover:border-nexius-teal/50 hover:shadow-lg transition-all block"
+                >
+                  <div className="relative inline-block">
+                    <div className="absolute -inset-2 bg-nexius-teal/20 rounded-lg blur opacity-0 group-hover:opacity-100 transition-opacity"></div>
+                    <useCase.icon className="relative h-12 w-12 text-nexius-teal mb-4" />
+                  </div>
+                  <h3 className="text-xl font-semibold text-white mb-2">{useCase.title}</h3>
+                  <p className="text-nexius-dark-text-muted mb-4">{useCase.description}</p>
+                  <div className="flex items-center justify-between gap-4">
+                    <div className="inline-flex items-center px-3 py-1 rounded-full text-sm font-medium bg-nexius-teal/10 text-nexius-teal">
+                      {useCase.metrics}
+                    </div>
+                    {(useCase as any).href ? (
+                      <span className="text-sm text-nexius-teal/80 group-hover:text-nexius-teal inline-flex items-center">
+                        Learn more <ArrowRight className="ml-1 h-4 w-4" />
+                      </span>
+                    ) : null}
+                  </div>
+                </Wrapper>
+              );
+            })}
           </div>
         </div>
       </section>
