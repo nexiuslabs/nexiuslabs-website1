@@ -9,7 +9,15 @@ const SUPABASE_ANON_KEY = process.env.VITE_SUPABASE_ANON_KEY || process.env.SUPA
 
 let supabase = null;
 if (SUPABASE_URL && SUPABASE_ANON_KEY) {
-  supabase = createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
+  try {
+    // Validate URL to avoid hard-failing builds when env vars are misconfigured.
+    // (e.g., masked/invalid URL in certain build contexts)
+    new URL(SUPABASE_URL);
+    supabase = createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
+  } catch (e) {
+    console.warn('Invalid Supabase URL. Generating sitemap with static routes only.');
+    supabase = null;
+  }
 } else {
   console.warn('Missing Supabase credentials. Generating sitemap with static routes only.');
 }
@@ -54,6 +62,13 @@ async function generate() {
   urls.push(buildUrl(`${SITE_URL}/blog`, today, 'weekly', '0.8'));
   urls.push(buildUrl(`${SITE_URL}/case-studies`, today, 'weekly', '0.8'));
   urls.push(buildUrl(`${SITE_URL}/events`, today, 'weekly', '0.8'));
+  urls.push(buildUrl(`${SITE_URL}/book-assessment`, today, 'weekly', '0.7'));
+  urls.push(buildUrl(`${SITE_URL}/case-study-agentic-erp-crm-mvp`, today, 'monthly', '0.6'));
+
+  // Solution pages (flagship commercial pages)
+  urls.push(buildUrl(`${SITE_URL}/solutions/daisy-accounting`, today, 'weekly', '0.8'));
+  urls.push(buildUrl(`${SITE_URL}/solutions/crm-touchpoints`, today, 'weekly', '0.8'));
+  urls.push(buildUrl(`${SITE_URL}/solutions/icp-growth-engine`, today, 'weekly', '0.8'));
 
   // Dynamic content
   for (const article of articles) {
