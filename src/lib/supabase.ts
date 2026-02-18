@@ -32,7 +32,19 @@ const retryOperation = async (operation: () => Promise<unknown>, maxRetries = 3)
   }
 };
 
-const hasSupabaseConfig = Boolean(supabaseUrl && supabaseAnonKey);
+const hasSupabaseConfig = (() => {
+  if (!supabaseUrl || !supabaseAnonKey) return false;
+  try {
+    const u = new URL(supabaseUrl);
+    if (!/^https?:$/.test(u.protocol)) return false;
+    // basic sanity; allow custom domains but require a hostname
+    if (!u.hostname) return false;
+    if (supabaseAnonKey.length < 50) return false;
+    return true;
+  } catch {
+    return false;
+  }
+})();
 
 // Initialize storage with fallback
 
