@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useMemo } from 'react';
 import { Link, Routes, Route, Navigate } from 'react-router-dom';
 import { supabase } from './lib/supabase';
 import {
@@ -268,6 +268,87 @@ function Navigation({ onContactClick }: { onContactClick: () => void }) {
 
 function HomePage() {
   const [showPlaybook, setShowPlaybook] = useState(false);
+
+  // Hero A/B/C test (Option 1: client-side assignment + lightweight event logging)
+  const heroVariant = useMemo<'A' | 'B' | 'C'>(() => {
+    try {
+      const params = new URLSearchParams(window.location.search);
+      const override = params.get('hero_ab');
+      if (override === 'A' || override === 'B' || override === 'C') return override;
+
+      const key = 'hero_ab_v1';
+      const stored = window.localStorage.getItem(key);
+      if (stored === 'A' || stored === 'B' || stored === 'C') return stored;
+
+      const r = Math.random();
+      const v: 'A' | 'B' | 'C' = r < 1 / 3 ? 'A' : r < 2 / 3 ? 'B' : 'C';
+      window.localStorage.setItem(key, v);
+      return v;
+    } catch {
+      // If storage is blocked, fall back to A.
+      return 'A';
+    }
+  }, []);
+
+  const heroSessionId = useMemo(() => {
+    try {
+      const key = 'hero_ab_session_v1';
+      const stored = window.sessionStorage.getItem(key);
+      if (stored) return stored;
+      const id = `${Date.now().toString(36)}-${Math.random().toString(36).slice(2, 10)}`;
+      window.sessionStorage.setItem(key, id);
+      return id;
+    } catch {
+      return undefined;
+    }
+  }, []);
+
+  const heroConfig = useMemo(() => {
+    // A: Option 1 — “...that scales without {…}”
+    // B: Option 8 — “...to run {…} on autopilot (with controls)”
+    // C: Option 11 — “...that stops {…} from breaking as you scale”
+    if (heroVariant === 'B') {
+      return {
+        prefix: '…to run ',
+        texts: ['accounting', 'CRM touchpoints', 'ICP prospecting', 'follow-ups', 'reporting', 'back office ops'],
+        suffix: ' on autopilot (with controls)',
+      };
+    }
+
+    if (heroVariant === 'C') {
+      return {
+        prefix: '…that stops ',
+        texts: ['month-end', 'follow-ups', 'CRM hygiene', 'handoffs', 'client experience', 'capacity'],
+        suffix: ' from breaking as you scale',
+      };
+    }
+
+    return {
+      prefix: '…that scales without ',
+      texts: ['more headcount', 'more admin', 'more chaos', 'more overhead', 'more late nights', 'more spreadsheets'],
+      suffix: '',
+    };
+  }, [heroVariant]);
+
+  useEffect(() => {
+    // Fire-and-forget impression event
+    try {
+      fetch('/.netlify/functions/hero-ab-event', {
+        method: 'POST',
+        headers: { 'content-type': 'application/json' },
+        body: JSON.stringify({
+          event: 'hero_variant_view',
+          variant: heroVariant,
+          path: window.location.pathname,
+          ref: document.referrer || undefined,
+          sessionId: heroSessionId,
+        }),
+        keepalive: true,
+      }).catch(() => {});
+    } catch {
+      // ignore
+    }
+  }, [heroVariant, heroSessionId]);
   const scrollToTop = () => {
     window.scrollTo({
       top: 0,
@@ -361,9 +442,10 @@ function HomePage() {
           <div className="text-center">
             <h1 className="relative text-5xl font-display font-extrabold text-white mb-6 tracking-tight">
               <span className="block">AI Business Automation for SMEs</span>
-              <span className="block mt-2">More customers ≠ more{' '}
+              <span className="block mt-2">
+                {heroConfig.prefix}
                 <RotatingText
-                  texts={['admin work', 'headcount', 'costs', 'chaos', 'spreadsheets', 'late nights']}
+                  texts={heroConfig.texts}
                   mainClassName="px-2 sm:px-2 md:px-3 bg-nexius-teal text-white overflow-hidden py-0.5 sm:py-1 md:py-2 justify-center rounded-lg inline-flex"
                   staggerFrom="last"
                   initial={{ y: "100%" }}
@@ -374,6 +456,7 @@ function HomePage() {
                   transition={{ type: "spring", damping: 30, stiffness: 400 }}
                   rotationInterval={2000}
                 />
+                {heroConfig.suffix}
               </span>
             </h1>
             <p className="relative text-xl font-body text-white/80 mb-8 max-w-3xl mx-auto leading-relaxed">
@@ -382,6 +465,21 @@ function HomePage() {
             <div className="relative flex justify-center gap-4">
               <button 
                 onClick={() => {
+                  try {
+                    fetch('/.netlify/functions/hero-ab-event', {
+                      method: 'POST',
+                      headers: { 'content-type': 'application/json' },
+                      body: JSON.stringify({
+                        event: 'hero_cta_click',
+                        cta: 'assessment',
+                        variant: heroVariant,
+                        path: window.location.pathname,
+                        sessionId: heroSessionId,
+                      }),
+                      keepalive: true,
+                    }).catch(() => {});
+                  } catch {}
+
                   const contactButton = document.querySelector('button[data-contact="true"]');
                   if (contactButton instanceof HTMLButtonElement) {
                     contactButton.click();
@@ -393,6 +491,21 @@ function HomePage() {
               </button>
               <button 
                 onClick={() => {
+                  try {
+                    fetch('/.netlify/functions/hero-ab-event', {
+                      method: 'POST',
+                      headers: { 'content-type': 'application/json' },
+                      body: JSON.stringify({
+                        event: 'hero_cta_click',
+                        cta: 'see_what_it_automates',
+                        variant: heroVariant,
+                        path: window.location.pathname,
+                        sessionId: heroSessionId,
+                      }),
+                      keepalive: true,
+                    }).catch(() => {});
+                  } catch {}
+
                   const useCasesSection = document.getElementById('use-cases');
                   if (useCasesSection) {
                     useCasesSection.scrollIntoView({ behavior: 'smooth' });
@@ -412,7 +525,24 @@ function HomePage() {
               <p className="text-white font-semibold mb-2">📘 Free: AI Automation Playbook for SMEs</p>
               <p className="text-white/60 text-sm mb-4">5 workflows you can automate this week — no coding required.</p>
               <button
-                onClick={() => setShowPlaybook(true)}
+                onClick={() => {
+                  try {
+                    fetch('/.netlify/functions/hero-ab-event', {
+                      method: 'POST',
+                      headers: { 'content-type': 'application/json' },
+                      body: JSON.stringify({
+                        event: 'hero_cta_click',
+                        cta: 'playbook_modal',
+                        variant: heroVariant,
+                        path: window.location.pathname,
+                        sessionId: heroSessionId,
+                      }),
+                      keepalive: true,
+                    }).catch(() => {});
+                  } catch {}
+
+                  setShowPlaybook(true);
+                }}
                 className="inline-flex items-center bg-nexius-teal text-white px-5 py-2.5 rounded-lg hover:bg-nexius-teal/90 transition-colors font-display font-semibold tracking-wide uppercase text-xs"
               >
                 Get the Playbook <ArrowRight className="ml-2 h-4 w-4" />
