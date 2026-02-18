@@ -69,17 +69,17 @@ export async function createChatSession(data: {
 
     // Send notification to admins
     try {
-      await fetch(`${import.meta.env.VITE_SUPABASE_URL}/functions/v1/notify-new-chat`, {
+      await fetch(`/.netlify/functions/notify-new-chat`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
-          'Authorization': `Bearer ${import.meta.env.VITE_SUPABASE_ANON_KEY}`,
         },
         body: JSON.stringify({ session }),
       }).then(async (response) => {
         if (!response.ok) {
-          const error = await response.json();
-          console.warn('Admin notification not sent:', error);
+          let error = null;
+          try { error = await response.json(); } catch {}
+          console.warn('Admin notification not sent:', error || response.statusText);
         }
       });
     } catch {

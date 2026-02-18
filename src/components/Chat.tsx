@@ -151,17 +151,15 @@ export function Chat() {
       
       try {
         // Get AI response
-        const response = await fetch(`${import.meta.env.VITE_SUPABASE_URL}/functions/v1/chat-ai`, {
+        const response = await fetch(`/.netlify/functions/chat-ai`, {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json',
-            'Authorization': `Bearer ${import.meta.env.VITE_SUPABASE_ANON_KEY}`,
-            'x-client-info': 'chat-widget'
           },
           body: JSON.stringify({
             message: trimmedMessage,
             sessionId,
-            visitorId
+            visitorId,
           }),
         });
 
