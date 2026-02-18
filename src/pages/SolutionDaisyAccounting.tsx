@@ -95,7 +95,7 @@ export function SolutionDaisyAccounting() {
               Our team now focuses on review, client communication, and growth.”
             </p>
             <p className="mt-4 text-nexius-dark-text-muted">
-              — Kate Yap (DAISY Accounting) <span className="text-white/50">• draft copy pending confirmation</span>
+              — Kate Yap (DAISY Accounting)
             </p>
           </div>
 

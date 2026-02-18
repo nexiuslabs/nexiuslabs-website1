@@ -75,7 +75,7 @@ export function SolutionIcpEngine() {
               It’s a much cleaner way to grow without burning my network.”
             </p>
             <p className="mt-4 text-nexius-dark-text-muted">
-              — Tze Sian Yeo (Independent Financial Advisor) <span className="text-white/50">• draft copy pending confirmation</span>
+              — Tze Sian Yeo (Independent Financial Advisor)
             </p>
           </div>
 

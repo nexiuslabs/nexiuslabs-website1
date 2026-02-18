@@ -2,38 +2,42 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import { ArrowRight, TrendingUp, Users, Target, Clock } from 'lucide-react';
 
-const caseStudies = [
+type CaseStudyCard = {
+  title: string;
+  description: string;
+  impact: string;
+  industry: string;
+  image: string;
+  href: string;
+};
+
+const caseStudies: CaseStudyCard[] = [
   {
-    id: 'sme-automation',
-    title: 'How an SME Reduced Manual Work by 60% with AI Automation',
-    description: 'A manufacturing company implemented our AI workflow automation solution, resulting in dramatic reduction in manual data entry and processing time.',
-    impact: '60% reduction in manual work',
-    industry: 'Manufacturing',
-    image: 'https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?auto=format&fit=crop&q=80&w=1600&h=900',
-  },
-  {
-    id: 'ai-accounting',
-    title: 'AI-Powered Accounting: Saving 20 Hours Per Week for Finance Teams',
-    description: 'Our AI solution automated invoice processing, reconciliation, and reporting for a mid-sized accounting firm, freeing up valuable time for strategic tasks.',
-    impact: '20 hours saved weekly',
-    industry: 'Finance',
+    title: '90% Hands-Off Accounting with AI Agents (DAISY Accounting)',
+    description:
+      'End-to-end bookkeeping workflows run by AI agents—so the team can take more clients, raise service quality, and grow without proportional headcount.',
+    impact: 'Up to ~90% hands-off',
+    industry: 'Accounting / Bookkeeping',
     image: 'https://images.unsplash.com/photo-1554224155-8d04cb21cd6c?auto=format&fit=crop&q=80&w=1600&h=900',
+    href: '/solutions/daisy-accounting',
   },
   {
-    id: 'agentic-erp-crm-mvp',
-    title: 'Case Study: Building an Agentic ERP/CRM MVP for an SME (Nexius Labs)',
-    description: 'How Nexius Labs built a practical Agentic ERP/CRM operating MVP with approval-first controls and measurable delivery cadence.',
-    impact: '2x faster response cadence',
-    industry: 'SME Operations',
-    image: '/images/case-study-agentic-erp-crm.svg',
+    title: 'CRM Touchpoints Auto-Recording (Ouch Pte Ltd)',
+    description:
+      'Automatically captures and summarizes multi-channel interactions into structured CRM touchpoints—so follow-ups are consistent and nothing falls through the cracks.',
+    impact: 'No lost context',
+    industry: 'Sales Ops / CRM',
+    image: 'https://images.unsplash.com/photo-1551836022-d5d88e9218df?auto=format&fit=crop&q=80&w=1600&h=900',
+    href: '/solutions/crm-touchpoints',
   },
   {
-    id: 'ecommerce-growth',
-    title: 'Scaling E-commerce: How AI Helped a Brand Increase Conversions by 35%',
-    description: 'An online retailer leveraged our AI-powered customer insights and automation platform to optimize their sales funnel and personalize customer experiences.',
-    impact: '35% increase in conversions',
-    industry: 'E-commerce',
-    image: 'https://images.unsplash.com/photo-1516321318423-f06f85e504b3?auto=format&fit=crop&q=80&w=1600&h=900',
+    title: 'ICP → Leads → Warm → Nurture Engine (Tze Sian Yeo, IFA)',
+    description:
+      'An end-to-end prospecting system: define ICP, source and enrich leads, warm up credibly, nurture on intent signals, and route positives into the pipeline.',
+    impact: '10 qualified prospects/day',
+    industry: 'Lead Gen / Growth Ops',
+    image: 'https://images.unsplash.com/photo-1553877522-43269d4ea984?auto=format&fit=crop&q=80&w=1600&h=900',
+    href: '/solutions/icp-growth-engine',
   },
 ];
 
@@ -82,11 +86,7 @@ export function CaseStudies() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
             {caseStudies.map((study) => (
-              <Link
-                key={study.id}
-                to={`/case-study/${study.id}`}
-                className="group block"
-              >
+              <Link key={study.title} to={study.href} className="group block">
                 <div className="bg-nexius-dark-surface rounded-xl overflow-hidden border border-nexius-dark-border hover:border-nexius-teal/50 hover:shadow-lg transition-all">
                   <div className="aspect-video relative overflow-hidden">
                     <img
@@ -98,7 +98,7 @@ export function CaseStudies() {
                     />
                     <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent" />
                     <div className="absolute bottom-4 left-4 right-4">
-                      <div className="flex items-center gap-2 mb-2">
+                      <div className="flex flex-wrap items-center gap-2 mb-2">
                         <span className="inline-flex items-center px-3 py-1 rounded-full text-sm font-medium bg-nexius-teal/20 text-white border border-white/20">
                           {study.industry}
                         </span>
@@ -112,11 +112,9 @@ export function CaseStudies() {
                     <h3 className="text-xl font-display font-bold text-white mb-3 group-hover:text-nexius-teal transition-colors">
                       {study.title}
                     </h3>
-                    <p className="text-nexius-dark-text-muted mb-4">
-                      {study.description}
-                    </p>
+                    <p className="text-nexius-dark-text-muted mb-4">{study.description}</p>
                     <div className="flex items-center text-nexius-teal font-medium">
-                      Read Case Study <ArrowRight className="ml-2 h-4 w-4 group-hover:translate-x-1 transition-transform" />
+                      Read <ArrowRight className="ml-2 h-4 w-4 group-hover:translate-x-1 transition-transform" />
                     </div>
                   </div>
                 </div>

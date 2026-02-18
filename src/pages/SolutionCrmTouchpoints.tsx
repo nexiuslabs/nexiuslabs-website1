@@ -102,7 +102,7 @@ export function SolutionCrmTouchpoints() {
               when the pace picks up.”
             </p>
             <p className="mt-4 text-nexius-dark-text-muted">
-              — Hui Fang Lee, Founder (Ouch Pte Ltd) <span className="text-white/50">• draft copy pending confirmation</span>
+              — Hui Fang Lee, Founder (Ouch Pte Ltd)
             </p>
           </div>
 
