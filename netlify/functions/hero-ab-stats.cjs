@@ -1,19 +1,19 @@
-// Netlify Function: Hero A/B test stats
+// Netlify Function (CJS): Hero A/B stats
 // Endpoint: /.netlify/functions/hero-ab-stats
 // Requires env:
 // - SUPABASE_URL
 // - SUPABASE_SERVICE_ROLE_KEY
 
-const getSupabaseClient = async () => {
+async function getSupabaseClient() {
   const url = process.env.SUPABASE_URL;
   const key = process.env.SUPABASE_SERVICE_ROLE_KEY;
   if (!url || !key) throw new Error('Missing SUPABASE_URL or SUPABASE_SERVICE_ROLE_KEY');
 
   const mod = await import('@supabase/supabase-js');
   return mod.createClient(url, key, { auth: { persistSession: false } });
-};
+}
 
-export const handler = async (event) => {
+exports.handler = async (event) => {
   try {
     if (event.httpMethod !== 'GET') {
       return { statusCode: 405, body: 'Method Not Allowed' };
@@ -36,17 +36,12 @@ export const handler = async (event) => {
 
     const counts = {};
     for (const v of variants) {
-      counts[v] = {
-        views: 0,
-        clicks: 0,
-        clicksByCta: {},
-      };
+      counts[v] = { views: 0, clicks: 0, clicksByCta: {} };
     }
 
     for (const r of rows) {
       const v = r.variant;
       if (!variants.includes(v)) continue;
-
       if (r.event === 'hero_variant_view') counts[v].views += 1;
       if (r.event === 'hero_cta_click') {
         counts[v].clicks += 1;
