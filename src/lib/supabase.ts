@@ -32,11 +32,10 @@ const retryOperation = async (operation: () => Promise<unknown>, maxRetries = 3)
   }
 };
 
-if (!supabaseUrl || !supabaseAnonKey) {
-  throw new Error('Missing required Supabase configuration');
-}
+const hasSupabaseConfig = Boolean(supabaseUrl && supabaseAnonKey);
 
 // Initialize storage with fallback
+
 const customStorage = {
   getItem: (key: string): string | null => {
     try {
@@ -67,22 +66,35 @@ const customStorage = {
   }
 };
 
-export const supabase = createClient(supabaseUrl, supabaseAnonKey, {
+const supabaseStub = {
   auth: {
-    autoRefreshToken: true,
-    persistSession: false,
-    detectSessionInUrl: true,
-    storage: customStorage,
-    storageKey: 'supabase-auth-token',
-    flowType: 'pkce'
+    getSession: async () => ({ data: { session: null }, error: null }),
+    onAuthStateChange: () => ({ data: { subscription: { unsubscribe: () => {} } } }),
+    signOut: async () => ({ error: null }),
   },
-  global: {
-    fetch: (...args) => {
-      return retryOperation(() => fetch(...args))
-        .catch((error) => {
-          handleSupabaseError(error);
-          throw error;
-        });
-    }
-  }
-});
+  from: () => {
+    throw new Error('Supabase is not configured (missing VITE_SUPABASE_URL / VITE_SUPABASE_ANON_KEY)');
+  },
+} as unknown as ReturnType<typeof createClient>;
+
+export const supabase = hasSupabaseConfig
+  ? createClient(supabaseUrl, supabaseAnonKey, {
+      auth: {
+        autoRefreshToken: true,
+        persistSession: false,
+        detectSessionInUrl: true,
+        storage: customStorage,
+        storageKey: 'supabase-auth-token',
+        flowType: 'pkce',
+      },
+      global: {
+        fetch: (...args) => {
+          return retryOperation(() => fetch(...args)).catch((error) => {
+            handleSupabaseError(error);
+            throw error;
+          });
+        },
+      },
+    })
+  : (console.warn('Supabase config missing: site will run in limited mode.'), supabaseStub);
+
