@@ -59,19 +59,21 @@ export function ContactForm({ isOpen, onClose }: ContactFormProps) {
     try {
       setLoading(true);
 
-      // Insert into Supabase
+      // Insert into Supabase (shared lead capture table)
+      const fullName = `${formData.firstName} ${formData.lastName}`.trim();
+      const companyHint = [formData.phone?.trim(), formData.message?.trim()]
+        .filter(Boolean)
+        .join(' | ') || null;
+
       const { error } = await supabase
-        .from('leads')
-        .insert([
-          {
-            first_name: formData.firstName,
-            last_name: formData.lastName,
-            email: formData.email,
-            phone: formData.phone,
-            message: formData.message,
-            status: 'new'
-          }
-        ]);
+        .from('lead_captures')
+        .insert({
+          email: formData.email.trim().toLowerCase(),
+          name: fullName || formData.firstName.trim(),
+          company: companyHint,
+          source: 'contact_form',
+          created_at: new Date().toISOString(),
+        });
 
       if (error) throw error;
 
