@@ -497,65 +497,14 @@ function HomePage() {
               >
                 Get My 15‑Minute Assessment <ArrowRight className="ml-2 h-5 w-5 group-hover:translate-x-1 transition-transform" />
               </button>
-              <button 
-                onClick={() => {
-                  try {
-                    fetch('/.netlify/functions/hero-ab-event', {
-                      method: 'POST',
-                      headers: { 'content-type': 'application/json' },
-                      body: JSON.stringify({
-                        event: 'hero_cta_click',
-                        cta: 'see_what_it_automates',
-                        variant: heroVariant,
-                        path: window.location.pathname,
-                        sessionId: heroSessionId,
-                      }),
-                      keepalive: true,
-                    }).catch(() => {});
-                  } catch {}
-
-                  const useCasesSection = document.getElementById('use-cases');
-                  if (useCasesSection) {
-                    useCasesSection.scrollIntoView({ behavior: 'smooth' });
-                  }
-                }}
-                className="bg-transparent border-2 border-white text-white px-6 py-3 rounded-lg hover:bg-white/10 transition-colors flex items-center group font-display font-semibold tracking-wide uppercase text-sm"
-              >
-                See What It Automates <ArrowRight className="ml-2 h-5 w-5 group-hover:translate-x-1 transition-transform" />
-              </button>
+              {/* Secondary CTA removed as requested */}
             </div>
             <div className="relative mt-8">
               <p className="text-white/60 text-sm">
                 Average 45% efficiency boost • Used by founders and lean teams
               </p>
             </div>
-            <div className="relative mt-6 bg-white/5 border border-white/10 rounded-xl p-6 max-w-xl mx-auto">
-              <p className="text-white font-semibold mb-2">📘 Free: AI Automation Playbook for SMEs</p>
-              <p className="text-white/60 text-sm mb-4">5 workflows you can automate this week — no coding required.</p>
-              <button
-                onClick={() => {
-                  try {
-                    fetch('/.netlify/functions/hero-ab-event', {
-                      method: 'POST',
-                      headers: { 'content-type': 'application/json' },
-                      body: JSON.stringify({
-                        event: 'hero_cta_click',
-                        cta: 'playbook_modal',
-                        variant: heroVariant,
-                        path: window.location.pathname,
-                        sessionId: heroSessionId,
-                      }),
-                      keepalive: true,
-                    }).catch(() => {});
-                  } catch {}
-
-                  setShowPlaybook(true);
-                }}
-                className="inline-flex items-center bg-nexius-teal text-white px-5 py-2.5 rounded-lg hover:bg-nexius-teal/90 transition-colors font-display font-semibold tracking-wide uppercase text-xs"
-              >
-                Get the Playbook <ArrowRight className="ml-2 h-4 w-4" />
-              </button>
-            </div>
+            {/* Playbook card moved below hero as requested */}
             <div className="relative mt-16">
               <img
                 src="/images/hero.png"
@@ -567,6 +516,38 @@ function HomePage() {
                 decoding="async"
               />
             </div>
+          </div>
+        </div>
+      </section>
+
+      <section className="py-8">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="bg-white/5 border border-white/10 rounded-xl p-6 max-w-xl mx-auto text-center">
+            <p className="text-white font-semibold mb-2">📘 Free: AI Automation Playbook for SMEs</p>
+            <p className="text-white/60 text-sm mb-4">5 workflows you can automate this week — no coding required.</p>
+            <button
+              onClick={() => {
+                try {
+                  fetch('/.netlify/functions/hero-ab-event', {
+                    method: 'POST',
+                    headers: { 'content-type': 'application/json' },
+                    body: JSON.stringify({
+                      event: 'hero_cta_click',
+                      cta: 'playbook_modal',
+                      variant: heroVariant,
+                      path: window.location.pathname,
+                      sessionId: heroSessionId,
+                    }),
+                    keepalive: true,
+                  }).catch(() => {});
+                } catch {}
+
+                setShowPlaybook(true);
+              }}
+              className="inline-flex items-center bg-nexius-teal text-white px-5 py-2.5 rounded-lg hover:bg-nexius-teal/90 transition-colors font-display font-semibold tracking-wide uppercase text-xs"
+            >
+              Get the Playbook <ArrowRight className="ml-2 h-4 w-4" />
+            </button>
           </div>
         </div>
       </section>
