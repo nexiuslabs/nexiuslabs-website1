@@ -185,7 +185,7 @@ export function PlaybookLanding() {
           </div>
         </div>
 
-        <section className="relative rounded-2xl border border-nexius-dark-border bg-nexius-dark-surface p-6 md:p-8 overflow-hidden">
+        <section className="relative rounded-2xl border border-nexius-dark-border bg-nexius-dark-surface overflow-hidden">
           {!unlocked && (
             <div className="absolute inset-0 z-20 bg-black/70 backdrop-blur-sm flex items-center justify-center text-center px-6">
               <div>
@@ -197,25 +197,47 @@ export function PlaybookLanding() {
           )}
 
           <div className={!unlocked ? 'blur-sm select-none pointer-events-none' : ''}>
-            <h2 className="text-2xl font-display font-bold text-white mb-2">Playbook (Web Edition)</h2>
-            <p className="text-nexius-dark-text-muted mb-6">
-              A practical 30/60/90-day rollout system for Agentic ERP/CRM and business automation.
-            </p>
+            <div className="bg-gradient-to-br from-[#1A1A2E] via-[#16213E] to-[#0F3460] px-6 md:px-10 py-12 border-b border-white/10">
+              <p className="inline-block text-xs font-semibold tracking-[0.18em] uppercase text-[#8B85FF] bg-[#6C63FF]/20 border border-[#6C63FF]/40 px-3 py-1 rounded-full">Free Practical Guide</p>
+              <h2 className="mt-4 text-3xl md:text-4xl font-display font-bold text-white leading-tight">
+                AI Automation Playbook for SMEs
+              </h2>
+              <p className="mt-3 text-white/75 max-w-2xl">Practical 30/60/90-day blueprint designed for operators deploying agentic AI across finance, CRM, and operations.</p>
+              <div className="mt-6 grid grid-cols-3 gap-4 max-w-md">
+                <div><p className="text-2xl font-bold text-[#00D4AA]">30</p><p className="text-xs text-white/60 uppercase tracking-wide">Days stabilize</p></div>
+                <div><p className="text-2xl font-bold text-[#00D4AA]">60</p><p className="text-xs text-white/60 uppercase tracking-wide">Days automate</p></div>
+                <div><p className="text-2xl font-bold text-[#00D4AA]">90</p><p className="text-xs text-white/60 uppercase tracking-wide">Days scale</p></div>
+              </div>
+            </div>
 
-            <div className="space-y-6">
-              {sections.map((section) => (
-                <article key={section.title} className="rounded-xl border border-nexius-dark-border bg-nexius-dark-card p-5">
-                  <h3 className="text-lg font-display font-semibold text-white mb-3">{section.title}</h3>
-                  <ul className="space-y-2 text-nexius-dark-text-muted">
-                    {section.points.map((point) => (
-                      <li key={point} className="flex gap-2">
-                        <span className="text-nexius-teal">•</span>
-                        <span>{point}</span>
-                      </li>
-                    ))}
-                  </ul>
-                </article>
-              ))}
+            <div className="p-6 md:p-8">
+              <div className="rounded-xl border border-nexius-dark-border bg-nexius-dark-card p-5 mb-6">
+                <h3 className="text-white font-display font-semibold mb-3">Table of Contents</h3>
+                <ol className="space-y-2 text-nexius-dark-text-muted list-decimal list-inside">
+                  {sections.map((section) => (
+                    <li key={`toc-${section.title}`}>{section.title}</li>
+                  ))}
+                </ol>
+              </div>
+
+              <div className="space-y-6">
+                {sections.map((section, idx) => (
+                  <article key={section.title} className="rounded-xl border border-nexius-dark-border bg-nexius-dark-card p-5">
+                    <div className="flex items-start gap-3 mb-3">
+                      <div className="h-8 w-8 rounded-lg bg-gradient-to-br from-[#6C63FF] to-[#5A52D5] text-white text-sm font-bold flex items-center justify-center mt-0.5">{idx + 1}</div>
+                      <h3 className="text-lg font-display font-semibold text-white">{section.title}</h3>
+                    </div>
+                    <ul className="space-y-2 text-nexius-dark-text-muted">
+                      {section.points.map((point) => (
+                        <li key={point} className="flex gap-2">
+                          <span className="text-nexius-teal">•</span>
+                          <span>{point}</span>
+                        </li>
+                      ))}
+                    </ul>
+                  </article>
+                ))}
+              </div>
             </div>
           </div>
         </section>
