@@ -540,7 +540,7 @@ function HomePage() {
                       headers: { 'content-type': 'application/json' },
                       body: JSON.stringify({
                         event: 'hero_cta_click',
-                        cta: 'playbook_modal',
+                        cta: 'playbook_web_gate',
                         variant: heroVariant,
                         path: window.location.pathname,
                         sessionId: heroSessionId,
@@ -549,7 +549,7 @@ function HomePage() {
                     }).catch(() => {});
                   } catch {}
 
-                  setShowPlaybook(true);
+                  window.location.href = '/playbook';
                 }}
                 className="inline-flex items-center bg-nexius-teal text-white px-5 py-2.5 rounded-lg hover:bg-nexius-teal/90 transition-colors font-display font-semibold tracking-wide uppercase text-xs"
               >
