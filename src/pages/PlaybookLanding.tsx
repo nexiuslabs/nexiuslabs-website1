@@ -1,114 +1,129 @@
-import React, { useEffect, useState } from 'react';
-import { Loader2, CheckCircle2, Lock } from 'lucide-react';
+import React, { useState } from 'react';
+import { Download, Loader2, CheckCircle2 } from 'lucide-react';
 import { supabase } from '../lib/supabase';
-
-const PLAYBOOK_UNLOCK_KEY = 'nexius_playbook_unlocked_v2';
 
 export function PlaybookLanding() {
   const [email, setEmail] = useState('');
+  const [name, setName] = useState('');
+  const [company, setCompany] = useState('');
   const [loading, setLoading] = useState(false);
-  const [unlocked, setUnlocked] = useState(false);
+  const [submitted, setSubmitted] = useState(false);
   const [error, setError] = useState('');
-
-  useEffect(() => {
-    const stored = window.localStorage.getItem(PLAYBOOK_UNLOCK_KEY);
-    if (stored === '1') setUnlocked(true);
-  }, []);
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setError('');
 
-    if (!email) {
-      setError('Please enter your work email to unlock the playbook.');
+    if (!email || !name) {
+      setError('Please fill in your name and email.');
       return;
     }
 
     try {
       setLoading(true);
-
-      const normalizedEmail = email.trim().toLowerCase();
-      const fallbackName = normalizedEmail.split('@')[0] || 'Playbook Reader';
-
       const { error: dbError } = await supabase
         .from('lead_captures')
         .insert({
-          email: normalizedEmail,
-          name: fallbackName,
-          company: null,
-          source: 'playbook_full_web_unlock',
+          email: email.trim().toLowerCase(),
+          name: name.trim(),
+          company: company.trim() || null,
+          source: 'playbook_landing_page',
           created_at: new Date().toISOString(),
         });
 
-      if (dbError && dbError.code !== '23505') throw dbError;
+      if (dbError && dbError.code !== '23505') {
+        throw dbError;
+      }
 
-      window.localStorage.setItem(PLAYBOOK_UNLOCK_KEY, '1');
-      setUnlocked(true);
+      setSubmitted(true);
     } catch (err) {
       console.error(err);
-      setError('Unable to unlock right now. Please try again.');
+      setError('Something went wrong. Please try again.');
     } finally {
       setLoading(false);
     }
   };
 
-  return (
-    <div className="min-h-screen bg-nexius-dark-bg pt-24 pb-6">
-      <div className={unlocked ? 'w-full px-0' : 'max-w-7xl mx-auto px-4 sm:px-6 lg:px-8'}>
-        {!unlocked ? (
-          <div className="max-w-xl mx-auto bg-nexius-dark-surface border border-nexius-dark-border rounded-2xl p-6 md:p-8 text-center">
-            <div className="inline-flex h-12 w-12 items-center justify-center rounded-full bg-nexius-teal/20 text-nexius-teal mb-4">
-              <Lock className="h-6 w-6" />
-            </div>
-            <h1 className="text-2xl md:text-3xl font-display font-bold text-white">Unlock Full Playbook (11 pages, 8 chapters)</h1>
-            <p className="mt-3 text-nexius-dark-text-muted">
-              Enter your email to access the complete web version of the AI Automation Playbook for SMEs.
-            </p>
+  const handleDownload = () => {
+    window.open('/downloads/ai-automation-playbook-smes.pdf', '_blank');
+  };
 
-            <form onSubmit={handleSubmit} className="mt-6 space-y-4 text-left">
-              <div>
-                <label className="block text-sm text-nexius-dark-text-muted mb-1">Work Email *</label>
+  return (
+    <div className="min-h-screen bg-nexius-dark-bg pt-28 pb-16">
+      <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="grid lg:grid-cols-2 gap-10 items-center">
+          <div>
+            <p className="text-nexius-teal font-semibold mb-3">Free Practical Guide</p>
+            <h1 className="text-4xl font-display font-bold text-white mb-4 tracking-tight">
+              AI Automation Playbook for SMEs
+            </h1>
+            <p className="text-nexius-dark-text-muted mb-6 leading-relaxed">
+              Get the exact 30/60/90-day rollout blueprint we use to help SMEs deploy AI across finance, CRM, and operations without expensive replatforming.
+            </p>
+            <img
+              src="/images/playbook-preview.svg"
+              alt="AI Automation Playbook for SMEs"
+              className="rounded-xl border border-nexius-dark-border"
+            />
+          </div>
+
+          <div className="bg-nexius-dark-surface border border-nexius-dark-border rounded-2xl p-6">
+            {!submitted ? (
+              <form onSubmit={handleSubmit} className="space-y-4">
+                <h2 className="text-xl font-display font-bold text-white">Get Instant Access</h2>
+                <p className="text-sm text-nexius-dark-text-muted">Enter your details to unlock the download.</p>
+
+                <input
+                  type="text"
+                  placeholder="Your name"
+                  value={name}
+                  onChange={(e) => setName(e.target.value)}
+                  className="w-full px-4 py-2.5 bg-nexius-dark-card border border-nexius-dark-border rounded-lg text-white placeholder-white/40"
+                  required
+                />
                 <input
                   type="email"
+                  placeholder="Work email"
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
-                  placeholder="you@company.com"
+                  className="w-full px-4 py-2.5 bg-nexius-dark-card border border-nexius-dark-border rounded-lg text-white placeholder-white/40"
                   required
-                  className="w-full px-4 py-3 bg-nexius-dark-card border border-nexius-dark-border rounded-lg text-white placeholder-white/40"
                 />
+                <input
+                  type="text"
+                  placeholder="Company (optional)"
+                  value={company}
+                  onChange={(e) => setCompany(e.target.value)}
+                  className="w-full px-4 py-2.5 bg-nexius-dark-card border border-nexius-dark-border rounded-lg text-white placeholder-white/40"
+                />
+
+                {error && <p className="text-red-400 text-sm">{error}</p>}
+
+                <button
+                  type="submit"
+                  disabled={loading}
+                  className="w-full bg-nexius-teal text-white py-3 rounded-lg hover:bg-nexius-teal/90 transition-colors font-semibold flex items-center justify-center gap-2 disabled:opacity-50"
+                >
+                  {loading ? <Loader2 className="h-4 w-4 animate-spin" /> : <Download className="h-4 w-4" />}
+                  Unlock Download
+                </button>
+              </form>
+            ) : (
+              <div className="text-center py-4">
+                <CheckCircle2 className="h-12 w-12 text-nexius-teal mx-auto mb-3" />
+                <h3 className="text-white text-lg font-bold mb-2">You're all set</h3>
+                <p className="text-nexius-dark-text-muted mb-5">Your playbook is ready.</p>
+                <button
+                  onClick={handleDownload}
+                  className="w-full bg-nexius-teal text-white py-3 rounded-lg hover:bg-nexius-teal/90 transition-colors font-semibold flex items-center justify-center gap-2"
+                >
+                  <Download className="h-4 w-4" />
+                  Download Playbook PDF
+                </button>
               </div>
-
-              {error && <p className="text-red-400 text-sm">{error}</p>}
-
-              <button
-                type="submit"
-                disabled={loading}
-                className="w-full bg-nexius-teal text-white py-3 rounded-lg hover:bg-nexius-teal/90 transition-colors font-semibold flex items-center justify-center gap-2 disabled:opacity-50"
-              >
-                {loading ? <Loader2 className="h-4 w-4 animate-spin" /> : <CheckCircle2 className="h-4 w-4" />}
-                {loading ? 'Unlocking...' : 'Unlock Full Playbook'}
-              </button>
-            </form>
+            )}
           </div>
-        ) : (
-          <div className="space-y-3">
-            <div className="mx-3 md:mx-4 bg-nexius-dark-surface border border-nexius-dark-border rounded-xl px-4 py-3 flex items-center justify-between gap-3">
-              <div>
-                <h2 className="text-white font-display font-semibold">AI Automation Playbook for SMEs</h2>
-                <p className="text-sm text-nexius-dark-text-muted">Full web edition unlocked (8 chapters, 11 pages)</p>
-              </div>
-            </div>
-
-            <div className="mx-0 md:mx-4 rounded-none md:rounded-xl overflow-hidden border-y md:border border-nexius-dark-border bg-white">
-              <iframe
-                src="/playbook-full.html"
-                title="AI Automation Playbook Full Web Version"
-                className="w-full"
-                style={{ height: 'calc(100vh - 165px)' }}
-              />
-            </div>
-          </div>
-        )}
+        </div>
       </div>
     </div>
   );
