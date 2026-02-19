@@ -18,8 +18,8 @@ export function Contact() {
   const [email, setEmail] = useState('');
   const [message, setMessage] = useState('');
   const [consent, setConsent] = useState(false);
-
   const [loading, setLoading] = useState(false);
+  const [showSuccessPopup, setShowSuccessPopup] = useState(false);
 
   return (
     <div className="min-h-screen bg-nexius-dark-bg">
@@ -77,7 +77,7 @@ export function Contact() {
 
                     if (error) throw error;
 
-                    alert('Thank you — your enquiry has been submitted. We will get back to you shortly.');
+                    setShowSuccessPopup(true);
                     setFirstName('');
                     setLastName('');
                     setEmail('');
@@ -253,6 +253,36 @@ export function Contact() {
           </div>
         </div>
       </div>
+
+      {showSuccessPopup && (
+        <div className="fixed inset-0 z-[70] bg-black/70 backdrop-blur-sm flex items-center justify-center px-4">
+          <div className="w-full max-w-md rounded-2xl border border-nexius-dark-border bg-nexius-dark-surface p-6 shadow-2xl">
+            <div className="inline-flex h-11 w-11 items-center justify-center rounded-full bg-nexius-teal/20 text-nexius-teal text-xl mb-4">
+              ✓
+            </div>
+            <h3 className="text-2xl font-display font-bold text-white">Thank you, we got your enquiry</h3>
+            <p className="mt-2 text-nexius-dark-text-muted leading-relaxed">
+              Our team will review your request and get back to you shortly with the next best step.
+            </p>
+            <div className="mt-6 flex flex-col sm:flex-row gap-3">
+              <button
+                type="button"
+                onClick={() => setShowSuccessPopup(false)}
+                className="inline-flex items-center justify-center rounded-lg bg-nexius-teal px-4 py-2.5 text-white font-semibold hover:bg-nexius-teal/90 transition-colors"
+              >
+                Close
+              </button>
+              <Link
+                to="/book-assessment"
+                onClick={() => setShowSuccessPopup(false)}
+                className="inline-flex items-center justify-center rounded-lg border border-nexius-dark-border px-4 py-2.5 text-white/90 hover:text-white hover:border-white/20 transition-colors"
+              >
+                Book a 15‑min assessment
+              </Link>
+            </div>
+          </div>
+        </div>
+      )}
     </div>
   );
 }
