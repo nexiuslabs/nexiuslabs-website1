@@ -1,4 +1,4 @@
-import React, { useMemo, useState } from 'react';
+import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import {
   ArrowLeft,
@@ -10,6 +10,7 @@ import {
   Linkedin,
   Globe,
 } from 'lucide-react';
+import { supabase } from '../lib/supabase';
 
 export function Contact() {
   const [firstName, setFirstName] = useState('');
@@ -18,25 +19,7 @@ export function Contact() {
   const [message, setMessage] = useState('');
   const [consent, setConsent] = useState(false);
 
-  const mailtoHref = useMemo(() => {
-    const to = 'melverick@nexiuslabs.com';
-    const subject = `Nexius Labs enquiry — ${firstName || ''} ${lastName || ''}`.trim();
-    const body = [
-      `Name: ${[firstName, lastName].filter(Boolean).join(' ') || '-'}`,
-      `Email: ${email || '-'}`,
-      '',
-      'Message:',
-      message || '-',
-      '',
-      '---',
-      'Context (optional):',
-      '- What workflow do you want to automate (RevOps/CRM, finance, ops)?',
-      '- What tool stack do you use today?',
-      '- What outcome matters (time saved, SLA, conversion, cashflow)?',
-    ].join('\n');
-
-    return `mailto:${to}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
-  }, [firstName, lastName, email, message]);
+  const [loading, setLoading] = useState(false);
 
   return (
     <div className="min-h-screen bg-nexius-dark-bg">
@@ -72,10 +55,40 @@ export function Contact() {
 
               <form
                 className="mt-6 space-y-4"
-                onSubmit={(e) => {
+                onSubmit={async (e) => {
                   e.preventDefault();
-                  // No backend submit; open a prefilled email.
-                  window.location.href = mailtoHref;
+
+                  if (!consent) return;
+
+                  try {
+                    setLoading(true);
+                    const fullName = [firstName, lastName].filter(Boolean).join(' ').trim();
+                    const companyHint = message.trim() || null;
+
+                    const { error } = await supabase
+                      .from('lead_captures')
+                      .insert({
+                        email: email.trim().toLowerCase(),
+                        name: fullName || 'Website Contact',
+                        company: companyHint,
+                        source: 'contact_page',
+                        created_at: new Date().toISOString(),
+                      });
+
+                    if (error) throw error;
+
+                    alert('Thank you — your enquiry has been submitted. We will get back to you shortly.');
+                    setFirstName('');
+                    setLastName('');
+                    setEmail('');
+                    setMessage('');
+                    setConsent(false);
+                  } catch (err) {
+                    console.error('Error submitting contact form:', err);
+                    alert('Error submitting form. Please try again or contact us directly.');
+                  } finally {
+                    setLoading(false);
+                  }
                 }}
               >
                 <div className="grid sm:grid-cols-2 gap-4">
@@ -145,11 +158,11 @@ export function Contact() {
                 <div className="pt-2 flex flex-col sm:flex-row gap-3">
                   <button
                     type="submit"
-                    disabled={!consent}
+                    disabled={!consent || loading}
                     className="inline-flex items-center justify-center gap-2 px-5 py-3 rounded-lg bg-nexius-teal text-white hover:bg-nexius-teal/90 disabled:opacity-50 disabled:cursor-not-allowed transition-colors font-display font-semibold"
                   >
                     <Send className="h-5 w-5" />
-                    Send enquiry
+                    {loading ? 'Submitting…' : 'Send enquiry'}
                   </button>
 
                   <Link
