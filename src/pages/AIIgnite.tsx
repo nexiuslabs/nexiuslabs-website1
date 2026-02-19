@@ -322,16 +322,17 @@ export function AIIgnite() {
                 }
                 
                 try {
+                  const fullName = `${firstName} ${lastName}`.trim();
+                  const companyHint = [company.trim(), message.trim()].filter(Boolean).join(' | ');
+
                   const { error } = await supabase
-                    .from('ignite_form')
+                    .from('lead_captures')
                     .insert({
-                      first_name: firstName,
-                      last_name: lastName,
-                      email: email,
-                      company: company,
-                      message: message,
-                      remarks: '',
-                      status: 'new'
+                      email: email.trim().toLowerCase(),
+                      name: fullName || firstName.trim(),
+                      company: companyHint || null,
+                      source: 'ai_ignite_contact',
+                      created_at: new Date().toISOString(),
                     });
 
                   if (error) throw error;
