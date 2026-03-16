@@ -501,7 +501,7 @@ function HomePage() {
             </div>
             <div className="relative mt-8">
               <p className="text-white/60 text-sm">
-                Average 45% efficiency boost • Used by founders and lean teams
+                Average 55% efficiency boost • Used by founders and lean teams
               </p>
             </div>
             {/* Playbook card moved below hero as requested */}
@@ -583,7 +583,7 @@ function HomePage() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-16">
             <h2 className="text-3xl font-display font-bold text-white mb-4 tracking-tight">
-              How AI Automation Helps Small Businesses and SMEs
+              How AI Automation Helps SMEs?
             </h2>
             <p className="font-body text-nexius-dark-text-muted max-w-2xl mx-auto leading-relaxed">
               Discover how AI workflow automation and ERP CRM automation can improve execution speed,
