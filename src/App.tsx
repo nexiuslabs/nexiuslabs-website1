@@ -501,7 +501,7 @@ function HomePage() {
             </div>
             <div className="relative mt-8">
               <p className="text-white/60 text-sm">
-                Average 55% efficiency boost • Used by founders and lean teams
+                Average 45% efficiency boost • Used by founders and lean teams
               </p>
             </div>
             {/* Playbook card moved below hero as requested */}
