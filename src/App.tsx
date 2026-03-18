@@ -471,7 +471,10 @@ function HomePage() {
               Nexius Labs helps businesses implement AI automation for SMEs in Singapore across ERP, CRM, finance, and daily operations.
             </p>
             <div className="relative flex justify-center gap-4">
-              <button 
+              <a
+                href="https://outlook.office.com/bookwithme/user/1a3b3c1b65044d24b6cddcc6b42c8ecb@nexiuslabs.com/meetingtype/zUldRkT1PkqTcoOZHMBl7w2?anonymous&ismsaljsauthenabled&ep=mLinkFromTile"
+                target="_blank"
+                rel="noopener noreferrer"
                 onClick={() => {
                   try {
                     fetch('/.netlify/functions/hero-ab-event', {
@@ -487,16 +490,11 @@ function HomePage() {
                       keepalive: true,
                     }).catch(() => {});
                   } catch {}
-
-                  const contactButton = document.querySelector('button[data-contact="true"]');
-                  if (contactButton instanceof HTMLButtonElement) {
-                    contactButton.click();
-                  }
                 }}
-                className="bg-nexius-teal text-white px-6 py-3 rounded-lg hover:bg-nexius-teal/90 transition-colors flex items-center group font-display font-semibold tracking-wide uppercase text-sm"
+                className="bg-nexius-teal text-white px-6 py-3 rounded-lg hover:bg-nexius-teal/90 transition-colors inline-flex items-center group font-display font-semibold tracking-wide uppercase text-sm"
               >
                 Get My 15‑Minute Assessment <ArrowRight className="ml-2 h-5 w-5 group-hover:translate-x-1 transition-transform" />
-              </button>
+              </a>
               {/* Secondary CTA removed as requested */}
             </div>
             <div className="relative mt-8">
