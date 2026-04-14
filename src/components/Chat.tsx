@@ -1,118 +1,32 @@
-import React, { useState, useEffect, useRef, useCallback } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { MessageCircle, Send, X, Minimize2, Maximize2 } from 'lucide-react';
-import { supabase } from '../lib/supabase';
-import { createChatSession, sendChatMessage, getChatMessages } from '../lib/chats';
-import type { ChatMessage } from '../types/database';
+
+const WHATSAPP_NUMBER = '6596615284';
+const DEFAULT_MESSAGE = 'Hi Nexius Labs, I would like to enquire about your services.';
+
+interface WidgetMessage {
+  id: string;
+  content: string;
+  is_from_visitor: boolean;
+}
 
 export function Chat() {
   const [isOpen, setIsOpen] = useState(false);
   const [isMinimized, setIsMinimized] = useState(false);
   const [message, setMessage] = useState('');
-  const [messages, setMessages] = useState<ChatMessage[]>([]);
-  const [visitorId, setVisitorId] = useState<string>('');
-  const [sessionId, setSessionId] = useState<string>('');
-  const [, setLoading] = useState(false);
+  const [messages, setMessages] = useState<WidgetMessage[]>([]);
   const messagesEndRef = useRef<HTMLDivElement>(null);
   const messageContainerRef = useRef<HTMLDivElement>(null);
-  const [aiTyping, setAiTyping] = useState(false);
-
-  const loadChatMessages = async (sessionId: string) => {
-    if (!sessionId) return;
-
-    console.log('Loading messages for session:', sessionId);
-    try {
-      const { data: messages, error } = await supabase
-        .from('chat_messages')
-        .select('*')
-        .eq('session_id', sessionId)
-        .order('created_at', { ascending: true });
-
-      if (error) {
-        console.error('Error loading chat messages:', error);
-        return;
-      }
-
-      console.log('Loaded messages:', messages);
-      setMessages(messages || []);
-
-      // Mark messages as read
-    } catch (error) {
-      console.error('Error loading chat messages:', error);
-    }
-  };
-
-  const initializeChat = useCallback(async () => {
-    setLoading(true);
-    try {
-      const session = await createChatSession({
-        visitor_id: visitorId,
-      });
-
-      setSessionId(session.id);
-
-      // Fetch initial messages
-      const messages = await getChatMessages(session.id);
-      setMessages(messages);
-    } catch (error) {
-      console.error('Error initializing chat:', error);
-    } finally {
-      setLoading(false);
-    }
-  }, [visitorId]);
 
   useEffect(() => {
-    // Generate a unique visitor ID if not exists
-    const storedVisitorId = localStorage.getItem('visitorId');
-    if (!storedVisitorId) {
-      const newVisitorId = crypto.randomUUID();
-      localStorage.setItem('visitorId', newVisitorId);
-      setVisitorId(newVisitorId);
-    } else {
-      setVisitorId(storedVisitorId);
-    }
+    setMessages([
+      {
+        id: 'welcome',
+        content: 'Hi — send us a message here and we’ll continue the conversation on WhatsApp.',
+        is_from_visitor: false,
+      },
+    ]);
   }, []);
-
-  useEffect(() => {
-    if (sessionId) {
-      // Fetch initial messages
-      loadChatMessages(sessionId);
-
-      // Set up real-time subscription
-      const channel = supabase
-        .channel(`chat_${sessionId}`)
-        .on(
-          'postgres_changes',
-          {
-            event: 'INSERT',
-            schema: 'public', 
-            table: 'chat_messages', 
-            filter: `session_id=eq.${sessionId}` 
-          },
-          (payload) => {
-            console.log('New message received:', payload);
-            setMessages(prev => {
-              // Ensure we don't add duplicate messages
-              const isDuplicate = prev.some(msg => msg.id === payload.new.id);
-              if (!isDuplicate) {
-                return [...prev, payload.new as ChatMessage];
-              }
-              return prev;
-            });
-          }
-        ) 
-        .subscribe();
-
-      return () => {
-        supabase.removeChannel(channel);
-      };
-    }
-  }, [sessionId]);
-
-  useEffect(() => {
-    if (isOpen && !sessionId) {
-      initializeChat();
-    }
-  }, [isOpen, sessionId, initializeChat]);
 
   useEffect(() => {
     if (messages.length > 0) {
@@ -128,79 +42,27 @@ export function Chat() {
 
   const handleSendMessage = async (e: React.FormEvent) => {
     e.preventDefault();
-    if (!message.trim() || !sessionId) return;
+    if (!message.trim()) return;
 
     const trimmedMessage = message.trim();
     setMessage('');
 
-    // Create visitor message
-    const newMessage = {
-      session_id: sessionId,
-      visitor_id: visitorId,
-      content: trimmedMessage,
-      is_from_visitor: true,
-      user_id: null,
-      read: false,
-    };
+    setMessages((prev) => [
+      ...prev,
+      {
+        id: `visitor-${Date.now()}`,
+        content: trimmedMessage,
+        is_from_visitor: true,
+      },
+      {
+        id: `system-${Date.now() + 1}`,
+        content: 'Opening WhatsApp so you can continue with our team there.',
+        is_from_visitor: false,
+      },
+    ]);
 
-    try {
-      await sendChatMessage(newMessage);
-      
-      // Show AI is typing
-      setAiTyping(true);
-      
-      try {
-        // Get AI response
-        const response = await fetch(`/.netlify/functions/chat-ai`, {
-          method: 'POST',
-          headers: {
-            'Content-Type': 'application/json',
-          },
-          body: JSON.stringify({
-            message: trimmedMessage,
-            sessionId,
-            visitorId,
-          }),
-        });
-
-        if (!response.ok) {
-          const errorData = await response.json();
-          throw new Error(errorData.error || 'Failed to get AI response');
-        }
-
-        const data = await response.json();
-        if (!data || !data.message) {
-          throw new Error('Invalid response from AI service');
-        }
-
-        // Message will be added via subscription
-      } catch (aiError) {
-        console.error('AI response error:', aiError);
-        
-        // Create fallback message if AI fails
-        const fallbackMessage = {
-          session_id: sessionId,
-          visitor_id: visitorId,
-          content: "I apologize, but I'm experiencing technical difficulties. A team member will assist you shortly.",
-          is_from_visitor: false,
-          user_id: null,
-          read: false
-        };
-        
-        try {
-          await sendChatMessage(fallbackMessage);
-        } catch (fallbackError) {
-          console.error('Error sending fallback message:', fallbackError);
-        }
-      }
-
-    } catch (error) {
-      console.error('Error sending message:', error);
-      alert('Error sending message. Please try again.');
-      setMessage(trimmedMessage);
-    } finally {
-      setAiTyping(false);
-    }
+    const whatsappUrl = `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(trimmedMessage || DEFAULT_MESSAGE)}`;
+    window.open(whatsappUrl, '_blank', 'noopener,noreferrer');
   };
 
   const toggleChat = () => {
@@ -271,17 +133,6 @@ export function Chat() {
                     </div>
                   </div>
                 ))}
-                {aiTyping && (
-                  <div className="flex justify-start">
-                    <div className="bg-nexius-dark-card text-nexius-dark-text rounded-lg px-4 py-2 border border-nexius-dark-border">
-                      <div className="flex space-x-2">
-                        <div className="w-2 h-2 bg-nexius-dark-text-muted rounded-full animate-bounce" style={{ animationDelay: '0ms' }}></div>
-                        <div className="w-2 h-2 bg-nexius-dark-text-muted rounded-full animate-bounce" style={{ animationDelay: '150ms' }}></div>
-                        <div className="w-2 h-2 bg-nexius-dark-text-muted rounded-full animate-bounce" style={{ animationDelay: '300ms' }}></div>
-                      </div>
-                    </div>
-                  </div>
-                )}
                 <div ref={messagesEndRef} />
               </div>
 
@@ -292,7 +143,7 @@ export function Chat() {
                     type="text"
                     value={message}
                     onChange={(e) => setMessage(e.target.value)}
-                    placeholder="Type your message..."
+                    placeholder="Type your message to WhatsApp..."
                     className="flex-1 px-3 py-2 border border-nexius-dark-border bg-nexius-dark-card text-nexius-dark-text placeholder-nexius-dark-text-muted rounded-lg focus:ring-2 focus:ring-nexius-teal focus:border-nexius-teal"
                   />
                   <button
