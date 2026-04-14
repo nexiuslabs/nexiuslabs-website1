@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { MessageCircle, Send, X, Minimize2, Maximize2 } from 'lucide-react';
 
-const WHATSAPP_NUMBER = '6596615284';
+const WHATSAPP_NUMBER = '6589002130';
 const DEFAULT_MESSAGE = 'Hi Nexius Labs, I would like to enquire about your services.';
 
 interface WidgetMessage {
