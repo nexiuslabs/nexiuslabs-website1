@@ -22,5 +22,9 @@ https://www.nexiuslabs.com/* https://nexiuslabs.com/:splat 301!
 /featured/booking /book-assessment 301!
 /featured/case-study-agentic-erp-crm-mvp /featured-case-study-agentic-erp-crm-mvp.html 200
 
+# V3 static site
+/v3/* /v3/index.html 200
+/v3 /v3/ 301
+
 # Handle client-side routing
 /* /index.html 200
