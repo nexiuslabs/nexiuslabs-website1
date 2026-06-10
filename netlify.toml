@@ -29,6 +29,18 @@
   status = 200
   force = true
 
+[[redirects]]
+  from = "/llms.txt"
+  to = "/llms.txt"
+  status = 200
+  force = true
+
+[[redirects]]
+  from = "/llms-full.txt"
+  to = "/llms-full.txt"
+  status = 200
+  force = true
+
 # SPA catch-all (must be last)
 [[redirects]]
   from = "/*"

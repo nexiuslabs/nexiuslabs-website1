@@ -15,5 +15,23 @@ Disallow: /index.php
 # Allow important files
 Allow: /sitemap.xml
 Allow: /robots.txt
+Allow: /llms.txt
+Allow: /llms-full.txt
+
+# Explicit AI crawler access for public marketing and reference pages
+User-agent: GPTBot
+Allow: /
+
+User-agent: OAI-SearchBot
+Allow: /
+
+User-agent: ChatGPT-User
+Allow: /
+
+User-agent: ClaudeBot
+Allow: /
+
+User-agent: PerplexityBot
+Allow: /
 
 Sitemap: https://nexiuslabs.com/sitemap.xml
