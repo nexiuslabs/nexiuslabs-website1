@@ -55,23 +55,27 @@ import { SolutionIcpEngine } from './pages/SolutionIcpEngine';
 
 const features = [
   {
-    title: 'Agentic ERP & CRM for Small Businesses',
-    description: 'Deploy agentic ERP and CRM automation that adapts to your processes and reduces manual admin work.',
+    title: 'Workflow and systems assessment',
+    description:
+      'Map current workflows across ERP, CRM, HR, finance, sales, and operations before proposing an agentic path.',
+    icon: FileText,
+  },
+  {
+    title: 'Agentic AI transformation plan',
+    description:
+      'Turn findings into a board-ready plan: operating model, priority use cases, risk controls, roadmap, and build sequence.',
+    icon: Settings,
+  },
+  {
+    title: 'AI literacy and fluency training',
+    description:
+      'Train employees to use AI safely, write better prompts, evaluate outputs, and work with agents inside daily processes.',
     icon: Brain,
   },
   {
-    title: 'AI Workflow Automation for Small Businesses and SMEs',
-    description: 'Automate repetitive workflows across sales, operations, support, and back office with practical AI orchestration.',
-    icon: Workflow,
-  },
-  {
-    title: 'Automate Finance and Operations with AI Agents',
-    description: 'Improve invoice speed, handoff quality, and cash-flow visibility with controlled AI workflow automation.',
-    icon: BarChart3,
-  },
-  {
-    title: 'AI Training and Workshops for Business Teams in Singapore',
-    description: 'Hands-on programs to help teams adopt AI business automation and execute with confidence.',
+    title: 'Build support with domain experts',
+    description:
+      'Work beside your process owners to turn the plan into an Agentic OS for the business.',
     icon: Shield,
   },
 ];
@@ -553,23 +557,47 @@ function HomePage() {
       {/* Services Section */}
       <section id="services" className="py-24">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-16">
-            <h2 className="text-3xl font-display font-bold text-white mb-4 tracking-tight">
-              Agentic AI Solutions and AI Workflow Automation Services
-            </h2>
-            <p className="font-body text-nexius-dark-text-muted max-w-2xl mx-auto leading-relaxed">
-              From agentic ERP and CRM for small businesses to custom AI workflow solutions for businesses, Nexius delivers practical systems for AI business automation with measurable operating leverage.
-            </p>
+          <div className="flex flex-col gap-6 mb-16 lg:flex-row lg:items-start lg:justify-between">
+            <div>
+              <p className="font-display text-xs font-semibold uppercase tracking-[0.28em] text-nexius-teal mb-4">
+                Filter: Offer
+              </p>
+              <h2 className="text-3xl md:text-5xl font-display font-bold text-white mb-4 tracking-tight max-w-3xl">
+                Consultancy and training offer
+              </h2>
+              <p className="font-body text-nexius-dark-text-muted max-w-2xl leading-relaxed">
+                Agentic AI solutions and AI workflow automation services for leaders who need assessment, a board-ready transformation plan, team fluency, and practical build support.
+              </p>
+            </div>
+            <a
+              href="https://outlook.office.com/bookwithme/user/1a3b3c1b65044d24b6cddcc6b42c8ecb@nexiuslabs.com/meetingtype/zUldRkT1PkqTcoOZHMBl7w2?anonymous&ismsaljsauthenabled&ep=mLinkFromTile"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex shrink-0 items-center justify-center border border-nexius-teal/70 px-5 py-3 text-xs font-display font-semibold uppercase tracking-[0.2em] text-white hover:bg-nexius-teal hover:text-nexius-dark transition-colors"
+            >
+              Start / Consult
+            </a>
           </div>
           <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
             {features.map((feature) => (
-              <div key={feature.title} className="group p-6 bg-nexius-dark-card rounded-xl border border-nexius-dark-border hover:border-nexius-teal/50 hover:shadow-lg transition-all">
+              <div key={feature.title} className="group flex min-h-full flex-col p-6 bg-nexius-dark-card rounded-xl border border-nexius-dark-border hover:border-nexius-teal/50 hover:shadow-lg transition-all">
                 <div className="relative inline-block">
                   <div className="absolute -inset-2 bg-nexius-teal/20 rounded-lg blur opacity-0 group-hover:opacity-100 transition-opacity"></div>
-                  <feature.icon className="relative h-12 w-12 text-nexius-teal mb-4" />
+                  <feature.icon className="relative h-12 w-12 text-nexius-teal mb-6" />
                 </div>
-                <h3 className="text-xl font-semibold text-white mb-2">{feature.title}</h3>
-                <p className="text-nexius-dark-text-muted">{feature.description}</p>
+                <div className="flex items-start gap-4 mb-3">
+                  <h3 className="text-xl font-semibold text-white leading-tight">{feature.title}</h3>
+                  <span className="mt-1 h-8 w-1 shrink-0 rounded-full bg-nexius-teal" aria-hidden="true"></span>
+                </div>
+                <p className="text-nexius-dark-text-muted leading-relaxed flex-1">{feature.description}</p>
+                <a
+                  href="https://outlook.office.com/bookwithme/user/1a3b3c1b65044d24b6cddcc6b42c8ecb@nexiuslabs.com/meetingtype/zUldRkT1PkqTcoOZHMBl7w2?anonymous&ismsaljsauthenabled&ep=mLinkFromTile"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="mt-8 inline-flex w-fit items-center bg-nexius-teal text-nexius-dark px-4 py-2 rounded-lg hover:bg-nexius-teal/90 transition-colors font-display font-semibold tracking-wide uppercase text-xs"
+                >
+                  Start Info <ArrowRight className="ml-2 h-4 w-4" />
+                </a>
               </div>
             ))}
           </div>
